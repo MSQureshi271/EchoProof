@@ -1,0 +1,5 @@
+# Experimental interface; checkpoint revision and training configuration are pending.
+model: wavlm_base_plus
+input: processor_waveform
+backbone: frozen_initially
+status: experimental

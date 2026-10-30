@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "echoproof"
+version = "0.1.0"
+description = "Reproducible speech synthesis detection research package"
+requires-python = ">=3.11"
+readme = "docs/phase1_setup.md"
+dependencies = [
+  "numpy",
+  "pandas",
+  "pyarrow",
+  "scipy",
+  "scikit-learn",
+  "librosa",
+  "soundfile",
+  "PyYAML",
+]
+
+[project.optional-dependencies]
+neural = ["torch"]
+analysis = ["matplotlib", "seaborn"]
+pretrained = ["transformers", "huggingface-hub"]
+app = ["streamlit"]
+dev = ["pytest"]
+profiling = ["psutil"]
+
+[project.scripts]
+echoproof = "echoproof.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["echoproof*"]
+

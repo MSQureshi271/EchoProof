@@ -1,0 +1,23 @@
+schema_version: 1
+mode: fixture_probe
+seed: 42
+labels: {genuine: 0, tts: 1}
+device: cpu
+audio:
+  sample_rate: 16000
+  crop_samples: 64000
+  mono_policy: mean_channels
+paths:
+  fixtures: tests/fixtures/generated
+  run_root: runs/phase1
+  asset_lock: configs/pretrained_assets.json
+  genuine_audio: dataset/genuine/wav
+  genuine_transcripts: dataset/genuine/transcripts
+  tts_audio: dataset/tts/XTTSv2
+  staging_root: /content/echoproof
+probe:
+  ast_microbatch: 2
+  warmup_batches: 5
+  measured_batches: 100
+  precision: fp32
+  timing_limit_seconds: 600

@@ -1,0 +1,5 @@
+# Experimental interface; checkpoint revision and training configuration are pending.
+model: audio_spectrogram_transformer
+input: pretrained_feature_extractor
+backbone: head_then_partial_finetune
+status: experimental

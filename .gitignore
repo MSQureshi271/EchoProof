@@ -1,0 +1,31 @@
+# Raw and derived data can include private recordings.
+/dataset/
+/data/
+/runs/
+/bundles/
+/tests/fixtures/generated/
+# Large local reports stay out of Git; curated summaries can be added deliberately.
+/reports/
+!/reports/phase1/
+/reports/phase1/*/
+!/reports/phase1/*.md
+!/reports/phase1/*.json
+.venv*/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.wav
+*.mp3
+*.flac
+.env
+.env.*
+*.tmp

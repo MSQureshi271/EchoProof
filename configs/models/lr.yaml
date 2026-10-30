@@ -1,0 +1,5 @@
+# Experimental interface; training implementation and tuned values are future work.
+model: logistic_regression
+input: handcrafted_statistics
+pipeline: [standard_scaler, logistic_regression]
+status: experimental

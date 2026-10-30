@@ -1,0 +1,6 @@
+# Experimental interface; training implementation and tuned values are future work.
+model: bigru
+input: log_mel_sequence
+layers: 2
+pooling: masked_temporal
+status: experimental
