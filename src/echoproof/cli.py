@@ -48,7 +48,28 @@ def main(argv=None):
     verify = sub.add_parser("verify-environment", help="Compare a fresh Colab runtime with a baseline lock")
     verify.add_argument("--project-root", default=".")
     verify.add_argument("--lock", required=True, help="Exported requirements-lock.txt with sibling provenance")
+    data = sub.add_parser('data', help='Dataset audit operations')
+    data_actions = data.add_subparsers(dest='data_action', required=True, parser_class=Parser)
+    inventory = data_actions.add_parser('inventory')
+    inventory.add_argument('--source', required=True, choices=['phonemedf'])
+    inventory.add_argument('--project-root', default='.')
+    inventory.add_argument('--config', default='configs/phase2.yaml')
+    inventory.add_argument('--resume', help='Existing inventory run ID')
     args = parser.parse_args(argv)
+    if args.command == 'data':
+        try:
+            from .phase2_config import load_phase2_config
+            from .data.inventory import run_inventory
+            root = Path(args.project_root).resolve()
+            config_path = Path(args.config)
+            if not config_path.is_absolute(): config_path = root / config_path
+            config = load_phase2_config(config_path, root)
+            result = run_inventory(root, config, config_path, root / config['source_registry'], args.resume)
+            print(json.dumps(result, sort_keys=True, allow_nan=False))
+            return 0 if result['status'] == 'complete' else 4
+        except Exception as exc:
+            print(json.dumps({'status':'error','type':'inventory_failed','message':str(exc)}), file=sys.stderr)
+            return 4
     if args.command in ("export-environment", "verify-environment"):
         try:
             from .environment_lock import export_environment, verify_environment

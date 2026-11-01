@@ -1,0 +1,28 @@
+schema_version: 1
+source_registry: configs/data_sources.json
+sources:
+  genuine: dataset/genuine/wav
+  transcripts: dataset/genuine/transcripts
+  xtts: dataset/tts/XTTSv2
+  chatterbox: dataset/tts/ChatterboxTTS
+  melo: dataset/tts/MeloTTS
+  vits: dataset/tts/VITS
+  external: null
+outputs:
+  inventory: data/manifests/phase2
+  staging: data/staging/phase2
+workers: 1
+block_bytes: 1048576
+checkpoint_interval: 100
+hash_policy: sha256_full
+follow_symlinks: false
+immutable_inputs: false
+header_limit_bytes: 1048576
+decode_limit_seconds: 120
+sample_seed: 42
+sample_count: 100
+retries: 2
+timeout_seconds: 30
+acquisition_ceiling_bytes: 0
+drive_free_bytes: null
+scratch_free_bytes: null

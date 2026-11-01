@@ -1,5 +1,13 @@
 # P1-02 on Google Colab
 
+For P2-04 use [P2_04_Colab_Inventory.ipynb](P2_04_Colab_Inventory.ipynb) and follow the [Drive inventory guide](../docs/p2_04_inventory.md), including the recovery instructions.
+
+For P2-03, sync the files listed in the [audit contracts guide](../docs/p2_03_audit_contracts.md) and run [P2_03_Colab_Verification.ipynb](P2_03_Colab_Verification.ipynb). Share its `verification.json` for review.
+
+For P2-02 publisher evidence, sync `scripts/p2_02_source_evidence.py` and `configs/data_sources.json`, then run [P2_02_Source_Evidence_Colab.ipynb](P2_02_Source_Evidence_Colab.ipynb) on CPU. It captures small publisher documents/metadata only. Share the printed source inventory, manifest and documents; review terms and local acquisition linkage separately. See [source evidence](../docs/source_evidence.md).
+
+For Phase 2 entry reconciliation, use [P2_01_Colab_Entry_Reconciliation.ipynb](P2_01_Colab_Entry_Reconciliation.ipynb) and the [execution guide](../docs/phase2_execution.md). Sync its collector and current plan/docs first. It runs on CPU with only the standard library, verifies reported Drive roots and saved lock artifacts, and records unavailable external data and pending provenance. It does not require a separate P1-03 notebook. Share the printed `entry.json` and manifest for review.
+
 Use [P1_02_Colab_Runtime_Setup.ipynb](P1_02_Colab_Runtime_Setup.ipynb) to inspect the runtime and project already copied to Drive. It is self-contained; no package installation, downloaded weights or sibling script is required. It records environment information, filename/size inventory, a small numpy/torch check and persistent-storage evidence. It does not train audio models or validate dataset contents.
 
 ## Run instructions

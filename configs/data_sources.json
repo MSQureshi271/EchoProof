@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "task": "P2-02",
+  "status": "provisional_registry_raw_capture_pending",
+  "sources": [
+    {
+      "source_id": "phonemedf",
+      "availability": "four_tts_families_uploaded_user_reported_2026-10-31; P2-01 verified only genuine, transcripts, XTTSv2 and ChatterboxTTS roots",
+      "pairing_attestation": "User reports all four TTS families contain synthetic audio from genuine transcripts with matching file names; independent inventory and pairing verification pending.",
+      "local_snapshot_id": "phonemedf:drive-entry-20261030T123926Z-6181b135",
+      "publisher_candidate": {
+        "record_id": "19522979",
+        "revision": "1.0.1",
+        "url": "https://zenodo.org/records/19522979"
+      },
+      "publisher_revision_verified": true,
+      "publisher_revision_attestation": {
+        "basis": "user_attestation",
+        "attested_on": "2026-10-30",
+        "release": "Zenodo PhonemeDF 1.0.1 (record 19522979)",
+        "installation_changes": "user reports no files were changed during installation",
+        "permission": "user confirms permission to use the downloaded dataset",
+        "evidence_run": "reports/phase2/p2_02-20261030T130521Z-8b4cde3d"
+      },
+      "repository_revision": null,
+      "components": [
+        {
+          "component": "genuine",
+          "path": "dataset/genuine/wav",
+          "candidate_archive": "PhonemeDF_real.tar.gz",
+          "publisher_method": "genuine",
+          "publisher_evidence": "https://zenodo.org/records/19522979",
+          "local_method_verified": false,
+          "local_label_verified": false,
+          "generator_version": null,
+          "archive_checksum_verified": false,
+          "reorganization_history": "User attests no files were changed during installation; archive-level checksum comparison remains unperformed.",
+          "planned_role": "controls grouped with all derivatives",
+          "permission_status": "user_attested_permitted"
+        },
+        {
+          "component": "XTTSv2",
+          "path": "dataset/tts/XTTSv2",
+          "candidate_archive": "PhonemeDF_XTTSv2.tar.gz",
+          "publisher_method": "tts",
+          "publisher_evidence": "https://zenodo.org/records/19522979",
+          "local_method_verified": false,
+          "local_label_verified": false,
+          "generator_version": null,
+          "archive_checksum_verified": false,
+          "reorganization_history": "User attests no files were changed during installation; archive-level checksum comparison remains unperformed.",
+          "planned_role": "candidate baseline and original B unseen validation",
+          "permission_status": "user_attested_permitted"
+        },
+        {
+          "component": "ChatterboxTTS",
+          "path": "dataset/tts/ChatterboxTTS",
+          "candidate_archive": "PhonemeDF_ChatterboxTTS.tar.gz",
+          "publisher_method": "tts",
+          "publisher_evidence": "https://zenodo.org/records/19522979",
+          "local_method_verified": false,
+          "local_label_verified": false,
+          "generator_version": null,
+          "archive_checksum_verified": false,
+          "reorganization_history": "User attests no files were changed during installation; archive-level checksum comparison remains unperformed.",
+          "planned_role": "protected proposed B final family",
+          "permission_status": "user_attested_permitted"
+        },
+        {
+          "component": "MeloTTS",
+          "path": "dataset/tts/MeloTTS",
+          "candidate_archive": "PhonemeDF_MeloTTS.tar.gz",
+          "publisher_method": "tts",
+          "publisher_evidence": "https://zenodo.org/records/19522979",
+          "local_method_verified": false,
+          "local_label_verified": false,
+          "generator_version": null,
+          "archive_checksum_verified": false,
+          "reorganization_history": "Uploaded to Drive according to user; inventory pending.",
+          "planned_role": "proposed Protocol B training family",
+          "permission_status": "user_attested_permitted"
+        },
+        {
+          "component": "VITS",
+          "path": "dataset/tts/VITS",
+          "candidate_archive": "PhonemeDF_VITS.tar.gz",
+          "publisher_method": "tts",
+          "publisher_evidence": "https://zenodo.org/records/19522979",
+          "local_method_verified": false,
+          "local_label_verified": false,
+          "generator_version": null,
+          "archive_checksum_verified": false,
+          "reorganization_history": "Uploaded to Drive according to user; inventory pending.",
+          "planned_role": "proposed Protocol B training family",
+          "permission_status": "user_attested_permitted"
+        }
+      ],
+      "transcripts": {
+        "path": "dataset/genuine/transcripts",
+        "origin_verified": false
+      }
+    },
+    {
+      "source_id": "mlaad_tiny",
+      "availability": "not_downloaded_user_confirmed",
+      "eligible": false,
+      "candidate_metadata_revision": "9143e5ea709575ebab6bec52840a1043aada7bb1",
+      "metadata_url": "https://huggingface.co/datasets/mueller91/MLAAD-tiny/blob/9143e5ea709575ebab6bec52840a1043aada7bb1/README.md",
+      "intended_role": "sealed English external evaluation",
+      "permission_status": "pending"
+    }
+  ]
+}
