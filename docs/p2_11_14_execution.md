@@ -1,0 +1,7 @@
+# P2-11 to P2-14 execution guide
+
+Copy `notebooks/P2_11_14_Colab_Handoff.ipynb` and `src/echoproof/data/phase2_handoff.py` to the Drive project. Use a CPU runtime with the Phase 2 dependencies, mount Drive and run the cells in order. P2-11 is removed from scope. P2-12 verifies artifact hashes and lineage and generates a handoff; P2-13 runs the existing fixture suites in subprocesses and records outputs, return codes and skipped checks; P2-14 writes a pending gate review and evidence manifest. The notebook never alters source datasets or earlier reports.
+
+The notebook defaults to the P2-05 through P2-09 runs reviewed on 3 November. Update the paths together when later inspection and reconciliation evidence becomes available. The current handoff retains the missing VITS file issue, pending admission, machine-readable identity evidence and missing processing storage estimate. Fixture verification does not demonstrate a restart across two Colab runtimes or reproduce the Phase 2 environment. Those remain pending and this notebook cannot pass G2. An actual independent reviewer must provide the gate disposition.
+
+Each execution creates a new `reports/phase2/p2_12_14-<run-id>/`. Save its path. If the runtime disconnects after the handoff, set `OUTPUT` to that directory and run the remaining cells. Outputs: `phase3_handoff.json`, `verification.json`, `gate_review.json`, and `evidence_manifest.json`. Share the directory for review.

@@ -80,7 +80,7 @@ def collect(project_root, observation_scope="local_workspace"):
             "source_state": {"phonemedf": {"availability": "user_reported_uploaded_to_drive",
                              "components": ["genuine", "XTTSv2", "ChatterboxTTS"], "source_verified": False,
                              "publisher_revision": None, "publisher_revision_verified": False},
-                             "mlaad_tiny": {"availability": "not_downloaded_user_confirmed", "eligible": False}},
+                             "external_source": {"availability": "not_selected", "eligible": False}},
             "paths": paths, "prior_lock": lock_check, "entry_evidence_hashes": evidence,
             "metadata_discovery": {"scope": "administrative root filenames only; no content verification",
                                    "candidates": candidates},

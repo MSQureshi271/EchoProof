@@ -55,20 +55,80 @@ def main(argv=None):
     inventory.add_argument('--project-root', default='.')
     inventory.add_argument('--config', default='configs/phase2.yaml')
     inventory.add_argument('--resume', help='Existing inventory run ID')
+    adapt = data_actions.add_parser('adapt')
+    adapt.add_argument('--source', required=True, choices=['phonemedf'])
+    adapt.add_argument('--project-root', default='.')
+    adapt.add_argument('--config', default='configs/phase2.yaml')
+    adapt.add_argument('--inventory', required=True, help='Completed inventory run directory')
+    pair = data_actions.add_parser('pair')
+    pair.add_argument('--source', required=True, choices=['phonemedf'])
+    pair.add_argument('--project-root', default='.')
+    pair.add_argument('--config', default='configs/phase2.yaml')
+    pair.add_argument('--manifest', required=True, help='P2-05 snapshot directory')
+    inspect = data_actions.add_parser('inspect')
+    inspect.add_argument('--source', default='phonemedf', choices=['phonemedf'])
+    inspect.add_argument('--project-root', default='.')
+    inspect.add_argument('--config', default='configs/phase2.yaml')
+    inspect.add_argument('--manifest', required=True)
+    inspect.add_argument('--pairing', required=True)
+    inspect.add_argument('--scope', default='representative', choices=['representative'])
+    inspect.add_argument('--resume')
+    reconcile = data_actions.add_parser('reconcile')
+    reconcile.add_argument('--source', default='phonemedf', choices=['phonemedf'])
+    reconcile.add_argument('--project-root', default='.')
+    reconcile.add_argument('--config', default='configs/phase2.yaml')
+    reconcile.add_argument('--manifest', required=True)
+    reconcile.add_argument('--pairing', required=True)
+    reconcile.add_argument('--inspection', required=True)
+    capacity = data_actions.add_parser('capacity')
+    capacity.add_argument('--project-root', default='.')
+    capacity.add_argument('--config', default='configs/phase2.yaml')
+    capacity.add_argument('--drive-free-gb', type=float)
+    capacity.add_argument('--drive-total-gb', type=float)
+    capacity.add_argument('--drive-used-gb', type=float)
+    capacity.add_argument('--remaining-hours', type=float)
+    capacity.add_argument('--scratch-path')
+    capacity.add_argument('--planned-download-bytes', type=int, default=0)
+    capacity.add_argument('--expanded-bytes', type=int, default=0)
+    capacity.add_argument('--staging-bytes', type=int, default=0)
+    capacity.add_argument('--cache-bytes', type=int, default=0)
     args = parser.parse_args(argv)
     if args.command == 'data':
         try:
             from .phase2_config import load_phase2_config
-            from .data.inventory import run_inventory
             root = Path(args.project_root).resolve()
             config_path = Path(args.config)
             if not config_path.is_absolute(): config_path = root / config_path
             config = load_phase2_config(config_path, root)
-            result = run_inventory(root, config, config_path, root / config['source_registry'], args.resume)
+            if args.data_action == 'inventory':
+                from .data.inventory import run_inventory
+                result = run_inventory(root, config, config_path, root / config['source_registry'], args.resume)
+            elif args.data_action == 'adapt':
+                from .data.phonemedf_adapter import create_snapshot
+                selected = Path(args.inventory)
+                result = create_snapshot(root, config, config_path, selected if selected.is_absolute() else root / selected)
+            elif args.data_action == 'pair':
+                from .data.pairing import run_pairing
+                selected = Path(args.manifest)
+                result = run_pairing(root, config, selected if selected.is_absolute() else root / selected)
+            else:
+                from .data.phase2_quality import inspect as inspect_data, reconcile as reconcile_data, capacity as capacity_data
+                def project_path(value):
+                    path = Path(value)
+                    return path if path.is_absolute() else root / path
+                if args.data_action == 'inspect':
+                    result = inspect_data(root, config, project_path(args.manifest), project_path(args.pairing), args.resume)
+                elif args.data_action == 'reconcile':
+                    result = reconcile_data(root, config, project_path(args.manifest), project_path(args.pairing), project_path(args.inspection))
+                else:
+                    result = capacity_data(root, drive_free_gb=args.drive_free_gb, drive_total_gb=args.drive_total_gb,
+                        drive_used_gb=args.drive_used_gb, remaining_hours=args.remaining_hours, scratch_path=args.scratch_path,
+                        planned_download_bytes=args.planned_download_bytes, expanded_bytes=args.expanded_bytes,
+                        staging_bytes=args.staging_bytes, cache_bytes=args.cache_bytes)
             print(json.dumps(result, sort_keys=True, allow_nan=False))
-            return 0 if result['status'] == 'complete' else 4
+            return 0 if result['status'] in ('complete','ready_for_review') else 4
         except Exception as exc:
-            print(json.dumps({'status':'error','type':'inventory_failed','message':str(exc)}), file=sys.stderr)
+            print(json.dumps({'status':'error','type':args.data_action+'_failed','message':str(exc)}), file=sys.stderr)
             return 4
     if args.command in ("export-environment", "verify-environment"):
         try:

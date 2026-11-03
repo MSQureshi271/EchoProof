@@ -38,7 +38,7 @@ class EntryTests(unittest.TestCase):
             report, folder = entry.run(temp, "colab_drive")
             self.assertEqual(report["status"], "entry_ready_for_review")
             self.assertFalse(report["source_state"]["phonemedf"]["source_verified"])
-            self.assertFalse(report["source_state"]["mlaad_tiny"]["eligible"])
+            self.assertFalse(report["source_state"]["external_source"]["eligible"])
             self.assertIsNone(report["capacity"]["current_free_drive_gb"])
             manifest = json.loads((folder / "artifact_manifest.json").read_text())
             self.assertEqual(manifest["files"]["entry.json"], entry.sha(folder / "entry.json"))

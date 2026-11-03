@@ -1,5 +1,25 @@
 # Phase 2 execution record
 
+> **3 November 2026:** Phase 2 is closed for project scheduling by the project owner. See the [closure and Phase 3 handoff](phase2_closure.md) and the linked technical evidence. Entries below are historical and describe their respective dates.
+
+## P2-07 through P2-09 implementation
+
+The single [Colab audit notebook](../notebooks/P2_07_09_Colab_Audit.ipynb) and [execution guide](p2_07_09_execution.md) are prepared. The full Drive header scan, sample decode, reconciliation and current capacity entry have not yet run. Local checks passed for path safety, a truncated RIFF header, reconciliation and capacity; audio fixture tests require the Colab dependencies and were skipped locally. The notebook blocks scanning if those checks fail or are skipped.
+
+## External dataset decision
+
+The user decided not to use MLAAD-tiny. It is removed from the active Phase 2 source registry and acquisition workflow; no replacement external dataset is selected. Earlier publisher captures remain historical evidence. The user has removed external evaluation and two-source objectives from the project scope. Primary PhonemeDF work may continue within its scope.
+
+The source registry changed after the P2-04 and P2-05 runs. Their recorded registry hashes identify the previous version; this change does not invalidate their historical files, but rerunning P2-05 against the old inventory will reject the registry mismatch until a new compatible inventory or a separately implemented, documented registry migration is available.
+
+## P2-06 implementation — Colab execution pending
+
+The candidate pairing, transcript diagnostics and identity coverage workflow is implemented for all four TTS families. Local transcript edge-case checks passed. Local PyArrow installation attempts did not find a distribution, so direct P2-05 Parquet inspection and the full P2-06 run are prepared in the [Colab notebook](../notebooks/P2_06_Colab_Pairing.ipynb); their results remain pending. See [pairing guide](p2_06_pairing.md).
+
+## P2-05 adapter implementation
+
+The adapter and CPU notebook are prepared for all five audio components. Local fixture checks passed; the real snapshot and PyArrow integration remain to be executed and reviewed in Colab. See [P2-05 adapter guide](p2_05_adapter.md) for sync requirements and input limitations.
+
 ## Four TTS families uploaded — user update, 31 October 2026
 
 The user reports successful Drive upload of all four PhonemeDF TTS families: ChatterboxTTS, MeloTTS, VITS and XTTSv2. The user reports matching file names across them, with synthetic audio generated from the transcripts in `dataset/genuine/transcripts`. The new MeloTTS and VITS paths and complete pairing are user-reported and await inventory and pairing checks. The proposed B final-family boundary for ChatterboxTTS remains protected. MLAAD-tiny remains undownloaded. Drive free capacity after these uploads has not been measured.

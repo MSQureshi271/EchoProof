@@ -1,12 +1,16 @@
 # EchoProof Phase 2 — Executable acquisition and source-verification plan
 
+**Current decision:** The project uses PhonemeDF genuine audio and its four TTS families. External evaluation and two-source acquisition are outside scope.
+
+**Project scheduling status, 3 November 2026:** Phase 2 closed by project owner; see [closure and handoff](../docs/phase2_closure.md). Technical gate evidence remains in the linked review.
+
 Prepared: 30 October 2026. Status: implementation plan; tasks below have not been executed by writing this document. Governing requirements: [IMPLEMENTATION_PLAN.md, Phase 2](../IMPLEMENTATION_PLAN.md), [research contract](../docs/research_contract.md), [Phase 1 handoff](../docs/phase1_handoff.md), and the user's latest dataset clarification.
 
 ## 1. Outcome and confirmed starting point
 
-Produce reproducible source inventories, provenance and license records, dataset adapters, immutable raw manifests, count reconciliation, and a documented second-source eligibility decision. Every admitted recording must be traceable to original bytes and documented source metadata. Phase 2 establishes data admission evidence; later phases perform full integrity/duplicate analysis, partitioning, research features and training.
+Produce reproducible PhonemeDF inventories, provenance and license records, adapters, immutable raw manifests and count reconciliation. Every admitted recording must be traceable to original bytes and documented source metadata.
 
-The user reports that **all downloaded audio comes from PhonemeDF**. Genuine and all four TTS folders are uploaded to Google Drive. **No MLAAD-tiny dataset has been downloaded.** Four TTS folders from PhonemeDF do not constitute independent dataset sources.
+The user reports that **all downloaded audio comes from PhonemeDF**. Genuine and all four TTS folders are uploaded to Google Drive. **The user excluded MLAAD-tiny; no external dataset is selected.** Four TTS folders from PhonemeDF do not constitute independent dataset sources.
 
 ```text
 /content/drive/MyDrive/PAI&AIES Project/
@@ -29,8 +33,6 @@ These are reported storage locations, not a completed file/provenance audit. The
 | PhonemeDF XTTSv2 | User reports uploaded | Verify TTS method, release, identities and pairing |
 | PhonemeDF ChatterboxTTS | User reports uploaded | Verify TTS versus similarly named VC component; preserve proposed held-out role |
 | PhonemeDF MeloTTS/VITS | Uploaded to Drive per user, 31 October 2026 | Inventory and admission pending; local copies not established |
-| MLAAD-tiny | Explicitly not downloaded | Metadata review, capacity decision and conditional acquisition required |
-| Second eligible independent source | Not established | Full G2 remains unmet until verified or a documented substitute qualifies |
 | Exact downloaded PhonemeDF release | User attests Zenodo v1.0.1 | Archive checksums have not been independently matched |
 | Baseline environment | P1-13 reproduced; P1-14 documentation delivered | Reuse checked code/lock, track intentional implementation changes |
 | Available Drive capacity | Last report 10.13 GB, before the new upload | Obtain a fresh account quota snapshot; do not reuse it as current free space |
@@ -67,12 +69,11 @@ With only XTTSv2 and ChatterboxTTS, the original separate unseen-validation and 
 ### 3.3 Gate states
 
 - `primary_audit_ready`: primary admission evidence sufficient to begin Phase 3; known limitations attached. This is an intermediate milestone, not G2 passed.
-- `external_pending`: MLAAD-tiny or a substitute is not acquired, insufficiently verified, or lacks eligible English controls.
 - `needs_attention`: required files, checksums, mappings, restrictions or processing checks are unresolved; identify affected scope and owner.
-- `g2_ready_for_review`: all Phase 2 technical criteria and both-source deliverables exist; independent review pending.
+- `g2_ready_for_review`: all Phase 2 PhonemeDF technical criteria exist; independent review pending.
 - `g2_passed`: N records the actual independent review and disposition against the full gate.
 
-Full G2 requires verified labels/methods, both external English classes, understood identity metadata/limits, sufficient current storage and documented restrictions. A primary-only handoff cannot close this gate. Cleaning already admitted primary data can progress while external acquisition is pending; external scoring and a claim of completed two-source research cannot.
+Full G2 requires verified PhonemeDF labels and methods, understood identity limits, sufficient current storage and documented restrictions.
 
 ## 4. Work packages and dependencies
 
@@ -90,12 +91,11 @@ S = data/features (A); M = baseline/training (B); U = compute/pretrained (C); N 
 | P2-08 | Reconciliation and source cards | S / N | 04–07 | 2–3 h |
 | P2-09 | Current capacity and acquisition selection | U/S / M | 02, 08 | 1–2 h |
 | P2-10 | Resumable acquisition and safe extraction | S/U / N | 03, 09 | 4–6 h |
-| P2-11 | MLAAD-tiny adapter and external decision | S/N / M | 02, 09–10 | 4–6 h |
-| P2-12 | Combined family/identity coverage and handoff | S/N / M | 06, 08, 11 | 2–4 h |
-| P2-13 | Colab recovery and verification suite | M/U / S | 03–12 for full scope | 3–5 h |
-| P2-14 | Evidence index, G2 review and Phase 3 handoff | N / S/M/U | 08, 11–13 | 2–3 h |
+| P2-11 | Combined family/identity coverage and handoff | S/N / M | 06, 08 | 2–4 h |
+| P2-12 | Colab recovery and verification suite | M/U / S | 03–12 for full scope | 3–5 h |
+| P2-13 | Evidence index, G2 review and Phase 3 handoff | N / S/M/U | 08, 12–13 | 2–3 h |
 
-Execute 01–08 on the uploaded primary data first. Work on external metadata in parallel with primary code where independent, but serialize Drive-heavy scans and downloads. Implement and verify each task before expanding its inputs. P2-11 may issue a pending eligibility decision before download; it is complete only when acquisition/admission succeeds or a documented substitution/pending disposition is handed off without claiming G2.
+Execute tasks for the uploaded PhonemeDF data; serialize Drive-heavy scans. P2-11 is removed from scope.
 
 ## 5. Proposed files and executable interfaces
 
@@ -109,7 +109,6 @@ src/echoproof/data/inventory.py
 src/echoproof/data/audit_contracts.py
 src/echoproof/data/adapters/base.py
 src/echoproof/data/adapters/phonemedf.py
-src/echoproof/data/adapters/mlaad_tiny.py
 src/echoproof/data/pairing.py
 src/echoproof/data/admission.py
 src/echoproof/data/reconciliation.py
@@ -117,7 +116,6 @@ scripts/p2_colab_verify.py
 notebooks/P2_Data_Audit_Colab.ipynb
 tests/test_p2_*.py
 docs/datasets/phonemedf.md
-docs/datasets/mlaad_tiny.md
 docs/data_acquisition.md
 docs/phase2_gate_checklist.md
 data/manifests/phase2/<snapshot-id>/
@@ -127,7 +125,7 @@ reports/phase2/evidence_manifest.json
 
 Do not put transcripts or audio content into ordinary report logs. Manifest artifacts may include relative paths and transcript hashes; protect any original metadata containing personal information. Store downloaded source documentation separately from processing results and record its hash. No absolute private download URLs with tokens in published records.
 
-Every data command takes `--project-root`, `--config`, explicit input snapshot IDs and a new output run directory. Emit JSON status, resolved settings, code/environment/lock hashes, start/end UTC, source IDs, actual counts, failures and artifact manifest. Use exit codes 0 completed requested scope, 2 invalid configuration/input, 3 missing dependency/source, 4 failed verification/runtime check. `external_pending` must be visible in the gate report; a successful metadata-only command cannot imply successful external admission. Distinguish interrupted, sampled and exhaustive runs.
+Every data command takes `--project-root`, `--config`, explicit input snapshot IDs and a new output run directory. Emit JSON status, resolved settings, code/environment/lock hashes, start/end UTC, source IDs, actual counts, failures and artifact manifest. Use exit codes 0 completed requested scope, 2 invalid configuration/input, 3 missing dependency/source, 4 failed verification/runtime check. Distinguish interrupted, sampled and exhaustive runs.
 
 ## 6. Stage A — Establish sources and reproducible inputs
 
@@ -137,13 +135,13 @@ Every data command takes `--project-root`, `--config`, explicit input snapshot I
 
 **Inputs:** latest user clarification; Phase 1 lock/reproduction and gate records; research contract.
 
-1. Record PhonemeDF as the user-reported origin for all three audio folders and MLAAD-tiny as `not_downloaded`. Keep source verification separate from user attestation.
+1. Record PhonemeDF as the user-reported origin for genuine and four TTS folders; no external source is selected. Keep source verification separate from user attestation.
 2. Verify the active project root, required folders and prior lock files; report missing paths without creating empty stand-in dataset directories.
 3. Carry forward independent Phase 1 review obligations; do not rewrite gate records as approved.
 4. Create `reports/phase2/<run-id>/entry.json` with source status, intended scope, original capacity snapshot age and ChatterboxTTS's protected proposed role.
 5. Record unresolved release/archive history, identities and metadata locations. Search supplied metadata/documentation first; ask the user only for missing acquisition history that cannot be recovered from files.
 
-**Acceptance:** one source with three reported components, explicit external absence, preserved originals, explicit current unknowns and no model fitting.
+**Acceptance:** one source with genuine and four TTS components, preserved originals, explicit current unknowns and no model fitting.
 
 ### P2-02 — Capture publisher and permission evidence
 
@@ -155,7 +153,7 @@ Every data command takes `--project-root`, `--config`, explicit input snapshot I
 4. Review dataset/component licenses, attribution, research use, redistribution of audio/metadata and any relevant inherited source conditions. Keep restrictions and unresolved questions separate from a legal conclusion. Record license evidence per component; a model's license does not establish the dataset's terms.
 5. Build a generator registry with observed name, normalized family, version, method (`genuine`, `tts`, `vc`, `unknown`), aliases, evidence reference, verification state and planned data role. Exclude VC from this binary TTS study; ambiguous methods remain quarantined.
 
-**Outputs:** `configs/data_sources.json`, versioned source-document copies, `source_inventory.json`, `license_inventory.csv`, generator registry. Source two starts `not_downloaded`/`candidate`, never `eligible` from a card alone.
+**Outputs:** `configs/data_sources.json`, versioned source-document copies, `source_inventory.json`, `license_inventory.csv`, generator registry. Only PhonemeDF is in scope.
 
 **Acceptance:** every claimed mapping has a source citation/version; no invented revision or TTS label. If local release matching is unresolved, use an explicit local snapshot identifier and `publisher_revision_verified: false` in the companion provenance table.
 
@@ -163,7 +161,7 @@ Every data command takes `--project-root`, `--config`, explicit input snapshot I
 
 Create a dedicated strict Phase 2 config loader. Do not force these settings into the fixture-only Phase 1 schema or weaken its validation. Validate unknown keys, duplicate YAML keys, relative path traversal, output/source collisions, numeric limits and Boolean flags.
 
-Minimum config fields: schema version; source registry path; three primary roots; transcript root; optional external root; output/staging roots; worker count (start one); block size; checkpoint interval; hash policy; header/decode limits; evidence-sample seed/count; retry/time limits; acquisition byte ceiling; separately supplied current Drive and scratch capacities. Unknown capacities remain null and block large acquisitions. Source roots must not overlap output roots.
+Minimum config fields: schema version; source registry path; five audio roots; transcript root; output/staging roots; worker count (start one); block size; checkpoint interval; hash policy; header/decode limits; evidence-sample seed/count; retry/time limits; acquisition byte ceiling; separately supplied current Drive and scratch capacities. Unknown capacities remain null and block large acquisitions. Source roots must not overlap output roots.
 
 Define these auxiliary tables before writing adapters:
 
@@ -198,7 +196,7 @@ Reuse `Recording` from `src/echoproof/contracts.py`. It requires a real SHA-256 
 ### P2-05 — PhonemeDF adapter and immutable raw manifest
 
 1. Implement the adapter against inspected real publisher metadata, not imagined CSV columns. Preserve source fields in companion records.
-2. Map genuine/XTTSv2/ChatterboxTTS using evidence from P2-02. Verify Chatterbox TTS versus VC independently. Folder labels remain candidate values until supported.
+2. Map genuine/XTTSv2/ChatterboxTTS/MeloTTS/VITS using evidence from P2-02. Verify Chatterbox TTS versus VC independently. Folder labels remain candidate values until supported.
 3. Populate `Recording` objects with real original paths/hashes and documented values. Keep generator version, language, source speaker, output voice and reference identities null when unavailable.
 4. Encode unknown or conflicting mappings as explicit pending/quarantined dispositions. Preserve identifiable malformed rows and reason codes. Do not make a bad row disappear to obtain a clean manifest.
 5. Write a new immutable raw snapshot with schema/config/source/input/environment hashes. Use existing envelope Parquet/JSON helpers deliberately; document physical layout rather than assuming arbitrary columns exist in the envelope.
@@ -228,7 +226,7 @@ Reuse `Recording` from `src/echoproof/contracts.py`. It requires a real SHA-256 
 4. Record header/decode successes and failures with filenames and reasons. Silence/clipping can be measurements/flags; choosing exclusion thresholds belongs to later development-based cleaning.
 5. Admit a component for further audit only when its source/method/label evidence is sufficient, required usage conditions are understood and basic format checks are workable. Sampled success never means every file decoded successfully.
 
-**Command:** `data inspect --manifest <snapshot> --scope representative`. **Outputs:** sample selection, header inventory, decode results, admission decision.
+**Command:** `data inspect --manifest <snapshot> --pairing <pairing-run> --scope representative`. **Outputs:** sample selection, header inventory, decode results, admission decision.
 
 **Acceptance:** corrupt/truncated/nonfinite fixtures fail correctly; long valid recordings are distinguished from decoder budget failures; sampling coverage is explicit; full integrity work is scheduled for Phase 3.
 
@@ -242,7 +240,7 @@ Write `docs/datasets/phonemedf.md` with origin/revision evidence, actual Drive c
 
 **Acceptance:** stage totals reconcile within the stated denominator or list every discrepancy; ChatterboxTTS is included in administrative coverage; no guide number is presented as a local measurement.
 
-## 8. Stage C — Capacity, missing components and external source
+## 8. Stage C — Capacity and required components
 
 ### P2-09 — Resource plan before acquisition
 
@@ -250,7 +248,7 @@ Obtain current Drive account usage/free space from the user's storage view and s
 
 Calculate peak additional usage: incomplete download + retained archive + expanded files + metadata/checkpoints + caches + reserve. Existing originals consume current quota already; do not count them twice. Scratch space does not increase Drive quota. Use publisher byte sizes when verified; unknown expanded size requires a cautious bounded sample or explicit pending estimate. Retain the 25% reserve; do not treat compressed size alone as sufficient capacity.
 
-Rank acquisitions: documentation first, external eligibility metadata/sample second, then required accepted external subset and missing PhonemeDF families if the declared protocol/storage plan supports them. Keep original uploaded components in place. No automatic full clone, full-corpus duplicate copy or purchase. If capacity fails, report the resource need or predeclared reduced scope; do not delete originals or claim acquisition complete.
+Prioritize documentation and already uploaded PhonemeDF components. No external dataset is selected for acquisition. Keep original uploaded components in place. No automatic full clone, full-corpus duplicate copy or purchase. If capacity fails, report the resource need or predeclared reduced scope; do not delete originals or claim acquisition complete.
 
 **Outputs:** `acquisition_plan.json`, capacity worksheet, selected sources/revisions/files, byte ceilings and deferred list. **Acceptance:** each planned download/extraction fits recorded storage locations and reserve or is explicitly blocked.
 
@@ -264,37 +262,25 @@ For existing uploads, import available acquisition history instead of redownload
 
 **Commands:** `data acquire --plan <plan> --metadata-only`, then explicitly `data acquire --plan <plan> --fetch-audio`; `data extract --download <verified-download>`. **Acceptance:** corrupt downloads, range mismatches, archive escapes and collisions fail without touching originals; interruption resumes to the same verified result.
 
-### P2-11 — MLAAD-tiny eligibility and adapter
+### P2-11: Removed from scope
 
-Start with `not_downloaded`, not an empty successful external manifest. Pin an actual repository revision, inspect its file tree/card/license texts and underlying metadata, then acquire only the planned metadata/sample. A card's `train` name is a packaging convention, not an EchoProof scientific split.
-
-Implement the source adapter only after discovering the real schema. Establish English language and genuine/TTS method from authoritative metadata and documented checks. Do not infer English from all rows sharing a dataset tag, or treat German synthetic recordings as English controls. Keep uncertain language/method rows pending. Reconcile the card and viewer counts against actual files/rows, including duplicate encodings or packaging artifacts where relevant.
-
-Resolve genuine-audio inherited terms separately from synthetic terms. Inspect identity/system metadata and generator aliases; do not infer architecture-family independence from a system ID. Plan cross-source content/source overlap checks and preserve relationship evidence for Phase 3. If overlaps remain unresolved, quarantine affected rows or narrow eligibility until resolved.
-
-Default role is sealed external evaluation, with both eligible English classes. No fitting, threshold calibration, model comparison or error-guided selection on this source. If course requirements later mandate two-source training, predeclare group-disjoint external development and a sealed remainder before any tuning, with class coverage and final-held-family exclusions.
-
-**Outputs:** external raw manifest when available, source card, license/mapping/identity evidence, count reconciliation and `external_eligibility.json` with `not_downloaded`, `metadata_only`, `sample_only`, `eligible`, `ineligible`, or `pending_evidence`; record reasons and exact usable scope.
-
-If MLAAD-tiny cannot supply verified English genuine/TTS controls, permissions or usable independent groups, N/S document a replacement candidate and deadline before final model selection. Apply the same checks to a replacement; neither XTTSv2 nor ChatterboxTTS from PhonemeDF is an independent replacement source. Follow the master plan's end-of-week-2 decision target relative to the actual project calendar, which is not yet supplied.
-
-**Acceptance:** full-source claims require acquired verified scope; both external classes exist in the eligible manifest; unresolved language/licenses/overlap prevent affected external scoring. No large download runs just to satisfy a documentation checkbox.
+External dataset acquisition and evaluation are not project objectives.
 
 ## 9. Stage D — Integration, verification and gate review
 
 ### P2-12 — Combined coverage and downstream handoff
 
-Combine admitted metadata with namespaced IDs, explicit original paths, source/generator registries and relationship evidence. Preserve partial per-source statuses. Produce a protocol feasibility matrix covering current known-generator pilot, original four-family A, strict B and external C. Record the pending MeloTTS/VITS inventory and incomplete external evidence explicitly.
+Combine admitted PhonemeDF metadata with namespaced IDs, original paths, generator registries and relationship evidence. Produce a feasibility matrix for Protocols A and B.
 
 Carry all shared-utterance/identity edges to Phase 3/4, including ChatterboxTTS relationships. Provide unresolved identity/method/label items with owners and closure requirements. Defer full duplicate disposition to Phase 3 and actual connected-component partitions to Phase 4.
 
 Resolve the two subset sizes without conflating them: the master plan's 500–1,000-recording integration cohort is a later group-selected smoke/integration set; the user-selected baseline budget is 1,000 pairs/2,000 recordings with one four-second crop each. Neither is selected in Phase 2. After full group assignment, sample reproducibly within allowed partitions, keep related recordings together, preserve validation roles and use the same recording IDs across models within each protocol. The optional 20,000–40,000 target is conditional on measured capacity, not a current acquisition requirement.
 
-**Outputs:** `phase3_handoff.json`, coverage/relationship summaries, protocol feasibility matrix, unresolved-issue ledger and deferred subset specification. **Acceptance:** no split/chunk/feature/model artifacts masquerade as Phase 2 deliverables; unavailable families and external sources remain visible.
+**Outputs:** `phase3_handoff.json`, coverage/relationship summaries, protocol feasibility matrix, unresolved-issue ledger and deferred subset specification. **Acceptance:** no split/chunk/feature/model artifacts masquerade as Phase 2 deliverables; unavailable families remain visible.
 
 ### P2-13 — Colab runner and meaningful checks
 
-Build a single notebook with selectable task stages: setup/config, registry, primary inventory/resume, adapter/pairing, representative inspection, reconciliation/capacity, explicit acquisition, external adapter, verification/handoff. Each stage consumes a named prior snapshot; do not automatically rescan or redownload everything when opening a later stage.
+Build a notebook with selectable stages for configuration, PhonemeDF inventory, adapter, pairing, inspection, reconciliation and handoff.
 
 Use the current kernel interpreter and fresh subprocesses for package import. Reuse the Phase 1 lock as a compatibility starting point. New Phase 2 source files intentionally differ from the P1-13 source snapshot; preserve that snapshot and record new source hashes, instead of altering its expected hashes or treating the old reproduction command as approval of new code. Any dependency addition needs a new environment export/reproduction. CPU is sufficient for inventory/hash/metadata tasks; do not reserve GPU time for them by default.
 
@@ -309,13 +295,12 @@ Use synthetic file trees and tiny generated audio for automated checks:
 | Pairing | Orphans, one-to-many matches, missing transcripts, Unicode/encoding issues and distinct source/target/reference identities |
 | Decoder | Valid long/stereo files, truncated/nonfinite/corrupt inputs and resource-limit classification |
 | Acquisition | Changed range objects, checksum failure, failed retries, traversal/symlink/collision archives and expanded-byte limits |
-| External | Mixed English/German, missing classes, ambiguous methods, inherited license gaps and unavailable source |
 | Reconciliation | Conservation of counts, sampled versus full denominators and unknown versus zero |
-| End-to-end | Small primary fixture flow completes; missing external fixture remains pending rather than passing G2 |
+| End-to-end | Small PhonemeDF fixture flow completes and preserves grouping constraints |
 
 Test mock HTTP/archive fixtures locally without bulk downloads. In Colab, verify real Drive persistence by interrupting a bounded audit task, replacing the runtime and resuming against its journal. Record recovered hashes and equal content digest. Save actual test counts, skips and errors; required skipped checks cannot be labeled ready. Do not use synthetic test rows in research inventories.
 
-**Outputs:** runner/notebook, test modules, `reports/phase2/<run-id>/verification.json`, checksum and environment/source/lock references. **Acceptance:** requested scope passes and restart recovery is demonstrated; absent external data is accurately reported.
+**Outputs:** runner/notebook, test modules, `reports/phase2/<run-id>/verification.json`, checksum and environment/source/lock references. **Acceptance:** requested scope passes and restart recovery is demonstrated.
 
 ### P2-14 — G2 review and closure
 
@@ -326,14 +311,13 @@ Full G2 checklist:
 - [ ] Actual primary inventory and immutable raw manifests, including all three reported components.
 - [ ] Verified source/method/label mappings and understood unresolved identity limits.
 - [ ] Publisher/local provenance, acquisition history, licenses and usage restrictions recorded.
-- [ ] Both eligible English external classes acquired and verified, or an equally audited documented replacement.
 - [ ] Source cards, tested adapters and count reconciliation with explicit stage denominators.
 - [ ] Current storage fits declared acquisition/processing scope with reserve.
 - [ ] Required checks and restart evidence pass; no missing source is disguised as an empty pass.
 - [ ] Phase 3 handoff and deferred subset/partition work are explicit.
 - [ ] Actual independent review findings/disposition recorded.
 
-If only the primary portion qualifies, issue `primary_audit_ready` plus `external_pending`, identify the missing external action/owner, and proceed only with appropriate primary integrity work. No full G2 or external-generalization claim follows from that interim status.
+Issue `g2_ready_for_review` once the PhonemeDF checklist is satisfied; record the actual independent review before passing G2.
 
 ## 10. Planned execution examples
 
@@ -345,15 +329,12 @@ python -m echoproof.cli data inventory --config configs/phase2.yaml --source pho
 python -m echoproof.cli data inventory --config configs/phase2.yaml --source phonemedf --resume <interrupted-run-id>
 python -m echoproof.cli data adapt --config configs/phase2.yaml --source phonemedf --inventory <inventory-path>
 python -m echoproof.cli data pair --config configs/phase2.yaml --source phonemedf --manifest <raw-snapshot>
-python -m echoproof.cli data inspect --config configs/phase2.yaml --manifest <raw-snapshot> --scope representative
-python -m echoproof.cli data reconcile --config configs/phase2.yaml --source phonemedf --manifest <raw-snapshot>
+python -m echoproof.cli data inspect --config configs/phase2.yaml --manifest <raw-snapshot> --pairing <pairing-run> --scope representative
+python -m echoproof.cli data reconcile --config configs/phase2.yaml --source phonemedf --manifest <raw-snapshot> --pairing <pairing-run> --inspection <inspection-run>
 python -m echoproof.cli data acquire --config configs/phase2.yaml --plan <acquisition-plan> --metadata-only
 python -m echoproof.cli data acquire --config configs/phase2.yaml --plan <acquisition-plan> --fetch-audio
 python -m echoproof.cli data extract --config configs/phase2.yaml --download <verified-download>
-python -m echoproof.cli data inventory --config configs/phase2.yaml --source mlaad_tiny
-python -m echoproof.cli data adapt --config configs/phase2.yaml --source mlaad_tiny --inventory <external-inventory>
-python -m echoproof.cli data eligibility --config configs/phase2.yaml --source mlaad_tiny --manifest <external-snapshot>
-python -m echoproof.cli data handoff --config configs/phase2.yaml --primary <primary-snapshot> --external <external-decision>
+python -m echoproof.cli data handoff --config configs/phase2.yaml --primary <primary-snapshot>
 python -m unittest discover -s tests -p "test_p2_*.py" -v
 ```
 
@@ -365,7 +346,6 @@ Each task handoff reports implemented files, exact commands, source/revision/inp
 
 | Condition | Required response |
 |---|---|
-| MLAAD-tiny absent | Continue primary audit; record external pending and implement metadata/eligibility branch |
 | User's folder differs from expected name | Resolve config against actual location; retain original name and provenance |
 | Release or checksum cannot be established | Record local snapshot and confidence gap; do not assign publisher verification |
 | Chatterbox component could be VC | Quarantine until method evidence resolves it |
@@ -373,7 +353,6 @@ Each task handoff reports implemented files, exact commands, source/revision/inp
 | Drive quota insufficient | Reduce selected acquisition/staging scope or secure documented capacity; preserve originals |
 | Header sample passes but full scan not run | Report only the completed scope; schedule exhaustive integrity in Phase 3 |
 | Source changes during hashing/resume | Invalidate affected work and create a reconciled snapshot |
-| English external class missing | External ineligible/pending; evaluate an eligible replacement before model selection |
 | Two families do not support original B | Record unmet protocol requirements; acquire missing families or explicitly amend before fitting |
 | Pilot requested before group assignment | Defer cohort selection/crops until Phase 4/5 |
 
@@ -383,6 +362,5 @@ Consulted during this planning pass; download and hash exact documentation/revis
 
 - [PhonemeDF authors' repository](https://github.com/Vamshi-Nallaguntla/PhonemeDF).
 - [PhonemeDF release record 19522979](https://zenodo.org/records/19522979): the page identifies v1.0.1 and separately lists real, XTTSv2 and ChatterboxTTS archives alongside other TTS/VC assets. Publisher archive checksums are labeled MD5. This supports the audit targets, not verification of the user's extracted files.
-- [MLAAD-tiny dataset card](https://huggingface.co/datasets/mueller91/MLAAD-tiny): it describes English genuine material, English/German synthetic material, differing card/viewer counts and separate inherited/synthetic licensing. These are eligibility questions to resolve against a pinned acquired subset, not locally verified data.
 
 No audio dataset was downloaded, relabeled, admitted, split or trained as part of creating this plan. The immediate implementation task is **P2-01**, followed by source evidence and strict audit configuration before the first full Drive inventory.

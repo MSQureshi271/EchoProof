@@ -1,5 +1,11 @@
 # P1-02 on Google Colab
 
+For P2-07 through P2-09, use the single [P2_07_09_Colab_Audit.ipynb](P2_07_09_Colab_Audit.ipynb) and [execution guide](../docs/p2_07_09_execution.md).
+
+For P2-06, use [P2_06_Colab_Pairing.ipynb](P2_06_Colab_Pairing.ipynb) and the [pairing guide](../docs/p2_06_pairing.md). The notebook also inspects the P2-05 Parquet output directly.
+
+For P2-05, follow the sync instructions in the [adapter guide](../docs/p2_05_adapter.md), then run [P2_05_Colab_Adapter.ipynb](P2_05_Colab_Adapter.ipynb) on CPU.
+
 For P2-04 use [P2_04_Colab_Inventory.ipynb](P2_04_Colab_Inventory.ipynb) and follow the [Drive inventory guide](../docs/p2_04_inventory.md), including the recovery instructions.
 
 For P2-03, sync the files listed in the [audit contracts guide](../docs/p2_03_audit_contracts.md) and run [P2_03_Colab_Verification.ipynb](P2_03_Colab_Verification.ipynb). Share its `verification.json` for review.

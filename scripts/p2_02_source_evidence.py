@@ -7,9 +7,6 @@ import re
 import urllib.request
 import uuid
 
-HF_REVISION = "9143e5ea709575ebab6bec52840a1043aada7bb1"
-
-
 def capture(url, destination, limit=4_000_000):
     request = urllib.request.Request(url, headers={"User-Agent": "EchoProof-source-evidence/1.0"})
     with urllib.request.urlopen(request, timeout=30) as response:
@@ -56,9 +53,6 @@ def run(project_root):
             fetch("phonemedf_README.md", f"https://raw.githubusercontent.com/Vamshi-Nallaguntla/PhonemeDF/{github_sha}/README.md")
         except (KeyError, ValueError) as exc:
             failures.append({"document": "phonemedf_commit.json", "error": str(exc)})
-    fetch("mlaad_tiny_README.md", f"https://huggingface.co/datasets/mueller91/MLAAD-tiny/resolve/{HF_REVISION}/README.md")
-    fetch("mlaad_tiny_original_LICENSE", f"https://huggingface.co/datasets/mueller91/MLAAD-tiny/resolve/{HF_REVISION}/original/LICENSE")
-    fetch("mlaad_tiny_repository.json", f"https://huggingface.co/api/datasets/mueller91/MLAAD-tiny/revision/{HF_REVISION}")
     publisher = None
     if zenodo:
         try:
@@ -71,12 +65,12 @@ def run(project_root):
                  "status": "documents_captured_for_review" if not failures else "needs_attention",
                  "scope": "Publisher metadata/documents only; no audio acquisition or admission",
                  "documents": records, "failures": failures, "phonemedf_publisher_metadata": publisher,
-                 "phonemedf_repository_commit": github_sha, "mlaad_tiny_metadata_revision": HF_REVISION,
+                 "phonemedf_repository_commit": github_sha,
                  "registry_sha256": hashlib.sha256(registry.read_bytes()).hexdigest(),
                  "collector_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                  "local_publisher_revision_verified": False,
                  "permissions_review": "pending inspection of captured terms and inherited conditions",
-                 "external_audio_availability": "not_downloaded_user_confirmed"}
+                 "external_audio_availability": "no_external_source_selected"}
     (folder / "source_inventory.json").write_bytes((json.dumps(inventory, indent=2) + "\n").encode())
     files = {p.relative_to(folder).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
              for p in sorted(folder.rglob("*")) if p.is_file()}

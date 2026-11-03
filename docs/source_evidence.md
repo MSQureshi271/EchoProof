@@ -1,5 +1,7 @@
 # P2-02 source evidence and remaining provenance
 
+The user has excluded MLAAD-tiny from the project. Its previously captured documents below are historical only; the current source collector no longer requests them. No external source is selected.
+
 ## User attestation addendum — 30 October 2026
 
 The user confirms that the Drive files came from Zenodo PhonemeDF release 1.0.1 (record 19522979), no files were changed during installation, and the project has permission to use the downloaded dataset. This confirmation is recorded in [the P2-02 run addendum](../reports/phase2/p2_02-20261030T130521Z-8b4cde3d/user_attestation.md) and reflected in the source registry as user-attested. It does not represent an independent archive checksum match or legal review. The original capture artifacts remain unchanged. P2-03 has not started.

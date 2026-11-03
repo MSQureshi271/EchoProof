@@ -99,15 +99,6 @@
         "path": "dataset/genuine/transcripts",
         "origin_verified": false
       }
-    },
-    {
-      "source_id": "mlaad_tiny",
-      "availability": "not_downloaded_user_confirmed",
-      "eligible": false,
-      "candidate_metadata_revision": "9143e5ea709575ebab6bec52840a1043aada7bb1",
-      "metadata_url": "https://huggingface.co/datasets/mueller91/MLAAD-tiny/blob/9143e5ea709575ebab6bec52840a1043aada7bb1/README.md",
-      "intended_role": "sealed English external evaluation",
-      "permission_status": "pending"
     }
   ]
 }

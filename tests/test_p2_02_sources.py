@@ -40,7 +40,7 @@ class SourceTests(unittest.TestCase):
                 report, folder = source.run(root)
             self.assertEqual(report["status"], "needs_attention")
             self.assertFalse(report["local_publisher_revision_verified"])
-            self.assertEqual(len(report["failures"]), 6)
+            self.assertEqual(len(report["failures"]), 3)
             self.assertFalse((root / "dataset").exists())
             manifest = json.loads((folder / "artifact_manifest.json").read_text())
             self.assertEqual(manifest["files"]["source_inventory.json"], hashlib.sha256((folder / "source_inventory.json").read_bytes()).hexdigest())

@@ -27,7 +27,7 @@ The central research question is which **complete approach** generalizes best to
 | Inputs | WAV and a tested MP3 decoding path; browser recording after upload works | Initial app limit: 60 seconds, 25 MiB upload, bounded decoding |
 | Outputs | Likely genuine / likely TTS; inconclusive or insufficient-input states when justified | A high model score is not certainty about an arbitrary real-world recording |
 | Visuals | Time-labeled waveform and frequency/time-labeled log-mel spectrogram | Visuals describe audio; they do not prove synthesis |
-| Research | Four trained approaches, known/unseen/external evaluation, noise/compression stress tests | No standalone CNN, XGBoost, or required ensemble |
+| Research | Four trained approaches, known/unseen evaluation, noise/compression stress tests | No standalone CNN, XGBoost, or required ensemble |
 | Reproducibility | Immutable provenance, group-safe splits, configs, checkpoints, metrics, reloadable inference bundle | A notebook screenshot alone does not establish reproducibility |
 | Performance | Proposed warm end-to-end p95 target of 5 seconds for a 10-second clip on named demo hardware | This is an engineering target to measure, not an achieved result |
 | Submission | Working demo, model/data documentation, contribution log, at least 10 substantive report pages; plan for 12 | Scientific limitations and incomplete requirements must remain visible |
@@ -52,12 +52,12 @@ Each module has one primary owner and one reviewer. All four developers contribu
 | Week | Primary milestone | Parallel work | Required evidence before closing week |
 |---|---|---|---|
 | 1 | Research contract, environment, source eligibility | Small data sample; app flow sketch; GPU access reservation; report outline | Verified source samples, identity mapping, license notes, smoke tests, budget estimate |
-| 2 | Audited manifests and locked protocols | Training-only EDA; feature implementation; evaluator fixtures | No prohibited leakage, usable external benchmark, both-class validation subsets |
+| 2 | Audited manifests and locked protocols | Training-only EDA; feature implementation; evaluator fixtures | No prohibited leakage, both-class validation subsets |
 | 3 | Complete representation contract and LR | Shared trainer; Streamlit integration; pretrained compatibility probes | LR predictions from CLI and UI agree; plots/export work on fixtures |
 | 4 | BiGRU and development tuning | WavLM extraction; AST memory/gradient pilot | Packed-sequence tests, GRU bundle, measured AST feasibility |
 | 5 | Frozen WavLM/head and AST warm-up | AST adaptation; calibration tooling; packaging | Cache/direct parity; frozen modules verified; both protocols scheduled |
 | 6 | Finish AST adaptation and all model/protocol fits; lock selection | Controlled ablations, calibration, threshold fitting, latency qualification | Eight final model/protocol bundles; selected production bundle locked |
-| 7 | Sealed evaluation and deployment verification | Report tables, external/corruption suites, error taxonomy | Fixed recording predictions, working app, clean-environment run |
+| 7 | Sealed evaluation and deployment verification | Report tables, corruption suite, error taxonomy | Fixed recording predictions, working app, clean-environment run |
 | 8 | Reproduction audit, final report, defense | Final uncertainty analysis, demo rehearsal, offline backup | Submission checklist complete; results regenerated from saved predictions |
 
 Weeks describe staffing, not permission to bypass dependencies. The critical path is:
@@ -93,12 +93,12 @@ An early app scaffold and pretrained compatibility tests may proceed with labele
 ### Implementation tasks
 
 1. Write the problem statement, label semantics, supported inputs, exclusions, research questions, and measurable engineering targets.
-2. Define four questions: whether temporal features help over fixed summaries; whether pretrained speech representations transfer; whether AST adaptation improves over its frozen-head stage; and how each approach degrades under unseen generators, external source shift, and corruption.
+2. Define four questions: whether temporal features help over fixed summaries; whether pretrained speech representations transfer; whether AST adaptation improves over its frozen-head stage; and how each approach degrades under unseen generators and corruption.
 3. Predeclare the production-selection rule: among deployable Protocol B candidates, maximize recording-level macro F1 on unseen-generator selection validation, break exact ties by lower EER, then lower genuine FPR, then lower measured latency. Use known-generator development performance as a recorded sanity check. Define any minimum acceptable quality before seeing model results; do not invent an accuracy guarantee.
 4. Separate checkpoint/hyperparameter selection, calibration fitting, threshold selection, and final assessment. Freeze a decision threshold policy, initially maximizing macro F1 on operating validation. A proposed FPR-constrained alternative must be declared as a separate policy before results are inspected.
 5. Define the deployment candidate as a specific model **and protocol-trained artifact**. Default to the strict unseen-generator Protocol B artifact so the central generalization claim corresponds to what the app runs. Protocol A models remain the broader known-generator comparison.
 6. Set the known-vs-unseen information boundary: complete and freeze Protocol B development before using the final held-out family in any Protocol A training or result-driven analysis. Common engineering fixes after this boundary require a documented change assessment and, where they alter learned behavior, renewed evaluation controls.
-7. Record unresolved implementation decisions with owners and deadlines: dataset identity mapping (A, week 1), English external eligibility (A/D, week 2), GPU slot (C, week 1), latency hardware (D, week 1), instructor interpretation of two-source usage (D, week 1). Work proceeds on the stricter two-source plan without reading additional repository materials.
+7. Record unresolved implementation decisions with owners and deadlines: dataset identity mapping (A), GPU slot (C), and latency hardware (D).
 
 **Deliverables:** proposed `docs/problem_statement.md`, `docs/research_contract.md`, `docs/decision_log.md`, task board, dated gate checklist.
 
@@ -159,11 +159,11 @@ Seed Python, NumPy, PyTorch, data loaders, crop sampling, and augmentation. Reco
 
 Measure approximately 100 representative batches for throughput and peak memory. Estimate extraction, training, validation, final scoring, and artifact storage separately. Reserve 25% of available compute for failed runs, integration, and recovery. A 12–16 GB GPU is a planning target only; begin AST at microbatch 2. CPU support is mandatory for LR and smoke/inference paths where practical; full pretrained training on CPU is not assumed feasible within eight weeks.
 
-Budget for **at least eight final fits**: four architectures under each of Protocols A and B. External and corruption suites score frozen models and do not require new fits. Frozen-AST warm-up is part of each AST run, with a saved stage checkpoint. Limit neural searches initially to a baseline plus one targeted alternative per model/protocol; LR has eight inexpensive regularization/weighting candidates. Repeat shortlisted configurations with three seeds only if the measured budget allows. Account for all trials in comparisons.
+Budget for **at least eight final fits**: four architectures under each of Protocols A and B. The corruption suite scores frozen models and do not require new fits. Frozen-AST warm-up is part of each AST run, with a saved stage checkpoint. Limit neural searches initially to a baseline plus one targeted alternative per model/protocol; LR has eight inexpensive regularization/weighting candidates. Repeat shortlisted configurations with three seeds only if the measured budget allows. Account for all trials in comparisons.
 
 **Exit gate G1:** a WAV decodes/resamples, all four representations complete a forward pass, an AST backward memory probe succeeds on fixtures, artifact storage persists, and hardware/budget records exist. Repeat representative AST throughput profiling in week 4 after the real data contract is ready. Pretrained downloads are pinned by revision; licenses are recorded.
 
-## 5. Phase 2 — Acquire and verify two eligible data sources
+## 5. Phase 2: Acquire and verify PhonemeDF
 
 **When:** week 1, with reconciliation complete by week 2. **Owner:** A; **reviewer:** D. **Dependencies:** G0 and environment for decoding.
 
@@ -172,12 +172,6 @@ Budget for **at least eight final fits**: four architectures under each of Proto
 Use the guide's proposed release v1.0.1 as the starting candidate. Retain genuine audio plus verified MeloTTS, XTTS v2, Chatterbox TTS, and VITS; exclude Chatterbox VC, FreeVC, and StarGAN VC. A product name alone is insufficient evidence of method type. Verify archive naming, paired source utterances, reference voices, and label metadata against the authors' materials. [PhonemeDF authors' repository](https://github.com/Vamshi-Nallaguntla/PhonemeDF).
 
 The guide reports 28,539 real and 199,773 synthetic recordings across TTS **and** VC, and approximately 41.4 GB compressed for the required real/four-TTS archives. These are guide-sourced planning figures, not locally audited counts. The release page returned HTTP 429 during this planning pass; reverify its metadata/checksums before acquisition. Do not use full-corpus duration as the TTS-only duration. [Target release](https://zenodo.org/records/19522979).
-
-### External source: MLAAD-tiny
-
-Default to a sealed English external benchmark with verified genuine and TTS examples. Its card describes roughly 6,000 genuine and 6,400 synthetic files, while the viewer lists 15,290 rows; the synthetic description includes English and German. Resolve these discrepancies from actual metadata and files. Synthetic licensing is described as CC BY-NC 4.0; genuine audio retains its source license. [MLAAD-tiny dataset card](https://huggingface.co/datasets/mueller91/MLAAD-tiny).
-
-Do not inherit the viewer's single `train` partition as a scientific split. If both English classes and provenance cannot be verified, pause external scoring and identify a documented replacement by the end of week 2. Record any substitution before final model selection. A replacement must have both classes, usable method/language metadata, permissions, and enough independent groups. Never repair this by comparing English genuine with German synthetic speech.
 
 ### Acquisition work packages
 
@@ -189,11 +183,10 @@ Do not inherit the viewer's single `train` partition as a scientific split. If b
 6. Audit usage and redistribution conditions before publishing datasets or examples. A research model package can contain retrieval instructions and hashes instead of redistributing restricted audio.
 7. Construct a 500–1,000-recording integration subset **after** full group assignment. Later target 20,000–40,000 recordings only if feasible; sample groups reproducibly and use the same selected recordings for all approaches within each protocol.
 
-The default satisfies two-source use through primary training and external evaluation. If the course requires both sources in training, reserve a separate group-disjoint external development subset **before tuning**, include both classes from each source, and keep a sealed external remainder. Treat mixed-source training as a separate declared experiment and exclude the final held-out generator family from every development source.
 
-**Deliverables:** dataset cards, source/license inventory, immutable raw manifest, download inventory, adapter tests, count reconciliation, eligibility decision for source two.
+**Deliverables:** dataset cards, source/license inventory, immutable raw manifest, download inventory, adapter tests, count reconciliation, PhonemeDF eligibility decision.
 
-**Exit gate G2:** source labels/methods are verified, both external English classes exist, required identity fields are understood, storage is sufficient, and unresolved usage restrictions are documented. Missing permission to redistribute does not authorize publication of audio.
+**Exit gate G2:** source labels/methods are verified, required identity fields are understood, storage is sufficient, and unresolved usage restrictions are documented. Missing permission to redistribute does not authorize publication of audio.
 
 ## 6. Phase 3 — Integrity audit, cleaning, and exploratory analysis
 
@@ -253,14 +246,13 @@ If target-voice constraints form a giant component, retain source-speaker/uttera
 |---|---|---|---|
 | A — Known generators | Four eligible families in training groups; known-family development groups | Held-out source groups with known families | Four separately trained approaches |
 | B — Strict unseen generator | Example: MeloTTS + VITS train; XTTS v2 unseen validation; Chatterbox TTS absent from all development | Genuine + Chatterbox TTS from final source groups | Four separately trained approaches; default production pool |
-| C — External transfer | No fitting or threshold adjustment on external test | Verified English MLAAD-tiny, both classes; identify family overlap | Score locked B models; A external results optional if budget permits |
 | D — Corruption | Development corruption settings declared before lock | Paired clean/noisy/compressed copies of locked test recordings | Reuse frozen models and thresholds |
 
 Allocate source groups before applying B's family filters. Training groups' genuine originals cannot reappear as controls beside held-out synthetic derivatives. For B, maintain known-family development controls and unseen-family validation in distinct declared subsets. The actual filtered class proportions may differ from A; document them rather than asserting identical data across protocols.
 
 All four approaches share training/validation/test recording IDs **within each protocol**. They need not share IDs between A and B, whose questions and training family sets differ. An unseen-family result from an A model trained on that family is invalid.
 
-Maintain a generator alias/version registry. Check external sources for the final held-out family and related forks before admitting any external development data. Cross-dataset transfer is not automatically unseen-generator transfer. If architecture-family independence is uncertain, use the narrower claim “unseen dataset system ID.” Document pretrained-source overlap as a separate limitation.
+Maintain a generator alias/version registry. If architecture-family independence is uncertain, report the narrower unseen dataset system ID claim. Document pretrained-source overlap separately.
 
 ### Validation roles and information boundaries
 
@@ -447,7 +439,7 @@ Plan the sequential portion explicitly: finish B neural searches by the end of w
 1. Validate bundle and test-manifest hashes without changing either.
 2. Score all required eligible recordings; persist chunk scores and exactly one aggregated/calibrated recording score each.
 3. Check denominators, finite scores, label mapping, duplicate IDs, and processing failures before metrics.
-4. Generate A known-family results and B known/unseen panels; report C external transfer for all four B approaches and D paired corruption for the declared suite.
+4. Generate A known-family results and B known/unseen panels; report D paired corruption for the declared suite.
 5. Export results and uncertainty from saved predictions. Interpret errors only after locks; any follow-up tuning becomes a separately labeled exploratory iteration requiring new untouched data for new final claims.
 
 ### Metric contract
@@ -594,7 +586,7 @@ Set numerical tolerances from deterministic development fixtures and device/prec
 | 8 | WavLM/AST representations, frozen/trainable parameters, adaptation |
 | 9 | Tuning budgets, seeds, calibration, thresholds, metrics, compute |
 | 10 | Known/unseen comparisons, supports, intervals |
-| 11 | External transfer, robustness, errors, limitations |
+| 11 | Robustness, errors, limitations |
 | 12 | Application, measured latency, reproducibility, conclusions/future work |
 
 Add references/appendices without relying on them or the cover to meet the guide's minimum ten-page requirement. The guide reports five rubric categories: Problem Identification, Problem Solving Skills, Implementation, Deliverables, and Depth of Knowledge. Map them respectively to the research contract, justified protocol/model choices, working pipeline, complete artifact package, and explanation of methods/limitations. Include before/after improvement evidence even when a change does not help.
@@ -684,7 +676,6 @@ Final comparison tables must include model **and protocol**, class/group support
 
 | Risk / trigger | Owner and deadline | Response / preserved requirement |
 |---|---|---|
-| External English labels or both classes unverifiable | A/D, end week 2 | Resolve metadata or replace benchmark before tuning; no language-confounded result |
 | Huge source/target connected component | A, week 2 | Preserve utterance/source-speaker grouping; narrow output-voice claim explicitly |
 | Suspiciously high early accuracy | A/B, immediately | Audit duplicates, metadata-only baseline, duration/codec/silence before more tuning |
 | B held-out family exposed through A development | D, throughout | Enforce B-first freeze; disclose contamination and redesign with new holdout if violated |
@@ -710,13 +701,13 @@ Scope reduction order:
 
 ### Framed question
 
-How should four developers deliver EchoProof in eight weeks, using the supplied specification and complete guide, while producing a scientifically defensible comparison of LR, BiGRU, frozen WavLM/head, and partially adapted AST; a calibrated recording-level upload application; leakage-safe known/unseen/external studies; and a reproducible report under finite compute? The stakes are an invalid generalization claim or an unfinished project if dependencies, data eligibility, and experiment costs are underestimated.
+How should four developers deliver EchoProof in eight weeks, using the supplied specification and complete guide, while producing a scientifically defensible comparison of LR, BiGRU, frozen WavLM/head, and partially adapted AST; a calibrated recording-level upload application; leakage-safe known/unseen studies; and a reproducible report under finite compute? The stakes are an invalid generalization claim or an unfinished project if dependencies, data eligibility, and experiment costs are underestimated.
 
 ### Independent perspectives and review record
 
 | Advisor | Main contribution to the plan |
 |---|---|
-| Contrarian | Prevent indirect held-out-family exposure through Protocol A; count eight fitted systems; verify external controls and calibration support early |
+| Contrarian | Prevent indirect held-out-family exposure through Protocol A; count eight fitted systems; verify calibration support early |
 | First Principles Thinker | Make recordings the prediction unit and source groups the independence unit; judge complete approaches under fixed contracts |
 | Expansionist | Invest in reusable manifests/evaluation/bundles and bounded within-architecture adaptation comparisons |
 | Outsider | Specify observable app behavior, honest score/visual meanings, full coverage, failure states, and artifact-based completion |
@@ -765,7 +756,7 @@ Create the research-and-feasibility gate record with named owners and evidence f
 - [ ] Configuration, seeds, checkpoints/resume, class handling, early stopping, schedules, and costs are logged.
 - [ ] B choices are frozen before A development exposes B's held-out family.
 - [ ] Calibration, threshold, quality rules, aggregation, processor, and selected model are locked together.
-- [ ] Recording-level known/unseen/external/robustness metrics include required measures, support, uncertainty, and failure accounting.
+- [ ] Recording-level known/unseen/robustness metrics include required measures, support, uncertainty, and failure accounting.
 - [ ] The app accepts supported audio and shows assessment, honest score/confidence, waveform, spectrogram, and export.
 - [ ] Invalid inputs, upload limits, cleanup, privacy boundaries, and CLI/UI score parity pass.
 - [ ] Fresh-environment reproduction, offline demo, model card, source instructions, and contribution log are complete.
