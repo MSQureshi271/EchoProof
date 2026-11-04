@@ -21,3 +21,7 @@ This is a project scheduling decision. It does not constitute an independent Gat
 - [Evidence manifest](../reports/phase2/p2_12_14-20261103T055053Z-e07f8756041a/evidence_manifest.json)
 
 Phase 3 may proceed using the recorded handoff and the source evidence. Perform full duplicate disposition in Phase 3 and grouped partitioning in Phase 4, before segmentation or augmentation. The baseline pilot remains a planning target; no cohort or training split was selected in Phase 2. Preserve the proposed unseen-generator boundary.
+
+## Restored VITS follow-up
+
+The owner supplied a successful header inspection and full decode for the restored VITS recording and reports that its SHA-256 matches the earlier inventory. The [updated inspection](../data/manifests/phase2_inspection/20261103T150046Z-97374536cfee/inspection_summary.json) combines those results with the original run, preserving its original sample selection. The [updated reconciliation](../reports/phase2/p2_08-20261103T150049Z-dd446277f234/reconciliation.json) and [updated handoff](../reports/phase2/p2_12_14-20261103T150050Z-6dfd7e180d7d/phase3_handoff.json) incorporate the follow-up. The SHA-256 match was reported by the owner and was not independently observed locally.
