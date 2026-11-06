@@ -22,8 +22,12 @@ class Waveform:
     quality_flags: tuple[str, ...]
 
 
-def decode_audio(data: bytes, *, target_rate: int = 16000, max_bytes: int = 10_000_000,
-                 max_seconds: float = 30, max_channels: int = 2) -> Waveform:
+MAX_AUDIO_BYTES = 25 * 1024 * 1024   # REVISED_PLAN R1-N2 input limits: 25 MiB and 60 s
+MAX_AUDIO_SECONDS = 60.0
+
+
+def decode_audio(data: bytes, *, target_rate: int = 16000, max_bytes: int = MAX_AUDIO_BYTES,
+                 max_seconds: float = MAX_AUDIO_SECONDS, max_channels: int = 2) -> Waveform:
     if not isinstance(data, bytes) or not data or len(data) > max_bytes:
         raise AudioError("audio bytes are empty or exceed the input limit")
     if type(target_rate) is not int or not 4000 <= target_rate <= 384000:

@@ -1,0 +1,5 @@
+[server]
+# Slightly above the 25 MiB inference limit so oversized files reach inference and get its message
+maxUploadSize = 27
+[browser]
+gatherUsageStats = false
