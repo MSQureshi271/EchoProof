@@ -82,3 +82,12 @@ The user reports successful upload of an additional TTS dataset in `dataset/tts/
 ## Phase 2 scheduling closure ? 3 November 2026
 
 The project owner directed Phase 2 to be closed for project scheduling and Phase 3 to proceed. The owner states that the Phase 2 environment can be reproduced and will review the Phase 2 documents together. This decision does not change historical run results or constitute an independent Gate 2 review. See [Phase 2 closure](phase2_closure.md).
+
+## R2-U1 implementation record — 6 November 2026
+
+- **Authority:** the user requested implementation of R2-U1, owned by Usman with Muneeb as reviewer, under the existing revised plan. This records engineering interpretation; it does not record teammate approval, a new model fit, or a completed Colab run.
+- **Crop bank:** consume the published R2-S1 K=5 bank exactly. The historical compute-budget assumption of four WavLM crops does not override that artifact. Preserve historical reports; record actual extraction timing in the R2 evidence.
+- **Test access:** the task explicitly permits B-test genuine embeddings. Expose that as an acknowledged, logged extraction-only scope, separately indexed and excluded from default readers. Never extract Chatterbox or test TTS, score test examples, or sample them for parity. The general B-before-A firewall remains unchanged.
+- **Parity:** no trained WavLM head exists in R2. Verify both embedding views directly and compare scores from an explicitly untrained deterministic diagnostic head on 50 development intervals. This is cache-path engineering evidence, not detector performance. Trained-head waveform/cache parity remains an R3-U1 obligation. Freeze absolute/relative tolerances at 1e-4; record the diagnostic definition and parameter identity.
+- **Publication:** a complete cache requires validated atomic packs, exact expected coverage, separate development/test indexes, successful parity, and a final manifest. Missing, stale or corrupt artifacts fail verification rather than silently becoming training inputs.
+- **Exposure/status:** this implementation task has not run pretrained extraction or examined final-test outcomes. Local Python execution is unavailable; fixture/GPU execution and Muneeb's actual review remain pending. See [the execution guide](r2_u1_wavlm_cache.md).
