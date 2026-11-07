@@ -16,6 +16,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field, replace
 import hashlib
 import io
+from pathlib import Path
 import time
 from typing import Callable, Sequence
 
@@ -75,6 +76,50 @@ def mock_bundle(threshold: float = 0.5) -> LoadedBundle:
     spec = BundleSpecification(SCHEMA_VERSION, "bundle:mock-skeleton", MOCK_MODEL_VERSION, PREPROCESSING_HASH,
                                DecisionRule(SCHEMA_VERSION, "threshold", threshold), "genuine", "tts")
     return LoadedBundle(spec, mock_scorer, score_type="mock_score", is_mock=True)
+
+
+def load_lr_bundle(bundle_path: str | Path, threshold: float = 0.5) -> LoadedBundle:
+    """Load a provisionally fitted Logistic Regression model directory as a LoadedBundle.
+
+    Accepts either the model directory containing weights.npz and lr_model.json or
+    a run directory containing a model/ subdirectory.
+    """
+    from echoproof.models.lr_detector import LRDetector
+
+    path = Path(bundle_path)
+    if (path / "weights.npz").is_file() and (path / "lr_model.json").is_file():
+        model_dir = path
+    elif (path / "model" / "weights.npz").is_file() and (path / "model" / "lr_model.json").is_file():
+        model_dir = path / "model"
+    else:
+        raise FileNotFoundError(
+            f"No valid LR model found at {bundle_path} (expected weights.npz and lr_model.json)"
+        )
+
+    model = LRDetector.load(model_dir)
+
+    protocol = model.meta.get("extra", {}).get("protocol", "B")
+    bundle_id = f"bundle:r2-lr-protocol-{str(protocol).lower()}"
+    model_version = f"logistic_regression:{protocol}"
+
+    rule = DecisionRule(SCHEMA_VERSION, "threshold", float(threshold))
+    spec = BundleSpecification(
+        schema_version=SCHEMA_VERSION,
+        bundle_id=bundle_id,
+        model_version=model_version,
+        preprocessing_hash=PREPROCESSING_HASH,
+        decision_rule=rule,
+        class_0="genuine",
+        class_1="tts",
+    )
+    return LoadedBundle(
+        spec=spec,
+        scorer=model.score_chunks,
+        aggregate=mean_probability,
+        calibrate=None,
+        score_type="model_score",
+        is_mock=False,
+    )
 
 
 @dataclass

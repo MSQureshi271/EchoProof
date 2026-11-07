@@ -48,6 +48,10 @@ def main(argv=None):
     verify = sub.add_parser("verify-environment", help="Compare a fresh Colab runtime with a baseline lock")
     verify.add_argument("--project-root", default=".")
     verify.add_argument("--lock", required=True, help="Exported requirements-lock.txt with sibling provenance")
+    predict = sub.add_parser("predict", help="Run inference on an audio recording using a model bundle")
+    predict.add_argument("--bundle", required=True, help="Path to model bundle directory")
+    predict.add_argument("--audio", required=True, help="Path to audio file")
+    predict.add_argument("--threshold", type=float, default=0.5, help="Decision threshold (default: 0.5)")
     data = sub.add_parser('data', help='Dataset audit operations')
     data_actions = data.add_subparsers(dest='data_action', required=True, parser_class=Parser)
     inventory = data_actions.add_parser('inventory')
@@ -148,6 +152,39 @@ def main(argv=None):
         except Exception as exc:
             print(json.dumps({"status": "error", "type": "environment_failed", "message": str(exc)}), file=sys.stderr)
             return 4
+    if args.command == "predict":
+        if args.threshold < 0.0 or args.threshold > 1.0:
+            print(json.dumps({"status": "error", "type": "invalid_input", "message": "--threshold must be between 0.0 and 1.0"}), file=sys.stderr)
+            return 2
+        bundle_path = Path(args.bundle)
+        if not bundle_path.exists():
+            print(json.dumps({"status": "error", "type": "bundle_error", "message": f"Bundle path does not exist: {args.bundle}"}), file=sys.stderr)
+            return 2
+        try:
+            from .inference import load_lr_bundle, predict_recording
+            bundle = load_lr_bundle(bundle_path, threshold=args.threshold)
+        except Exception as exc:
+            print(json.dumps({"status": "error", "type": "bundle_error", "message": f"Failed to load bundle: {exc}"}), file=sys.stderr)
+            return 4
+
+        audio_path = Path(args.audio)
+        if not audio_path.exists():
+            print(json.dumps({"status": "error", "type": "audio_not_found", "message": f"Audio file does not exist: {args.audio}"}), file=sys.stderr)
+            return 2
+        try:
+            audio_bytes = audio_path.read_bytes()
+        except Exception as exc:
+            print(json.dumps({"status": "error", "type": "audio_read_error", "message": f"Failed to read audio file: {exc}"}), file=sys.stderr)
+            return 2
+
+        try:
+            result = predict_recording(audio_bytes, bundle)
+        except Exception as exc:
+            print(json.dumps({"status": "error", "type": "inference_failed", "message": str(exc)}), file=sys.stderr)
+            return 4
+
+        print(json.dumps(result.to_dict(), indent=2, sort_keys=True, allow_nan=False))
+        return 0 if result.status == "success" else 4
     try:
         from .config import ConfigError, load_config
     except ImportError as exc:
