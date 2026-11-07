@@ -1,5 +1,9 @@
 # P1-02 on Google Colab
 
+## R2-U1 WavLM cache
+
+Use [R2_U1_Colab_WavLM_Cache.ipynb](R2_U1_Colab_WavLM_Cache.ipynb) and the [R2-U1 execution guide](../docs/r2_u1_wavlm_cache.md). This task reuses the published five-crop Protocol B training bank, embeds all B validation roles, and supports explicitly acknowledged genuine-test extraction only. No Chatterbox audio is extracted. The notebook separates preflight, fixture tests, GPU setup, shard staging, resumable extraction, parity checks and evidence export. Set the project path explicitly and sync the new source, runner and tests first. Preparing the notebook does not establish a successful Colab run.
+
 For P2-07 through P2-09, use the single [P2_07_09_Colab_Audit.ipynb](P2_07_09_Colab_Audit.ipynb) and [execution guide](../docs/p2_07_09_execution.md).
 
 For P2-06, use [P2_06_Colab_Pairing.ipynb](P2_06_Colab_Pairing.ipynb) and the [pairing guide](../docs/p2_06_pairing.md). The notebook also inspects the P2-05 Parquet output directly.
