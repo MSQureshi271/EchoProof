@@ -167,13 +167,14 @@ def _signature(model):
 
 class Trainer:
     def __init__(self, model, config: TrainConfig, train_dataset, eval_dataset, run_dir, *, param_groups=None,
-                 ledger_path=None, provenance=None, metrics_fn=None):
+                 ledger_path=None, provenance=None, metrics_fn=None, aggregation_fn=None):
         config.validate()
         self.cfg, self.model, self.train_ds, self.eval_ds = config, model, train_dataset, eval_dataset
         self.run_dir = Path(run_dir)
         self.run_dir.mkdir(parents=True, exist_ok=True)
         self.ledger_path, self.provenance = ledger_path, dict(provenance or {})
         self.metrics_fn = metrics_fn or recording_metrics
+        self.aggregation_fn = aggregation_fn
         want = config.device
         self.device = torch.device("cuda" if want == "auto" and torch.cuda.is_available() else "cpu" if want == "auto" else want)
         if config.precision == "fp16" and self.device.type != "cuda":
@@ -311,10 +312,13 @@ class Trainer:
                 loss_sum += float(F.cross_entropy(logits, labels, reduction="sum"))
                 count += len(labels)
                 chunk_rows += list(zip(batch["chunk_ids"], batch["recording_ids"], batch["labels"].tolist(), probs.tolist()))
-        grouped = {}
-        for _, rid, label, p in chunk_rows:
-            grouped.setdefault(rid, [label, []])[1].append(p)
-        recordings = [(rid, v[0], float(np.mean(v[1])), len(v[1])) for rid, v in grouped.items()]
+        if self.aggregation_fn is not None:
+            recordings = self.aggregation_fn(chunk_rows)
+        else:
+            grouped = {}
+            for _, rid, label, p in chunk_rows:
+                grouped.setdefault(rid, [label, []])[1].append(p)
+            recordings = [(rid, v[0], float(np.mean(v[1])), len(v[1])) for rid, v in grouped.items()]
         metrics = self.metrics_fn([r[1] for r in recordings], [r[2] for r in recordings], self.cfg.selection_threshold)
         metrics["loss"] = loss_sum / count
         return metrics, chunk_rows, recordings

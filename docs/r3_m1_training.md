@@ -1,0 +1,22 @@
+# R3-M1 training orchestration
+
+This is the planned Protocol B experiment, recorded before either R3-M1 fit. The baseline is a 64-bin log-mel, two-layer bidirectional GRU with hidden size 128, masked mean pooling, dropout 0.3 and two logits. The one alternative changes only learning rate from 0.001 to 0.0003. Both use seed 42, AdamW with weight decay 0.01, batch 32, up to 20 epochs, patience 3, plateau scheduler (factor 0.5, patience 1), gradient clipping 1.0, fp32, no class weighting, and deterministic mode. Evaluation batch size is 64. Select checkpoints by full selection-role recording macro F1 at raw threshold 0.5; exact ties keep the earlier epoch. Compare the two best selection scores; an exact tie favors the baseline. Known-family and XTTS panels are diagnostic and do not override checkpoint selection.
+
+The experiment contract is written once before fitting and includes configuration, hashes of inputs and source files, the frozen split, and runtime versions. Resume requires an exact match. Each experiment has its own best and latest checkpoint, history, predictions and ledger entries. The trainer saves latest at epoch boundaries, so interruption may repeat the unfinished epoch. CUDA GRU inter-layer dropout has a private state that cannot be restored exactly; resumed training is not guaranteed bit-identical. A crash after the final checkpoint but before the ledger append is repaired from the saved checkpoint; missing peak VRAM is recorded as unavailable.
+
+The runner is `scripts/r3_m1_train.py`. It needs the R2-S1 files, R1 manifests and the canonical shards. Write `--output` and `--ledger` to persistent storage and use `--resume` with the same output directory after a disconnection. A directory containing no latest checkpoint cannot be resumed safely; preserve it and start a new output directory. Never start a real training run until the fixture tests, including the frontend parity test on the actual Colab GPU, have passed. Once both runs complete, the runner freezes the selection before it scores calibration or operating audio. It reloads the winning checkpoint and exports raw chunk and recording predictions by role, with a selection report and hashes. These development prediction tables are not calibrated bundle predictions; R3-N1 supplies calibration and the operating decision rule.
+
+Open `notebooks/R3_M1_Colab_BiGRU_B.ipynb` in a Colab T4 runtime after syncing the updated `src/`, `scripts/r3_m1_train.py`, notebook and tests to the project on Drive. Configure `ROOT` and `SHARDS` in the notebook. It checks required input paths and runs fixture tests before invoking the training script. The existing R2 Colab environment must have PyTorch, librosa, pyarrow, pytest and the other project dependencies available; use the project's locked environment if they are missing. The notebook does not install packages automatically.
+
+For a new run, leave `RUN_ID` blank. For recovery, enter the printed run ID and rerun the notebook using the same source, environment and GPU type. If no `latest.pt` was produced before interruption, preserve the run directory and use a new run ID. Resume is at epoch boundaries, with the GRU dropout limitation stated above. Avoid simultaneous writes to `reports/ledger.csv` by other notebooks because the shared ledger is not concurrency-safe.
+
+When the notebook finishes, share `reports/r3/<RUN_ID>.json`, `runs/r3/<RUN_ID>/` and `reports/ledger.csv` for review. The report checks file hashes and completed ledger entries; it is not an independent review or a model lock. All scores are development scores. The folder includes both experiments, the selected checkpoint reference, raw validation prediction tables, selection panels and evidence.
+
+Alternatively, run from a configured Colab project checkout, replacing paths with the actual Drive and scratch locations:
+
+```bash
+PYTHONPATH=src python -m pytest -q tests/test_r3_m1_data.py tests/test_r3_m1_selection.py tests/test_r3_m1_export.py tests/test_r3_m1_orchestration.py tests/test_r3_bigru_frontend.py tests/test_m1_trainer.py
+python scripts/r3_m1_train.py --root /path/to/project --shard-dir /path/to/shards --output /path/to/persistent/runs/r3/RUN_ID --ledger /path/to/persistent/reports/ledger.csv
+```
+
+For recovery, repeat the second command with `--resume`. Neither the existence of this script nor fixture tests imply that either real experiment has been run or reviewed.

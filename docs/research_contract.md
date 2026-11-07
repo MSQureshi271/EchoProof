@@ -18,13 +18,14 @@ Raw recordings remain immutable. Each derivative records its parent and transfor
 |---|---|---|
 | A: known generators | Four verified TTS families with source-group train/validation separation | Held-out source groups containing known families |
 | B: strict unseen generator | Initial mapping: MeloTTS and VITS training, XTTS v2 unseen validation; Chatterbox TTS absent from every development source | Genuine and Chatterbox TTS recordings from held-out source groups |
+| C: external transfer | No external-test fitting or threshold tuning | Verified English genuine and TTS subset of MLAAD-tiny, subject to eligibility audit |
 | D: corruption | Transformation policy chosen on development data | Paired noise/compression versions of final recordings, with frozen models and thresholds |
 
-The generator mapping is the predeclared starting design, conditional on verified metadata. Any correction precedes training and is versioned. If architecture-family independence is unknown, limit claims to the unseen dataset system ID.
+The generator mapping is the predeclared starting design, conditional on verified metadata. Any correction precedes training and is versioned. Verify aliases and forks across sources. Unknown architecture-family independence supports only an “unseen dataset system ID” claim. External-source shift does not automatically mean unseen-generator shift.
 
 Target approximately 70/15/15 train/validation/test allocation subject to whole-group constraints. Report achieved proportions and class/group supports. Group integrity takes precedence over exact percentages. Within each protocol all four models use the same eligible recording IDs; A and B require separate fitted systems and training-local transformations. Budget at least eight final fits.
 
-The project uses PhonemeDF genuine audio and its four TTS families. Cross-dataset evaluation and two-source training are outside the agreed scope.
+Default data roles: PhonemeDF for primary development and MLAAD-tiny for sealed external assessment. Verify English genuine/TTS controls, provenance, and permissions before accepting either benchmark. If two-source training is required, reserve a group-disjoint external development subset before tuning and preserve a sealed external remainder; document this as a protocol change.
 
 ## Validation responsibilities
 
@@ -70,4 +71,4 @@ Changes require a decision-log entry describing rationale, evidence used, affect
 
 Audit class-correlated source, codec, duration, silence, RMS, sample rate, and recording-channel artifacts using training/development diagnostics. Include a nuisance-only baseline and matched-condition checks. Leakage-safe groups alone do not remove acquisition shortcuts.
 
-Block training on prohibited group leakage or ambiguous task labels; block release on offline/UI score divergence; mark AST incomplete without actual partial backbone adaptation. Reduce optional trials and shared cohort scale before weakening these controls. No performance gain is required to declare an honest completed study.
+Block training on prohibited group leakage or ambiguous task labels; block external claims on missing English genuine/TTS controls; block release on offline/UI score divergence; mark AST incomplete without actual partial backbone adaptation. Reduce optional trials and shared cohort scale before weakening these controls. No significance threshold, performance gain, or advanced-model superiority is required to declare an honest completed study.
