@@ -1,0 +1,180 @@
+{
+  "task": "R3-M1 audit",
+  "checks": {
+    "original_provenance_and_checkpoint_hashes": {
+      "status": "passed",
+      "details": {
+        "reference_contract_sha256": "57cb16686508673072d1c4d181012209298b25a6bce0037edac57263e3948b71",
+        "recorded_input_sha256": {
+          "chunks": "d3f8b8d6d305b91e133b1943dc51690417be79850460e549403d42848f8a8751",
+          "cohort": "51af27a2dd5c0577bf9c232287ac73b2f66af472ce3308721af83b2e48e8e816",
+          "features_manifest": "64bad5f4dfd9b23f78bc0d893400ccd7da377576dd585a546276315776bc6709",
+          "split": "d910f5b2798eae472da5ff1491823c9f9b281fbe05da3407c0b9233d8227d5a8",
+          "stats": "d94c122a08da55432ae91a51e43c5311a6fc4b706029c4413027baf582442921"
+        },
+        "input_bytes_verified": false
+      }
+    },
+    "baseline_early_stop_replay": {
+      "status": "passed",
+      "details": {
+        "best_epoch": 3,
+        "best_macro_f1": 0.8597542210891138,
+        "stop_epoch": 6,
+        "recorded_lr_is_after_scheduler_step": true
+      }
+    },
+    "baseline_selection_predictions": {
+      "status": "passed",
+      "details": {
+        "chunks": 10029,
+        "recordings": 2000,
+        "macro_f1": 0.8597542210891138
+      }
+    },
+    "lower_lr_early_stop_replay": {
+      "status": "passed",
+      "details": {
+        "best_epoch": 10,
+        "best_macro_f1": 0.8611277924573625,
+        "stop_epoch": 13,
+        "recorded_lr_is_after_scheduler_step": true
+      }
+    },
+    "lower_lr_selection_predictions": {
+      "status": "passed",
+      "details": {
+        "chunks": 10029,
+        "recordings": 2000,
+        "macro_f1": 0.8611277924573625
+      }
+    },
+    "scheduler_fixture": {
+      "status": "passed",
+      "details": {
+        "scores": [
+          0.5,
+          0.4,
+          0.45
+        ],
+        "lr_after_scheduler": [
+          0.001,
+          0.001,
+          0.0005
+        ]
+      }
+    },
+    "gpu_frontend_and_gradients_fixture": {
+      "status": "passed",
+      "details": {
+        "device": "Tesla T4",
+        "torch": "2.14.1+cu130",
+        "fixture_loss": 0.6813921928405762,
+        "scope": "silence and short random fixtures, padded-neighbour and gradient checks"
+      }
+    },
+    "real_data_and_pcm": {
+      "status": "passed",
+      "details": {
+        "train_recordings": 4530,
+        "selection_recordings": 2000,
+        "train_speakers": 151,
+        "selection_speakers": 25,
+        "selection_chunks": 10029,
+        "pcm_verified_recordings": 6530,
+        "input_sha256": {
+          "cohort": "51af27a2dd5c0577bf9c232287ac73b2f66af472ce3308721af83b2e48e8e816",
+          "split": "d910f5b2798eae472da5ff1491823c9f9b281fbe05da3407c0b9233d8227d5a8",
+          "chunks": "d3f8b8d6d305b91e133b1943dc51690417be79850460e549403d42848f8a8751",
+          "stats": "d94c122a08da55432ae91a51e43c5311a6fc4b706029c4413027baf582442921",
+          "features_manifest": "64bad5f4dfd9b23f78bc0d893400ccd7da377576dd585a546276315776bc6709"
+        },
+        "audio_scope": "train and selection only"
+      }
+    },
+    "gpu_full_frontend_and_frozen_normalization": {
+      "status": "passed",
+      "details": {
+        "selection_chunks_checked": 3,
+        "short_chunk_found": true,
+        "max_abs_difference": 7.68899917602539e-05,
+        "stats_sha256": "d94c122a08da55432ae91a51e43c5311a6fc4b706029c4413027baf582442921"
+      }
+    },
+    "epoch_boundary_recovery_fixtures": {
+      "status": "passed",
+      "details": {
+        "tests": [
+          "test_resume_exact_with_same_config",
+          "test_resume_guards",
+          "test_resume_reproduces_next_epoch_exactly"
+        ],
+        "summary": "...                                                                      [100%]\n3 passed in 14.16s",
+        "torch": "2.14.1+cu130",
+        "scope": "ordinary-module epoch-boundary recovery; not CUDA GRU bit-exact continuation"
+      }
+    },
+    "multi_file_crash_window": {
+      "status": "not_measured",
+      "reason": "The trainer writes best, history and latest separately; a crash between writes needs a reconciliation test and guard."
+    }
+  },
+  "environment": {
+    "python": "3.13.16"
+  },
+  "source_sha256": {
+    "scripts/r3_m1_train.py": {
+      "raw": "0fd833e503acda5a6f9a38bcb024061e886e4d6ff3d0d385b767ebab347b84e5",
+      "lf_normalized": "0fd833e503acda5a6f9a38bcb024061e886e4d6ff3d0d385b767ebab347b84e5"
+    },
+    "src/echoproof/evaluation/aggregate.py": {
+      "raw": "7162f889e2650f30229c1d59585517b6cfc82af1345ad67ba2476f22de5a38f4",
+      "lf_normalized": "7162f889e2650f30229c1d59585517b6cfc82af1345ad67ba2476f22de5a38f4"
+    },
+    "src/echoproof/evaluation/metrics.py": {
+      "raw": "3719ac831b2839534dc521342ea073467e5fe8539cbbf830d83acc51c009d04f",
+      "lf_normalized": "3719ac831b2839534dc521342ea073467e5fe8539cbbf830d83acc51c009d04f"
+    },
+    "src/echoproof/features/acoustic.py": {
+      "raw": "2961146cc3956bb208d4676851beb6ba5ba9c67f3dcfb6d6375eafadcc33fafc",
+      "lf_normalized": "2961146cc3956bb208d4676851beb6ba5ba9c67f3dcfb6d6375eafadcc33fafc"
+    },
+    "src/echoproof/features/r2_s1.py": {
+      "raw": "06346d7b1bc14c9f8c50752d7295c03d126acd3e0bdb8c8b7a3a6a997a2a6997",
+      "lf_normalized": "06346d7b1bc14c9f8c50752d7295c03d126acd3e0bdb8c8b7a3a6a997a2a6997"
+    },
+    "src/echoproof/models/bigru.py": {
+      "raw": "89e4d57c5fc93a2c856e3ee947d9edbe60970c35487266c0722dc061ecd43d0e",
+      "lf_normalized": "89e4d57c5fc93a2c856e3ee947d9edbe60970c35487266c0722dc061ecd43d0e"
+    },
+    "src/echoproof/models/bigru_waveform.py": {
+      "raw": "f8c83be7a79702b11e625c5932e0ad637becaf8cab2a2074b75899ac608b40df",
+      "lf_normalized": "f8c83be7a79702b11e625c5932e0ad637becaf8cab2a2074b75899ac608b40df"
+    },
+    "src/echoproof/training/datasets.py": {
+      "raw": "a011bcd63fbf73dcdb58b8a91eb57eba5aa46becf38359cb9bab0473fe16e7a6",
+      "lf_normalized": "a011bcd63fbf73dcdb58b8a91eb57eba5aa46becf38359cb9bab0473fe16e7a6"
+    },
+    "src/echoproof/training/r3_m1_data.py": {
+      "raw": "cb0fe53d75707461a0feaa37fe457c83043b3c5923609864ead2a880c097a8d4",
+      "lf_normalized": "cb0fe53d75707461a0feaa37fe457c83043b3c5923609864ead2a880c097a8d4"
+    },
+    "src/echoproof/training/r3_m1_export.py": {
+      "raw": "6719b9163c7d4ceb4dd5cec031b88ea49cd3932958538e174b2518d35787ab27",
+      "lf_normalized": "6719b9163c7d4ceb4dd5cec031b88ea49cd3932958538e174b2518d35787ab27"
+    },
+    "src/echoproof/training/r3_m1_selection.py": {
+      "raw": "39a57f06939da16ce25afb5a8ddfbdb2bb95d295ca273b530d403f27e60005d1",
+      "lf_normalized": "39a57f06939da16ce25afb5a8ddfbdb2bb95d295ca273b530d403f27e60005d1"
+    },
+    "src/echoproof/training/seeding.py": {
+      "raw": "4f85c4c23142684c6909da5a43195d54de30f2ec20606e3fa7ab2dfb8cb64433",
+      "lf_normalized": "4f85c4c23142684c6909da5a43195d54de30f2ec20606e3fa7ab2dfb8cb64433"
+    },
+    "src/echoproof/training/trainer.py": {
+      "raw": "41bdccf0ea6053693fe0bb8e80a697437dbe2c48735343529ead9e5925fa1f9e",
+      "lf_normalized": "9cc257efe7744abce2b2b8c4e7101911ab6f471d5574258503cd8cd7bbc7c8a7"
+    }
+  },
+  "overall": "incomplete"
+}

@@ -1,0 +1,129 @@
+{
+  "audit_sha256": "4769d0eb403fef049de530b832ab168a5234320ad5dd6a4cf629f4338c215851",
+  "budget": {
+    "count_interrupted_attempts": true,
+    "max_audit_and_export_gpu_minutes": 30,
+    "max_epochs_per_run": 20,
+    "max_training_and_validation_gpu_minutes": 120,
+    "max_training_runs": 2
+  },
+  "configs": {
+    "b01_baseline_full20": {
+      "accumulation_steps": 1,
+      "batch_size": 32,
+      "class_strategy": "none",
+      "deterministic": true,
+      "device": "cuda",
+      "eval_batch_size": 64,
+      "grad_clip": 1.0,
+      "lr": 0.001,
+      "max_epochs": 20,
+      "min_delta": 0.0,
+      "model_name": "bigru",
+      "num_workers": 0,
+      "owner": "Muneeb",
+      "patience": 21,
+      "plateau_factor": 0.5,
+      "plateau_patience": 1,
+      "precision": "fp32",
+      "protocol": "B",
+      "scheduler": "plateau",
+      "seed": 42,
+      "selection_threshold": 0.5,
+      "warmup_steps": 0,
+      "weight_decay": 0.01
+    },
+    "b01_lower_lr_full20": {
+      "accumulation_steps": 1,
+      "batch_size": 32,
+      "class_strategy": "none",
+      "deterministic": true,
+      "device": "cuda",
+      "eval_batch_size": 64,
+      "grad_clip": 1.0,
+      "lr": 0.0003,
+      "max_epochs": 20,
+      "min_delta": 0.0,
+      "model_name": "bigru",
+      "num_workers": 0,
+      "owner": "Muneeb",
+      "patience": 21,
+      "plateau_factor": 0.5,
+      "plateau_patience": 1,
+      "precision": "fp32",
+      "protocol": "B",
+      "scheduler": "plateau",
+      "seed": 42,
+      "selection_threshold": 0.5,
+      "warmup_steps": 0,
+      "weight_decay": 0.01
+    }
+  },
+  "created_utc": "2026-11-07T17:36:27.901784+00:00",
+  "dependencies": {
+    "librosa": "0.11.0",
+    "pyarrow": "23.0.1",
+    "scikit-learn": "1.6.1",
+    "scipy": "1.16.3",
+    "soundfile": "0.14.0"
+  },
+  "environment": {
+    "cuda": "13.0",
+    "gpu": "Tesla T4",
+    "numpy": "2.4.6",
+    "python": "3.13.16",
+    "torch": "2.14.1+cu130"
+  },
+  "experiment_sources": {
+    "scripts/audit.py": "7e2e90e3883815c1b83733ac5ca1dbf188f691efca4e90269cce838c175079df",
+    "scripts/checkpoint_guard.py": "c11dbd5a7eb994558a9bc165e01d9671b56d5d00278cf2c18cde0f70e6027448",
+    "scripts/compare.py": "8611ec16e49c15f9f09fdb14431a1c0c10d425ddf1b5667d59ccf76b731c5357",
+    "scripts/export_selected.py": "27b5e3120e6f385e827f08cb820cc75d5008ecbae70aee8b3964b8b71e1641aa",
+    "scripts/prepare_batch.py": "ab8b105b0573cac426d191ed7a49915a174009e18b4f98b016ea117eb8170fd2",
+    "scripts/train.py": "b07ec2cd3691e65d097e2410f8e44509138551410d176c6965ce5df1922246b3"
+  },
+  "firewall": {
+    "limitation": "local locks and ledger cannot prove no unrecorded Protocol A exposure",
+    "locks_absent": true,
+    "protocol_a_ledger_rows": 0
+  },
+  "git_commit": null,
+  "inputs": {
+    "chunks": "d3f8b8d6d305b91e133b1943dc51690417be79850460e549403d42848f8a8751",
+    "cohort": "51af27a2dd5c0577bf9c232287ac73b2f66af472ce3308721af83b2e48e8e816",
+    "features_manifest": "64bad5f4dfd9b23f78bc0d893400ccd7da377576dd585a546276315776bc6709",
+    "split": "d910f5b2798eae472da5ff1491823c9f9b281fbe05da3407c0b9233d8227d5a8",
+    "stats": "d94c122a08da55432ae91a51e43c5311a6fc4b706029c4413027baf582442921"
+  },
+  "plan_sha256": "a4d417d38aad0bb7fe68c4313e36789ca331dff72bcc109aee61a2482687facf",
+  "reference_checkpoints": {
+    "baseline": "13820b094e4685e5d0aa0f399035eea6af2ece04c800e8211fb1f40680d5c51b",
+    "lower_lr": "3154da86d9faf603c4f8bc5bf7abefdf5aa5c8fd6fc2e3aebe12324df194e640"
+  },
+  "reference_contract_sha256": "57cb16686508673072d1c4d181012209298b25a6bce0037edac57263e3948b71",
+  "reference_sources": {
+    "scripts/r3_m1_train.py": "0fd833e503acda5a6f9a38bcb024061e886e4d6ff3d0d385b767ebab347b84e5",
+    "src/echoproof/evaluation/aggregate.py": "7162f889e2650f30229c1d59585517b6cfc82af1345ad67ba2476f22de5a38f4",
+    "src/echoproof/evaluation/metrics.py": "3719ac831b2839534dc521342ea073467e5fe8539cbbf830d83acc51c009d04f",
+    "src/echoproof/features/acoustic.py": "2961146cc3956bb208d4676851beb6ba5ba9c67f3dcfb6d6375eafadcc33fafc",
+    "src/echoproof/features/r2_s1.py": "06346d7b1bc14c9f8c50752d7295c03d126acd3e0bdb8c8b7a3a6a997a2a6997",
+    "src/echoproof/models/bigru.py": "89e4d57c5fc93a2c856e3ee947d9edbe60970c35487266c0722dc061ecd43d0e",
+    "src/echoproof/models/bigru_waveform.py": "f8c83be7a79702b11e625c5932e0ad637becaf8cab2a2074b75899ac608b40df",
+    "src/echoproof/training/datasets.py": "a011bcd63fbf73dcdb58b8a91eb57eba5aa46becf38359cb9bab0473fe16e7a6",
+    "src/echoproof/training/r3_m1_data.py": "cb0fe53d75707461a0feaa37fe457c83043b3c5923609864ead2a880c097a8d4",
+    "src/echoproof/training/r3_m1_export.py": "6719b9163c7d4ceb4dd5cec031b88ea49cd3932958538e174b2518d35787ab27",
+    "src/echoproof/training/r3_m1_selection.py": "39a57f06939da16ce25afb5a8ddfbdb2bb95d295ca273b530d403f27e60005d1",
+    "src/echoproof/training/seeding.py": "4f85c4c23142684c6909da5a43195d54de30f2ec20606e3fa7ab2dfb8cb64433",
+    "src/echoproof/training/trainer.py": "41bdccf0ea6053693fe0bb8e80a697437dbe2c48735343529ead9e5925fa1f9e"
+  },
+  "selection": {
+    "aggregation": "arithmetic_mean_chunk_probabilities",
+    "candidate_tie": "original_selected_lower_lr_then_lexicographic_candidate_id",
+    "epoch_tie": "earliest",
+    "include_valid_original_candidates": true,
+    "metric": "full_selection_recording_macro_f1",
+    "threshold": 0.5
+  },
+  "status": "frozen_not_started",
+  "task": "R3-M1 batch01"
+}

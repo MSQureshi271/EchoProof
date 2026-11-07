@@ -1,0 +1,99 @@
+{
+  "best_epoch": 16,
+  "checkpoint": "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/best.pt",
+  "checkpoint_sha256": "435d47b36431e7f0f6b6f1bdd2459c8a6d06074b79fcc7ff69631c0c93cc687e",
+  "id": "b01_lower_lr_full20",
+  "macro_f1": 0.8691202907998973,
+  "metrics": {
+    "accuracy": 0.894,
+    "average_precision": 0.9715951461311138,
+    "brier_score": 0.07969898188598123,
+    "confusion_matrix": [
+      [
+        458,
+        42
+      ],
+      [
+        170,
+        1330
+      ]
+    ],
+    "eer": 0.092,
+    "fn": 170,
+    "fnr": 0.11333333333333333,
+    "fp": 42,
+    "fpr": 0.084,
+    "genuine_recall": 0.916,
+    "log_loss": 0.33461245795016625,
+    "macro_f1": 0.8691202907998973,
+    "recordings": 2000,
+    "roc_auc": 0.952046,
+    "threshold": 0.5,
+    "tn": 458,
+    "tp": 1330,
+    "tts_precision": 0.9693877551020408,
+    "tts_recall": 0.8866666666666667
+  },
+  "panels": {
+    "known": {
+      "accuracy": 0.9706666666666667,
+      "average_precision": 0.9745883833078848,
+      "brier_score": 0.02594983894780072,
+      "confusion_matrix": [
+        [
+          458,
+          42
+        ],
+        [
+          2,
+          998
+        ]
+      ],
+      "eer": 0.046,
+      "fn": 2,
+      "fnr": 0.002,
+      "fp": 42,
+      "fpr": 0.084,
+      "genuine_recall": 0.916,
+      "log_loss": 0.17598796094296754,
+      "macro_f1": 0.9662990196078431,
+      "recordings": 1500,
+      "roc_auc": 0.976037,
+      "threshold": 0.5,
+      "tn": 458,
+      "tp": 998,
+      "tts_precision": 0.9596153846153846,
+      "tts_recall": 0.998
+    },
+    "unseen_xtts": {
+      "accuracy": 0.79,
+      "average_precision": 0.8080459823400866,
+      "brier_score": 0.15747259518023168,
+      "confusion_matrix": [
+        [
+          458,
+          42
+        ],
+        [
+          168,
+          332
+        ]
+      ],
+      "eer": 0.14600000000000002,
+      "fn": 168,
+      "fnr": 0.336,
+      "fp": 42,
+      "fpr": 0.084,
+      "genuine_recall": 0.916,
+      "log_loss": 0.6609171112309182,
+      "macro_f1": 0.7866122561790994,
+      "recordings": 1000,
+      "roc_auc": 0.904064,
+      "threshold": 0.5,
+      "tn": 458,
+      "tp": 332,
+      "tts_precision": 0.8877005347593583,
+      "tts_recall": 0.664
+    }
+  }
+}
