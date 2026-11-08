@@ -1,0 +1,7 @@
+# R2-M1: Protocol B logistic regression
+
+Run `notebooks/R2_M1_Colab_LR_B.ipynb` on Colab CPU after syncing the source, scripts and tests to the Drive project. It runs fixture tests first, then reads the existing `data/features/r2_s1_B` handoff. The run checks its manifest, feature hashes and schema, speaker boundaries and class labels. Only the selection validation role is scored. The feature files and prior artifacts are never overwritten.
+
+The grid uses the existing equal-recording-weight LR pipeline and authoritative evaluation metrics. It records all eight trials in `reports/ledger.csv`; a failed or unconverged trial prevents a successful result. A run creates a unique `runs/r2/<run_id>/` directory containing the selected model, chunk and recording prediction CSVs, coefficient table and `evidence.json`. A copy of evidence is written to `reports/r2/<run_id>.json`. The majority baseline uses the training recording labels; random reference scores are generated once per selection recording with seed 42. Known-family and unseen-XTTS panels are descriptive; the full selection role determines the grid winner.
+
+This is an uncalibrated development model. The 0.5 threshold is only for selection; calibration and operating threshold are later tasks. No test recordings or Chatterbox features are used. The outputs are not a locked deployment bundle. Review the report, convergence and feature provenance with Subhan before treating R2-M1 as complete.

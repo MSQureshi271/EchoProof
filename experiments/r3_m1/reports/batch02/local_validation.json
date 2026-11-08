@@ -1,0 +1,31 @@
+{
+  "task": "R3-M1 batch02 local implementation validation",
+  "status": "local_checks_passed_gpu_checks_pending",
+  "counts": {
+    "tests": 24,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1
+  },
+  "passed": 23,
+  "junit_sha256": "43fc01062e2e59e47b52143e0505b29150cf7b8f21ed026091d699965a2cf7a1",
+  "pytorch_available": false,
+  "limitation": "The hidden64 PyTorch fixture module was skipped locally because PyTorch is absent. Colab requires CPU/CUDA fixtures with zero skips before fitting. No real-data training or new performance result is claimed.",
+  "batch01_source_hashes_unchanged": true,
+  "authorization_verified": true,
+  "lock_sha256": {
+    "locks/B_lock.json": "f14fd26ccf42c929a049cfb80d5c559e86cce3bb596f0cbb63a4af16c094eaf0"
+  },
+  "plan_sha256": "755dd9d91d13d8626305a79d930d9295645452fff82cba225bef53ca89f6a793",
+  "new_script_sha256": {
+    "batch02_compare.py": "e0807ba28bd197abdff23a929d1f60cbbd1320e5d336372554971f907fd9ed0a",
+    "batch02_contract.py": "99318d6eb460b35637e933f7ec3aea511c64b5d2b9610657ecc3eadaf07ba566",
+    "batch02_preflight.py": "ee4514d736da66a9aa35e1e2b967a052feaf5704bc3ca622df232f855d09527a",
+    "batch02_train.py": "56f8bf00d5577bc0ea28a54129be5c32c43dc7028e82f5a09726587bdc09f508"
+  },
+  "protected_artifacts_snapshot": {
+    "locks/B_lock.json": "f14fd26ccf42c929a049cfb80d5c559e86cce3bb596f0cbb63a4af16c094eaf0",
+    "bundles/protocol_B_lr/": null
+  },
+  "previous_comparison_artifacts_verified": 110
+}

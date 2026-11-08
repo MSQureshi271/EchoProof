@@ -1,0 +1,655 @@
+{
+  "artifact_sha256": {
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/best.pt": "68ab401b8ee6bcb0244d01848f6f6176b9fccdda40db8a4ee2d9ea762e2b57a0",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_01_chunks.parquet": "e63f1964d4713a3c24324d46a392be5445c930e1538013d0579dd8aa141731d0",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_01_recordings.parquet": "996eac358da558207008e49d6af087ce2dafdfe7f3d35bf261c1e486e44af150",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_02_chunks.parquet": "607f2be55b751c74a40fe86f3b5f61f09a3ae7c70bcb8e0bb655971026614fa3",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_02_recordings.parquet": "4289bbfd3c97cbfcc1649d5b912f3acd1766f163bffcd69fb80777c52e514488",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_03_chunks.parquet": "2f46cde81ab9cb3e402784bb61c12a6635998ca79af64cd003dfab740f66a5b3",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_03_recordings.parquet": "ed4ca6cc6fbb557f5b3ba0a0dc391c95cb1c01b8be9f09436fb24a846378aae7",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_04_chunks.parquet": "5ce8f6103a72ea3504f8a342c1d28de84aa2c234b55e46f6994eb7454a640170",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_04_recordings.parquet": "8d81b221306552f4c5b1af8be367abc159dcb873480fff87d5804b9fa812139b",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_05_chunks.parquet": "589c96d911dc747c93d42d6e7433611cd78c14d997f0b01ca331b8298b20a0c6",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_05_recordings.parquet": "7a72c2ec36287b049d2e02ccbcea913fd1c324092b365264cdef227f7b66a075",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_06_chunks.parquet": "7292af675072eb61527289774cbe900b576c10ed87920768ac4189d6d61b9f26",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_06_recordings.parquet": "a811a3d7a3af7ee3221873f4a2484061515a5ff1ca09438e1539869fbdd5d80c",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_07_chunks.parquet": "ea35c037b4136a4daa291b7f51ff2b50016ee2e71d4407e93517a7b56371612f",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_07_recordings.parquet": "a9e3745f08356eb70abe29a931389517396d0b56fe72250aa70da6fa2a01eb2b",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_08_chunks.parquet": "05c36c2bb9c3775374761b3217b12891783be18ceb5fa52eb470ccd12cf97f07",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_08_recordings.parquet": "18ba0a13f307682a18fef8a2948fc653c1131c704f6d251e7a38a235fccd5ed6",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_09_chunks.parquet": "0460af0e65e8287e1ad67c30bb34f99fa8b96cb1caf4efbfae612633672349c4",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_09_recordings.parquet": "c019a9fab30a8d6312a6baa90ef737a936e07881d3c30fa1c5d016ffd5dd44c2",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_10_chunks.parquet": "f2e400e746a4424dfc1cc73250d1b74a6209e5844ee90829ad00f0e45146da51",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_10_recordings.parquet": "9bf1caf4ac98b0ed38a7d81f634d819921c60f089c56b4c98bb437175a19c809",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_11_chunks.parquet": "b36977d690609c0c3b463bbdf2268e2516606c605ef2095b2031e759c952d5df",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_11_recordings.parquet": "26054f1da9953602e37018bfac2eef64db1568425b7e07334e8a78e1587420fa",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_12_chunks.parquet": "3f4af2d7a717bdd76f73c14e3ba5f896b9f10fb6f8ac8575623696ad26961c95",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_12_recordings.parquet": "3b4d40a04c498686a6e6fd38778f480949dbb4521211ea1b49e8304e175dd620",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_13_chunks.parquet": "78faf34119d2ef5cb92bf67b6e984b3d297e8b3033502bcb17ef9b22a75367cc",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_13_recordings.parquet": "262bd1cdb8d29726e86b3983777a07e3afe888bdb269456bebcaccd38ccd6fe6",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_14_chunks.parquet": "7164f6809a40a48d5739a5179615cb5c4f6d0b5e16b22acb97c16691b069f863",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_14_recordings.parquet": "d741f02a99d7b1d291d5dfbf954684ca70f9dff00ec3a2c740f7536e95262ba6",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_15_chunks.parquet": "21ca7b977204b1e4a699924494c3e65ba1090e9f21ba67cd6dca0e76b831e8fc",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_15_recordings.parquet": "120c32047147bbe384648dd7d8eceaf89281e221739784cc5ed687ad4ce0cc39",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_16_chunks.parquet": "790368f86b23c66eae55e86263164b4bc10ce6bda59462a6cf951f8d80946668",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_16_recordings.parquet": "c50ace6ada97342c2ee7373e1a8565bcb8260d0552e5257361a44ba5274012a1",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_17_chunks.parquet": "cec1d26e6d95261112b4ac1f612ca58a3a9f4e72fd91fa4edd855a24726dbc45",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_17_recordings.parquet": "1eb03acaff635f3a602dfd809cf19d2e9d39d2e17847544b793a2519fcb9545d",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_18_chunks.parquet": "6b19faf0859b2424ad9e5f594e2635a92a59b559c0e9ae49864171073a83eb23",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_18_recordings.parquet": "4b2d9481d0420a261f37c0c1d0d5cd47f05803614f22f555b6d3867ff4e581cb",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_19_chunks.parquet": "649f0471c4df85f5c91a3f501442b33c1acf86cd708c8a6b131adfdb2c4f9e02",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_19_recordings.parquet": "07564d497cc2d1172f001384bb9cfb272df7e0fc9e91cd19dfa66500000f853f",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_20_chunks.parquet": "5660e52a8e2f98025a8373657ca58698562868cd0d0c3602c2a2d202336571b2",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/epoch_predictions/epoch_20_recordings.parquet": "c50a4637b3627237a475b49a81fbf0339954df014cb04d986ec49176a7427d54",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/history.jsonl": "68087af74e20c96090f1faf199e0083e66c5e23b2af63e83bf70e4d327204bf7",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/latest.pt": "bf03a2dc9023fcb0c6ece818c98d99f0353de018a41938a1148c8315085a10e4",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/patience3_best.pt": "3f93f353ccfbc142722bca469d148e95fbe8dd5318afd0b6a3c25b4ccc26e055",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/predictions_chunks.parquet": "934857a003b5a3e0c72670594e66451d22d8ab75cba34499dfc8a02b0f5b7279",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/predictions_recordings.parquet": "acfc51379a8af870d33f7007ba6381226b31c6aac84dac1d7891c21a77cf2423",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/resolved_config.json": "8c2b20c4c5da0b95dfdf771876707f4c0b4cd0cc3d7272a9186c1c61284a3dc3",
+    "experiments/r3_m1/runs/batch01/b01_baseline_full20/status.json": "a33696f14084ad09de5cce9d6406c7f93cb04174863072f95c8c62377959c6f4",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/best.pt": "435d47b36431e7f0f6b6f1bdd2459c8a6d06074b79fcc7ff69631c0c93cc687e",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_01_chunks.parquet": "c12bb9f247a89e824e17727a6d11e1513304bbc10a2ccada9691012092635ba2",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_01_recordings.parquet": "93196fef1779061aac08f123b8ba52a58e48eec3061ddd5868faafff14ffb62a",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_02_chunks.parquet": "28b8ccf8ce41ac2f7badb8c4980ea752e9b2ed0a5010dfdbcadfd3bfc96a8ac8",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_02_recordings.parquet": "2be2aca4dd8af6531759dc2030c1f9f2c853caeea1d1a338014b79ea42c0cb49",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_03_chunks.parquet": "77dee57ac5eefa7fb551f8e1c4cdd6b38f3583ffdb614ee085f83fc197a520e6",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_03_recordings.parquet": "2a68345f4f8dd5d857d786b043a7b96f2c372781c446e6613c0889328aef3706",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_04_chunks.parquet": "20befe1809fd9091a09fbf10405aa1a5ca2ac435aa71ad0c9590a8bb6732f6ad",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_04_recordings.parquet": "dd6d261a3c4cad01ca5e75b4a1a6aac74282b26294990a1a068722b3fd77cc09",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_05_chunks.parquet": "53a552b24b6b80adc64ef43d25b98ff8110d0cd97d4c403b36d5813be12c1164",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_05_recordings.parquet": "a67b85acfaee8566ad3e3bfda31b1a03a86a39907f28e9672664d26937d86926",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_06_chunks.parquet": "62e267122bdb6205bccf2f36a5105c52a7c817c1d1fe5287bca0ed802ed9303f",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_06_recordings.parquet": "8568fc783f353cc336e669fbf7776e3d62e908a339fb84250e54ad36bd9578dd",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_07_chunks.parquet": "a7b17d2f31c19bc14ec342bd618e629e78111c2480c3f41dcc304ef77449725c",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_07_recordings.parquet": "725ce933ac3319bf9b54056bb6047f8eff8298a3a2c9f157579e095826aef661",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_08_chunks.parquet": "360417bb6f8e5ae791d8d60b5298c7a9a99b4b42b6f040c6176b5b2e7f884fa8",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_08_recordings.parquet": "949ba334fb121b5bc2a0aa70e3aec770c0f10ef70ae96ffe316ae2bf5d3512ba",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_09_chunks.parquet": "b4e5cb781fb629e32abeb269f475af9e31becb875d48dd9fc76b131812c4b82d",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_09_recordings.parquet": "a5226891f9c9507b1b38fc35874a382dee0b8a191824a958bf9faf458ac1ea9d",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_10_chunks.parquet": "f78533be8825a389e7fa156b12a7a0c8894e5a93d25c981f84df369da6c8fec7",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_10_recordings.parquet": "656214b3f6e73164e048c539f1c3b3872b4629e118234e552dba94ebc2b2cb5c",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_11_chunks.parquet": "77a2319638214998b90b5101aa876362d6a6836766a78fd31f5f5577e4da302e",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_11_recordings.parquet": "558e4a9f320e4fcb5c21a6a3db217c20aec4ac519ae03b1a8981761c7cd33590",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_12_chunks.parquet": "32d61b9070c1fafd8b2215b9156fb184a26b536afb9fe12712aa892495e30ea7",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_12_recordings.parquet": "020a6211d16ed77a2c86e3b20bfdd1a2996aa7326a0115407c3c6e1569700582",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_13_chunks.parquet": "5f5766fb32afa1d2073c4cc545408695bc5be63e2699f0cf617a5e2cfb0c1ee1",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_13_recordings.parquet": "555a6c0e3ee6b26f19707e19224d2e17b0f5aa501802529312b4430e2375e59f",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_14_chunks.parquet": "a55426924e4357de3b1c3e1e6e5f7e80393d83ece68d14681f30faf5baa9580e",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_14_recordings.parquet": "ba79c844b7deeb4492b4b5a6b1f05a10fe72466f5d65a0402fdc9596ae61681f",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_15_chunks.parquet": "3a348a3fa90229e92996b190342a5eeb84c38b21e554607c8cfe70a12fdd291c",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_15_recordings.parquet": "c8d916ae8174f44e5c6cfac03d9a9c7fc4a219d60394e8600a9efc944961f92c",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_16_chunks.parquet": "d3089c03ff492aaeb9f4c9188471f9593dea3695c2a1f583e812646396494d3e",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_16_recordings.parquet": "266059ca2d64be08641cf83052b876d8130411af7038f188c7630bbe83433af5",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_17_chunks.parquet": "99378e56094312540bbfc5b3b596aa0ca0b40eac4c0b1ade58836c6de5d0f8c8",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_17_recordings.parquet": "0a92b54c04fc740adc760c6670b016776d20e8bcd0c335fedd0076af9eefa609",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_18_chunks.parquet": "3b57f56f629229082f41f4a6454ffdf933c8b0f22bbe8c4575f21483022deb6c",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_18_recordings.parquet": "7e4d5233a2715b8f2dfd4d287c2abb856328113a1b5694de15e91e007cc307de",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_19_chunks.parquet": "deb9923eac77e9cebdfb12187bcc65e46b76476ef8ed862a50428bb8e6e48ce3",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_19_recordings.parquet": "e249e2e677f62a589a398c8f7d22d7a57a2cb1e3c3dd942b0f636ea97158cc01",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_20_chunks.parquet": "3c33fd1849eac6cb812aa2e9346ebbbbf4817e8a8f4241f62d98b40e55757577",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/epoch_predictions/epoch_20_recordings.parquet": "0600030b4beded798ecf2df22814c41c1ff52e78aa38be1efa13687d9a419b5e",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/history.jsonl": "d1b2b43c556b433015767f2c299b091af88590b2c2a354cc1cbc4138d7225e37",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/latest.pt": "0806963c1e2930ee3f2e85d8b1b160c27387eb2ede6ac85fbff06dd50d164edd",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/patience3_best.pt": "69d63dcb38ee2a3d9ebfad437d59e06e4f7fcd06be3fd48fc86ed151ee81c051",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/predictions_chunks.parquet": "5c8f3b3a7d8c70ce96f91af991e8d48131a0ffc5ae9ae9282aedeaba2a72fd4a",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/predictions_recordings.parquet": "fe0c57f7f435d4cbec568a033c3134eefcbc193e1124954e9616baa8a191075a",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/resolved_config.json": "5471e9f0be559f49cc8522eb12106b9ed17aea9ac9cc41af76e12d99d1758e9f",
+    "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/status.json": "96f31b985039832776760b1caf1b39baabd626ac505191eb24adbae7f2fc2fad",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-baseline/best.pt": "13820b094e4685e5d0aa0f399035eea6af2ece04c800e8211fb1f40680d5c51b",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-baseline/history.jsonl": "4938e6d31c64262add764c7130b2e97600adea2b74f8e6c6d66cf10febac1eb7",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-baseline/latest.pt": "b791a069279badbc49eacd86e9238af8143e4929b0f8f7e92c25a3271109d3fb",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-baseline/predictions_chunks.parquet": "7ead76063e43bfddb01d72c12b664205f960a46aa6b4659617692e18fa5510bd",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-baseline/predictions_recordings.parquet": "15cbfd6cf10e1a9157f823ee5367cc89729e2fd066180e66a033815e0c4ec688",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-baseline/resolved_config.json": "cb26315e483e325153e0506e6588553a98730c31b574c7541d06d08cbac10917",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-baseline/status.json": "699ea4c59bd742ac170b7771abecc974660cea40a309bd07e49122cadfa61f03",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-lower_lr/best.pt": "3154da86d9faf603c4f8bc5bf7abefdf5aa5c8fd6fc2e3aebe12324df194e640",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-lower_lr/history.jsonl": "daefcc5a7d14be0a8693c66b3f1e2c87b9bacd801382fbf361ec3134968815f6",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-lower_lr/latest.pt": "7d933bb635a3078c09fa65905178fa682b6f174ef2c4cba405cc930357685c7d",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-lower_lr/predictions_chunks.parquet": "ae2c645b7f58cd3bdd70c305e6ae0f868639fea16f606b255be385b0282f37bd",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-lower_lr/predictions_recordings.parquet": "d5673565ddf851f4a9b33ce7734ac8caa1c20363bf85a70ed3e925eb0f915109",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-lower_lr/resolved_config.json": "81237160e0ac3df622134f4f1f8b38e5f6d8f66986e4933cc32b58ed7a3f953a",
+    "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-lower_lr/status.json": "78626638ce3352ee7e80148a4ac28825c656637fbcf8af3433e981f51f2fc4f1"
+  },
+  "candidates": [
+    {
+      "best_epoch": 3,
+      "checkpoint": "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-baseline/best.pt",
+      "checkpoint_sha256": "13820b094e4685e5d0aa0f399035eea6af2ece04c800e8211fb1f40680d5c51b",
+      "id": "original_baseline",
+      "macro_f1": 0.8597542210891138,
+      "metrics": {
+        "accuracy": 0.9035,
+        "average_precision": 0.9755367953205942,
+        "brier_score": 0.0736349517605145,
+        "confusion_matrix": [
+          [
+            345,
+            155
+          ],
+          [
+            38,
+            1462
+          ]
+        ],
+        "eer": 0.11133333333333328,
+        "fn": 38,
+        "fnr": 0.025333333333333333,
+        "fp": 155,
+        "fpr": 0.31,
+        "genuine_recall": 0.69,
+        "log_loss": 0.25997726472360017,
+        "macro_f1": 0.8597542210891138,
+        "recordings": 2000,
+        "roc_auc": 0.9541826666666666,
+        "threshold": 0.5,
+        "tn": 345,
+        "tp": 1462,
+        "tts_precision": 0.904143475572047,
+        "tts_recall": 0.9746666666666667
+      },
+      "panels": {
+        "known": {
+          "accuracy": 0.896,
+          "average_precision": 0.9824663280743086,
+          "brier_score": 0.07725389469287122,
+          "confusion_matrix": [
+            [
+              345,
+              155
+            ],
+            [
+              1,
+              999
+            ]
+          ],
+          "eer": 0.024,
+          "fn": 1,
+          "fnr": 0.001,
+          "fp": 155,
+          "fpr": 0.31,
+          "genuine_recall": 0.69,
+          "log_loss": 0.2731838023248504,
+          "macro_f1": 0.8715897192753709,
+          "recordings": 1500,
+          "roc_auc": 0.988922,
+          "threshold": 0.5,
+          "tn": 345,
+          "tp": 999,
+          "tts_precision": 0.865684575389948,
+          "tts_recall": 0.999
+        },
+        "unseen_xtts": {
+          "accuracy": 0.808,
+          "average_precision": 0.8305149143831029,
+          "brier_score": 0.14652467719537185,
+          "confusion_matrix": [
+            [
+              345,
+              155
+            ],
+            [
+              37,
+              463
+            ]
+          ],
+          "eer": 0.174,
+          "fn": 37,
+          "fnr": 0.074,
+          "fp": 155,
+          "fpr": 0.31,
+          "genuine_recall": 0.69,
+          "log_loss": 0.5157300539907906,
+          "macro_f1": 0.8052888418336923,
+          "recordings": 1000,
+          "roc_auc": 0.884704,
+          "threshold": 0.5,
+          "tn": 345,
+          "tp": 463,
+          "tts_precision": 0.7491909385113269,
+          "tts_recall": 0.926
+        }
+      }
+    },
+    {
+      "best_epoch": 10,
+      "checkpoint": "runs/r3/r3_m1_20261107T144037Z/r3_m1_20261107T144037Z-lower_lr/best.pt",
+      "checkpoint_sha256": "3154da86d9faf603c4f8bc5bf7abefdf5aa5c8fd6fc2e3aebe12324df194e640",
+      "id": "original_lower_lr",
+      "macro_f1": 0.8611277924573625,
+      "metrics": {
+        "accuracy": 0.889,
+        "average_precision": 0.975004777452672,
+        "brier_score": 0.08175704076197038,
+        "confusion_matrix": [
+          [
+            441,
+            59
+          ],
+          [
+            163,
+            1337
+          ]
+        ],
+        "eer": 0.1146666666666667,
+        "fn": 163,
+        "fnr": 0.10866666666666666,
+        "fp": 59,
+        "fpr": 0.118,
+        "genuine_recall": 0.882,
+        "log_loss": 0.303560881193991,
+        "macro_f1": 0.8611277924573625,
+        "recordings": 2000,
+        "roc_auc": 0.950928,
+        "threshold": 0.5,
+        "tn": 441,
+        "tp": 1337,
+        "tts_precision": 0.9577363896848138,
+        "tts_recall": 0.8913333333333333
+      },
+      "panels": {
+        "known": {
+          "accuracy": 0.96,
+          "average_precision": 0.9831245013382787,
+          "brier_score": 0.03221011738403672,
+          "confusion_matrix": [
+            [
+              441,
+              59
+            ],
+            [
+              1,
+              999
+            ]
+          ],
+          "eer": 0.039000000000000035,
+          "fn": 1,
+          "fnr": 0.001,
+          "fp": 59,
+          "fpr": 0.118,
+          "genuine_recall": 0.882,
+          "log_loss": 0.16060140911981263,
+          "macro_f1": 0.9535756067668195,
+          "recordings": 1500,
+          "roc_auc": 0.9848,
+          "threshold": 0.5,
+          "tn": 441,
+          "tp": 999,
+          "tts_precision": 0.944234404536862,
+          "tts_recall": 0.999
+        },
+        "unseen_xtts": {
+          "accuracy": 0.779,
+          "average_precision": 0.7870126904784226,
+          "brier_score": 0.16186270187330018,
+          "confusion_matrix": [
+            [
+              441,
+              59
+            ],
+            [
+              162,
+              338
+            ]
+          ],
+          "eer": 0.164,
+          "fn": 162,
+          "fnr": 0.324,
+          "fp": 59,
+          "fpr": 0.118,
+          "genuine_recall": 0.882,
+          "log_loss": 0.598164208357703,
+          "macro_f1": 0.7766302705401606,
+          "recordings": 1000,
+          "roc_auc": 0.883184,
+          "threshold": 0.5,
+          "tn": 441,
+          "tp": 338,
+          "tts_precision": 0.8513853904282116,
+          "tts_recall": 0.676
+        }
+      }
+    },
+    {
+      "best_epoch": 7,
+      "checkpoint": "experiments/r3_m1/runs/batch01/b01_baseline_full20/best.pt",
+      "checkpoint_sha256": "68ab401b8ee6bcb0244d01848f6f6176b9fccdda40db8a4ee2d9ea762e2b57a0",
+      "id": "b01_baseline_full20",
+      "macro_f1": 0.8675872505438381,
+      "metrics": {
+        "accuracy": 0.895,
+        "average_precision": 0.9791092980060436,
+        "brier_score": 0.07498303293573057,
+        "confusion_matrix": [
+          [
+            440,
+            60
+          ],
+          [
+            150,
+            1350
+          ]
+        ],
+        "eer": 0.112,
+        "fn": 150,
+        "fnr": 0.1,
+        "fp": 60,
+        "fpr": 0.12,
+        "genuine_recall": 0.88,
+        "log_loss": 0.273827334670944,
+        "macro_f1": 0.8675872505438381,
+        "recordings": 2000,
+        "roc_auc": 0.9534826666666667,
+        "threshold": 0.5,
+        "tn": 440,
+        "tp": 1350,
+        "tts_precision": 0.9574468085106383,
+        "tts_recall": 0.9
+      },
+      "panels": {
+        "known": {
+          "accuracy": 0.9593333333333334,
+          "average_precision": 0.9882068135877868,
+          "brier_score": 0.030528111831967245,
+          "confusion_matrix": [
+            [
+              440,
+              60
+            ],
+            [
+              1,
+              999
+            ]
+          ],
+          "eer": 0.022,
+          "fn": 1,
+          "fnr": 0.001,
+          "fp": 60,
+          "fpr": 0.12,
+          "genuine_recall": 0.88,
+          "log_loss": 0.1344554104594878,
+          "macro_f1": 0.9527746566614315,
+          "recordings": 1500,
+          "roc_auc": 0.989106,
+          "threshold": 0.5,
+          "tn": 440,
+          "tp": 999,
+          "tts_precision": 0.943342776203966,
+          "tts_recall": 0.999
+        },
+        "unseen_xtts": {
+          "accuracy": 0.791,
+          "average_precision": 0.8300457215672647,
+          "brier_score": 0.14892252677297227,
+          "confusion_matrix": [
+            [
+              440,
+              60
+            ],
+            [
+              149,
+              351
+            ]
+          ],
+          "eer": 0.17000000000000004,
+          "fn": 149,
+          "fnr": 0.298,
+          "fp": 60,
+          "fpr": 0.12,
+          "genuine_recall": 0.88,
+          "log_loss": 0.541509228643752,
+          "macro_f1": 0.789331293173225,
+          "recordings": 1000,
+          "roc_auc": 0.882236,
+          "threshold": 0.5,
+          "tn": 440,
+          "tp": 351,
+          "tts_precision": 0.8540145985401459,
+          "tts_recall": 0.702
+        }
+      }
+    },
+    {
+      "best_epoch": 16,
+      "checkpoint": "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/best.pt",
+      "checkpoint_sha256": "435d47b36431e7f0f6b6f1bdd2459c8a6d06074b79fcc7ff69631c0c93cc687e",
+      "id": "b01_lower_lr_full20",
+      "macro_f1": 0.8691202907998973,
+      "metrics": {
+        "accuracy": 0.894,
+        "average_precision": 0.9715951461311138,
+        "brier_score": 0.07969898188598123,
+        "confusion_matrix": [
+          [
+            458,
+            42
+          ],
+          [
+            170,
+            1330
+          ]
+        ],
+        "eer": 0.092,
+        "fn": 170,
+        "fnr": 0.11333333333333333,
+        "fp": 42,
+        "fpr": 0.084,
+        "genuine_recall": 0.916,
+        "log_loss": 0.33461245795016625,
+        "macro_f1": 0.8691202907998973,
+        "recordings": 2000,
+        "roc_auc": 0.952046,
+        "threshold": 0.5,
+        "tn": 458,
+        "tp": 1330,
+        "tts_precision": 0.9693877551020408,
+        "tts_recall": 0.8866666666666667
+      },
+      "panels": {
+        "known": {
+          "accuracy": 0.9706666666666667,
+          "average_precision": 0.9745883833078848,
+          "brier_score": 0.02594983894780072,
+          "confusion_matrix": [
+            [
+              458,
+              42
+            ],
+            [
+              2,
+              998
+            ]
+          ],
+          "eer": 0.046,
+          "fn": 2,
+          "fnr": 0.002,
+          "fp": 42,
+          "fpr": 0.084,
+          "genuine_recall": 0.916,
+          "log_loss": 0.17598796094296754,
+          "macro_f1": 0.9662990196078431,
+          "recordings": 1500,
+          "roc_auc": 0.976037,
+          "threshold": 0.5,
+          "tn": 458,
+          "tp": 998,
+          "tts_precision": 0.9596153846153846,
+          "tts_recall": 0.998
+        },
+        "unseen_xtts": {
+          "accuracy": 0.79,
+          "average_precision": 0.8080459823400866,
+          "brier_score": 0.15747259518023168,
+          "confusion_matrix": [
+            [
+              458,
+              42
+            ],
+            [
+              168,
+              332
+            ]
+          ],
+          "eer": 0.14600000000000002,
+          "fn": 168,
+          "fnr": 0.336,
+          "fp": 42,
+          "fpr": 0.084,
+          "genuine_recall": 0.916,
+          "log_loss": 0.6609171112309182,
+          "macro_f1": 0.7866122561790994,
+          "recordings": 1000,
+          "roc_auc": 0.904064,
+          "threshold": 0.5,
+          "tn": 458,
+          "tp": 332,
+          "tts_precision": 0.8877005347593583,
+          "tts_recall": 0.664
+        }
+      }
+    }
+  ],
+  "contract_sha256": "57785aaa39437dbca1e755ad2ccb6acac41d3835de5208c5fe2ce4cbf65816db",
+  "limitations": "Result-informed single-seed selection; no statistical superiority or global optimum claimed.",
+  "review_status": "pending",
+  "selected": {
+    "best_epoch": 16,
+    "checkpoint": "experiments/r3_m1/runs/batch01/b01_lower_lr_full20/best.pt",
+    "checkpoint_sha256": "435d47b36431e7f0f6b6f1bdd2459c8a6d06074b79fcc7ff69631c0c93cc687e",
+    "id": "b01_lower_lr_full20",
+    "macro_f1": 0.8691202907998973,
+    "metrics": {
+      "accuracy": 0.894,
+      "average_precision": 0.9715951461311138,
+      "brier_score": 0.07969898188598123,
+      "confusion_matrix": [
+        [
+          458,
+          42
+        ],
+        [
+          170,
+          1330
+        ]
+      ],
+      "eer": 0.092,
+      "fn": 170,
+      "fnr": 0.11333333333333333,
+      "fp": 42,
+      "fpr": 0.084,
+      "genuine_recall": 0.916,
+      "log_loss": 0.33461245795016625,
+      "macro_f1": 0.8691202907998973,
+      "recordings": 2000,
+      "roc_auc": 0.952046,
+      "threshold": 0.5,
+      "tn": 458,
+      "tp": 1330,
+      "tts_precision": 0.9693877551020408,
+      "tts_recall": 0.8866666666666667
+    },
+    "panels": {
+      "known": {
+        "accuracy": 0.9706666666666667,
+        "average_precision": 0.9745883833078848,
+        "brier_score": 0.02594983894780072,
+        "confusion_matrix": [
+          [
+            458,
+            42
+          ],
+          [
+            2,
+            998
+          ]
+        ],
+        "eer": 0.046,
+        "fn": 2,
+        "fnr": 0.002,
+        "fp": 42,
+        "fpr": 0.084,
+        "genuine_recall": 0.916,
+        "log_loss": 0.17598796094296754,
+        "macro_f1": 0.9662990196078431,
+        "recordings": 1500,
+        "roc_auc": 0.976037,
+        "threshold": 0.5,
+        "tn": 458,
+        "tp": 998,
+        "tts_precision": 0.9596153846153846,
+        "tts_recall": 0.998
+      },
+      "unseen_xtts": {
+        "accuracy": 0.79,
+        "average_precision": 0.8080459823400866,
+        "brier_score": 0.15747259518023168,
+        "confusion_matrix": [
+          [
+            458,
+            42
+          ],
+          [
+            168,
+            332
+          ]
+        ],
+        "eer": 0.14600000000000002,
+        "fn": 168,
+        "fnr": 0.336,
+        "fp": 42,
+        "fpr": 0.084,
+        "genuine_recall": 0.916,
+        "log_loss": 0.6609171112309182,
+        "macro_f1": 0.7866122561790994,
+        "recordings": 1000,
+        "roc_auc": 0.904064,
+        "threshold": 0.5,
+        "tn": 458,
+        "tp": 332,
+        "tts_precision": 0.8877005347593583,
+        "tts_recall": 0.664
+      }
+    }
+  },
+  "status": "comparison_complete",
+  "task": "R3-M1 batch01 comparison",
+  "training_attempt_seconds": 2992.94374599,
+  "training_attempts": [
+    {
+      "elapsed_seconds": 1529.865365395,
+      "experiment": "b01_baseline_full20",
+      "status": "completed"
+    },
+    {
+      "elapsed_seconds": 1463.078380595,
+      "experiment": "b01_lower_lr_full20",
+      "status": "completed"
+    }
+  ],
+  "trajectories": {
+    "b01_baseline_full20": {
+      "full20_best_epoch": 7,
+      "full20_best_macro_f1": 0.8675872505438381,
+      "gain_over_patience3": 0.007833029454724305,
+      "original_prefix_max_abs_f1_difference": 0.0,
+      "patience3": {
+        "best_epoch": 3,
+        "best_macro_f1": 0.8597542210891138,
+        "stop_epoch": 6
+      },
+      "seconds": 1520.6587567009992
+    },
+    "b01_lower_lr_full20": {
+      "full20_best_epoch": 16,
+      "full20_best_macro_f1": 0.8691202907998973,
+      "gain_over_patience3": 0.007992498342534793,
+      "original_prefix_max_abs_f1_difference": 0.0,
+      "patience3": {
+        "best_epoch": 10,
+        "best_macro_f1": 0.8611277924573625,
+        "stop_epoch": 13
+      },
+      "seconds": 1453.5030963189995
+    }
+  }
+}

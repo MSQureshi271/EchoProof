@@ -1,0 +1,3 @@
+run_id,owner,model,protocol,config_hash,split_hash,seed,epochs_run,best_epoch,stop_reason,val_macro_f1,val_eer,val_fpr,train_minutes,peak_vram_mb,device,status,notes
+b01_baseline_full20,Muneeb,bigru,B,6f7ce556ef6236d45fd008d244c41af18d7d300f42801ca915d9c247313223fa,0854de6b00ae059a858d60f18f95df3f1501f579ea3e2fdefbd8de076e2034d7,42,20,7,max_epochs,0.8675872505438381,0.112,0.12,25.344,369.2,cuda,completed,
+b01_lower_lr_full20,Muneeb,bigru,B,6004aafdfe81494e71b41761474bfb2e0ae046c6218504c821f192ea36dc61a9,0854de6b00ae059a858d60f18f95df3f1501f579ea3e2fdefbd8de076e2034d7,42,20,16,max_epochs,0.8691202907998973,0.092,0.084,24.225,369.2,cuda,completed,

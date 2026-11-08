@@ -1,0 +1,130 @@
+{
+  "architecture": {
+    "bidirectional": true,
+    "dropout": 0.3,
+    "hidden_size": 64,
+    "num_layers": 2
+  },
+  "authorization": {
+    "approved": true,
+    "approved_action": "One isolated hidden-size-64 run, up to 20 epochs and 60 training/selection-validation minutes, using only B train/selection data despite the existing lock, with all locks and existing results unchanged and no official model promotion. Fixture checks have a separate 15-minute allowance.",
+    "approved_by": "Muneeb",
+    "lock_sha256": {
+      "locks/B_lock.json": "f14fd26ccf42c929a049cfb80d5c559e86cce3bb596f0cbb63a4af16c094eaf0"
+    },
+    "plan_sha256": "755dd9d91d13d8626305a79d930d9295645452fff82cba225bef53ca89f6a793",
+    "recorded_utc": "2026-11-08T11:19:41.968072+00:00",
+    "restrictions": {
+      "allowed_audio_roles": [
+        "train",
+        "selection"
+      ],
+      "experimental_only": true,
+      "lock_changes_allowed": false,
+      "official_promotion_allowed": false
+    },
+    "scope_note": "This approval is specific to batch02. Ask Muneeb again before any other lock exception or change to locked artifacts.",
+    "user_reply": "Approve this experimental-only exception"
+  },
+  "budget": {
+    "count_interrupted_attempts": true,
+    "max_audit_and_export_gpu_minutes": 15,
+    "max_epochs_per_run": 20,
+    "max_training_and_validation_gpu_minutes": 60,
+    "max_training_runs": 1
+  },
+  "configs": {
+    "b02_hidden64_full20": {
+      "accumulation_steps": 1,
+      "batch_size": 32,
+      "class_strategy": "none",
+      "deterministic": true,
+      "device": "cuda",
+      "eval_batch_size": 64,
+      "grad_clip": 1.0,
+      "lr": 0.0003,
+      "max_epochs": 20,
+      "min_delta": 0.0,
+      "model_name": "bigru",
+      "num_workers": 0,
+      "owner": "Muneeb",
+      "patience": 21,
+      "plateau_factor": 0.5,
+      "plateau_patience": 1,
+      "precision": "fp32",
+      "protocol": "B",
+      "scheduler": "plateau",
+      "seed": 42,
+      "selection_threshold": 0.5,
+      "warmup_steps": 0,
+      "weight_decay": 0.01
+    }
+  },
+  "created_utc": "2026-11-08T11:40:35.343451+00:00",
+  "dependencies": {
+    "librosa": "0.11.0",
+    "pyarrow": "23.0.1",
+    "scikit-learn": "1.6.1",
+    "scipy": "1.16.3",
+    "soundfile": "0.14.0"
+  },
+  "disclosure": "Isolated post-lock, result-informed single-seed capacity diagnostic. Not eligible to change the locked research result or claim independent pre-lock evidence.",
+  "environment": {
+    "cuda": "13.0",
+    "gpu": "Tesla T4",
+    "numpy": "2.4.6",
+    "python": "3.13.16",
+    "torch": "2.14.1+cu130"
+  },
+  "frozen_files": {
+    "configs/batch01_resolved.json": "57785aaa39437dbca1e755ad2ccb6acac41d3835de5208c5fe2ce4cbf65816db",
+    "configs/batch02_authorization.json": "6e4206b10a360034b6f0c486d02ff900656499c0a325a90fe5c19a3998f6ae41",
+    "configs/batch02_plan.json": "755dd9d91d13d8626305a79d930d9295645452fff82cba225bef53ca89f6a793",
+    "reports/batch01_comparison.json": "4a9ac39b272072afd5177c5aaa2366863c64de9a19e82e01f46fa1ace2f7d2e5",
+    "reports/final_selection.json": "2e8cfa4ce4e5d6419b799ed3caa72ca1c09472f7ab3c74b1855e406456b2c087",
+    "scripts/audit.py": "7e2e90e3883815c1b83733ac5ca1dbf188f691efca4e90269cce838c175079df",
+    "scripts/batch02_compare.py": "e0807ba28bd197abdff23a929d1f60cbbd1320e5d336372554971f907fd9ed0a",
+    "scripts/batch02_contract.py": "c02d3a4d778056428bb6d12ccdcff1483b95f2df4937d058a3bb7a0fb201e8fd",
+    "scripts/batch02_preflight.py": "ee4514d736da66a9aa35e1e2b967a052feaf5704bc3ca622df232f855d09527a",
+    "scripts/batch02_train.py": "56f8bf00d5577bc0ea28a54129be5c32c43dc7028e82f5a09726587bdc09f508",
+    "scripts/checkpoint_guard.py": "c11dbd5a7eb994558a9bc165e01d9671b56d5d00278cf2c18cde0f70e6027448",
+    "scripts/compare.py": "8611ec16e49c15f9f09fdb14431a1c0c10d425ddf1b5667d59ccf76b731c5357",
+    "scripts/export_selected.py": "27b5e3120e6f385e827f08cb820cc75d5008ecbae70aee8b3964b8b71e1641aa",
+    "scripts/prepare_batch.py": "ab8b105b0573cac426d191ed7a49915a174009e18b4f98b016ea117eb8170fd2",
+    "scripts/train.py": "b07ec2cd3691e65d097e2410f8e44509138551410d176c6965ce5df1922246b3",
+    "tests/test_batch02.py": "3fbc7b7dcf218e2c9e06e278a02085b863563c37b69934b1a5b7949f1c40ff09",
+    "tests/test_batch02_model.py": "d97bd70c8c29a961f721320ba2ed8791bf23234d7bf248be7c301d0d23121163"
+  },
+  "inputs": {
+    "chunks": "d3f8b8d6d305b91e133b1943dc51690417be79850460e549403d42848f8a8751",
+    "cohort": "51af27a2dd5c0577bf9c232287ac73b2f66af472ce3308721af83b2e48e8e816",
+    "features_manifest": "64bad5f4dfd9b23f78bc0d893400ccd7da377576dd585a546276315776bc6709",
+    "split": "d910f5b2798eae472da5ff1491823c9f9b281fbe05da3407c0b9233d8227d5a8",
+    "stats": "d94c122a08da55432ae91a51e43c5311a6fc4b706029c4413027baf582442921"
+  },
+  "protected_artifacts": {
+    "bundles/protocol_B_lr/bundle.json": "2c1faee6578d3a148292fbf71bb64419429a82f8dc2a0558b325d4a5393f6fae",
+    "bundles/protocol_B_lr/model/lr_model.json": "784157878efdd8b647f25bd8f0db243e407a04822a316980093beeecc9907016",
+    "bundles/protocol_B_lr/model/weights.npz": "5a8e97c7356825f3d29e317f80fc0d053b61c44461556100dab1844f859ac4d3",
+    "locks/B_lock.json": "77cc7ec86779c09e7d63136b75299a64bec1f5a5489c6142eb6872549fdbeeb5"
+  },
+  "restrictions": {
+    "allowed_audio_roles": [
+      "train",
+      "selection"
+    ],
+    "experimental_only": true,
+    "lock_changes_allowed": false,
+    "official_promotion_allowed": false
+  },
+  "selection": {
+    "aggregation": "arithmetic_mean_chunk_probabilities",
+    "candidate_tie": "original_selected_lower_lr_then_lexicographic_candidate_id",
+    "epoch_tie": "earliest",
+    "include_valid_original_candidates": true,
+    "metric": "full_selection_recording_macro_f1",
+    "threshold": 0.5
+  },
+  "status": "frozen_not_started",
+  "task": "R3-M1 batch02"
+}

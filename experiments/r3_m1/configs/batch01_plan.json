@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "status": "planned_not_executed",
+  "task": "R3-M1",
+  "batch": "batch01_stopping_rule",
+  "owner": "Muneeb",
+  "reviewer": "Usman",
+  "review_status": "pending",
+  "hypothesis": "Patience 3 may miss a later improvement in full-selection recording macro F1 within 20 epochs.",
+  "reference_run": "runs/r3/r3_m1_20261107T144037Z",
+  "reference_contract_sha256": "57cb16686508673072d1c4d181012209298b25a6bce0037edac57263e3948b71",
+  "protocol": "B",
+  "split_sha256": "0854de6b00ae059a858d60f18f95df3f1501f579ea3e2fdefbd8de076e2034d7",
+  "data": {
+    "train_recordings": 4530,
+    "train_speakers": 151,
+    "selection_recordings": 2000,
+    "selection_speakers": 25,
+    "selection_chunks": 10029,
+    "training_crop_samples": 64000,
+    "crops_per_recording_per_epoch": 1,
+    "allowed_audio_roles_during_experiments": ["train", "selection"]
+  },
+  "inherit_config_from_reference": true,
+  "training_overrides": {"patience": 21, "max_epochs": 20},
+  "initialization": "fresh_process_and_weights_seed_42",
+  "experiments": [
+    {"id": "b01_baseline_full20", "reference_config": "baseline", "lr": 0.001},
+    {"id": "b01_lower_lr_full20", "reference_config": "lower_lr", "lr": 0.0003}
+  ],
+  "budget": {
+    "max_training_runs": 2,
+    "max_epochs_per_run": 20,
+    "max_training_and_validation_gpu_minutes": 120,
+    "max_audit_and_export_gpu_minutes": 30,
+    "count_interrupted_attempts": true
+  },
+  "counterfactual": {"early_stopping_patience": 3, "min_delta": 0.0, "derive_from_same_run_history": true},
+  "selection": {
+    "metric": "full_selection_recording_macro_f1",
+    "threshold": 0.5,
+    "aggregation": "arithmetic_mean_chunk_probabilities",
+    "epoch_tie": "earliest",
+    "candidate_tie": "original_selected_lower_lr_then_lexicographic_candidate_id",
+    "include_valid_original_candidates": true
+  },
+  "output_root": "experiments/r3_m1",
+  "required_before_training": [
+    "passing_audit",
+    "resolved_config_source_dependency_and_input_hash_contract",
+    "confirmed_no_B_lock_and_no_Protocol_A_exposure"
+  ]
+}

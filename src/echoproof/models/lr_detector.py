@@ -247,7 +247,7 @@ def run_lr_grid(train, selection, *, grid_c=GRID_C, grid_class_weight=GRID_CLASS
                                         "config_hash": config_hash, "split_hash": split_hash, "seed": seed, "epochs_run": d.get("n_iter"),
                                         "val_macro_f1": m.get("macro_f1"), "val_eer": m.get("eer"), "val_fpr": m.get("fpr"),
                                         "device": "cpu", "status": trial["status"],
-                                        "notes": f"C={c};class_weight={cw};converged={d.get('converged')}"})
+                                        "notes": f"C={c};class_weight={cw};converged={d.get('converged')};error={trial.get('error', '')}"})
         trials.append(trial)
     completed = [t for t in trials if t["status"] == "completed"]
     if not completed:
