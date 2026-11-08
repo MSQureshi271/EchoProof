@@ -1,7 +1,15 @@
 # R3-M1 follow-up experiment plan
 
-Status: audit passed on Colab; batch runner, comparison and export implemented. Batch training has not yet been executed. Owner: Muneeb. Reviewer: Usman.
+Status: batch 01 completed; selected lower-LR checkpoint at epoch 16 (selection macro F1 0.869120). Independent review remains pending. Batch 02 is implemented as a separate hidden-size-64 diagnostic; Muneeb approved the specific experimental-only post-lock exception. GPU execution is pending. Owner: Muneeb. Reviewer: Usman.
 Authority: the 7 November 2026 extension in [REVISED_PLAN.md](../../REVISED_PLAN.md).
+
+## Batch 02: hidden-size-64 diagnostic (8 November 2026)
+
+See the [bounded proposal and execution instructions](reports/batch02/plan.md) and [machine-readable plan](configs/batch02_plan.json). Muneeb requested a smaller-capacity comparison, then clarified that experiments must remain separate and the team decides any adoption, with explicit approval before a lock exception.
+
+`locks/B_lock.json` now exists and describes a provisional GR2 LR bundle. Its relationship to the final GR3 lock is unresolved; Protocol A exposure history is also unconfirmed. The batch01 guard remains unchanged. Muneeb explicitly approved this experimental-only exception; [the authorization record](configs/batch02_authorization.json) binds it to the plan hash and existing lock hashes. Other lock exceptions still require asking Muneeb first. This permission does not authorize changing locked research artifacts or treating the diagnostic as pre-lock evidence.
+
+The new [Hidden64 notebook](notebooks/R3_M1_Hidden64_Colab.ipynb) runs one two-layer, hidden-size-64 model from scratch with the same LR 0.0003, seed 42, training data and 20-epoch procedure as batch01's selected candidate. Its advisory comparison includes all four prior checkpoints. It does not export calibration/operating predictions or replace the previous selection. Its separate reports, ledger and runs cannot promote a model into a locked result. Batch01 instructions below are retained as historical documentation; do not rerun batch01 to bypass the current lock.
 
 ## Question and existing evidence
 

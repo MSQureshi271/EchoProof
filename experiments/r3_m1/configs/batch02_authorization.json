@@ -1,0 +1,21 @@
+{
+  "approved": true,
+  "approved_action": "One isolated hidden-size-64 run, up to 20 epochs and 60 training/selection-validation minutes, using only B train/selection data despite the existing lock, with all locks and existing results unchanged and no official model promotion. Fixture checks have a separate 15-minute allowance.",
+  "approved_by": "Muneeb",
+  "lock_sha256": {
+    "locks/B_lock.json": "f14fd26ccf42c929a049cfb80d5c559e86cce3bb596f0cbb63a4af16c094eaf0"
+  },
+  "plan_sha256": "755dd9d91d13d8626305a79d930d9295645452fff82cba225bef53ca89f6a793",
+  "recorded_utc": "2026-11-08T11:19:41.968072+00:00",
+  "restrictions": {
+    "allowed_audio_roles": [
+      "train",
+      "selection"
+    ],
+    "experimental_only": true,
+    "lock_changes_allowed": false,
+    "official_promotion_allowed": false
+  },
+  "scope_note": "This approval is specific to batch02. Ask Muneeb again before any other lock exception or change to locked artifacts.",
+  "user_reply": "Approve this experimental-only exception"
+}

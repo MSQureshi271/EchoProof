@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "task": "R3-M1 batch02",
+  "status": "planned_not_executed",
+  "owner": "Muneeb",
+  "reviewer": "Usman",
+  "review_status": "pending",
+  "experiment_id": "b02_hidden64_full20",
+  "hypothesis": "Reducing hidden size from 128 to 64 may reduce training-generator-specific fitting and improve selection generalization. This is a hypothesis, not an established diagnosis.",
+  "result_informed": true,
+  "architecture": {
+    "hidden_size": 64,
+    "num_layers": 2,
+    "dropout": 0.3,
+    "bidirectional": true
+  },
+  "reference_candidate": "b01_lower_lr_full20",
+  "training_config": {
+    "accumulation_steps": 1,
+    "batch_size": 32,
+    "class_strategy": "none",
+    "deterministic": true,
+    "device": "cuda",
+    "eval_batch_size": 64,
+    "grad_clip": 1.0,
+    "lr": 0.0003,
+    "max_epochs": 20,
+    "min_delta": 0.0,
+    "model_name": "bigru",
+    "num_workers": 0,
+    "owner": "Muneeb",
+    "patience": 21,
+    "plateau_factor": 0.5,
+    "plateau_patience": 1,
+    "precision": "fp32",
+    "protocol": "B",
+    "scheduler": "plateau",
+    "seed": 42,
+    "selection_threshold": 0.5,
+    "warmup_steps": 0,
+    "weight_decay": 0.01
+  },
+  "initialization": "fresh_weights_and_process_seed_42; no checkpoint transfer",
+  "data": {
+    "train_recordings": 4530,
+    "train_speakers": 151,
+    "selection_recordings": 2000,
+    "selection_speakers": 25,
+    "selection_chunks": 10029,
+    "allowed_audio_roles_during_training": [
+      "train",
+      "selection"
+    ]
+  },
+  "budget": {
+    "max_training_runs": 1,
+    "max_epochs_per_run": 20,
+    "max_training_and_validation_gpu_minutes": 60,
+    "max_audit_and_export_gpu_minutes": 15,
+    "count_interrupted_attempts": true
+  },
+  "selection": {
+    "aggregation": "arithmetic_mean_chunk_probabilities",
+    "candidate_tie": "original_selected_lower_lr_then_lexicographic_candidate_id",
+    "epoch_tie": "earliest",
+    "include_valid_original_candidates": true,
+    "metric": "full_selection_recording_macro_f1",
+    "threshold": 0.5
+  },
+  "eligible_candidates": [
+    "original_baseline",
+    "original_lower_lr",
+    "b01_baseline_full20",
+    "b01_lower_lr_full20",
+    "b02_hidden64_full20"
+  ],
+  "outputs": {
+    "runs": "experiments/r3_m1/runs/batch02",
+    "reports": "experiments/r3_m1/reports/batch02"
+  },
+  "schedule_impact": "One additional Colab T4 fit: at most 60 minutes train/selection validation plus 15 minutes fixture checks, separately from official project compute. No additional fits or automatic promotion.",
+  "firewall_note": "Explicit Muneeb approval for this exact plan and current lock hashes is required before execution. Preserve locks and their bundles. Results cannot be presented as independent pre-lock evidence; Protocol A exposure history is unconfirmed.",
+  "mode": "experimental_only_post_lock",
+  "official_promotion_allowed": false,
+  "scope": "Only B train and selection audio; advisory comparison only. No calibration, operating, test or Chatterbox audio access. No official selection, bundle, ledger or lock changes."
+}

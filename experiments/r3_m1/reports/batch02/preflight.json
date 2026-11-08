@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "counts": {
+    "tests": 39,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "contract_sha256": "18b3f97501f62d670794d8fe15e06be79e41f34531c5ffe265f370adcd90d9ba",
+  "junit_sha256": "10021a313462a225b977e5f212a387344a09227860edfb5d5d2e4b50d363f629",
+  "elapsed_seconds": 62.016936074000114,
+  "scope": "synthetic fixtures only; no training data fit"
+}
