@@ -95,3 +95,29 @@ The project owner directed Phase 2 to be closed for project scheduling and Phase
 ## R3-M1 experiment settings — 7 November 2026
 
 Before R3-M1 training, use the baseline and one lower-learning-rate alternative specified in [the R3-M1 training guide](r3_m1_training.md). This records the implementation settings, including selection and tie rules, and does not assert teammate review or a completed model fit. The runner freezes the resolved configuration and input and source hashes before fitting. Final-test data, Chatterbox audio, and calibration or operating outcomes do not inform either checkpoint choice. Independent review by Usman remains pending.
+
+## R2-U1 implementation record — 6 November 2026
+
+- **Authority:** the user requested implementation of R2-U1, owned by Usman with Muneeb as reviewer, under the existing revised plan. This records engineering interpretation; it does not record teammate approval, a new model fit, or a completed Colab run.
+- **Crop bank:** consume the published R2-S1 K=5 bank exactly. The historical compute-budget assumption of four WavLM crops does not override that artifact. Preserve historical reports; record actual extraction timing in the R2 evidence.
+- **Test access:** the task explicitly permits B-test genuine embeddings. Expose that as an acknowledged, logged extraction-only scope, separately indexed and excluded from default readers. Never extract Chatterbox or test TTS, score test examples, or sample them for parity. The general B-before-A firewall remains unchanged.
+- **Parity:** no trained WavLM head exists in R2. Verify both embedding views directly and compare scores from an explicitly untrained deterministic diagnostic head on 50 development intervals. This is cache-path engineering evidence, not detector performance. Trained-head waveform/cache parity remains an R3-U1 obligation. Freeze absolute/relative tolerances at 1e-4; record the diagnostic definition and parameter identity.
+- **Publication:** a complete cache requires validated atomic packs, exact expected coverage, separate development/test indexes, successful parity, and a final manifest. Missing, stale or corrupt artifacts fail verification rather than silently becoming training inputs.
+- **Exposure/status:** this implementation task has not run pretrained extraction or examined final-test outcomes. Local Python execution is unavailable; fixture/GPU execution and Muneeb's actual review remain pending. See [the execution guide](r2_u1_wavlm_cache.md).
+
+## R3-M1 experiment settings — 7 November 2026
+
+Before R3-M1 training, use the baseline and one lower-learning-rate alternative specified in [the R3-M1 training guide](r3_m1_training.md). This records the implementation settings, including selection and tie rules, and does not assert teammate review or a completed model fit. The runner freezes the resolved configuration and input and source hashes before fitting. Final-test data, Chatterbox audio, and calibration or operating outcomes do not inform either checkpoint choice. Independent review by Usman remains pending.
+
+## R2-U1 implementation record — 6 November 2026
+
+- **Authority:** the user requested implementation of R2-U1, owned by Usman with Muneeb as reviewer, under the existing revised plan. This records engineering interpretation; it does not record teammate approval, a new model fit, or a completed Colab run.
+- **Crop bank:** consume the published R2-S1 K=5 bank exactly. The historical compute-budget assumption of four WavLM crops does not override that artifact. Preserve historical reports; record actual extraction timing in the R2 evidence.
+- **Test access:** the task explicitly permits B-test genuine embeddings. Expose that as an acknowledged, logged extraction-only scope, separately indexed and excluded from default readers. Never extract Chatterbox or test TTS, score test examples, or sample them for parity. The general B-before-A firewall remains unchanged.
+- **Parity:** no trained WavLM head exists in R2. Verify both embedding views directly and compare scores from an explicitly untrained deterministic diagnostic head on 50 development intervals. This is cache-path engineering evidence, not detector performance. Trained-head waveform/cache parity remains an R3-U1 obligation. Freeze absolute/relative tolerances at 1e-4; record the diagnostic definition and parameter identity.
+- **Publication:** a complete cache requires validated atomic packs, exact expected coverage, separate development/test indexes, successful parity, and a final manifest. Missing, stale or corrupt artifacts fail verification rather than silently becoming training inputs.
+- **Exposure/status:** this implementation task has not run pretrained extraction or examined final-test outcomes. Local Python execution is unavailable; fixture/GPU execution and Muneeb's actual review remain pending. See [the execution guide](r2_u1_wavlm_cache.md).
+
+## R3-M1 experiment settings — 7 November 2026
+
+Before R3-M1 training, use the baseline and one lower-learning-rate alternative specified in [the R3-M1 training guide](r3_m1_training.md). This records the implementation settings, including selection and tie rules, and does not assert teammate review or a completed model fit. The runner freezes the resolved configuration and input and source hashes before fitting. Final-test data, Chatterbox audio, and calibration or operating outcomes do not inform either checkpoint choice. Independent review by Usman remains pending.

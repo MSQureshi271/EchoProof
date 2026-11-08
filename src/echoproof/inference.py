@@ -23,7 +23,7 @@ from typing import Callable, Sequence
 import numpy as np
 import soundfile as sf
 
-from echoproof.contracts import BundleSpecification, DecisionRule, InferenceResult
+from echoproof.contracts import BundleSpecification, ContractError, DecisionRule, InferenceResult
 from echoproof.data.audio import AudioError, MAX_AUDIO_BYTES, MAX_AUDIO_SECONDS, Waveform, decode_audio
 from echoproof.data.chunks import PREPROCESSING_HASH, WINDOW_SECONDS, eval_windows
 
@@ -78,22 +78,78 @@ def mock_bundle(threshold: float = 0.5) -> LoadedBundle:
     return LoadedBundle(spec, mock_scorer, score_type="mock_score", is_mock=True)
 
 
+<<<<<<< HEAD
 def load_lr_bundle(bundle_path: str | Path, threshold: float = 0.5) -> LoadedBundle:
     """Load a provisionally fitted Logistic Regression model directory as a LoadedBundle.
 
     Accepts either the model directory containing weights.npz and lr_model.json or
     a run directory containing a model/ subdirectory.
+=======
+def load_lr_bundle(bundle_path: str | Path, threshold: float | None = None) -> LoadedBundle:
+    """Load a provisionally fitted Logistic Regression model directory or verified bundle as a LoadedBundle.
+
+    Accepts:
+    1. A verified bundle directory containing bundle.json and model components.
+    2. A legacy model directory containing weights.npz and lr_model.json.
+    3. A legacy run directory containing a model/ subdirectory.
+>>>>>>> 2a92e4cc436aa8caf267715184bc67be82e115b3
     """
     from echoproof.models.lr_detector import LRDetector
 
     path = Path(bundle_path)
+<<<<<<< HEAD
+=======
+    if not path.exists():
+        raise FileNotFoundError(f"Path does not exist: {bundle_path}")
+
+    # Case 1: Verified local bundle with bundle.json
+    if (path / "bundle.json").is_file():
+        from echoproof.bundle import load_bundle
+        validated = load_bundle(path)
+
+        if validated.spec.preprocessing_hash != PREPROCESSING_HASH:
+            raise ContractError(
+                f"Bundle preprocessing hash mismatch: bundle has {validated.spec.preprocessing_hash}, "
+                f"inference pipeline expects {PREPROCESSING_HASH}"
+            )
+
+        if "model/weights.npz" in validated.components and "model/lr_model.json" in validated.components:
+            model_dir = path / "model"
+        elif "weights.npz" in validated.components and "lr_model.json" in validated.components:
+            model_dir = path
+        else:
+            raise FileNotFoundError(f"Verified bundle {bundle_path} does not contain LR model components")
+
+        model = LRDetector.load(model_dir)
+
+        if threshold is not None:
+            rule = DecisionRule(SCHEMA_VERSION, "threshold", float(threshold))
+            spec = replace(validated.spec, decision_rule=rule)
+        else:
+            spec = validated.spec
+
+        return LoadedBundle(
+            spec=spec,
+            scorer=model.score_chunks,
+            aggregate=mean_probability,
+            calibrate=None,
+            score_type="model_score",
+            is_mock=False,
+        )
+
+    # Case 2 & 3: Legacy model or run directory
+>>>>>>> 2a92e4cc436aa8caf267715184bc67be82e115b3
     if (path / "weights.npz").is_file() and (path / "lr_model.json").is_file():
         model_dir = path
     elif (path / "model" / "weights.npz").is_file() and (path / "model" / "lr_model.json").is_file():
         model_dir = path / "model"
     else:
         raise FileNotFoundError(
+<<<<<<< HEAD
             f"No valid LR model found at {bundle_path} (expected weights.npz and lr_model.json)"
+=======
+            f"No valid LR model found at {bundle_path} (expected bundle.json, or weights.npz and lr_model.json)"
+>>>>>>> 2a92e4cc436aa8caf267715184bc67be82e115b3
         )
 
     model = LRDetector.load(model_dir)
@@ -102,7 +158,12 @@ def load_lr_bundle(bundle_path: str | Path, threshold: float = 0.5) -> LoadedBun
     bundle_id = f"bundle:r2-lr-protocol-{str(protocol).lower()}"
     model_version = f"logistic_regression:{protocol}"
 
+<<<<<<< HEAD
     rule = DecisionRule(SCHEMA_VERSION, "threshold", float(threshold))
+=======
+    effective_threshold = 0.5 if threshold is None else float(threshold)
+    rule = DecisionRule(SCHEMA_VERSION, "threshold", effective_threshold)
+>>>>>>> 2a92e4cc436aa8caf267715184bc67be82e115b3
     spec = BundleSpecification(
         schema_version=SCHEMA_VERSION,
         bundle_id=bundle_id,

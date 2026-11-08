@@ -1,0 +1,10 @@
+{
+  "issue": "Colab authorization rejected the approved lock after CRLF-to-LF conversion",
+  "approved_raw_sha256": "f14fd26ccf42c929a049cfb80d5c559e86cce3bb596f0cbb63a4af16c094eaf0",
+  "reported_colab_raw_sha256": "77cc7ec86779c09e7d63136b75299a64bec1f5a5489c6142eb6872549fdbeeb5",
+  "cause_verified": "Reported Colab hash exactly equals LF-normalized approved local bytes",
+  "fix": "Read-only LF/CRLF equivalence at authorization check; retain exact runtime hashes after contract freeze",
+  "approval_record_changed": false,
+  "lock_file_changed": false,
+  "validation": "11 targeted tests passed, including LF transport acceptance and rejection of content changes, other whitespace changes and new locks"
+}

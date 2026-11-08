@@ -2,7 +2,7 @@
 
 Recorded: 28 October 2026 · Version 1.0 · Gate owner D
 
-**Gate G0: closed by team attestation.** The user confirmed that the team understands every G0 concept. Individual review dates and signatures were not supplied; this records the team's attestation, not separate interviews.
+**Documentation status: complete. Team walkthrough status: pending.** This record establishes the contract and review criteria; it does not assert that four people have attended a review or demonstrated understanding.
 
 ## Deliverable verification
 
@@ -32,13 +32,13 @@ Recorded: 28 October 2026 · Version 1.0 · Gate owner D
 
 | Role | Assigned person | Walkthrough evidence/date | Status |
 |---|---|---|---|
-| A — Data/features | S (placeholder) | Team understanding confirmed by user; individual date not supplied | Covered by team attestation |
-| B — Baseline/recurrent | M (placeholder) | Team understanding confirmed by user; individual date not supplied | Covered by team attestation |
-| C — Pretrained/compute | U (placeholder) | Team understanding confirmed by user; individual date not supplied | Covered by team attestation |
-| D — Evaluation/app | N (placeholder) | Team understanding confirmed by user; individual date not supplied | Covered by team attestation |
+| A — Data/features | Not yet recorded | Not yet recorded | Pending |
+| B — Baseline/recurrent | Not yet recorded | Not yet recorded | Pending |
+| C — Pretrained/compute | Not yet recorded | Not yet recorded | Pending |
+| D — Evaluation/app | Not yet recorded | Not yet recorded | Pending |
 
-- [x] Role placeholders S, M, U, N recorded. Actual names and calendar kickoff remain to be supplied.
-- [x] Team understanding of every G0 concept confirmed by user; individual review record remains unavailable.
+- [ ] Actual owner identities and kickoff date recorded (OPEN-006).
+- [ ] All owners can explain every G0 concept above; D records actual review and corrections.
 - [ ] Any changed policy is versioned in the decision log before affected experiments.
 
-G0 is closed on the user's team attestation. Later-phase metadata, hardware and dataset checks remain tracked obligations.
+The documents are ready for Phase 1/2 planning. G0's human-understanding criterion can only be closed from the real walkthrough. Later-phase metadata, hardware and dataset checks remain tracked obligations, not prerequisites for writing these Phase 0 deliverables.
