@@ -1,16 +1,24 @@
-"""Shared inference-facing model interface.
+"""Shared inference-facing model interface (the R0 "model adapter API").
 
-R0 contract:
-- ``load(bundle_dir)`` receives the root directory of a packaged model bundle.
-- ``score_chunks(waveforms)`` receives mono, 16 kHz floating-point audio
-  waveforms containing valid samples only and returns one P(TTS) probability
-  for each waveform.
-- ``metadata`` exposes read-only model information.
+This is the single contract that production models implement and that ``inference``,
+the CLI and the app consume:
 
-A concrete adapter is responsible for resolving its model files inside the
-bundle directory. For example, LRDetector.load(directory) currently expects
-the *model component directory* containing weights.npz and lr_model.json;
-callers must resolve that directory from the bundle root before invoking it.
+- ``load(bundle_dir)`` receives the root directory of a packaged model bundle (the
+  directory holding ``bundle.json``). The adapter resolves its own components inside it,
+  verifies them, and must not load executable pickle artifacts. Adapters should also
+  accept a bare model-component directory so that pre-bundle runs remain loadable.
+- ``score_chunks(waveforms)`` receives mono, 16 kHz floating-point waveforms containing
+  valid samples only and returns one P(TTS) probability per waveform, in input order, as a
+  one-dimensional array of finite values in [0, 1]. An empty list returns an empty array.
+  Use :func:`validate_scores` to enforce this on any model output.
+- ``metadata`` exposes read-only descriptive information as string-to-string pairs.
+
+Relationship to ``echoproof.contracts.ModelAdapter``: that older protocol works on prepared
+``FeatureBatch`` objects and returns ``ChunkScore`` rows. It describes the disposable P1
+software-probe fixtures (``models/lr.py``, ``models/bigru.py``) and training-side feature
+preparation only. Production inference does not use it. Callers that need ``ChunkScore``
+rows pair the returned array with chunk IDs by position and call
+``contracts.validate_chunk_scores``.
 """
 
 from __future__ import annotations
@@ -52,3 +60,19 @@ class InferenceModelAdapter(Protocol):
     def metadata(self) -> Mapping[str, str]:
         """Return read-only descriptive metadata about the loaded model."""
         ...
+
+
+def validate_scores(scores, expected_count: int) -> np.ndarray:
+    """Return ``scores`` as a float64 vector after enforcing the adapter output contract.
+
+    Raises ``ValueError`` if the shape is not ``(expected_count,)`` or any value is
+    non-finite or outside [0, 1].
+    """
+    array = np.asarray(scores, dtype=np.float64)
+    if array.shape != (expected_count,):
+        raise ValueError(f"expected {expected_count} scores in a 1-D array, got shape {array.shape}")
+    if not np.isfinite(array).all():
+        raise ValueError("scores must be finite")
+    if (array < 0.0).any() or (array > 1.0).any():
+        raise ValueError("scores must lie in [0, 1]")
+    return array

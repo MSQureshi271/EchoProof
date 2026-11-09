@@ -456,6 +456,12 @@ def validate_chunk_scores(expected_ids: Sequence[str], scores: Sequence[ChunkSco
 
 @runtime_checkable
 class ModelAdapter(Protocol):
+    """Feature-level protocol for the P1 software-probe fixtures (FeatureBatch in, ChunkScore rows out).
+
+    Production inference does not use this. The inference contract is `echoproof.models.base.InferenceModelAdapter`
+    (bundle root in, waveforms in, P(TTS) array out).
+    """
+
     @property
     def metadata(self) -> Mapping[str, str]: ...
     def prepare_features(self, chunks: Any) -> FeatureBatch: ...
