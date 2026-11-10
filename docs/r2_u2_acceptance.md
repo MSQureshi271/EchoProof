@@ -3,6 +3,42 @@
 Recorded 11 November 2026. Owner: Muhammad Usman Murtaza (Usman); plan reviewer:
 Muneeb. Authority: `REVISED_PLAN.md`, Section 6, R2-U2 and R3-U2.
 
+## Official file placement
+
+The accepted deliverables are physically present in the normal project folders:
+
+| Deliverable | Official location |
+|---|---|
+| Numerical Trainer and helpers | `src/echoproof/training/r2_u2_*.py` |
+| Training and verification CLI | `scripts/r2_u2_ast_warmup.py`, `scripts/r2_u2_verify.py` |
+| Frozen training recipe | `configs/r2_u2_ast_b.json` |
+| Colab workflows | `notebooks/R2_U2_Colab_AST_Warmup.ipynb`, `notebooks/R2_U2_Colab_Software_Tests.ipynb` |
+| Software tests | `tests/test_r2_u2_numerical.py`, `tests/test_r2_u2_official.py` |
+| Accepted checkpoints, predictions, history, update log, baseline and run receipts | `runs/r2/option_b_1b3757e898da4baaad2bde49fa3cea01/` |
+| Acceptance records and matched successful Colab evidence | `reports/r2/r2_u2_option_b/` |
+| Official output inventory and per-file SHA-256 | `reports/r2/r2_u2_option_b_acceptance.json` |
+
+For R3, the official initializer is
+`runs/r2/option_b_1b3757e898da4baaad2bde49fa3cea01/best.pt`, SHA-256
+`6a3883e59fc48ec18697fcdfdb59641adbd7dee6e965c1f80ad6f5287ea0bd57`.
+The original `experiments/r2_u2/` tree is preserved in full. Its accepted run and
+24 official output/report copies were checked byte-for-byte by SHA-256; the
+placement inventory records every source and destination. Failed experiments
+remain in that preserved tree and are not represented as accepted outputs.
+
+All copied JSON, checkpoint and ledger fields retain their original values,
+including historical experiment paths and execution-time pending-review flags.
+The separate adoption decision establishes acceptance; file placement does not
+rewrite that evidence. The matched selection predictions live alongside the
+official initializer. `runs/` and `reports/` remain Git-ignored runtime storage:
+copy these official folders to the same relative locations in the Drive project
+without replacing conflicting existing files or the team's main ledger.
+
+The historical verifier still checks its original experiment paths. Its archived
+manifest is not silently redirected. For the official copies, use the separate
+placement inventory's hashes; recipient model-load and access checks remain
+required. No original experiment file was moved, edited or deleted.
+
 ## Official implementation and frozen provenance
 
 The official package contains the actual accepted numerical Trainer in
