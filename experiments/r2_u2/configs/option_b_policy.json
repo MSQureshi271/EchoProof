@@ -1,0 +1,14 @@
+{
+  "version": "option_b_v1",
+  "authority": "User authorized isolated Option B numerical experimentation in this conversation; no claim of separate teammate review or official promotion approval.",
+  "recipe": "Exact historical_recipe.json bytes and settings; fresh two epochs; constant schedule; default GradScaler; unchanged classifier and processor.",
+  "scope": "Assigned retained Protocol B training recordings and selection validation only.",
+  "accounting": "Every expected attempt must be observed and explained as one actual optimizer call or a confirmed GradScaler skip with non-finite scaled/unscaled elements and scale backoff.",
+  "norms": "Finite pre-clipping norms of applied updates only, with count/mean/minimum/maximum; overflow events retained separately; all-skipped epochs rejected.",
+  "skip_threshold": null,
+  "reject": ["unexplained missing updates", "norm-only overflow", "unsafe applied gradients", "non-finite model or optimizer tensors", "invalid metrics", "changed frozen backbone", "wrong sample/crop/split scope", "checkpoint or prediction mismatch", "provenance or software-report inconsistency"],
+  "final_skip": "Document explicitly; no claim of stability at the final backed-off scale without a subsequent successful update.",
+  "recovery": "Initial experiment is fresh-only. Never resume the historical failed run. Preserve interrupted outputs for inspection.",
+  "official_promotion_authorized": false,
+  "result_status": "Experiment checks passed pending team review; research_accepted remains false."
+}

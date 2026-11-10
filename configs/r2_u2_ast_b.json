@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "purpose": "Official index for the accepted R2-U2 Option B experiment. The immutable recipe remains experiments/r2_u2/configs/historical_recipe.json.",
+  "experiment_root": "experiments/r2_u2",
+  "recipe": "experiments/r2_u2/configs/historical_recipe.json",
+  "acceptance": "experiments/r2_u2/acceptance/manifest.json",
+  "decision": "experiments/r2_u2/acceptance/decision.json",
+  "run_id": "option_b_1b3757e898da4baaad2bde49fa3cea01",
+  "initializer": "experiments/r2_u2/runs/option_b_1b3757e898da4baaad2bde49fa3cea01/best.pt",
+  "initializer_sha256": "6a3883e59fc48ec18697fcdfdb59641adbd7dee6e965c1f80ad6f5287ea0bd57",
+  "status": "accepted_on_user_report_of_team_approval; recipient verification pending",
+  "shared_trainer_modified": false
+}

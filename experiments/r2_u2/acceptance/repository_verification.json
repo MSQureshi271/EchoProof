@@ -1,0 +1,65 @@
+{
+  "approval_basis": "Written user report in conversation; independent team sign-off artifact not supplied",
+  "bound_files": 112,
+  "candidate_artifact_hashes_verified": 11,
+  "durable_shared_location_and_permissions_verified": false,
+  "frozen_recipe_sha256": "61245ca636951484a8cba9addbdd84fec8d7f335c945d2adb046666d306c45a2",
+  "git_checks": {
+    "commit_push_performed": false,
+    "large_checkpoints_ignored": true,
+    "main_ledger_ignored": true,
+    "tracked_diff_whitespace_check": "passed"
+  },
+  "historical_comparison": "historical_comparison.json",
+  "local_tests_executed": {
+    "existing_contract": 2,
+    "existing_launch": 7,
+    "failed": 0,
+    "new_handoff": 4,
+    "numerical_tests_rerun": false,
+    "passed": 13
+  },
+  "manifest_sha256": "3ac3a4d96a5d9e538dc4f86973e3a5e31764bbb99fc066de000c0bd3afa668f8",
+  "protected_paths_verified_before_after": {
+    "changed": 0,
+    "files": 219,
+    "scope": [
+      "shared src",
+      "existing R3-M1",
+      "R2-U2 run/report evidence",
+      "frozen experiment scripts/tests/configs/source snapshot",
+      "private historical archive"
+    ]
+  },
+  "recipient_cpu_model_load": {
+    "executed": false,
+    "missing_dependencies": [
+      "torch",
+      "transformers",
+      "numpy",
+      "pyarrow",
+      "safetensors"
+    ],
+    "reason": "Missing local ML dependencies and no existing pinned AST snapshot found"
+  },
+  "recorded_date": "2026-11-11",
+  "scope_limits": [
+    "No GPU execution or new inference",
+    "No independent torch tensor deserialization",
+    "No model or optimizer updates",
+    "No cloud contents or sharing permissions inspected",
+    "No historical statuses or rules rewritten",
+    "No R3 recipe or scheduler policy amended"
+  ],
+  "shared_trainer_sha256": "41bdccf0ea6053693fe0bb8e80a697437dbe2c48735343529ead9e5925fa1f9e",
+  "software_report_identity_and_junit_verified": {
+    "error": 0,
+    "failure": 0,
+    "rerun_locally": false,
+    "skipped": 0,
+    "tests": 17,
+    "warning": "Deliberate AMP-skip fixture advances legacy cosine scheduler; actual warm-up used constant schedule."
+  },
+  "static_python_parse_passed": true,
+  "status": "repository_adoption_documented_recipient_handoff_pending"
+}

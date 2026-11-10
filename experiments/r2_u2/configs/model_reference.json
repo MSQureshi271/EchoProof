@@ -1,0 +1,35 @@
+{
+  "initial_group_sha256": {
+    "block.00": "45fe4c13188c39d4e82716a8fcfe49ebb414303f15e3d7b4bdf0e6bb5a48c06d",
+    "block.01": "4cf0594841bdae43c6de1a8f9750335c0390554694b9a83d92759cb03d924fa9",
+    "block.02": "21f153137958676378e5ab3091304d2546972e74df254d4266f0b0bab87f01fc",
+    "block.03": "8330a36c82868597becc9b039552110d97efd9731cc6783555ee94e9999d8e8a",
+    "block.04": "07b00b9f9761ad25a28a869bfb4159b583a1fc3c9c2cb523efa3e35f89f4d525",
+    "block.05": "70ee332a2a611f05a3f2047187075494b6b73966893e3fa39423077ab8b76eb1",
+    "block.06": "288b5d36052c894abd36da170b43ec462ce3a38110420bacea9b56623a544d83",
+    "block.07": "1fc6ee7c917ed3d5b231cb35ba3d1623bd500b451a9727dcfb4e2aa75e2892e9",
+    "block.08": "e4bcb893366ddb8e40b1ec92a66b25ab358485dfbfded022ce9b30d49d9bae36",
+    "block.09": "8da078bec51cbed3890f87dbffc57004ee146a077f6ce8779884c443dada71e4",
+    "block.10": "e382678642f33acc488abfef82281560e3ca6a06bb87bc48b1680928f5ad118e",
+    "block.11": "0c79fe1f8301210cff4a698692f40fe3a858f85638119a74fa0679f8ad91acc8",
+    "classifier": "4fe5ea1d31091faee694c4edc8c0b29f487bdd4e0b3ac940fe4e23b7e13b7cfe",
+    "embeddings": "c49d115d367c516f1e49b1041ad67eca0dbd708278365299ec0264f9440f73b2",
+    "final_norm": "056f6ef75bbda91fb59550edf159c278d285d284ceecb76741f352be15a03e06"
+  },
+  "initial_frozen_state_sha256": "5ec03abd34ef79c25324e40a5024567444662d7257151c8c55d09e04c89b862b",
+  "model": {
+    "processor": {
+      "do_normalize": true,
+      "max_length": 1024,
+      "mean": -4.2677393,
+      "num_mel_bins": 128,
+      "sampling_rate": 16000,
+      "std": 4.5689974
+    },
+    "processor_file_sha256": "8d04ba5a9c6fca5d39d0de2b1fd05ecf79deb589fbba279728bbebac39934231",
+    "repo_id": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "weights_sha256": "ae0c1e2ad4e1381d851fa9bf298ba13ebc9c5a914cdee2dbe427a6583869924d"
+  },
+  "historical_helper_source_sha256": "53e7c02c5670a7583e646cc0dd15d4a02810b1d2bd2341a5ea44a86433ad85d5"
+}

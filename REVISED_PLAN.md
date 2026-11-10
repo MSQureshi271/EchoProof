@@ -191,6 +191,13 @@ The **critical path runs through Subhan**. The other three build their full pipe
 
 **GR2 (end of Day 5).** LR-B scores real B validation, the app shows a real LR result with parity, and the WavLM cache and AST warm-up are running. Muneeb presents and Nouman reviews.
 
+**R2-U2 status update, 11 November 2026:** Usman reports team approval (including
+Muneeb) of the separately identified Option B frozen-AST candidate. See the
+[adoption and R3 handoff record](docs/r2_u2_acceptance.md) for exact checkpoint,
+approval provenance and outstanding recipient/access checks. The historical
+failed publication remains unaccepted. This update does not complete R3-U2 or GR3,
+change the recipes/splits, or authorize a new fit.
+
 ### Phase R3: Protocol B training and B lock (Days 6–9)
 
 GPU-heavy. **Use all four Colab accounts.** If Usman's account is throttled, Subhan or Nouman runs the next AST or WavLM notebook; every notebook must be runnable by any teammate from the Drive shards.

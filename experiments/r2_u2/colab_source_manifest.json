@@ -1,0 +1,25 @@
+{
+  "purpose": "Option B prospective sources and current software verification; no official acceptance",
+  "files": {
+    "experiments/r2_u2/configs/historical_recipe.json": "61245ca636951484a8cba9addbdd84fec8d7f335c945d2adb046666d306c45a2",
+    "experiments/r2_u2/configs/model_reference.json": "537db8fe95741722c2b16aed39f86c2c7681b373773b76ccfc17238e51910a32",
+    "experiments/r2_u2/configs/option_b_policy.json": "65c4588b553ee0200f56dbd783dd51fdb3d5e907bd304361674b64841206a19e",
+    "experiments/r2_u2/scripts/acceptance.py": "d99e1da514902ad22491fd876ecb3fc5ed7a009d671f03c8e76095c0b092a761",
+    "experiments/r2_u2/scripts/contract.py": "91a47c38a0bef8d9683ba0ddf3a12fcc6fb869140192c2a9ab4d72ec211401af",
+    "experiments/r2_u2/scripts/launch.py": "732151587f580e556b517fa64309cc39225a7ec15dd4bf890f0b60fd5a00c335",
+    "experiments/r2_u2/scripts/numerical_trainer.py": "ca7ca444f836b719aa06284598ebefd6046d2a8cd68d175f048db006390d88de",
+    "experiments/r2_u2/scripts/scope.py": "3a54561ca28249b78bfa16cf3818424dccc1077757bdc4bb3dc6fcf424bd768c",
+    "experiments/r2_u2/software_sources/shared_sources.zip": "e6739bcff0f9a8f3dcb8f759fa401eeb0e5fce91aa356c2f42a8337801597c6d",
+    "experiments/r2_u2/software_sources/snapshot.json": "2f4717169f68d8e5bf9d10fef6d071e888484fc77a1acd227e76d4a7ae9ac3b5",
+    "experiments/r2_u2/tests/test_contract.py": "e462518f925c56f4ffbc9f17eaac7edc9e24c561fd1bc63f9758ca0323227b07",
+    "experiments/r2_u2/tests/test_launch.py": "f9357e49e6549e1ca0dcf863179988b128e9f7c4be9bf2d9fc8aa31e8e3c7d21",
+    "experiments/r2_u2/tests/test_numerical.py": "80e2a4fdd016b3bb726b68aabc62bcfb3ebddf0b47a7f889f25ec308c78058b8",
+    "src/echoproof/artifacts.py": "b794d8c269653609010fcb35e678c52ce2f699819177d978d0a7ace938814431",
+    "src/echoproof/features/pretrained.py": "3f1f98280a43c8ec343250e613beb95e23a3d581700e367a02b6f1ed70c4fab4",
+    "src/echoproof/models/ast_detector.py": "53d7a5baad91326ed40fef68c4ac6cb8a77d68106266d016ed6f6ed2831accc6",
+    "src/echoproof/training/datasets.py": "98e630382ddeb0153d38f851a5079bd9ca0288665f5159ed2a5c102356b01311",
+    "src/echoproof/training/ledger.py": "92fbba5ba7b02cd24548fc99c372a7f5a03c04687aa3eb82fad4eddfeb4d88a3",
+    "src/echoproof/training/seeding.py": "32e029983503538db7134a0ac64f948050914614c037cb63b7a60b35915dc920",
+    "src/echoproof/training/trainer.py": "41bdccf0ea6053693fe0bb8e80a697437dbe2c48735343529ead9e5925fa1f9e"
+  }
+}

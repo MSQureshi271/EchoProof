@@ -1,0 +1,7 @@
+/runs/
+/reports/software_*/
+/reports/launch_*/
+/reports/option_b_*/
+/test_tmp*/
+__pycache__/
+.pytest_cache/
