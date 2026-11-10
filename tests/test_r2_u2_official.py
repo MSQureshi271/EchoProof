@@ -1,33 +1,29 @@
-"""Official R2-U2 integration contracts; no torch, data, or training required."""
-import hashlib
-import json
+"""Official copies must retain the accepted numerical contract."""
 from pathlib import Path
+import sys
 import unittest
-
+from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'src'))
+from echoproof.training.r2_u2_contract import verify_official_copies, provenance
 
+class OfficialTests(unittest.TestCase):
+    def test_accepted_copy_equivalence(self):
+        verify_official_copies()
+        self.assertEqual((ROOT / 'configs/r2_u2_ast_b.json').read_bytes(),
+                         (ROOT / 'experiments/r2_u2/configs/historical_recipe.json').read_bytes())
 
-class OfficialR2U2Tests(unittest.TestCase):
-    def test_official_entry_points_delegate_to_pinned_sources(self):
-        train = (ROOT / 'scripts/r2_u2_ast_warmup.py').read_text()
-        verify = (ROOT / 'scripts/r2_u2_verify.py').read_text()
-        self.assertIn('experiments/r2_u2/scripts/launch.py', train)
-        self.assertIn('experiments/r2_u2/acceptance/verify_handoff.py', verify)
+    def test_divergence_cannot_inherit_accepted_provenance(self):
+        read = Path.read_text
+        def changed(path, *args, **kwargs):
+            value = read(path, *args, **kwargs)
+            return value + 'changed' if path.name == 'r2_u2_numerical_trainer.py' else value
+        with patch.object(Path, 'read_text', changed), self.assertRaises(ValueError):
+            provenance({'train': {}}, {'fixture': True}, fixture=True)
 
-    def test_official_index_binds_accepted_initializer(self):
-        cfg = json.loads((ROOT / 'configs/r2_u2_ast_b.json').read_text())
-        checkpoint = ROOT / cfg['initializer']
-        self.assertTrue(checkpoint.is_file(), f'copy accepted checkpoint from Drive to {checkpoint}')
-        self.assertEqual(hashlib.sha256(checkpoint.read_bytes()).hexdigest(), cfg['initializer_sha256'])
-        self.assertEqual(cfg['run_id'], 'option_b_1b3757e898da4baaad2bde49fa3cea01')
+    def test_fixture_identity(self):
+        value = provenance({'train': {'seed': 42}}, {'fixture': 'tiny'}, fixture=True)
+        self.assertTrue(value['fixture_only'])
+        self.assertFalse(value['research_accepted'])
 
-    def test_r3_handoff_is_weights_only_and_does_not_change_shared_trainer(self):
-        doc = (ROOT / 'docs/r2_u2_acceptance.md').read_text()
-        self.assertIn('loading **only** checkpoint `model` weights', doc)
-        self.assertIn('new run and optimizer', doc)
-        self.assertIn('Shared Trainer', doc)
-        self.assertIn('recipient', doc.lower())
-
-
-if __name__ == '__main__':
-    unittest.main()
+if __name__ == '__main__': unittest.main()

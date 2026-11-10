@@ -3,18 +3,50 @@
 Recorded 11 November 2026. Owner: Muhammad Usman Murtaza (Usman); plan reviewer:
 Muneeb. Authority: `REVISED_PLAN.md`, Section 6, R2-U2 and R3-U2.
 
-## Official interfaces and frozen provenance
+## Official implementation and frozen provenance
 
-The project-facing interfaces are `configs/r2_u2_ast_b.json`,
-`scripts/r2_u2_ast_warmup.py`, `scripts/r2_u2_verify.py`,
-`notebooks/R2_U2_Official_Verification.ipynb`, and
-`tests/test_r2_u2_official.py`. They provide a named entry point and candidate
-index for the official project tree. The wrappers delegate to the one accepted,
-hash-bound implementation in `experiments/r2_u2/`; they do not duplicate or
-translate its training code. Do not edit that experiment tree in-place after
-acceptance. Make future experiments under new run IDs and update their own
-source identities. The official config is an index, not an alternate recipe;
-the frozen recipe remains `experiments/r2_u2/configs/historical_recipe.json`.
+The official package contains the actual accepted numerical Trainer in
+`src/echoproof/training/r2_u2_numerical_trainer.py`, scope and state/prediction
+checks in `r2_u2_scope.py`, and prospective numerical checks in
+`r2_u2_acceptance.py`. These are checked copies of the frozen experiment modules;
+only the Trainer helper import is adapted to the package. The small
+`r2_u2_contract.py` adapter reuses the frozen identity/config helpers and rejects
+any copy divergence before emitting provenance. The copies are not independently
+maintained variants: new numerical changes require new experiment evidence and
+an explicit synchronization. Shared Trainer and all R3 code remain unchanged.
+
+`configs/r2_u2_ast_b.json` is the actual frozen recipe, byte-identical to the
+accepted experiment recipe. It replaces the former reference-only JSON index.
+The original eight numerical regression cases are available at
+`tests/test_r2_u2_numerical.py`, adapted only for package imports/project root;
+`tests/test_r2_u2_official.py` checks copy equivalence and rejection of drift.
+The official numerical tests require the prepared ML environment; the archived
+17-test receipt remains evidence for the frozen experiment, not a claim that a
+new local ML test run occurred.
+
+The official notebooks are `notebooks/R2_U2_Colab_AST_Warmup.ipynb` and
+`notebooks/R2_U2_Colab_Software_Tests.ipynb`. They reuse the complete accepted
+Colab workflows, with saved execution output removed from the official copies.
+Their code cells still execute the hash-bound experiment paths deliberately.
+The incomplete standalone verification notebook has been removed. The two
+small CLI boundaries `scripts/r2_u2_ast_warmup.py` and `scripts/r2_u2_verify.py`
+remain: they execute the accepted launch/verification implementation at its
+original path, preserving its ROOT calculations and source-bound software gate.
+They contain no alternative training algorithm. Fresh research training remains
+subject to the existing explicit authorization and source/runtime gates.
+
+R3 consumers may import the official NumericalTrainer for the **unchanged warm-up
+contract only**. It is not the R3 adaptation Trainer: R3 requires a new optimizer,
+trainable groups and its own scheduler/provenance contract. The exact accepted
+initializer and model-weights-only recipient procedure below remain authoritative.
+No new AST training or inference is required to publish these copies.
+
+The original acceptance manifest binds the pre-integration version of this guide.
+It is an immutable historical evidence snapshot; its document checksum is not
+updated to disguise subsequent integration edits. Use original commit 0e4c0d5
+when checking that historical document identity. Experiment sources, artifacts
+and model identities are unchanged; the corrective commit records the current
+integration. The original experiment tree remains the immutable reference.
 
 ## Decision and precise status
 
@@ -212,3 +244,16 @@ lock, production selection or held-out exposure is changed by this handoff.
    implement/review the R3 runner under its own frozen contract before training.
 
 No additional R2-U2 GPU training is required to resolve these handoff items.
+
+
+## Corrective integration verification and checkout limitation
+
+The official equivalence guard permits only exact accepted bytes or the same
+source after CRLF-to-LF canonicalization. This is a copy-equivalence check, not a
+waiver of the experiment's raw-byte research provenance gates. Nine files in
+this Windows checkout differ from the original manifest only by line endings.
+The original launch gate correctly rejects such raw-byte differences; retrieve
+the exact approved bytes from the retained Drive source set before reproducing
+that run. Do not amend historical manifests or claim those raw hashes pass here.
+The original accepted scope.py hash itself includes CRLF and remains unchanged.
+No experiment files were edited during this correction.
