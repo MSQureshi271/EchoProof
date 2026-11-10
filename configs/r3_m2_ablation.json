@@ -1,0 +1,42 @@
+{
+  "task": "R3-M2",
+  "scope": "isolated_fixed_hyperparameter_ablation",
+  "official_promotion_allowed": false,
+  "source_feature_schema_hash": "fce2751a069d5d9b972ab772b1a76adf1a86bc12b13a07502cca171c86d50649",
+  "removed_features": [
+    "mfcc_00_mean",
+    "mfcc_00_std",
+    "delta_00_mean",
+    "delta_00_std",
+    "rms_mean",
+    "rms_std",
+    "voiced_fraction"
+  ],
+  "full_features": 67,
+  "retained_features": 60,
+  "hyperparameters": {
+    "C": 0.01,
+    "class_weight": "none",
+    "max_iter": 2000,
+    "seed": 42
+  },
+  "max_fits": 2,
+  "max_cpu_minutes": 60,
+  "variants": [
+    "full67_control",
+    "without_energy_activity60"
+  ],
+  "roles": {
+    "fit": [
+      "B_train"
+    ],
+    "score": [
+      "B_selection"
+    ]
+  },
+  "threshold": 0.5,
+  "aggregation": "mean_chunk_probabilities_per_recording",
+  "budget_semantics": "Checked at fit boundaries and after completion; an over-budget fit is reported as failed, never silently extended or rerun. No resume after a partial LR fit.",
+  "limitation": "Energy/activity-proxy group removal, not removal of every silence or level cue. Fixed C; no new hyperparameter search.",
+  "reviewer": "Subhan"
+}

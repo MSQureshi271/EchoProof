@@ -1,0 +1,122 @@
+{
+  "approval": {
+    "approval_text": "Approve this R3-M2 experimental-only exception",
+    "approved": true,
+    "approved_by": "Muneeb",
+    "approved_utc": "2026-11-09T15:42:31.024281+00:00",
+    "lock_sha256_lf": {
+      "locks/B_lock.json": "a87fec1beed5f263dc233aa204fba2933d706e6b70335bfa4b79570454e76d57"
+    },
+    "official_promotion_allowed": false,
+    "plan_sha256": "98db314c36217c7157a2bca7bd20f75dc8b6023cbf2a8994dff970eacda14cd7",
+    "restrictions": {
+      "allowed_data_roles": [
+        "train",
+        "selection"
+      ],
+      "feature_counts": [
+        67,
+        60
+      ],
+      "lock_changes_allowed": false,
+      "max_fits": 2,
+      "max_minutes_checked_at_fit_boundaries": 60,
+      "official_selection_changes_allowed": false,
+      "outputs": "experiments/r3_m2"
+    },
+    "scope": "r3_m2_fixed_feature_ablation_only"
+  },
+  "created_utc": "2026-11-10T13:49:11.301799+00:00",
+  "environment": {
+    "librosa": "0.11.0",
+    "numpy": "2.4.6",
+    "pyarrow": "23.0.1",
+    "python": "3.13.16",
+    "scikit-learn": "1.6.1",
+    "scipy": "1.16.3"
+  },
+  "inputs": {
+    "crop_bank": {
+      "bytes": 603753,
+      "file": "crop_bank_B_v1.parquet",
+      "sha256": "954fcb5fe820e77d0daebe8c05b964bc94499172d5867a7a04660cbac64331bb"
+    },
+    "mel_stats": {
+      "bytes": 2798,
+      "file": "mel_stats_B_v1.npz",
+      "sha256": "d94c122a08da55432ae91a51e43c5311a6fc4b706029c4413027baf582442921"
+    },
+    "train_features": {
+      "bytes": 20704384,
+      "file": "lr_train_crops_B_v1.npz",
+      "sha256": "9bfb3c5702f18d0af447d5b81c0bd2ad0cc79e9cc4242db7d7765dd3d58e9aed"
+    },
+    "validation_features": {
+      "bytes": 20122038,
+      "file": "lr_validation_B_v1.npz",
+      "sha256": "2ee91836d942677ed7fb32d1ffe350a96ed6844076943345f2e59bfad28792bb"
+    }
+  },
+  "plan": {
+    "aggregation": "mean_chunk_probabilities_per_recording",
+    "budget_semantics": "Checked at fit boundaries and after completion; an over-budget fit is reported as failed, never silently extended or rerun. No resume after a partial LR fit.",
+    "full_features": 67,
+    "hyperparameters": {
+      "C": 0.01,
+      "class_weight": "none",
+      "max_iter": 2000,
+      "seed": 42
+    },
+    "limitation": "Energy/activity-proxy group removal, not removal of every silence or level cue. Fixed C; no new hyperparameter search.",
+    "max_cpu_minutes": 60,
+    "max_fits": 2,
+    "official_promotion_allowed": false,
+    "removed_features": [
+      "mfcc_00_mean",
+      "mfcc_00_std",
+      "delta_00_mean",
+      "delta_00_std",
+      "rms_mean",
+      "rms_std",
+      "voiced_fraction"
+    ],
+    "retained_features": 60,
+    "reviewer": "Subhan",
+    "roles": {
+      "fit": [
+        "B_train"
+      ],
+      "score": [
+        "B_selection"
+      ]
+    },
+    "scope": "isolated_fixed_hyperparameter_ablation",
+    "source_feature_schema_hash": "fce2751a069d5d9b972ab772b1a76adf1a86bc12b13a07502cca171c86d50649",
+    "task": "R3-M2",
+    "threshold": 0.5,
+    "variants": [
+      "full67_control",
+      "without_energy_activity60"
+    ]
+  },
+  "plan_sha256": "98db314c36217c7157a2bca7bd20f75dc8b6023cbf2a8994dff970eacda14cd7",
+  "protected_files": {
+    "locks/B_lock.json": "77cc7ec86779c09e7d63136b75299a64bec1f5a5489c6142eb6872549fdbeeb5",
+    "runs/r2/r2_m1_20261106T140611Z/coefficients.csv": "4764b685438dba8625ca21c8403278a8497c95428a4b0f4ef707cc6001def3b8",
+    "runs/r2/r2_m1_20261106T140611Z/model/lr_model.json": "784157878efdd8b647f25bd8f0db243e407a04822a316980093beeecc9907016",
+    "runs/r2/r2_m1_20261106T140611Z/model/weights.npz": "5a8e97c7356825f3d29e317f80fc0d053b61c44461556100dab1844f859ac4d3",
+    "runs/r2/r2_m1_20261106T140611Z/predictions_chunks.csv": "e283701f479b7bfcf09765b447b9a6cff38c4d5f9bfecc45535b6b2b362bd3f1",
+    "runs/r2/r2_m1_20261106T140611Z/predictions_recordings.csv": "b85b98011753132f3684ca5849a69ea479c76834728fab5bb8f41988bc6cc4e9"
+  },
+  "reference_evidence_sha256": "04151701703f65a1fce3cfb1f849bd0fd024dad5fb4dba6627e00259368561ae",
+  "source_sha256": {
+    "scripts/r2_m1_lr.py": "e0c712259632170a474aa23980d204bc0dbc303f7544bacb4a6856a60ed418bc",
+    "scripts/r3_m2_ablation.py": "d874df6e6493c1cd4851f2df86f4e7a91c8c3b6947b3d693220311ed725aaf8d",
+    "src/echoproof/features/acoustic.py": "2961146cc3956bb208d4676851beb6ba5ba9c67f3dcfb6d6375eafadcc33fafc",
+    "src/echoproof/models/lr_detector.py": "02a64ecc2e4d251856e8cf049b8f69c2b86a9fb0e264ad7e8850c9703f00b636",
+    "src/echoproof/models/lr_subset.py": "84aba0eaf7f029073f15e00dd76cc6f8b5d6240b172a22d35430cc65b9a26239"
+  },
+  "split_sha256": "0854de6b00ae059a858d60f18f95df3f1501f579ea3e2fdefbd8de076e2034d7",
+  "subset_schema_hash": "3da92364bab33e2e81e8a4ce6afa7becfd05f25cc0d51b586c9d20feb4902267",
+  "task": "R3-M2 LR ablation"
+}

@@ -1,0 +1,27 @@
+{
+  "approval_text": "Approve this R3-M2 experimental-only exception",
+  "approved": true,
+  "approved_by": "Muneeb",
+  "approved_utc": "2026-11-09T15:42:31.024281+00:00",
+  "lock_sha256_lf": {
+    "locks/B_lock.json": "a87fec1beed5f263dc233aa204fba2933d706e6b70335bfa4b79570454e76d57"
+  },
+  "official_promotion_allowed": false,
+  "plan_sha256": "98db314c36217c7157a2bca7bd20f75dc8b6023cbf2a8994dff970eacda14cd7",
+  "restrictions": {
+    "allowed_data_roles": [
+      "train",
+      "selection"
+    ],
+    "feature_counts": [
+      67,
+      60
+    ],
+    "lock_changes_allowed": false,
+    "max_fits": 2,
+    "max_minutes_checked_at_fit_boundaries": 60,
+    "official_selection_changes_allowed": false,
+    "outputs": "experiments/r3_m2"
+  },
+  "scope": "r3_m2_fixed_feature_ablation_only"
+}

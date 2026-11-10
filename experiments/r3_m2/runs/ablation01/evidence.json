@@ -1,0 +1,330 @@
+{
+  "artifacts": {
+    "comparison.md": "78eaad5d32bc7cd90f2599e847587ebc2e3cd851a4b01e519328d85087b74548",
+    "full67_control/coefficients.csv": "a39fecb0a70e4ddebdbedfef958ade1358875cc6fcee5065e9ed43db4ac30bee",
+    "full67_control/model/lr_model.json": "dbaea1ed4fbd518bfa5b4175a7f01c8de1520f1353edac3e5098c6d6796ac930",
+    "full67_control/model/weights.npz": "9bc31077852bdab78a703f52159fc096951dbdf810d698ea1a2a01e26f29132c",
+    "full67_control/predictions_chunks.parquet": "62b95327d81458fbd6fd1f73b220e6c2e54c1acfe33a51b196b0d5e636fa1bb1",
+    "full67_control/predictions_recordings.parquet": "14b24472c0758434ad6c22fdf58390520f12ec10b8a721d12c692f5708562c77",
+    "resolved_config.json": "416432a71a136d6afcb448aa1d85e52b62596b66cadda7dcdf4e191aafe8ee7f",
+    "without_energy_activity60/coefficients.csv": "8f5d752e7af9c0e039ef5cddd4e91f4dfb8ef9578ef43bbcb2997db106d2ef49",
+    "without_energy_activity60/model/lr_subset.json": "b0af5f374daffe9efed526efba7cc8ff60a5ca18cb1e9309477da1084ac689c8",
+    "without_energy_activity60/model/weights.npz": "815de6a92491ed1617a7477c23238405826f10475fc931536e6dca1d5fed888e",
+    "without_energy_activity60/predictions_chunks.parquet": "2d82224dab56c164af9743f4026254e2f3cbc29502627ba72a45b3ca775202a5",
+    "without_energy_activity60/predictions_recordings.parquet": "a69f17717aae1d4583925005432f008746fc58d0ed396160482bdcede9a1c29e"
+  },
+  "baseline_saved": {
+    "chunk_score_max_abs": 2.220446049250313e-16,
+    "coefficient_table_verified": true,
+    "metrics": {
+      "accuracy": 0.7205,
+      "average_precision": 0.9403845254605975,
+      "brier_score": 0.196330555712285,
+      "confusion_matrix": [
+        [
+          418,
+          82
+        ],
+        [
+          477,
+          1023
+        ]
+      ],
+      "eer": 0.2533333333333333,
+      "fn": 477,
+      "fnr": 0.318,
+      "fp": 82,
+      "fpr": 0.164,
+      "genuine_recall": 0.836,
+      "log_loss": 0.6290351112773223,
+      "macro_f1": 0.6923479110340605,
+      "recordings": 2000,
+      "roc_auc": 0.8202773333333333,
+      "threshold": 0.5,
+      "tn": 418,
+      "tp": 1023,
+      "tts_precision": 0.92579185520362,
+      "tts_recall": 0.682
+    },
+    "panels": {
+      "known": {
+        "accuracy": 0.9133333333333333,
+        "average_precision": 0.9834072671226477,
+        "brier_score": 0.07028782016227708,
+        "confusion_matrix": [
+          [
+            418,
+            82
+          ],
+          [
+            48,
+            952
+          ]
+        ],
+        "eer": 0.092,
+        "fn": 48,
+        "fnr": 0.048,
+        "fp": 82,
+        "fpr": 0.164,
+        "genuine_recall": 0.836,
+        "log_loss": 0.24604212655712718,
+        "macro_f1": 0.9007554798243524,
+        "recordings": 1500,
+        "roc_auc": 0.967364,
+        "threshold": 0.5,
+        "tn": 418,
+        "tp": 952,
+        "tts_precision": 0.9206963249516441,
+        "tts_recall": 0.952
+      },
+      "unseen_xtts": {
+        "accuracy": 0.489,
+        "average_precision": 0.5124654167939183,
+        "brier_score": 0.34816305603891723,
+        "confusion_matrix": [
+          [
+            418,
+            82
+          ],
+          [
+            429,
+            71
+          ]
+        ],
+        "eer": 0.462,
+        "fn": 429,
+        "fnr": 0.858,
+        "fp": 82,
+        "fpr": 0.164,
+        "genuine_recall": 0.836,
+        "log_loss": 1.081034144305324,
+        "macro_f1": 0.4190481712523207,
+        "recordings": 1000,
+        "roc_auc": 0.526104,
+        "threshold": 0.5,
+        "tn": 418,
+        "tp": 71,
+        "tts_precision": 0.46405228758169936,
+        "tts_recall": 0.142
+      }
+    }
+  },
+  "elapsed_seconds": 1.4128447090001828,
+  "fits": [
+    {
+      "diagnostics": {
+        "chunks": 21470,
+        "converged": true,
+        "max_iter": 2000,
+        "n_iter": 29,
+        "recordings": 4530,
+        "weight_sum": 21470.0
+      },
+      "id": "full67_control",
+      "metrics": {
+        "accuracy": 0.7205,
+        "average_precision": 0.9403845254605975,
+        "brier_score": 0.19633055571228392,
+        "confusion_matrix": [
+          [
+            418,
+            82
+          ],
+          [
+            477,
+            1023
+          ]
+        ],
+        "eer": 0.2533333333333333,
+        "fn": 477,
+        "fnr": 0.318,
+        "fp": 82,
+        "fpr": 0.164,
+        "genuine_recall": 0.836,
+        "log_loss": 0.6290351112773181,
+        "macro_f1": 0.6923479110340605,
+        "recordings": 2000,
+        "roc_auc": 0.8202773333333333,
+        "threshold": 0.5,
+        "tn": 418,
+        "tp": 1023,
+        "tts_precision": 0.92579185520362,
+        "tts_recall": 0.682
+      },
+      "panels": {
+        "known": {
+          "accuracy": 0.9133333333333333,
+          "average_precision": 0.9834072671226477,
+          "brier_score": 0.07028782016227703,
+          "confusion_matrix": [
+            [
+              418,
+              82
+            ],
+            [
+              48,
+              952
+            ]
+          ],
+          "eer": 0.092,
+          "fn": 48,
+          "fnr": 0.048,
+          "fp": 82,
+          "fpr": 0.164,
+          "genuine_recall": 0.836,
+          "log_loss": 0.246042126557127,
+          "macro_f1": 0.9007554798243524,
+          "recordings": 1500,
+          "roc_auc": 0.967364,
+          "threshold": 0.5,
+          "tn": 418,
+          "tp": 952,
+          "tts_precision": 0.9206963249516441,
+          "tts_recall": 0.952
+        },
+        "unseen_xtts": {
+          "accuracy": 0.489,
+          "average_precision": 0.5124654167939183,
+          "brier_score": 0.3481630560389156,
+          "confusion_matrix": [
+            [
+              418,
+              82
+            ],
+            [
+              429,
+              71
+            ]
+          ],
+          "eer": 0.462,
+          "fn": 429,
+          "fnr": 0.858,
+          "fp": 82,
+          "fpr": 0.164,
+          "genuine_recall": 0.836,
+          "log_loss": 1.0810341443053166,
+          "macro_f1": 0.4190481712523207,
+          "recordings": 1000,
+          "roc_auc": 0.526104,
+          "threshold": 0.5,
+          "tn": 418,
+          "tp": 71,
+          "tts_precision": 0.46405228758169936,
+          "tts_recall": 0.142
+        }
+      },
+      "reload_max_abs": 0.0
+    },
+    {
+      "diagnostics": {
+        "chunks": 21470,
+        "converged": true,
+        "max_iter": 2000,
+        "n_iter": 31,
+        "recordings": 4530,
+        "weight_sum": 21470.0
+      },
+      "id": "without_energy_activity60",
+      "metrics": {
+        "accuracy": 0.754,
+        "average_precision": 0.948634694912452,
+        "brier_score": 0.14996908752713,
+        "confusion_matrix": [
+          [
+            367,
+            133
+          ],
+          [
+            359,
+            1141
+          ]
+        ],
+        "eer": 0.2506666666666667,
+        "fn": 359,
+        "fnr": 0.23933333333333334,
+        "fp": 133,
+        "fpr": 0.266,
+        "genuine_recall": 0.734,
+        "log_loss": 0.44670738623304784,
+        "macro_f1": 0.7106668658282278,
+        "recordings": 2000,
+        "roc_auc": 0.850988,
+        "threshold": 0.5,
+        "tn": 367,
+        "tp": 1141,
+        "tts_precision": 0.8956043956043956,
+        "tts_recall": 0.7606666666666667
+      },
+      "panels": {
+        "known": {
+          "accuracy": 0.86,
+          "average_precision": 0.9728711159457788,
+          "brier_score": 0.10013666640045304,
+          "confusion_matrix": [
+            [
+              367,
+              133
+            ],
+            [
+              77,
+              923
+            ]
+          ],
+          "eer": 0.12,
+          "fn": 77,
+          "fnr": 0.077,
+          "fp": 133,
+          "fpr": 0.266,
+          "genuine_recall": 0.734,
+          "log_loss": 0.32752219529787663,
+          "macro_f1": 0.8377011475301721,
+          "recordings": 1500,
+          "roc_auc": 0.940202,
+          "threshold": 0.5,
+          "tn": 367,
+          "tp": 923,
+          "tts_precision": 0.8740530303030303,
+          "tts_recall": 0.923
+        },
+        "unseen_xtts": {
+          "accuracy": 0.585,
+          "average_precision": 0.6450320280657063,
+          "brier_score": 0.23502608278717385,
+          "confusion_matrix": [
+            [
+              367,
+              133
+            ],
+            [
+              282,
+              218
+            ]
+          ],
+          "eer": 0.41000000000000003,
+          "fn": 282,
+          "fnr": 0.564,
+          "fp": 133,
+          "fpr": 0.266,
+          "genuine_recall": 0.734,
+          "log_loss": 0.654341376717474,
+          "macro_f1": 0.5755773937179318,
+          "recordings": 1000,
+          "roc_auc": 0.67256,
+          "threshold": 0.5,
+          "tn": 367,
+          "tp": 218,
+          "tts_precision": 0.6210826210826211,
+          "tts_recall": 0.436
+        }
+      },
+      "reload_max_abs": 0.0
+    }
+  ],
+  "macro_f1_difference_reduced_minus_control": 0.01831895479416734,
+  "official_selection_changed": false,
+  "resolved_sha256": "416432a71a136d6afcb448aa1d85e52b62596b66cadda7dcdf4e191aafe8ee7f",
+  "review_status": "pending",
+  "scope": "isolated fixed-hyperparameter energy/activity-proxy ablation; no automatic adoption",
+  "status": "experimental_ablation_complete",
+  "task": "R3-M2 LR ablation"
+}

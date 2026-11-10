@@ -1,0 +1,3 @@
+run_id,owner,model,protocol,config_hash,split_hash,seed,epochs_run,best_epoch,stop_reason,val_macro_f1,val_eer,val_fpr,train_minutes,peak_vram_mb,device,status,notes
+r3_m2_full67_control,Muneeb,lr,B,88444d3380777a269d59aab38124c3e11fd2c4dc82392460bf6907697206652d,0854de6b00ae059a858d60f18f95df3f1501f579ea3e2fdefbd8de076e2034d7,42,29,,,0.6923479110340605,0.2533333333333333,0.164,0.012073035933334116,,cpu,completed,
+r3_m2_without_energy_activity60,Muneeb,lr,B,a9fb127576e6814e786808a81ef9918ecd2efd55d09a9b87b1b75b7cb3b4a361,0854de6b00ae059a858d60f18f95df3f1501f579ea3e2fdefbd8de076e2034d7,42,31,,,0.7106668658282278,0.2506666666666667,0.266,0.010882802683333163,,cpu,completed,

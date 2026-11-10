@@ -44,9 +44,12 @@ class LRBundleAdapter:
             raise FileNotFoundError(f"Path does not exist: {bundle_dir}")
         info: dict[str, str] = {}
         if (path / "bundle.json").is_file():
-            from echoproof.bundle import load_bundle
+            from echoproof.bundle import BundleError, load_bundle
+            from echoproof.data.chunks import PREPROCESSING_HASH
 
             validated = load_bundle(path)
+            if validated.spec.preprocessing_hash != PREPROCESSING_HASH:
+                raise BundleError('LR bundle preprocessing hash mismatch')
             by_name = {rel: p for rel, p in validated.components.items() if Path(rel).name in _COMPONENTS}
             parents = {p.parent for p in by_name.values()}
             if len(by_name) != len(_COMPONENTS) or len(parents) != 1:
@@ -69,4 +72,6 @@ class LRBundleAdapter:
 
     @property
     def metadata(self) -> Mapping[str, str]:
-        return MappingProxyType({**{str(k): str(v) for k, v in self._detector.metadata.items()}, **self._bundle_info})
+        return MappingProxyType({**{str(k): str(v) for k, v in self._detector.metadata.items()},
+                                 **self._bundle_info, 'score_type': 'raw_uncalibrated',
+                                 'protocol': str(self._detector.meta.get('protocol', 'unspecified'))})
