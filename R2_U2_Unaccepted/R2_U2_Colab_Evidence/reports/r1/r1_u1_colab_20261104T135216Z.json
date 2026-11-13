@@ -1,0 +1,194 @@
+{
+  "checks": {
+    "batch_size_1_vs_16_max_abs_diff": 5.736947059631348e-07,
+    "cpu_vs_gpu_max_abs_diff": 2.3543834686279297e-06,
+    "frozen": {
+      "in_eval_after_train_call": true,
+      "trainable_names": []
+    },
+    "head_only": {
+      "encoder_in_eval_under_model_train": true,
+      "head_in_train": true,
+      "trainable": [
+        "head.0.bias",
+        "head.0.weight",
+        "head.3.bias",
+        "head.3.weight"
+      ]
+    },
+    "mixed_lengths_order_max_abs_diff": 1.1771917343139648e-06,
+    "repeat_run_max_abs_diff": 0.0,
+    "single_vs_batched_max_abs_diff": {
+      "0.5s_clip": {
+        "mean": 1.6689300537109375e-06,
+        "mean_shape": [
+          5,
+          768
+        ],
+        "mean_std": 1.6689300537109375e-06,
+        "mean_std_shape": [
+          5,
+          1536
+        ]
+      },
+      "1s_clip": {
+        "mean": 8.940696716308594e-07,
+        "mean_shape": [
+          5,
+          768
+        ],
+        "mean_std": 9.08970832824707e-07,
+        "mean_std_shape": [
+          5,
+          1536
+        ]
+      },
+      "2.3s_clip": {
+        "mean": 5.960464477539062e-07,
+        "mean_shape": [
+          5,
+          768
+        ],
+        "mean_std": 6.705522537231445e-07,
+        "mean_std_shape": [
+          5,
+          1536
+        ]
+      },
+      "full_4s_crop": {
+        "mean": 8.642673492431641e-07,
+        "mean_shape": [
+          8,
+          768
+        ],
+        "mean_std": 8.642673492431641e-07,
+        "mean_std_shape": [
+          8,
+          1536
+        ]
+      }
+    },
+    "zero_padding_would_change_embedding_by": 1.2795062065124512
+  },
+  "created_utc": "2026-11-04T13:52:16Z",
+  "environment": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "huggingface_hub": "1.33.0",
+    "numpy": "2.4.6",
+    "python": "3.13.16",
+    "torch": "2.11.0+cu130",
+    "transformers": "5.22.0"
+  },
+  "extractor": {
+    "batch_size": 16,
+    "do_normalize": false,
+    "feature_extractor": "Wav2Vec2FeatureExtractor",
+    "hidden_size": 768,
+    "parameters": 94381936,
+    "trainable_parameters": 0,
+    "training_mode": false
+  },
+  "pinned": {
+    "ast": {
+      "config": {
+        "conv_kernel": null,
+        "conv_stride": null,
+        "do_stable_layer_norm": null,
+        "feat_extract_norm": null,
+        "hidden_size": 768,
+        "model_type": "audio-spectrogram-transformer",
+        "num_hidden_layers": 12
+      },
+      "license": "bsd-3-clause",
+      "license_status": "declared in the Hugging Face model card metadata",
+      "main_head_now": "f826b80d28226b62986cc218e5cec390b1096902",
+      "preprocessing_matches_expectation": {
+        "sampling_rate": true
+      },
+      "preprocessor": {
+        "do_normalize": true,
+        "feature_extractor_type": "ASTFeatureExtractor",
+        "max_length": 1024,
+        "mean": -4.2677393,
+        "num_mel_bins": 128,
+        "sampling_rate": 16000,
+        "std": 4.5689974
+      },
+      "repo_id": "MIT/ast-finetuned-audioset-10-10-0.4593",
+      "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+      "snapshot_dir": "f826b80d28226b62986cc218e5cec390b1096902"
+    },
+    "wavlm": {
+      "config": {
+        "conv_kernel": [
+          10,
+          3,
+          3,
+          3,
+          3,
+          2,
+          2
+        ],
+        "conv_stride": [
+          5,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "do_stable_layer_norm": false,
+        "feat_extract_norm": "group",
+        "hidden_size": 768,
+        "model_type": "wavlm",
+        "num_hidden_layers": 12
+      },
+      "license": null,
+      "license_status": "not declared in the Hugging Face metadata; confirm the terms of the WavLM source (microsoft/unilm) before redistributing weights",
+      "main_head_now": "4c66d4806a428f2e922ccfa1a962776e232d487b",
+      "preprocessing_matches_expectation": {
+        "do_normalize": true,
+        "feature_size": true,
+        "sampling_rate": true
+      },
+      "preprocessor": {
+        "do_normalize": false,
+        "feature_extractor_type": "Wav2Vec2FeatureExtractor",
+        "feature_size": 1,
+        "padding_side": "right",
+        "padding_value": 0.0,
+        "return_attention_mask": true,
+        "sampling_rate": 16000
+      },
+      "recorded_sha256_matches": true,
+      "repo_id": "microsoft/wavlm-base-plus",
+      "revision": "4c66d4806a428f2e922ccfa1a962776e232d487b",
+      "snapshot_dir": "4c66d4806a428f2e922ccfa1a962776e232d487b",
+      "weights_bytes": 377617425,
+      "weights_sha256": "3bb273a6ace99408b50cfc81afdbb7ef2de02da2eab0234e18db608ce692fe51"
+    }
+  },
+  "schema_version": 1,
+  "source_sha256": {
+    "pretrained.py": "aec607d2db80f8f221e8ed85410471d536b6367fdd2efcac639b5f7cd6d31f40",
+    "test_r1_u1_wavlm.py": "eceaa42821b8bf770cfb514d967ebc664315e41d1eb4e8528c8b23461ab1d30a"
+  },
+  "timing": {
+    "clips": 64,
+    "clips_per_second": 36.1,
+    "device": "cuda",
+    "ms_per_4s_clip": 27.7,
+    "peak_vram_mb": 1186.0,
+    "projected_minutes_for_60000_chunks": 27.7
+  },
+  "verdict": {
+    "gpu_run": true,
+    "problems": [],
+    "pytest_summary": "13 passed in 25.28s",
+    "task": "R1-U1",
+    "tolerance": 0.0001,
+    "verified": true
+  }
+}

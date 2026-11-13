@@ -1,0 +1,903 @@
+{
+  "budget_overlapped": {
+    "accounts": 4,
+    "assumed_hours": 1.75,
+    "hours_per_account": 2.26,
+    "items": [
+      {
+        "basis": "measured",
+        "detail": "2 epochs x 4530 recordings, once per protocol",
+        "hours": 0.043,
+        "item": "AST head warm-up",
+        "protocol": "B"
+      },
+      {
+        "basis": "measured",
+        "detail": "2 variant(s) x 8 epochs x 4530 recordings",
+        "hours": 0.48,
+        "item": "AST partial fine-tuning",
+        "protocol": "B"
+      },
+      {
+        "basis": "measured",
+        "detail": "18 epochs x 10029 chunks",
+        "hours": 0.83,
+        "item": "AST selection-validation each epoch",
+        "protocol": "B"
+      },
+      {
+        "basis": "measured",
+        "detail": "2 fit(s) x 30405 chunks",
+        "hours": 0.28,
+        "item": "AST calibration + operating + test scoring",
+        "protocol": "B"
+      },
+      {
+        "basis": "measured",
+        "detail": "2 fit(s) x 4 conditions x 20558 test chunks",
+        "hours": 0.757,
+        "item": "AST corrupted-test scoring (protocol D)",
+        "protocol": "B"
+      },
+      {
+        "basis": "assumed",
+        "detail": "2 fit(s) x 20 epochs x 1.5 min",
+        "hours": 1.0,
+        "item": "BiGRU training",
+        "protocol": "B"
+      },
+      {
+        "basis": "assumed",
+        "detail": "2 fit(s) x 5.0 min",
+        "hours": 0.167,
+        "item": "WavLM head training",
+        "protocol": "B"
+      },
+      {
+        "basis": "measured",
+        "detail": "2 epochs x 7550 recordings, once per protocol",
+        "hours": 0.072,
+        "item": "AST head warm-up",
+        "protocol": "A"
+      },
+      {
+        "basis": "measured",
+        "detail": "1 variant(s) x 8 epochs x 7550 recordings",
+        "hours": 0.4,
+        "item": "AST partial fine-tuning",
+        "protocol": "A"
+      },
+      {
+        "basis": "measured",
+        "detail": "10 epochs x 12331 chunks",
+        "hours": 0.567,
+        "item": "AST selection-validation each epoch",
+        "protocol": "A"
+      },
+      {
+        "basis": "measured",
+        "detail": "1 fit(s) x 37628 chunks",
+        "hours": 0.173,
+        "item": "AST calibration + operating + test scoring",
+        "protocol": "A"
+      },
+      {
+        "basis": "measured",
+        "detail": "1 fit(s) x 4 conditions x 25547 test chunks",
+        "hours": 0.47,
+        "item": "AST corrupted-test scoring (protocol D)",
+        "protocol": "A"
+      },
+      {
+        "basis": "assumed",
+        "detail": "1 fit(s) x 20 epochs x 1.5 min",
+        "hours": 0.5,
+        "item": "BiGRU training",
+        "protocol": "A"
+      },
+      {
+        "basis": "assumed",
+        "detail": "1 fit(s) x 5.0 min",
+        "hours": 0.083,
+        "item": "WavLM head training",
+        "protocol": "A"
+      },
+      {
+        "basis": "measured",
+        "detail": "30200 train-crop-bank + 24412 validation + 25547 test chunks",
+        "hours": 0.617,
+        "item": "WavLM embedding extraction (shared cache)",
+        "protocol": "A+B"
+      },
+      {
+        "basis": "measured",
+        "detail": "4 conditions x 25547 test chunks",
+        "hours": 0.786,
+        "item": "WavLM corrupted-test extraction (protocol D)",
+        "protocol": "A+B"
+      }
+    ],
+    "measured_hours": 5.48,
+    "note": "Maximum epochs are budgeted; early stopping can only reduce this. Assumed items must be replaced by measurements.",
+    "reserve_fraction": 0.25,
+    "session_hours": 3.0,
+    "sessions_needed": 4,
+    "subtotal_hours": 7.23,
+    "total_hours_with_reserve": 9.03
+  },
+  "budget_serial": {
+    "accounts": 4,
+    "assumed_hours": 1.75,
+    "hours_per_account": 2.52,
+    "items": [
+      {
+        "basis": "measured",
+        "detail": "2 epochs x 4530 recordings, once per protocol",
+        "hours": 0.052,
+        "item": "AST head warm-up",
+        "protocol": "B"
+      },
+      {
+        "basis": "measured",
+        "detail": "2 variant(s) x 8 epochs x 4530 recordings",
+        "hours": 0.553,
+        "item": "AST partial fine-tuning",
+        "protocol": "B"
+      },
+      {
+        "basis": "measured",
+        "detail": "18 epochs x 10029 chunks",
+        "hours": 1.016,
+        "item": "AST selection-validation each epoch",
+        "protocol": "B"
+      },
+      {
+        "basis": "measured",
+        "detail": "2 fit(s) x 30405 chunks",
+        "hours": 0.342,
+        "item": "AST calibration + operating + test scoring",
+        "protocol": "B"
+      },
+      {
+        "basis": "measured",
+        "detail": "2 fit(s) x 4 conditions x 20558 test chunks",
+        "hours": 0.926,
+        "item": "AST corrupted-test scoring (protocol D)",
+        "protocol": "B"
+      },
+      {
+        "basis": "assumed",
+        "detail": "2 fit(s) x 20 epochs x 1.5 min",
+        "hours": 1.0,
+        "item": "BiGRU training",
+        "protocol": "B"
+      },
+      {
+        "basis": "assumed",
+        "detail": "2 fit(s) x 5.0 min",
+        "hours": 0.167,
+        "item": "WavLM head training",
+        "protocol": "B"
+      },
+      {
+        "basis": "measured",
+        "detail": "2 epochs x 7550 recordings, once per protocol",
+        "hours": 0.087,
+        "item": "AST head warm-up",
+        "protocol": "A"
+      },
+      {
+        "basis": "measured",
+        "detail": "1 variant(s) x 8 epochs x 7550 recordings",
+        "hours": 0.46,
+        "item": "AST partial fine-tuning",
+        "protocol": "A"
+      },
+      {
+        "basis": "measured",
+        "detail": "10 epochs x 12331 chunks",
+        "hours": 0.694,
+        "item": "AST selection-validation each epoch",
+        "protocol": "A"
+      },
+      {
+        "basis": "measured",
+        "detail": "1 fit(s) x 37628 chunks",
+        "hours": 0.212,
+        "item": "AST calibration + operating + test scoring",
+        "protocol": "A"
+      },
+      {
+        "basis": "measured",
+        "detail": "1 fit(s) x 4 conditions x 25547 test chunks",
+        "hours": 0.575,
+        "item": "AST corrupted-test scoring (protocol D)",
+        "protocol": "A"
+      },
+      {
+        "basis": "assumed",
+        "detail": "1 fit(s) x 20 epochs x 1.5 min",
+        "hours": 0.5,
+        "item": "BiGRU training",
+        "protocol": "A"
+      },
+      {
+        "basis": "assumed",
+        "detail": "1 fit(s) x 5.0 min",
+        "hours": 0.083,
+        "item": "WavLM head training",
+        "protocol": "A"
+      },
+      {
+        "basis": "measured",
+        "detail": "30200 train-crop-bank + 24412 validation + 25547 test chunks",
+        "hours": 0.617,
+        "item": "WavLM embedding extraction (shared cache)",
+        "protocol": "A+B"
+      },
+      {
+        "basis": "measured",
+        "detail": "4 conditions x 25547 test chunks",
+        "hours": 0.786,
+        "item": "WavLM corrupted-test extraction (protocol D)",
+        "protocol": "A+B"
+      }
+    ],
+    "measured_hours": 6.32,
+    "note": "Maximum epochs are budgeted; early stopping can only reduce this. Assumed items must be replaced by measurements.",
+    "reserve_fraction": 0.25,
+    "session_hours": 3.0,
+    "sessions_needed": 4,
+    "subtotal_hours": 8.07,
+    "total_hours_with_reserve": 10.09
+  },
+  "created_utc": "2026-11-04T15:09:33Z",
+  "environment": {
+    "cpu_count": 2,
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "huggingface_hub": "1.33.0",
+    "python": "3.13.16",
+    "torch": "2.11.0+cu130",
+    "torchaudio": "2.11.0+cu130",
+    "transformers": "5.22.0",
+    "vram_gb": 14.6
+  },
+  "epoch_estimates": {
+    "A": {
+      "head_epoch_train_minutes": 2.6,
+      "partial_epoch_total_minutes": 7.6,
+      "partial_epoch_train_minutes": 3.5,
+      "selection_validation_minutes": 4.2
+    },
+    "B": {
+      "head_epoch_train_minutes": 1.6,
+      "partial_epoch_total_minutes": 5.5,
+      "partial_epoch_train_minutes": 2.1,
+      "selection_validation_minutes": 3.4
+    }
+  },
+  "eval_probes": [
+    {
+      "extract_ms_per_clip": 3.7,
+      "gpu_ms_per_clip": 16.6,
+      "microbatch": 16,
+      "overlapped_clips_per_s": 60.38,
+      "peak_vram_mb": 815,
+      "serial_clips_per_s": 49.35,
+      "status": "ok"
+    },
+    {
+      "extract_ms_per_clip": 4.3,
+      "gpu_ms_per_clip": 16.5,
+      "microbatch": 32,
+      "overlapped_clips_per_s": 60.6,
+      "peak_vram_mb": 1283,
+      "serial_clips_per_s": 47.96,
+      "status": "ok"
+    }
+  ],
+  "gradient_proof": {
+    "expected_updated_groups": [
+      "block.10",
+      "block.11",
+      "classifier",
+      "final_norm"
+    ],
+    "frozen_groups_bit_identical": [
+      "block.00",
+      "block.01",
+      "block.02",
+      "block.03",
+      "block.04",
+      "block.05",
+      "block.06",
+      "block.07",
+      "block.08",
+      "block.09",
+      "embeddings"
+    ],
+    "groups_changed_by_one_step": [
+      "block.10",
+      "block.11",
+      "classifier",
+      "final_norm"
+    ],
+    "groups_with_gradients": [
+      "block.10",
+      "block.11",
+      "classifier",
+      "final_norm"
+    ],
+    "ok": true,
+    "per_group": {
+      "block.00": {
+        "nonzero": 0,
+        "tensors": 16,
+        "with_grad": 0
+      },
+      "block.01": {
+        "nonzero": 0,
+        "tensors": 16,
+        "with_grad": 0
+      },
+      "block.02": {
+        "nonzero": 0,
+        "tensors": 16,
+        "with_grad": 0
+      },
+      "block.03": {
+        "nonzero": 0,
+        "tensors": 16,
+        "with_grad": 0
+      },
+      "block.04": {
+        "nonzero": 0,
+        "tensors": 16,
+        "with_grad": 0
+      },
+      "block.05": {
+        "nonzero": 0,
+        "tensors": 16,
+        "with_grad": 0
+      },
+      "block.06": {
+        "nonzero": 0,
+        "tensors": 16,
+        "with_grad": 0
+      },
+      "block.07": {
+        "nonzero": 0,
+        "tensors": 16,
+        "with_grad": 0
+      },
+      "block.08": {
+        "nonzero": 0,
+        "tensors": 16,
+        "with_grad": 0
+      },
+      "block.09": {
+        "nonzero": 0,
+        "tensors": 16,
+        "with_grad": 0
+      },
+      "block.10": {
+        "nonzero": 16,
+        "tensors": 16,
+        "with_grad": 16
+      },
+      "block.11": {
+        "nonzero": 16,
+        "tensors": 16,
+        "with_grad": 16
+      },
+      "classifier": {
+        "nonzero": 4,
+        "tensors": 4,
+        "with_grad": 4
+      },
+      "embeddings": {
+        "nonzero": 0,
+        "tensors": 5,
+        "with_grad": 0
+      },
+      "final_norm": {
+        "nonzero": 2,
+        "tensors": 2,
+        "with_grad": 2
+      }
+    }
+  },
+  "loading_audit": {
+    "library_info_available": true,
+    "mismatched": [
+      "classifier.dense.bias",
+      "classifier.dense.weight"
+    ],
+    "missing": [],
+    "non_head_new_or_reshaped": [],
+    "ok": true,
+    "shapes": {
+      "checkpoint_only_shapes": {
+        "(527, 768)": 1,
+        "(527,)": 1
+      },
+      "model_only_shapes": {
+        "(2, 768)": 1,
+        "(2,)": 1
+      },
+      "ok": true,
+      "tensors_in_checkpoint": 203,
+      "tensors_in_model": 203
+    },
+    "source": "transformers loading info + shape audit",
+    "unexpected": []
+  },
+  "measured_inputs_serial": {
+    "ast_eval_cps": 49.35,
+    "ast_head_train_cps": 48.18,
+    "ast_partial_train_cps": 36.44,
+    "wavlm_cps": 36.1
+  },
+  "plan": {
+    "ast_partial_epochs": 8,
+    "ast_variants": {
+      "A": 1,
+      "B": 2
+    },
+    "ast_warmup_epochs": 2,
+    "bigru_epochs": 20,
+    "bigru_fits": {
+      "A": 1,
+      "B": 2
+    },
+    "bigru_minutes_per_epoch": 1.5,
+    "corruption_conditions": 4,
+    "wavlm_crops_per_train_recording": 4,
+    "wavlm_head_fits": {
+      "A": 1,
+      "B": 2
+    },
+    "wavlm_head_minutes_per_fit": 5.0
+  },
+  "preprocessor": {
+    "do_normalize": true,
+    "feature_extractor_type": "ASTFeatureExtractor",
+    "max_length": 1024,
+    "mean": -4.2677393,
+    "num_mel_bins": 128,
+    "sampling_rate": 16000,
+    "std": 4.5689974
+  },
+  "recommended": {
+    "accumulation_steps_for_effective_batch_16": 2,
+    "eval_microbatch": 16,
+    "head_stage_microbatch": 4,
+    "partial_stage_microbatch": 8,
+    "precision": "fp16 autocast + GradScaler (T4 has no fast bf16)",
+    "vram_limit_mb": 12676
+  },
+  "schema_version": 1,
+  "source_sha256": {
+    "ast_detector.py": "705a52fdf63304158040bb27e1fad5e6122df57b9efeb99b87f249cf53ec7f3c",
+    "gpu_budget.py": "b32f23c70bf3ded222ffbad9b8c202e4bd92f6664491aef781b1f5c3d1bbc1f4",
+    "pretrained.py": "46aa840888dbdb20140631a984103d7ab5afc2fa77b4318c63a125fecfb93a57",
+    "test_r1_u2_ast.py": "5738c43acbc4bed4088c7440f2979e48efab65ff06d543ffe2f22549ac0826bd"
+  },
+  "stage_reports": {
+    "frozen": {
+      "groups": {
+        "block.00": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.01": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.02": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.03": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.04": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.05": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.06": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.07": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.08": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.09": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.10": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.11": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "classifier": {
+          "parameters": 3074,
+          "tensors": 4,
+          "trainable": 0
+        },
+        "embeddings": {
+          "parameters": 1131264,
+          "tensors": 5,
+          "trainable": 0
+        },
+        "final_norm": {
+          "parameters": 1536,
+          "tensors": 2,
+          "trainable": 0
+        }
+      },
+      "layout": {
+        "block_prefix": "audio_spectrogram_transformer.layers",
+        "blocks": 12,
+        "final_norm_prefix": "audio_spectrogram_transformer.layernorm."
+      },
+      "stage": "frozen",
+      "total_parameters": 86190338,
+      "trainable_fraction": 0.0,
+      "trainable_names": [],
+      "trainable_parameters": 0
+    },
+    "head": {
+      "groups": {
+        "block.00": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.01": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.02": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.03": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.04": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.05": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.06": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.07": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.08": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.09": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.10": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.11": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "classifier": {
+          "parameters": 3074,
+          "tensors": 4,
+          "trainable": 3074
+        },
+        "embeddings": {
+          "parameters": 1131264,
+          "tensors": 5,
+          "trainable": 0
+        },
+        "final_norm": {
+          "parameters": 1536,
+          "tensors": 2,
+          "trainable": 0
+        }
+      },
+      "layout": {
+        "block_prefix": "audio_spectrogram_transformer.layers",
+        "blocks": 12,
+        "final_norm_prefix": "audio_spectrogram_transformer.layernorm."
+      },
+      "stage": "head",
+      "total_parameters": 86190338,
+      "trainable_fraction": 3.566525055279398e-05,
+      "trainable_names": [
+        "classifier.dense.bias",
+        "classifier.dense.weight",
+        "classifier.layernorm.bias",
+        "classifier.layernorm.weight"
+      ],
+      "trainable_parameters": 3074
+    },
+    "partial": {
+      "groups": {
+        "block.00": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.01": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.02": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.03": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.04": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.05": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.06": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.07": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.08": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.09": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 0
+        },
+        "block.10": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 7087872
+        },
+        "block.11": {
+          "parameters": 7087872,
+          "tensors": 16,
+          "trainable": 7087872
+        },
+        "classifier": {
+          "parameters": 3074,
+          "tensors": 4,
+          "trainable": 3074
+        },
+        "embeddings": {
+          "parameters": 1131264,
+          "tensors": 5,
+          "trainable": 0
+        },
+        "final_norm": {
+          "parameters": 1536,
+          "tensors": 2,
+          "trainable": 1536
+        }
+      },
+      "layout": {
+        "block_prefix": "audio_spectrogram_transformer.layers",
+        "blocks": 12,
+        "final_norm_prefix": "audio_spectrogram_transformer.layernorm."
+      },
+      "stage": "partial",
+      "total_parameters": 86190338,
+      "trainable_fraction": 0.16452370798221025,
+      "trainable_names": [
+        "audio_spectrogram_transformer.layernorm.bias",
+        "audio_spectrogram_transformer.layernorm.weight",
+        "audio_spectrogram_transformer.layers.10.attention.k_proj.bias",
+        "audio_spectrogram_transformer.layers.10.attention.k_proj.weight",
+        "audio_spectrogram_transformer.layers.10.attention.o_proj.bias",
+        "audio_spectrogram_transformer.layers.10.attention.o_proj.weight",
+        "audio_spectrogram_transformer.layers.10.attention.q_proj.bias",
+        "audio_spectrogram_transformer.layers.10.attention.q_proj.weight",
+        "audio_spectrogram_transformer.layers.10.attention.v_proj.bias",
+        "audio_spectrogram_transformer.layers.10.attention.v_proj.weight",
+        "audio_spectrogram_transformer.layers.10.layernorm_after.bias",
+        "audio_spectrogram_transformer.layers.10.layernorm_after.weight",
+        "audio_spectrogram_transformer.layers.10.layernorm_before.bias",
+        "audio_spectrogram_transformer.layers.10.layernorm_before.weight",
+        "audio_spectrogram_transformer.layers.10.mlp.fc1.bias",
+        "audio_spectrogram_transformer.layers.10.mlp.fc1.weight",
+        "audio_spectrogram_transformer.layers.10.mlp.fc2.bias",
+        "audio_spectrogram_transformer.layers.10.mlp.fc2.weight",
+        "audio_spectrogram_transformer.layers.11.attention.k_proj.bias",
+        "audio_spectrogram_transformer.layers.11.attention.k_proj.weight",
+        "audio_spectrogram_transformer.layers.11.attention.o_proj.bias",
+        "audio_spectrogram_transformer.layers.11.attention.o_proj.weight",
+        "audio_spectrogram_transformer.layers.11.attention.q_proj.bias",
+        "audio_spectrogram_transformer.layers.11.attention.q_proj.weight",
+        "audio_spectrogram_transformer.layers.11.attention.v_proj.bias",
+        "audio_spectrogram_transformer.layers.11.attention.v_proj.weight",
+        "audio_spectrogram_transformer.layers.11.layernorm_after.bias",
+        "audio_spectrogram_transformer.layers.11.layernorm_after.weight",
+        "audio_spectrogram_transformer.layers.11.layernorm_before.bias",
+        "audio_spectrogram_transformer.layers.11.layernorm_before.weight",
+        "audio_spectrogram_transformer.layers.11.mlp.fc1.bias",
+        "audio_spectrogram_transformer.layers.11.mlp.fc1.weight",
+        "audio_spectrogram_transformer.layers.11.mlp.fc2.bias",
+        "audio_spectrogram_transformer.layers.11.mlp.fc2.weight",
+        "classifier.dense.bias",
+        "classifier.dense.weight",
+        "classifier.layernorm.bias",
+        "classifier.layernorm.weight"
+      ],
+      "trainable_parameters": 14180354
+    }
+  },
+  "training_probes": [
+    {
+      "extract_ms_per_clip": 4.0,
+      "gpu_ms_per_clip": 18.0,
+      "loss_finite": true,
+      "microbatch": 2,
+      "overlapped_clips_per_s": 55.45,
+      "peak_vram_mb": 406,
+      "serial_clips_per_s": 45.45,
+      "stage": "head",
+      "status": "ok"
+    },
+    {
+      "extract_ms_per_clip": 3.7,
+      "gpu_ms_per_clip": 17.1,
+      "loss_finite": true,
+      "microbatch": 4,
+      "overlapped_clips_per_s": 58.59,
+      "peak_vram_mb": 465,
+      "serial_clips_per_s": 48.18,
+      "stage": "head",
+      "status": "ok"
+    },
+    {
+      "extract_ms_per_clip": 5.2,
+      "gpu_ms_per_clip": 16.7,
+      "loss_finite": true,
+      "microbatch": 8,
+      "overlapped_clips_per_s": 59.85,
+      "peak_vram_mb": 582,
+      "serial_clips_per_s": 45.69,
+      "stage": "head",
+      "status": "ok"
+    },
+    {
+      "extract_ms_per_clip": 5.2,
+      "gpu_ms_per_clip": 27.9,
+      "loss_finite": true,
+      "microbatch": 2,
+      "overlapped_clips_per_s": 35.89,
+      "peak_vram_mb": 680,
+      "serial_clips_per_s": 30.29,
+      "stage": "partial",
+      "status": "ok"
+    },
+    {
+      "extract_ms_per_clip": 3.8,
+      "gpu_ms_per_clip": 25.0,
+      "loss_finite": true,
+      "microbatch": 4,
+      "overlapped_clips_per_s": 40.08,
+      "peak_vram_mb": 854,
+      "serial_clips_per_s": 34.77,
+      "stage": "partial",
+      "status": "ok"
+    },
+    {
+      "extract_ms_per_clip": 3.6,
+      "gpu_ms_per_clip": 23.8,
+      "loss_finite": true,
+      "microbatch": 8,
+      "overlapped_clips_per_s": 41.94,
+      "peak_vram_mb": 1189,
+      "serial_clips_per_s": 36.44,
+      "stage": "partial",
+      "status": "ok"
+    }
+  ],
+  "verdict": {
+    "oom_cases": [],
+    "problems": [],
+    "pytest_summary": "15 passed in 21.20s",
+    "task": "R1-U2",
+    "total_gpu_hours_with_reserve_overlapped": 9.03,
+    "total_gpu_hours_with_reserve_serial": 10.09,
+    "verified": true
+  },
+  "wavlm_clips_per_second_source": "r1_u1_colab_20261104T135216Z.json",
+  "weights": {
+    "bytes": 346404948,
+    "pinned_revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "recorded_sha256_matches": true,
+    "revision": "f826b80d28226b62986cc218e5cec390b1096902",
+    "sha256": "ae0c1e2ad4e1381d851fa9bf298ba13ebc9c5a914cdee2dbe427a6583869924d"
+  },
+  "workload": {
+    "A": {
+      "calibration_chunks": 5777,
+      "operating_chunks": 6304,
+      "selection_chunks": 12331,
+      "test_chunks": 25547,
+      "train_chunks": 37123,
+      "train_recordings": 7550
+    },
+    "B": {
+      "calibration_chunks": 4712,
+      "operating_chunks": 5135,
+      "selection_chunks": 10029,
+      "test_chunks": 20558,
+      "train_chunks": 23096,
+      "train_recordings": 4530
+    }
+  }
+}

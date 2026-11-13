@@ -1,0 +1,268 @@
+{
+  "cases": [
+    {
+      "best_macro_f1": 1.0,
+      "case": "tiny_fp32_deterministic",
+      "config": {
+        "deterministic": true
+      },
+      "device": "cuda",
+      "epochs_run": 4,
+      "lr_by_epoch": [
+        0.003,
+        0.003,
+        0.003,
+        0.003
+      ],
+      "peak_vram_mb": 73.3,
+      "seconds": 0.2,
+      "skipped_steps": 0,
+      "status": "passed",
+      "val_macro_f1_by_epoch": [
+        0.333,
+        0.333,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "case": "tiny_resume_exact",
+      "config": {
+        "deterministic": true
+      },
+      "epochs_compared": 3,
+      "max_abs_loss_difference": 0.0,
+      "status": "passed"
+    },
+    {
+      "best_macro_f1": 1.0,
+      "case": "tiny_plateau_accum2",
+      "config": {
+        "accumulation_steps": 2,
+        "batch_size": 4,
+        "grad_clip": 1.0,
+        "scheduler": "plateau"
+      },
+      "device": "cuda",
+      "epochs_run": 4,
+      "lr_by_epoch": [
+        0.003,
+        0.003,
+        0.003,
+        0.003
+      ],
+      "peak_vram_mb": 73.3,
+      "seconds": 0.3,
+      "skipped_steps": 0,
+      "status": "passed",
+      "val_macro_f1_by_epoch": [
+        0.333,
+        0.459,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "best_macro_f1": 1.0,
+      "case": "tiny_class_weights",
+      "config": {
+        "class_strategy": "weights"
+      },
+      "device": "cuda",
+      "epochs_run": 4,
+      "lr_by_epoch": [
+        0.003,
+        0.003,
+        0.003,
+        0.003
+      ],
+      "peak_vram_mb": 73.3,
+      "seconds": 0.2,
+      "skipped_steps": 0,
+      "status": "passed",
+      "val_macro_f1_by_epoch": [
+        0.333,
+        0.333,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "best_macro_f1": 1.0,
+      "case": "tiny_dataloader_workers",
+      "config": {
+        "num_workers": 2
+      },
+      "device": "cuda",
+      "epochs_run": 4,
+      "lr_by_epoch": [
+        0.003,
+        0.003,
+        0.003,
+        0.003
+      ],
+      "peak_vram_mb": 73.3,
+      "seconds": 1.5,
+      "skipped_steps": 0,
+      "status": "passed",
+      "val_macro_f1_by_epoch": [
+        0.333,
+        0.333,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "best_macro_f1": 1.0,
+      "case": "tiny_fp16_amp_cosine",
+      "config": {
+        "accumulation_steps": 2,
+        "batch_size": 4,
+        "max_epochs": 8,
+        "precision": "fp16",
+        "scheduler": "cosine",
+        "warmup_steps": 2
+      },
+      "device": "cuda",
+      "epochs_run": 8,
+      "lr_by_epoch": [
+        0.0029672214011007086,
+        0.002713525491562421,
+        0.0022500000000000003,
+        0.0016567926949014804,
+        0.001036474508437579,
+        0.0004963040904617131,
+        0.00012968181353609855,
+        0.0
+      ],
+      "peak_vram_mb": 74.2,
+      "seconds": 0.5,
+      "skipped_steps": 0,
+      "status": "passed",
+      "val_macro_f1_by_epoch": [
+        0.333,
+        0.333,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "best_macro_f1": 1.0,
+      "case": "tiny_bf16",
+      "config": {
+        "precision": "bf16"
+      },
+      "device": "cuda",
+      "epochs_run": 4,
+      "lr_by_epoch": [
+        0.003,
+        0.003,
+        0.003,
+        0.003
+      ],
+      "peak_vram_mb": 73.8,
+      "seconds": 0.3,
+      "skipped_steps": 0,
+      "status": "passed",
+      "val_macro_f1_by_epoch": [
+        0.333,
+        0.333,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "best_macro_f1": 1.0,
+      "case": "bigru_deterministic",
+      "config": {
+        "deterministic": true,
+        "lr": 0.003
+      },
+      "device": "cuda",
+      "epochs_run": 4,
+      "lr_by_epoch": [
+        0.003,
+        0.003,
+        0.003,
+        0.003
+      ],
+      "peak_vram_mb": 134.5,
+      "seconds": 0.6,
+      "skipped_steps": 0,
+      "status": "passed",
+      "val_macro_f1_by_epoch": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "best_macro_f1": 1.0,
+      "case": "bigru_nondeterministic",
+      "config": {
+        "deterministic": false,
+        "lr": 0.003
+      },
+      "device": "cuda",
+      "epochs_run": 4,
+      "lr_by_epoch": [
+        0.003,
+        0.003,
+        0.003,
+        0.003
+      ],
+      "peak_vram_mb": 134.5,
+      "seconds": 0.5,
+      "skipped_steps": 0,
+      "status": "passed",
+      "val_macro_f1_by_epoch": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "case": "bigru_resume",
+      "config": {
+        "deterministic": true,
+        "lr": 0.003
+      },
+      "epochs_compared": 3,
+      "max_abs_loss_difference": 0.0,
+      "status": "passed"
+    }
+  ],
+  "created_utc": "2026-11-03T18:29:16Z",
+  "environment": {
+    "cuda_available": true,
+    "gpu": "Tesla T4",
+    "numpy": "2.4.6",
+    "pyarrow": "23.0.1",
+    "python": "3.13.16",
+    "torch": "2.11.0+cu130",
+    "vram_gb": 14.6
+  },
+  "schema_version": 1,
+  "trainer_sha256": "99172168325199891891c92f3786813ce03bc222c0ff1dd996502966bb0a9057",
+  "verdict": {
+    "gpu_cases_run": true,
+    "informational": {
+      "bigru_deterministic": {
+        "error": null,
+        "max_abs_loss_difference": null,
+        "status": "passed"
+      }
+    },
+    "recommendation": "BiGRU may use deterministic=True",
+    "required_cases_failed": [],
+    "task": "R1-M1",
+    "unit_tests_passed": true,
+    "verified": true
+  }
+}

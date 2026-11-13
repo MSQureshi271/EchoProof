@@ -1,0 +1,140 @@
+{
+  "admitted_stems_sha256": "5f85bb57d7da23f492d0ef8dfacdf246fa6b2d1d8c8a4572a59d6ab853c5e67a",
+  "cohort_plan_sha256": "3471c0d2ff1b12b38d97bef36dcd9ff382c8e56f00cce25be2c21179aea90209",
+  "per_speaker": {
+    "test": 20,
+    "train": 10,
+    "validation": 20
+  },
+  "planned_stems": 3510,
+  "protocols": {
+    "A": {
+      "recordings": 17550,
+      "split_sha256": "a9075367c89295a953eab1de7dc9f2380b14b3f628c2fabca42aaff94a6201a5",
+      "support": {
+        "test|-|genuine|genuine": {
+          "recordings": 1000,
+          "speakers": 50
+        },
+        "test|-|known_family|tts": {
+          "recordings": 4000,
+          "speakers": 50
+        },
+        "train|-|genuine|genuine": {
+          "recordings": 1510,
+          "speakers": 151
+        },
+        "train|-|known_family|tts": {
+          "recordings": 6040,
+          "speakers": 151
+        },
+        "validation|calibration|genuine|genuine": {
+          "recordings": 240,
+          "speakers": 12
+        },
+        "validation|calibration|known_family|tts": {
+          "recordings": 960,
+          "speakers": 12
+        },
+        "validation|operating|genuine|genuine": {
+          "recordings": 260,
+          "speakers": 13
+        },
+        "validation|operating|known_family|tts": {
+          "recordings": 1040,
+          "speakers": 13
+        },
+        "validation|selection|genuine|genuine": {
+          "recordings": 500,
+          "speakers": 25
+        },
+        "validation|selection|known_family|tts": {
+          "recordings": 2000,
+          "speakers": 25
+        }
+      }
+    },
+    "B": {
+      "recordings": 12530,
+      "split_sha256": "0854de6b00ae059a858d60f18f95df3f1501f579ea3e2fdefbd8de076e2034d7",
+      "support": {
+        "test|-|genuine|genuine": {
+          "recordings": 1000,
+          "speakers": 50
+        },
+        "test|-|known_family|tts": {
+          "recordings": 2000,
+          "speakers": 50
+        },
+        "test|-|unseen_final|tts": {
+          "recordings": 1000,
+          "speakers": 50
+        },
+        "train|-|genuine|genuine": {
+          "recordings": 1510,
+          "speakers": 151
+        },
+        "train|-|known_family|tts": {
+          "recordings": 3020,
+          "speakers": 151
+        },
+        "validation|calibration|genuine|genuine": {
+          "recordings": 240,
+          "speakers": 12
+        },
+        "validation|calibration|known_family|tts": {
+          "recordings": 480,
+          "speakers": 12
+        },
+        "validation|calibration|unseen_validation|tts": {
+          "recordings": 240,
+          "speakers": 12
+        },
+        "validation|operating|genuine|genuine": {
+          "recordings": 260,
+          "speakers": 13
+        },
+        "validation|operating|known_family|tts": {
+          "recordings": 520,
+          "speakers": 13
+        },
+        "validation|operating|unseen_validation|tts": {
+          "recordings": 260,
+          "speakers": 13
+        },
+        "validation|selection|genuine|genuine": {
+          "recordings": 500,
+          "speakers": 25
+        },
+        "validation|selection|known_family|tts": {
+          "recordings": 1000,
+          "speakers": 25
+        },
+        "validation|selection|unseen_validation|tts": {
+          "recordings": 500,
+          "speakers": 25
+        }
+      }
+    }
+  },
+  "schema_version": 1,
+  "seed": 42,
+  "speaker_assignments_sha256": "ebb33386761c79666ded3d07ca8c91250f0382637850ad47479125b065c341cc",
+  "speaker_counts": {
+    "test/-": 50,
+    "train/-": 151,
+    "validation/calibration": 12,
+    "validation/operating": 13,
+    "validation/selection": 25
+  },
+  "speakers": 251,
+  "split_version": "r1-v1",
+  "storage_estimate": {
+    "basis": "Phase 2 header durations; FLAC ratio (0.55 of 16-bit PCM) is an assumption verified at materialisation",
+    "estimated_flac_gb": 3.37,
+    "files": 17550,
+    "hours": 53.22,
+    "pcm16_gb": 6.13
+  },
+  "task": "R1-S2"
+}

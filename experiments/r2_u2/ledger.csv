@@ -1,0 +1,4 @@
+run_id,owner,model,protocol,config_hash,split_hash,seed,epochs_run,best_epoch,stop_reason,val_macro_f1,val_eer,val_fpr,train_minutes,peak_vram_mb,device,status,notes
+engineering_39eb36ca9cf741be9f6c92e57280abc2,,,,3df6ac749542ad819427cd4fce4bf80a72d6ca069a1838205e88a29057b8685e,,42,2,1,max_epochs,0.5,0.5,0.5,0.077,,cpu,completed,
+engineering_799a1f09b0fa452e9e776470fa3abf55,,,,3df6ac749542ad819427cd4fce4bf80a72d6ca069a1838205e88a29057b8685e,,42,2,1,max_epochs,0.5,0.5,0.5,0.02,,cpu,completed,
+engineering_f1fa25e1bb3e4720a9aa4ed25a64e4c3,,,,3df6ac749542ad819427cd4fce4bf80a72d6ca069a1838205e88a29057b8685e,,42,2,1,max_epochs,0.5,0.5,0.5,0.001,,cpu,completed,

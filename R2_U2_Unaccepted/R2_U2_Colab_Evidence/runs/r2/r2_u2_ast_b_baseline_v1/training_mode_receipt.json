@@ -1,0 +1,1 @@
+{"backbone_all_modules_eval":true,"baseline_sha256":"eac7cbba160ac14f9ff26341a0df92ea5ef5d28e8de41467d167d8beea609f70","provenance_sha256":"dfdfe4d608421a084ed16e9c0c27669c97f11d2d4f086c1f9fd894b185390954","schema_version":1,"task":"R2-U2","trainable_names":["classifier.dense.bias","classifier.dense.weight","classifier.layernorm.bias","classifier.layernorm.weight"]}

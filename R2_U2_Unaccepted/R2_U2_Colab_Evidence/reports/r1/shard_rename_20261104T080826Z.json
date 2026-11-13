@@ -1,0 +1,9 @@
+{
+  "change": "repair shard renamed by the project owner",
+  "recording_id": "phonemedf:xtts:103-1240-0001",
+  "canonical_path_before": "repair_00.tar::phonemedf:xtts:103-1240-0001",
+  "canonical_path_after": "shard_14.tar::phonemedf:xtts:103-1240-0001",
+  "manifest_fingerprint_before": "1d3d7b132738b6b4ca0b75cec94fef1e3ced6eb3fe1e1e8aa9d0b0ab28874014",
+  "manifest_fingerprint_after": "1d3d7b132738b6b4ca0b75cec94fef1e3ced6eb3fe1e1e8aa9d0b0ab28874014",
+  "previous_manifest": "/content/drive/MyDrive/PAI&AIES Project/data/manifests/superseded/cohort_v1.pre_rename-20261104T080826Z.parquet"
+}

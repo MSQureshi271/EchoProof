@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "task": "R3-U1",
+  "status": "team_agreed_user_reported_2026-11-11",
+  "protocol": "B",
+  "model": {
+    "name": "wavlm_head",
+    "architecture": "Linear(in_dim, 128) -> GELU -> Dropout(0.2) -> Linear(128, 2)",
+    "hidden": 128,
+    "dropout": 0.2,
+    "in_dim": {"mean": 768, "mean_std": 1536},
+    "label_map": {"genuine": 0, "tts": 1}
+  },
+  "train": {
+    "optimizer": "AdamW",
+    "lr": 0.001,
+    "weight_decay": 0.01,
+    "max_epochs": 20,
+    "early_stopping": false,
+    "batch_size": 128,
+    "scheduler": "constant",
+    "loss": "cross_entropy",
+    "class_strategy": "none",
+    "recording_equal_weights": true,
+    "seed": 42
+  },
+  "variants": ["mean", "mean_std"],
+  "selection": {
+    "role": "selection",
+    "metric": "recording macro F1 at fixed threshold 0.5",
+    "aggregation": "arithmetic mean of chunk probabilities",
+    "epoch_tie_rule": "earliest epoch",
+    "pooling_tie_rule": "mean",
+    "calibration_and_operating_roles": "scored only after the selection is frozen; never used to choose an epoch or a pooling"
+  },
+  "input": {
+    "cache": "data/features/r2_u1_B",
+    "partitions_read": ["train", "validation"],
+    "test_partition": "not read; the reader refuses it without an explicit opt-in",
+    "chatterbox": "absent from the cache and from every R3-U1 input"
+  },
+  "decisions": {
+    "authority": "Plan R3-U1 prescribes the architecture, AdamW, learning rate 1e-3, at most 20 epochs, comparison of mean and mean+std pooling, and the parity check. Everything else below was an implementer's choice recorded for team review. The user reported on 11 November 2026 that the team fully agreed on this recipe; no individual approval record exists in the repository, and the architecture reading for mean+std pooling is part of what was agreed.",
+    "architecture": "PLAN. The plan writes Linear(768,128); that fits mean pooling. For mean+std pooling the input is 1,536 wide, so the first layer is Linear(1536,128) and the rest is identical. This reading of the plan is an interpretation to confirm.",
+    "optimizer": "PLAN for AdamW and learning rate 1e-3. CHOICE: weight decay 0.01, the value used by the other recipes (R2-U2, R3-U2).",
+    "epochs": "PLAN: at most 20. CHOICE: always run all 20 and keep the best epoch, no early stopping. R3-M1 showed that patience 3 can discard a better later checkpoint within the same budget.",
+    "batch_size": "CHOICE: 128 crops per step.",
+    "scheduler": "CHOICE: constant learning rate; the plan names none.",
+    "class_strategy": "CHOICE: natural composition (1,510 genuine and 3,020 TTS recordings), no rebalancing, as in R2-U2 and R3-M1.",
+    "recording_equal_weights": "CHOICE: each crop is weighted by 1 / (crops of its recording), so a recording with five crops does not count five times. This follows the equal-recording weighting used for the LR in R1-M2.",
+    "selection": "CONTRACT: checkpoints and variants are chosen on selection-role recording macro F1 at fixed 0.5 with mean-of-chunks aggregation. Ties: earliest epoch, then mean pooling.",
+    "seed": "CHOICE: 42, as everywhere else. Single seed: the difference between the two poolings may be within seed noise, and the report must say so.",
+    "device": "The head is small; training runs on CPU or GPU with the same seed. Reported numbers record the device used."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "note": "integrity check over manifests only; no model scores are read",
+  "passed": true,
+  "schema_version": 1,
+  "summary": {
+    "A": {
+      "assignments": 17550,
+      "chunks": 87082,
+      "speakers": 251
+    },
+    "B": {
+      "assignments": 12530,
+      "chunks": 63530,
+      "speakers": 251
+    }
+  },
+  "task": "R1-S4",
+  "violation_count": 0,
+  "violations": []
+}

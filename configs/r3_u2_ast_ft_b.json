@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "task": "R3-U2",
+  "status": "team_agreed_user_reported_2026-11-12",
+  "protocol": "B",
+  "init": {
+    "checkpoint": "runs/r2/option_b_1b3757e898da4baaad2bde49fa3cea01/best.pt",
+    "checkpoint_sha256": "6a3883e59fc48ec18697fcdfdb59641adbd7dee6e965c1f80ad6f5287ea0bd57",
+    "epoch": 2,
+    "load": "model weights only, strict; a new optimizer, scaler, scheduler and RNG state; nothing is restored from latest.pt",
+    "warmup_selection_macro_f1": 0.791368914146525,
+    "warmup_epoch0_tolerance": 0.003,
+    "pretrained_group_sha256": {
+      "block.00": "45fe4c13188c39d4e82716a8fcfe49ebb414303f15e3d7b4bdf0e6bb5a48c06d",
+      "block.01": "4cf0594841bdae43c6de1a8f9750335c0390554694b9a83d92759cb03d924fa9",
+      "block.02": "21f153137958676378e5ab3091304d2546972e74df254d4266f0b0bab87f01fc",
+      "block.03": "8330a36c82868597becc9b039552110d97efd9731cc6783555ee94e9999d8e8a",
+      "block.04": "07b00b9f9761ad25a28a869bfb4159b583a1fc3c9c2cb523efa3e35f89f4d525",
+      "block.05": "70ee332a2a611f05a3f2047187075494b6b73966893e3fa39423077ab8b76eb1",
+      "block.06": "288b5d36052c894abd36da170b43ec462ce3a38110420bacea9b56623a544d83",
+      "block.07": "1fc6ee7c917ed3d5b231cb35ba3d1623bd500b451a9727dcfb4e2aa75e2892e9",
+      "block.08": "e4bcb893366ddb8e40b1ec92a66b25ab358485dfbfded022ce9b30d49d9bae36",
+      "block.09": "8da078bec51cbed3890f87dbffc57004ee146a077f6ce8779884c443dada71e4",
+      "block.10": "e382678642f33acc488abfef82281560e3ca6a06bb87bc48b1680928f5ad118e",
+      "block.11": "0c79fe1f8301210cff4a698692f40fe3a858f85638119a74fa0679f8ad91acc8",
+      "embeddings": "c49d115d367c516f1e49b1041ad67eca0dbd708278365299ec0264f9440f73b2",
+      "final_norm": "056f6ef75bbda91fb59550edf159c278d285d284ceecb76741f352be15a03e06"
+    }
+  },
+  "model": {
+    "name": "ast_partial",
+    "backbone": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "stage": "partial",
+    "unfrozen_blocks": 2,
+    "also_trainable": ["final LayerNorm", "classifier.* (including its LayerNorm)"],
+    "frozen": "blocks 0 to 9 and the embeddings, parameters and buffers"
+  },
+  "train": {
+    "seed": 42,
+    "max_epochs": 8,
+    "batch_size": 8,
+    "accumulation_steps": 2,
+    "eval_batch_size": 16,
+    "weight_decay": 0.01,
+    "grad_clip": 1.0,
+    "scheduler": "cosine",
+    "warmup_steps": 114,
+    "patience": 8,
+    "min_delta": 0.0,
+    "selection_threshold": 0.5,
+    "precision": "fp16",
+    "class_strategy": "none",
+    "num_workers": 0,
+    "device": "cuda",
+    "deterministic": true
+  },
+  "experiments": {
+    "baseline": {"backbone_lr": 1e-5, "head_lr": 1e-4},
+    "lower_backbone_lr": {"backbone_lr": 3e-6, "head_lr": 1e-4}
+  },
+  "selection": {
+    "role": "selection",
+    "metric": "recording macro F1 at fixed threshold 0.5",
+    "aggregation": "arithmetic mean of chunk probabilities",
+    "epoch_tie_rule": "earliest epoch",
+    "experiment_tie_rule": "baseline",
+    "calibration_and_operating_roles": "scored only after the selection is frozen; never used to choose an epoch or an experiment"
+  },
+  "decisions": {
+    "authority": "Plan R3-U2 prescribes: start from the warm-up checkpoint; unfreeze the last 2 blocks, the final norm and the head; rebuilt optimiser groups with backbone 1e-5, head 1e-4 and weight decay 0.01; effective batch 16 by accumulation; at most 6 to 10 epochs; warm-up then cosine decay; non-zero-gradient and changed/unchanged checksum evidence; one alternative if the budget allows; resume. Everything else below was an implementer's choice recorded for team review. The user reported on 12 November 2026 that the team agreed on this recipe; no individual approval record exists in the repository.",
+    "epochs": "PLAN: 6 to 10. CHOICE: 8, the R1-U2 plan value (reports/r1/ast_probe.json plan.ast_partial_epochs). Always run all 8 and keep the best epoch (patience equals max epochs, so early stopping cannot fire and cut the cosine schedule short).",
+    "batch": "PLAN: effective batch 16. CHOICE: microbatch 8 and accumulation 2, the R1-U2 recommended partial-stage setting; eval microbatch 16.",
+    "schedule": "PLAN: warm-up then cosine. CHOICE: 114 linear warm-up optimiser steps (about 5 percent of the 2,272 steps: 284 per epoch times 8) then cosine to zero. The shared Trainer advances the scheduler once per optimiser attempt, including fp16 GradScaler-skipped steps (the same convention as the accepted R2-U2 run); skipped steps are counted and reported in the evidence.",
+    "precision": "CHOICE: fp16 autocast with GradScaler, the R1-U2 and R2-U2 setting (T4 has no fast bf16). Scoring uses the same autocast, so a reloaded checkpoint reproduces its saved predictions.",
+    "alternative": "PLAN: one alternative only if the budget allows. CHOICE: lower_backbone_lr, backbone 3e-6 with the head unchanged. A conservative variant for a 90-million-parameter backbone adapted on 4,530 recordings. Measured throughput (R1-U2: 36 clips/s partial training, 49 clips/s evaluation) puts one run at about 45 minutes, so both fit one Colab session.",
+    "class_strategy": "CHOICE: natural composition (1,510 genuine and 3,020 TTS recordings), no rebalancing, as in R2-U2.",
+    "scope": "One seeded 4-second crop per training recording per epoch. Selection validation only is read during training; calibration and operating audio is first scored by the export after the selection is frozen. No test and no Chatterbox audio.",
+    "selection": "CONTRACT: epochs and experiments are chosen on selection-role recording macro F1 at fixed 0.5. Ties: earliest epoch, then baseline.",
+    "epoch0": "Before training, the loaded warm-up is evaluated on the selection role (epoch 0). Its macro F1 must reproduce the R2-U2 value within warmup_epoch0_tolerance, which proves the right weights were loaded under the right preprocessing. Its predictions are the paired comparison for the adapted model.",
+    "seed": "CHOICE: 42. Single seed: the difference between the two experiments, and between warm-up and adapted, may be within seed noise and the report must say so.",
+    "unseen_generator": "Selection macro F1 is computed over all selection recordings (known generators and XTTS). Report the unseen-XTTS panel beside it; the frozen warm-up misses about half of XTTS at 0.5."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "best_checkpoint": "/content/drive/MyDrive/Colab_R2_U1_Workspace/runs/r2/r2_u2_ast_b_baseline_v1/best.pt",
+  "best_epoch": 2,
+  "best_macro_f1": 0.791368914146525,
+  "config_hash": "00ff445026f51112869d516076e55e844ddd8b712c219788ae916d16498a33e5",
+  "epochs_run": 2,
+  "latest_checkpoint": "/content/drive/MyDrive/Colab_R2_U1_Workspace/runs/r2/r2_u2_ast_b_baseline_v1/latest.pt",
+  "run_dir": "/content/drive/MyDrive/Colab_R2_U1_Workspace/runs/r2/r2_u2_ast_b_baseline_v1",
+  "stop_reason": "max_epochs"
+}

@@ -48,8 +48,17 @@ def verify_ledger(root, contract):
         require(rows == [contract['row']], 'Missing, duplicate or changed ledger row: ' + relative)
 
 
+# Manifest entries deliberately NOT identity-checked by this verifier. Each is named here,
+# reported in the output as waived, and the manifest itself is not changed.
+# docs/r2_u2_acceptance.md: the manifest binds an earlier version of the guide that no
+# committed or archived copy reproduces (checked across all 27 commits and all git
+# objects). The waiver is by the project owner's instruction. It does not validate that file.
+WAIVED_FILES = ('docs/r2_u2_acceptance.md',)
+
+
 def verify(root, manifest):
-    verify_files(root, manifest['files'])
+    waived = [name for name in WAIVED_FILES if name in manifest['files']]
+    verify_files(root, {name: identity for name, identity in manifest['files'].items() if name not in WAIVED_FILES})
     verify_ledger(root, manifest['ledger'])
     result = json.loads(checked_path(root, manifest['result']).read_text())
     require(result['experimental_checks_passed'] is True and result['research_accepted'] is False,
@@ -57,7 +66,8 @@ def verify(root, manifest):
     require(result['summary']['best_epoch'] == 2, 'Unexpected selected epoch')
     return {'status': 'artifact_identity_verified_recipient_load_pending',
             'manifest_sha256': sha(Path(__file__).with_name('manifest.json')),
-            'verified_files': len(manifest['files']), 'run_id': manifest['run_id'],
+            'verified_files': len(manifest['files']) - len(waived), 'waived_files': waived,
+            'run_id': manifest['run_id'],
             'checkpoint_sha256': manifest['files'][manifest['initializer']]['sha256'],
             'recipient_model_load_verified': False, 'recipient_access_verified': False,
             'note': 'Local readability does not establish another teammate\'s Drive permission.'}
