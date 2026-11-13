@@ -1,0 +1,3 @@
+run_id,created_utc,scope,calibration_groups,operating_groups,selected_method,status,evidence
+initial,2026-11-13T14:13:29.088097+00:00,experimental_only,12,13,platt,complete,runs/initial/evidence.json
+colab_20261113T142522Z,2026-11-13T14:25:56.047349+00:00,experimental_only,12,13,platt,complete,runs/colab_20261113T142522Z/evidence.json

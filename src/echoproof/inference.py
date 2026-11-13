@@ -97,6 +97,14 @@ def load_lr_bundle(bundle_path: str | Path, threshold: float | None = None) -> L
         from echoproof.bundle import load_bundle
         validated = load_bundle(path)
 
+        if validated.raw_metadata.get('extra', {}).get('stage') == 'r3_n1_lr_development' and "calibration/lr_calibration.json" not in validated.components:
+            raise ContractError("R3-N1 LR bundle is missing its recording score rule")
+        if "calibration/lr_calibration.json" in validated.components:
+            if threshold is not None:
+                raise ContractError("threshold override is unavailable for an R3-N1 LR bundle")
+            from echoproof.models.r3_n1_lr_bundle import load_calibrated_lr_bundle
+            return load_calibrated_lr_bundle(path)
+
         if validated.spec.preprocessing_hash != PREPROCESSING_HASH:
             raise ContractError(
                 f"Bundle preprocessing hash mismatch: bundle has {validated.spec.preprocessing_hash}, "

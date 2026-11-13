@@ -1,0 +1,30 @@
+{
+  "task": "R3-N1-LR",
+  "status": "contract_defined_not_executed",
+  "protocol": "B",
+  "owner": "Muneeb",
+  "reviewer": "Usman",
+  "bundle": "runs/r3/r3_m2_adapters_verified_v3/lr",
+  "bundle_sha256": "bbf7983794fe0ce4f0e59231b77c31442c9c8dfd2bc88ce49a03a30216cd440d",
+  "reference_evidence": "runs/r2/r2_m1_20261106T140611Z/evidence.json",
+  "reference_evidence_sha256": "04151701703f65a1fce3cfb1f849bd0fd024dad5fb4dba6627e00259368561ae",
+  "model_components_sha256": {
+    "weights.npz": "5a8e97c7356825f3d29e317f80fc0d053b61c44461556100dab1844f859ac4d3",
+    "lr_model.json": "784157878efdd8b647f25bd8f0db243e407a04822a316980093beeecc9907016"
+  },
+  "split_sha256": "0854de6b00ae059a858d60f18f95df3f1501f579ea3e2fdefbd8de076e2034d7",
+  "feature_schema_hash": "fce2751a069d5d9b972ab772b1a76adf1a86bc12b13a07502cca171c86d50649",
+  "feature_manifest_sha256": "64bad5f4dfd9b23f78bc0d893400ccd7da377576dd585a546276315776bc6709",
+  "validation_features_sha256": "2ee91836d942677ed7fb32d1ffe350a96ed6844076943345f2e59bfad28792bb",
+  "selection": {"recordings": 2000, "groups": 25, "chunks": 10029, "use": "reference_parity_only"},
+  "calibration": {"recordings": 960, "groups": 12, "chunks": 4712, "use": "temperature_fit_only"},
+  "operating": {"recordings": 1040, "groups": 13, "chunks": 5135, "use": "evaluation_and_threshold_selection"},
+  "aggregation": "mean_chunk_probabilities_per_recording_before_calibration",
+  "calibration_method": "temperature_on_log_odds",
+  "epsilon": 1e-7,
+  "temperature_bounds": [0.01, 50.0],
+  "calibration_acceptance": "operating_log_loss_strictly_improves_and_brier_does_not_worsen; otherwise retain_raw_model_score",
+  "threshold_selection": "operating_macro_f1_then_lower_fpr_then_nearest_0.5_then_smaller_threshold",
+  "output_root": "runs/r3/r3_n1_lr",
+  "restrictions": ["no_model_retraining", "no_test_data", "no_protocol_A_or_chatterbox", "no_existing_lock_or_bundle_changes", "no_automatic_official_promotion"]
+}

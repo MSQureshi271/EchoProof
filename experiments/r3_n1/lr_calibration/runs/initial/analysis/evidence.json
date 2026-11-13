@@ -1,0 +1,90 @@
+{
+  "source_evidence_sha256": "8031f377adc63f33604ac504ee2458e8abdc498175cfe8269ad2df9a8a608557",
+  "source_temperature_sha256": "274e89aec822ad9302d9b4ef55efb344fc2e8eff74df42326d17b7f3c95abd14",
+  "analysis_script_sha256": "73e834a0693ea3c5d5d0cd2f6600b7f049bb1fd2caf1c0115e46214a405a5d1b",
+  "thresholds": [
+    {
+      "method": "raw",
+      "rule": "fixed_0.5",
+      "threshold": 0.5,
+      "macro_f1": 0.7390438566909154,
+      "fpr": 0.04230769230769231,
+      "tts_recall": 0.6935897435897436,
+      "tp": 541,
+      "fp": 11,
+      "tn": 249,
+      "fn": 239
+    },
+    {
+      "method": "raw",
+      "rule": "operating_selected",
+      "threshold": 0.2585670770930178,
+      "macro_f1": 0.762483711057673,
+      "fpr": 0.22692307692307692,
+      "tts_recall": 0.8141025641025641,
+      "tp": 635,
+      "fp": 59,
+      "tn": 201,
+      "fn": 145
+    },
+    {
+      "method": "temperature",
+      "rule": "fixed_0.5",
+      "threshold": 0.5,
+      "macro_f1": 0.7390438566909154,
+      "fpr": 0.04230769230769231,
+      "tts_recall": 0.6935897435897436,
+      "tp": 541,
+      "fp": 11,
+      "tn": 249,
+      "fn": 239
+    },
+    {
+      "method": "temperature",
+      "rule": "operating_selected",
+      "threshold": 0.3710942196175938,
+      "macro_f1": 0.762483711057673,
+      "fpr": 0.22692307692307692,
+      "tts_recall": 0.8141025641025641,
+      "tp": 635,
+      "fp": 59,
+      "tn": 201,
+      "fn": 145
+    },
+    {
+      "method": "platt",
+      "rule": "fixed_0.5",
+      "threshold": 0.5,
+      "macro_f1": 0.6584467744801848,
+      "fpr": 0.6269230769230769,
+      "tts_recall": 0.9128205128205128,
+      "tp": 712,
+      "fp": 163,
+      "tn": 97,
+      "fn": 68
+    },
+    {
+      "method": "platt",
+      "rule": "operating_selected",
+      "threshold": 0.6461303494270602,
+      "macro_f1": 0.762483711057673,
+      "fpr": 0.22692307692307692,
+      "tts_recall": 0.8141025641025641,
+      "tp": 635,
+      "fp": 59,
+      "tn": 201,
+      "fn": 145
+    }
+  ],
+  "ece": {
+    "raw": 0.20350587220393154,
+    "temperature": 0.21148145617882722,
+    "platt": 0.09357386106325394
+  },
+  "limitations": "Operating thresholds are selected and evaluated on the same previously inspected role; exploratory only.",
+  "outputs": {
+    "operating_reliability.svg": "5348c84c33ffe4f5fb0d074313066f22e8abdad4d5f37bceecb1386c72ee06e8",
+    "reliability_bins.csv": "9f12bf1b248b4aa677eaf0b1a2ec35754cb0c2e61d8e01ef6e1810805551ebf6",
+    "threshold_comparison.csv": "884b4cdfad1bdab0c470cee77299d4a5824a14b025535e0c88f460e44e9dd7d0"
+  }
+}

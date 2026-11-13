@@ -1,0 +1,260 @@
+{
+  "created_utc": "2026-11-13T14:25:56.047349+00:00",
+  "status": "complete",
+  "experimental_only": true,
+  "source_export_evidence_sha256": "41e4fb1777a27640bee73e10fec2d13d413d7d12a6a988db726f90c0b3e8aeab",
+  "source_calibration_sha256": "770eb72938178dfb90ea2099807756934dbb168055da374f471d71ef21ec397d",
+  "source_operating_sha256": "a41ad477fca4121a320dd2719a8ca254cf9abf95913133bc52377d34a00acb17",
+  "script_sha256": "f525926d3768718a354c7e8117fd189bf330611d4fbe08b5861fe042dee5b4c8",
+  "plan_sha256": "a08b3f7a59b60e4f1849e2982036156f384c66b703b1dc89e5fcf458c5daaea4",
+  "cv": {
+    "raw": {
+      "log_loss": 0.6216438451892032,
+      "brier": 0.19412920070936962
+    },
+    "temperature": {
+      "log_loss": 0.5555485733253652,
+      "brier": 0.1856405942397915
+    },
+    "platt": {
+      "log_loss": 0.44842479802081103,
+      "brier": 0.1519456495404122
+    }
+  },
+  "speaker_folds": [
+    {
+      "speaker": "speaker:1363",
+      "method": "raw",
+      "log_loss": 0.6238395395894372,
+      "brier": 0.19499206511183612
+    },
+    {
+      "speaker": "speaker:1363",
+      "method": "temperature",
+      "log_loss": 0.5573106521142238,
+      "brier": 0.1871824388822439
+    },
+    {
+      "speaker": "speaker:1363",
+      "method": "platt",
+      "log_loss": 0.43487187740534383,
+      "brier": 0.1480912575092314
+    },
+    {
+      "speaker": "speaker:1624",
+      "method": "raw",
+      "log_loss": 0.7138219155272691,
+      "brier": 0.22979197356330644
+    },
+    {
+      "speaker": "speaker:1624",
+      "method": "temperature",
+      "log_loss": 0.6041917058082388,
+      "brier": 0.20811877440845947
+    },
+    {
+      "speaker": "speaker:1624",
+      "method": "platt",
+      "log_loss": 0.5390644679822726,
+      "brier": 0.18933088025057887
+    },
+    {
+      "speaker": "speaker:1992",
+      "method": "raw",
+      "log_loss": 0.5981232261969215,
+      "brier": 0.17574233647040308
+    },
+    {
+      "speaker": "speaker:1992",
+      "method": "temperature",
+      "log_loss": 0.5312135323976859,
+      "brier": 0.17125116824687703
+    },
+    {
+      "speaker": "speaker:1992",
+      "method": "platt",
+      "log_loss": 0.395749628233864,
+      "brier": 0.1276331485492727
+    },
+    {
+      "speaker": "speaker:2092",
+      "method": "raw",
+      "log_loss": 0.6262263209313755,
+      "brier": 0.2030373980124854
+    },
+    {
+      "speaker": "speaker:2092",
+      "method": "temperature",
+      "log_loss": 0.5781802397566702,
+      "brier": 0.19693888907233076
+    },
+    {
+      "speaker": "speaker:2092",
+      "method": "platt",
+      "log_loss": 0.4878121109915735,
+      "brier": 0.17242903050823105
+    },
+    {
+      "speaker": "speaker:32",
+      "method": "raw",
+      "log_loss": 0.5485178324641934,
+      "brier": 0.16495521243324524
+    },
+    {
+      "speaker": "speaker:32",
+      "method": "temperature",
+      "log_loss": 0.5061571944994168,
+      "brier": 0.16323619692341937
+    },
+    {
+      "speaker": "speaker:32",
+      "method": "platt",
+      "log_loss": 0.3812532219527836,
+      "brier": 0.12302780530849819
+    },
+    {
+      "speaker": "speaker:4051",
+      "method": "raw",
+      "log_loss": 0.6750290466674043,
+      "brier": 0.21228924349365882
+    },
+    {
+      "speaker": "speaker:4051",
+      "method": "temperature",
+      "log_loss": 0.5930476282847137,
+      "brier": 0.2017537865785366
+    },
+    {
+      "speaker": "speaker:4051",
+      "method": "platt",
+      "log_loss": 0.5257320415604807,
+      "brier": 0.18773953884124697
+    },
+    {
+      "speaker": "speaker:4898",
+      "method": "raw",
+      "log_loss": 0.767154391269534,
+      "brier": 0.2616348990381418
+    },
+    {
+      "speaker": "speaker:4898",
+      "method": "temperature",
+      "log_loss": 0.646310615080883,
+      "brier": 0.22972253577155616
+    },
+    {
+      "speaker": "speaker:4898",
+      "method": "platt",
+      "log_loss": 0.5858445806621544,
+      "brier": 0.2090025675702166
+    },
+    {
+      "speaker": "speaker:5322",
+      "method": "raw",
+      "log_loss": 0.5302383844207921,
+      "brier": 0.16812824438202267
+    },
+    {
+      "speaker": "speaker:5322",
+      "method": "temperature",
+      "log_loss": 0.5208015620655925,
+      "brier": 0.1709433384523112
+    },
+    {
+      "speaker": "speaker:5322",
+      "method": "platt",
+      "log_loss": 0.411880243656356,
+      "brier": 0.1366622763065489
+    },
+    {
+      "speaker": "speaker:587",
+      "method": "raw",
+      "log_loss": 0.7375828086020683,
+      "brier": 0.2297285435624735
+    },
+    {
+      "speaker": "speaker:587",
+      "method": "temperature",
+      "log_loss": 0.6361308401998496,
+      "brier": 0.2173711884966223
+    },
+    {
+      "speaker": "speaker:587",
+      "method": "platt",
+      "log_loss": 0.5550703611951858,
+      "brier": 0.19790634746124286
+    },
+    {
+      "speaker": "speaker:6081",
+      "method": "raw",
+      "log_loss": 0.5308224211806944,
+      "brier": 0.1471513350923596
+    },
+    {
+      "speaker": "speaker:6081",
+      "method": "temperature",
+      "log_loss": 0.5001251717033839,
+      "brier": 0.15670602252924964
+    },
+    {
+      "speaker": "speaker:6081",
+      "method": "platt",
+      "log_loss": 0.33613342941693275,
+      "brier": 0.10044088153695645
+    },
+    {
+      "speaker": "speaker:6437",
+      "method": "raw",
+      "log_loss": 0.4974394544992139,
+      "brier": 0.16079657270066158
+    },
+    {
+      "speaker": "speaker:6437",
+      "method": "temperature",
+      "log_loss": 0.44985110883693935,
+      "brier": 0.14576533677881695
+    },
+    {
+      "speaker": "speaker:6437",
+      "method": "platt",
+      "log_loss": 0.27726656276606104,
+      "brier": 0.07599387321745239
+    },
+    {
+      "speaker": "speaker:7780",
+      "method": "raw",
+      "log_loss": 0.6109308009215366,
+      "brier": 0.1813025846518411
+    },
+    {
+      "speaker": "speaker:7780",
+      "method": "temperature",
+      "log_loss": 0.5432626291567846,
+      "brier": 0.17869745473707466
+    },
+    {
+      "speaker": "speaker:7780",
+      "method": "platt",
+      "log_loss": 0.45041905042672414,
+      "brier": 0.15509018742546987
+    }
+  ],
+  "chosen_method": "platt",
+  "fit_parameters": {
+    "slope": 0.5432289735854124,
+    "intercept": 1.1743260866556007
+  },
+  "operating_raw": {
+    "log_loss": 0.5925368338694668,
+    "brier": 0.1770820120170539
+  },
+  "operating_selected": {
+    "log_loss": 0.40185636860739216,
+    "brier": 0.13313508046871447
+  },
+  "warning": "Operating role previously inspected; results are exploratory, not independent test performance.",
+  "outputs": {
+    "calibration_oof.csv": "f2d718222eb5a5f9ab1fb47ee3a46477ee7ce75d2aee50705f7f3352aa218d7f",
+    "operating_predictions.csv": "38d42947eae8c6c85f1f50216bc6cb502f4c46d7fd5e70eac77042bb4237c0b3"
+  }
+}

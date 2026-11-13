@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="560" viewBox="0 0 650 560">
+<rect width="650" height="560" fill="white"/>
+<text x="70" y="25" font-family="sans-serif" font-size="18">Operating reliability (10 equal-width bins)</text>
+<path d="M 70 470 L 470 470 L 470 70" fill="none" stroke="black"/>
+<path d="M 70 470 L 470 70" stroke="#777" stroke-dasharray="5 5"/>
+<polyline fill="none" stroke="#c2410c" stroke-width="2" points="86.78,306.59 131.59,310.00 166.76,250.00 205.90,213.28 248.60,200.77 289.77,134.86 332.75,107.21 370.78,77.02 412.67,70.00 452.72,70.00"/>
+<circle cx="86.78" cy="306.59" r="3" fill="#c2410c"/>
+<circle cx="131.59" cy="310.00" r="3" fill="#c2410c"/>
+<circle cx="166.76" cy="250.00" r="3" fill="#c2410c"/>
+<circle cx="205.90" cy="213.28" r="3" fill="#c2410c"/>
+<circle cx="248.60" cy="200.77" r="3" fill="#c2410c"/>
+<circle cx="289.77" cy="134.86" r="3" fill="#c2410c"/>
+<circle cx="332.75" cy="107.21" r="3" fill="#c2410c"/>
+<circle cx="370.78" cy="77.02" r="3" fill="#c2410c"/>
+<circle cx="412.67" cy="70.00" r="3" fill="#c2410c"/>
+<circle cx="452.72" cy="70.00" r="3" fill="#c2410c"/>
+<polyline fill="none" stroke="#2563eb" stroke-width="2" points="100.81,237.74 131.26,308.10 171.93,333.06 208.11,268.71 248.67,204.58 290.47,118.65 330.75,77.84 371.32,70.00 407.08,70.00 447.40,70.00"/>
+<circle cx="100.81" cy="237.74" r="3" fill="#2563eb"/>
+<circle cx="131.26" cy="308.10" r="3" fill="#2563eb"/>
+<circle cx="171.93" cy="333.06" r="3" fill="#2563eb"/>
+<circle cx="208.11" cy="268.71" r="3" fill="#2563eb"/>
+<circle cx="248.67" cy="204.58" r="3" fill="#2563eb"/>
+<circle cx="290.47" cy="118.65" r="3" fill="#2563eb"/>
+<circle cx="330.75" cy="77.84" r="3" fill="#2563eb"/>
+<circle cx="371.32" cy="70.00" r="3" fill="#2563eb"/>
+<circle cx="407.08" cy="70.00" r="3" fill="#2563eb"/>
+<circle cx="447.40" cy="70.00" r="3" fill="#2563eb"/>
+<polyline fill="none" stroke="#15803d" stroke-width="2" points="105.94,270.00 139.85,245.00 169.25,282.50 210.50,298.57 250.86,343.68 293.20,314.07 329.54,243.64 369.13,177.14 414.05,81.63 447.97,70.00"/>
+<circle cx="105.94" cy="270.00" r="3" fill="#15803d"/>
+<circle cx="139.85" cy="245.00" r="3" fill="#15803d"/>
+<circle cx="169.25" cy="282.50" r="3" fill="#15803d"/>
+<circle cx="210.50" cy="298.57" r="3" fill="#15803d"/>
+<circle cx="250.86" cy="343.68" r="3" fill="#15803d"/>
+<circle cx="293.20" cy="314.07" r="3" fill="#15803d"/>
+<circle cx="329.54" cy="243.64" r="3" fill="#15803d"/>
+<circle cx="369.13" cy="177.14" r="3" fill="#15803d"/>
+<circle cx="414.05" cy="81.63" r="3" fill="#15803d"/>
+<circle cx="447.97" cy="70.00" r="3" fill="#15803d"/>
+<text x="490" y="100" fill="#c2410c" font-family="sans-serif">raw</text>
+<text x="490" y="125" fill="#2563eb" font-family="sans-serif">temperature</text>
+<text x="490" y="150" fill="#15803d" font-family="sans-serif">platt</text>
+<text x="200" y="515" font-family="sans-serif">Mean predicted TTS probability</text>
+<text transform="translate(20 420) rotate(-90)" font-family="sans-serif">Observed TTS fraction</text>
+<text x="65" y="490" font-family="sans-serif">0</text><text x="460" y="490" font-family="sans-serif">1</text>
+<text x="50" y="475" font-family="sans-serif">0</text><text x="50" y="75" font-family="sans-serif">1</text>
+</svg>
