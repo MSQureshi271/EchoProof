@@ -1,0 +1,36 @@
+{
+  "task": "R3-N1 Phase 1",
+  "run_id": "r3_n1_calibration_20261112T080719Z",
+  "created_utc": "20261112T080719Z",
+  "status": "phase1_calibration_complete",
+  "source_file": {
+    "path": "runs/r3/r3_m1_20261107T144037Z/predictions_recordings_calibration.parquet",
+    "sha256": "2a1b6aa6b8bcbcca578a047ea321210b755a5de5ff815e1705a7b1d9374d26c3",
+    "bytes": 17468
+  },
+  "output_sha256": {
+    "calibration.json": "e2ea16c9ce4619663d63796fac5540fce9980bda7fbd11e090b4397e8119aa81",
+    "calibration_predictions.parquet": "3397e6062c490e86fa26911de34299815be21f99e026e2dbf4c1bef83c359e9a",
+    "calibration_predictions.csv": "afeae2650e2aae292702e94eae25cfa34842e77a113fad78d516a4f66d1d3706"
+  },
+  "dataset_counts": {
+    "total": 960,
+    "genuine": 240,
+    "tts": 720,
+    "components": {
+      "genuine": 240,
+      "melo": 240,
+      "vits": 240,
+      "xtts": 240
+    }
+  },
+  "fitted_temperature": 1.4927512675328969,
+  "scientific_boundaries": {
+    "validation_role_used": "calibration",
+    "operating_set_accessed": false,
+    "test_partition_accessed": false,
+    "chatterbox_accessed": false,
+    "model_retrained": false,
+    "original_predictions_modified": false
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "task": "R3-N1 Phase 1",
+  "run_id": "r3_n1_calibration_20261112T080719Z",
+  "created_utc": "20261112T080719Z",
+  "source_prediction_path": "runs/r3/r3_m1_20261107T144037Z/predictions_recordings_calibration.parquet",
+  "source_prediction_sha256": "2a1b6aa6b8bcbcca578a047ea321210b755a5de5ff815e1705a7b1d9374d26c3",
+  "model_architecture": "BiGRU",
+  "protocol": "B",
+  "validation_role": "calibration",
+  "fitted_temperature": 1.4927512675328969,
+  "baseline_temperature": 1.0,
+  "calibration_dataset": {
+    "total_recordings": 960,
+    "class_distribution": {
+      "genuine_0": 240,
+      "tts_1": 720
+    },
+    "component_distribution": {
+      "genuine": 240,
+      "melo": 240,
+      "vits": 240,
+      "xtts": 240
+    }
+  },
+  "optimization_metrics": {
+    "raw_calibration_log_loss": 0.2540992894838342,
+    "calibrated_calibration_log_loss": 0.24054771628362445,
+    "log_loss_reduction": 0.013551573200209749,
+    "percent_improvement": 5.333180280723257,
+    "epsilon": 1e-07,
+    "optimization_bounds": [
+      0.01,
+      50.0
+    ],
+    "optimization_method": "bounded_minimize_scalar"
+  },
+  "score_statistics": {
+    "raw_score": {
+      "count": 960,
+      "min": 1.884607314650566e-07,
+      "max": 0.9999975363413492,
+      "mean": 0.6857233622873672,
+      "std": 0.39459615694587064,
+      "p25": 0.31233984120190145,
+      "median": 0.9741858422756196,
+      "p75": 0.9997590929269791
+    },
+    "calibrated_score": {
+      "count": 960,
+      "min": 3.126297072014145e-05,
+      "max": 0.9998250869219988,
+      "mean": 0.6833826301301744,
+      "std": 0.3730007828308885,
+      "p25": 0.3708197857155828,
+      "median": 0.9192712064848925,
+      "p75": 0.9962449339037694
+    }
+  },
+  "component_diagnostics": [
+    {
+      "component": "genuine",
+      "label": 0,
+      "count": 240,
+      "raw_mean": 0.14577070654070579,
+      "cal_mean": 0.17449049557505952,
+      "raw_bce": 0.2619697921864805,
+      "cal_bce": 0.26337885529909294
+    },
+    {
+      "component": "melo",
+      "label": 1,
+      "count": 240,
+      "raw_mean": 0.9990249401295469,
+      "cal_mean": 0.9940867781708278,
+      "raw_bce": 0.0009870026764317453,
+      "cal_bce": 0.006016822380092152
+    },
+    {
+      "component": "vits",
+      "label": 1,
+      "count": 240,
+      "raw_mean": 0.9876670495028332,
+      "cal_mean": 0.9762943618148547,
+      "raw_bce": 0.01551423413949758,
+      "cal_bce": 0.027422776692240365
+    },
+    {
+      "component": "xtts",
+      "label": 1,
+      "count": 240,
+      "raw_mean": 0.6104307529763828,
+      "cal_mean": 0.588658884959956,
+      "raw_bce": 0.7379261289329271,
+      "cal_bce": 0.6653724107630724
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "task": "R3-N1 Stage 1 Nested CV",
+  "run_id": "r3_n1_nested_calibration_20261112T120607Z",
+  "created_utc": "20261112T120607Z",
+  "status": "nested_grouped_calibration_complete",
+  "source_file": {
+    "path": "runs\\r3\\r3_m1_20261107T144037Z\\predictions_recordings_calibration.parquet",
+    "sha256": "2a1b6aa6b8bcbcca578a047ea321210b755a5de5ff815e1705a7b1d9374d26c3",
+    "bytes": 17468
+  },
+  "output_sha256": {
+    "nested_cv_results.json": "42e697aa155e860762dece642e5a5b342d8cd8bceaaceb29956d164e14a1d5d8",
+    "nested_oof_predictions.parquet": "9fedfd88a6b6dc00a0817416aabca1a888e524841722daaca250282eebd422c1",
+    "nested_oof_predictions.csv": "1081881dc69083e056fbce0bcd6121fa4c1d6c6c9a15aa8366027f46df08ae96",
+    "nested_reliability_data.csv": "567bd11311941689fc0b643745ebdae0992d7b2ebdf65dd71d627032dce73d8e",
+    "plots/nested_oof_reliability_comparison.png": "b96a5880884d1fcd5ad4b5a1ba0db8036523c661fac80413b24487fc3ebd8a6b",
+    "plots/outer_fold_loss_comparison.png": "7341e850b8e60b62d263c437759ebf2e1c593f9437a3fc767f90c2577063a758",
+    "plots/inner_cv_selection_curves.png": "a16460b3a7a11bf702765c45ad9bdc33ae07ca5f6729657de5621d7eb0ce0016",
+    "plots/reliability_temperature.png": "7850f8511b74d474d792fb5ad8d42d21db6233fe4833b3b42cf2694a5143a649",
+    "plots/reliability_platt.png": "345a4289fa9a12c1cea50e91232877f2f327c09e77cc2c7c9424c03061de71bc",
+    "plots/reliability_isotonic.png": "1cc1c0ce9f5749ae08755a5878a18c78decfe4bee20740a1420cdc22251f0e3e",
+    "plots/reliability_regularized_isotonic.png": "d2be1f793a79322e37ffb1e3d5f29cd2c29f5937a6a90fe01c739ec4e791d307",
+    "plots/reliability_smoothed_isotonic.png": "ca1d908df40a4259cb583e2da035fc1bca3a76905e497de18b61e88892a273b2"
+  },
+  "dataset_counts": {
+    "total": 960,
+    "genuine": 240,
+    "tts": 720,
+    "components": {
+      "genuine": 240,
+      "melo": 240,
+      "vits": 240,
+      "xtts": 240
+    },
+    "speaker_groups": 12
+  },
+  "outer_cv": {
+    "splits": 4,
+    "group_variable": "group_id",
+    "held_out_groups_per_fold": 3,
+    "held_out_recordings_per_fold": 240
+  },
+  "inner_cv": {
+    "splits": 3,
+    "group_variable": "group_id",
+    "held_out_groups_per_fold": 3,
+    "held_out_recordings_per_fold": 240
+  },
+  "per_fold_selected_hyperparameters": [
+    {
+      "fold": 1,
+      "lambda": 0.4,
+      "K": 5
+    },
+    {
+      "fold": 2,
+      "lambda": 0.4,
+      "K": 10
+    },
+    {
+      "fold": 3,
+      "lambda": 0.5,
+      "K": 20
+    },
+    {
+      "fold": 4,
+      "lambda": 0.3,
+      "K": 10
+    }
+  ],
+  "scientific_boundaries": {
+    "validation_role_used": "calibration",
+    "operating_set_accessed": false,
+    "test_partition_accessed": false,
+    "chatterbox_accessed": false,
+    "model_retrained": false,
+    "original_predictions_modified": false,
+    "nested_speaker_grouped_cv": true,
+    "zero_outer_fold_leakage": true
+  }
+}

@@ -1,0 +1,280 @@
+{
+  "task": "R3-N1 Stage 1 Nested Grouped Cross-Validation",
+  "run_id": "r3_n1_nested_calibration_20261112T120607Z",
+  "created_utc": "20261112T120607Z",
+  "source_prediction_path": "runs\\r3\\r3_m1_20261107T144037Z\\predictions_recordings_calibration.parquet",
+  "source_prediction_sha256": "2a1b6aa6b8bcbcca578a047ea321210b755a5de5ff815e1705a7b1d9374d26c3",
+  "model_architecture": "BiGRU",
+  "protocol": "B",
+  "dataset": {
+    "role": "calibration",
+    "total_recordings": 960,
+    "class_counts": {
+      "genuine_0": 240,
+      "tts_1": 720
+    },
+    "component_counts": {
+      "genuine": 240,
+      "melo": 240,
+      "vits": 240,
+      "xtts": 240
+    },
+    "speaker_groups_count": 12
+  },
+  "nested_cv_structure": {
+    "outer_cv": "GroupKFold(n_splits=4, grouped by group_id)",
+    "inner_cv": "GroupKFold(n_splits=3, grouped by group_id)",
+    "outer_folds_count": 4,
+    "inner_folds_count": 3,
+    "outer_fold_records": [
+      {
+        "outer_fold": 1,
+        "val_groups": [
+          "speaker:2092",
+          "speaker:5322",
+          "speaker:7780"
+        ],
+        "selected_lambda": 0.4,
+        "selected_k": 5,
+        "fitted_T": 1.517486869651481,
+        "fitted_platt_a": 0.7180879879022519,
+        "fitted_platt_b": 1.0793166501229672,
+        "raw_loss": 0.27333114336003794,
+        "temperature_loss": 0.2632191801759712,
+        "platt_loss": 0.2605748172681141,
+        "isotonic_loss": 0.2668131908188243,
+        "reg_isotonic_loss": 0.25070135556479367,
+        "smoothed_isotonic_loss": 0.2774476842488056
+      },
+      {
+        "outer_fold": 2,
+        "val_groups": [
+          "speaker:1992",
+          "speaker:4898",
+          "speaker:6437"
+        ],
+        "selected_lambda": 0.4,
+        "selected_k": 10,
+        "fitted_T": 1.4511531658133348,
+        "fitted_platt_a": 0.7089969686058184,
+        "fitted_platt_b": 0.6660582309012494,
+        "raw_loss": 0.2316259858203673,
+        "temperature_loss": 0.21266946166615827,
+        "platt_loss": 0.15390714083740537,
+        "isotonic_loss": 0.15899461270086832,
+        "reg_isotonic_loss": 0.17806764768268835,
+        "smoothed_isotonic_loss": 0.14857628950861698
+      },
+      {
+        "outer_fold": 3,
+        "val_groups": [
+          "speaker:1624",
+          "speaker:4051",
+          "speaker:6081"
+        ],
+        "selected_lambda": 0.5,
+        "selected_k": 20,
+        "fitted_T": 1.6474498937118527,
+        "fitted_platt_a": 0.6337458542136657,
+        "fitted_platt_b": 0.8946426783975454,
+        "raw_loss": 0.19126751228308192,
+        "temperature_loss": 0.2109116230540376,
+        "platt_loss": 0.18129662488513726,
+        "isotonic_loss": 0.16998344902919052,
+        "reg_isotonic_loss": 0.18540323505174758,
+        "smoothed_isotonic_loss": 0.1653659084162013
+      },
+      {
+        "outer_fold": 4,
+        "val_groups": [
+          "speaker:1363",
+          "speaker:32",
+          "speaker:587"
+        ],
+        "selected_lambda": 0.3,
+        "selected_k": 10,
+        "fitted_T": 1.3348911021574057,
+        "fitted_platt_a": 0.8805782065429713,
+        "fitted_platt_b": 1.1555623506304822,
+        "raw_loss": 0.32017251647184974,
+        "temperature_loss": 0.28886938655926714,
+        "platt_loss": 0.29967891336371777,
+        "isotonic_loss": 0.4061310676501742,
+        "reg_isotonic_loss": 0.298243579278471,
+        "smoothed_isotonic_loss": 0.3652711306829423
+      }
+    ]
+  },
+  "pooled_nested_oof_metrics": [
+    {
+      "Method": "Baseline (Raw Uncalibrated)",
+      "OOF Log Loss": 0.2540992894838342,
+      "OOF Brier Score": 0.07719909147638913,
+      "Equal-Width ECE": 0.06536305655326295,
+      "Equal-Width Valid Bins": "10/10",
+      "Equal-Mass ECE": 0.06925724138565019,
+      "Equal-Mass Valid Bins": "10/10",
+      "Monotonic Non-Decreasing": true
+    },
+    {
+      "Method": "1. Scalar Temperature Scaling",
+      "OOF Log Loss": 0.24391741286385857,
+      "OOF Brier Score": 0.07705660053103199,
+      "Equal-Width ECE": 0.06635622110202079,
+      "Equal-Width Valid Bins": "10/10",
+      "Equal-Mass ECE": 0.06689019957315646,
+      "Equal-Mass Valid Bins": "10/10",
+      "Monotonic Non-Decreasing": false
+    },
+    {
+      "Method": "2. Platt Scaling",
+      "OOF Log Loss": 0.2238643740885936,
+      "OOF Brier Score": 0.06860536568615465,
+      "Equal-Width ECE": 0.02105614588372582,
+      "Equal-Width Valid Bins": "10/10",
+      "Equal-Mass ECE": 0.018681646884255027,
+      "Equal-Mass Valid Bins": "10/10",
+      "Monotonic Non-Decreasing": false
+    },
+    {
+      "Method": "3. Standard Isotonic Regression",
+      "OOF Log Loss": 0.2504805800497643,
+      "OOF Brier Score": 0.06920669995115994,
+      "Equal-Width ECE": 0.02563020788221959,
+      "Equal-Width Valid Bins": "10/10",
+      "Equal-Mass ECE": 0.023175268038576707,
+      "Equal-Mass Valid Bins": "6/10",
+      "Monotonic Non-Decreasing": false
+    },
+    {
+      "Method": "4. Regularized Isotonic Regression",
+      "OOF Log Loss": 0.22810395439442513,
+      "OOF Brier Score": 0.0696117175588505,
+      "Equal-Width ECE": 0.03612365722681083,
+      "Equal-Width Valid Bins": "10/10",
+      "Equal-Mass ECE": 0.028838144296121464,
+      "Equal-Mass Valid Bins": "10/10",
+      "Monotonic Non-Decreasing": false
+    },
+    {
+      "Method": "5. Smoothed Isotonic Regression",
+      "OOF Log Loss": 0.2391652532141415,
+      "OOF Brier Score": 0.06611839626970248,
+      "Equal-Width ECE": 0.022213770620250387,
+      "Equal-Width Valid Bins": "10/10",
+      "Equal-Mass ECE": 0.01824419878590816,
+      "Equal-Mass Valid Bins": "7/10",
+      "Monotonic Non-Decreasing": false
+    }
+  ],
+  "outer_fold_summary_stats": [
+    {
+      "Method": "Raw",
+      "Mean Outer Log Loss": 0.2540992894838342,
+      "Std Outer Log Loss": 0.047928115787815105
+    },
+    {
+      "Method": "Temperature",
+      "Mean Outer Log Loss": 0.24391741286385854,
+      "Std Outer Log Loss": 0.03338807712158483
+    },
+    {
+      "Method": "Platt",
+      "Mean Outer Log Loss": 0.22386437408859364,
+      "Std Outer Log Loss": 0.05873995395032597
+    },
+    {
+      "Method": "Isotonic",
+      "Mean Outer Log Loss": 0.2504805800497643,
+      "Std Outer Log Loss": 0.09917572635111585
+    },
+    {
+      "Method": "Reg Isotonic",
+      "Mean Outer Log Loss": 0.22810395439442516,
+      "Std Outer Log Loss": 0.0493892522221747
+    },
+    {
+      "Method": "Smoothed Isotonic",
+      "Mean Outer Log Loss": 0.23916525321414156,
+      "Std Outer Log Loss": 0.08806381279496436
+    }
+  ],
+  "component_oof_diagnostics": [
+    {
+      "component": "genuine",
+      "count": 240,
+      "label": 0,
+      "raw_loss": 0.2619697921864805,
+      "raw_brier": 0.07335460073242416,
+      "temperature_loss": 0.26895056675189005,
+      "temperature_brier": 0.07902301700825305,
+      "platt_loss": 0.49940896527143847,
+      "platt_brier": 0.16254550488769423,
+      "isotonic_loss": 0.5559456902773171,
+      "isotonic_brier": 0.15910394634700645,
+      "regularized_isotonic_loss": 0.3964561905800868,
+      "regularized_isotonic_brier": 0.1246027857835173,
+      "smoothed_isotonic_loss": 0.5358951777821458,
+      "smoothed_isotonic_brier": 0.1493553567297087
+    },
+    {
+      "component": "melo",
+      "count": 240,
+      "label": 1,
+      "raw_loss": 0.0009870026764317453,
+      "raw_brier": 2.3136963279936662e-05,
+      "temperature_loss": 0.006331151192952726,
+      "temperature_brier": 0.0002552494631728235,
+      "platt_loss": 0.0020101584657436925,
+      "platt_brier": 3.941511788245623e-05,
+      "isotonic_loss": 0.0021678143211963353,
+      "isotonic_brier": 6.364190506698677e-05,
+      "regularized_isotonic_loss": 0.003952008423516134,
+      "regularized_isotonic_brier": 0.0001340034177430306,
+      "smoothed_isotonic_loss": 0.0011527367504507182,
+      "smoothed_isotonic_brier": 3.000602041284482e-05
+    },
+    {
+      "component": "vits",
+      "count": 240,
+      "label": 1,
+      "raw_loss": 0.01551423413949758,
+      "raw_brier": 0.003890762228940877,
+      "temperature_loss": 0.02783614956132237,
+      "temperature_brier": 0.005242610908638724,
+      "platt_loss": 0.011887313804075237,
+      "platt_brier": 0.0018276605586251872,
+      "isotonic_loss": 0.011089006934942669,
+      "isotonic_brier": 0.0015575676105568784,
+      "regularized_isotonic_loss": 0.017730412069686053,
+      "regularized_isotonic_brier": 0.0027079655422827787,
+      "smoothed_isotonic_loss": 0.008492540352997074,
+      "smoothed_isotonic_brier": 0.0013496920931703063
+    },
+    {
+      "component": "xtts",
+      "count": 240,
+      "label": 1,
+      "raw_loss": 0.7379261289329271,
+      "raw_brier": 0.23152786598091155,
+      "temperature_loss": 0.6725517839492691,
+      "temperature_brier": 0.2237055247440633,
+      "platt_loss": 0.3821510588131171,
+      "platt_brier": 0.11000888218041668,
+      "isotonic_loss": 0.43271980866560117,
+      "isotonic_brier": 0.11610164394200943,
+      "regularized_isotonic_loss": 0.49427720650441154,
+      "regularized_isotonic_brier": 0.15100211549185893,
+      "smoothed_isotonic_loss": 0.4111205579709725,
+      "smoothed_isotonic_brier": 0.11373853023551807
+    }
+  ],
+  "final_full_calibration_fit": {
+    "temperature_T": 1.4927512675397894,
+    "platt_a": 0.7171585264194611,
+    "platt_b": 0.9236413337333824,
+    "isotonic_thresholds_count": 32,
+    "regularized_isotonic_reference_lambda": 0.4,
+    "smoothed_isotonic_reference_k": 10
+  }
+}
