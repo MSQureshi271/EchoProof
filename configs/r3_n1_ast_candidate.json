@@ -1,0 +1,13 @@
+{
+  "task": "R3-N1 AST-B",
+  "status": "candidate_policy_authorized_by_user_not_team_approved",
+  "authorization": "Muhammad Usman Murtaza authorized this prospective candidate rule in conversation on 2026-11-14, before this fit. Independent review and formal team approval remain pending.",
+  "method": "temperature_on_recording_log_odds",
+  "epsilon": 1e-7,
+  "bounds": [0.01, 50.0],
+  "acceptance": "strictly_lower_operating_log_loss_and_nonworsening_brier",
+  "fallback": "raw_model_score",
+  "threshold": "operating_macro_f1_then_lower_fpr_then_nearest_0.5_then_smaller_threshold",
+  "precision": "fp16_export_reference; CPU_fp32_waveform_parity_pending",
+  "checkpoint_sha256": "f7efe6a547c53a310ed540f10be32fe44b148def168c2f5362cc1d22510f70ec"
+}

@@ -1,0 +1,17 @@
+{
+  "schema": "ast_platt_candidate_policy_v1",
+  "status": "team_authorization_reported_by_user_candidate_not_promoted",
+  "authorization": "Muhammad Usman Murtaza reports team approval to proceed with Platt as the alternative AST R3-N1 method. No independent written teammate approval is asserted.",
+  "deviation": "Alternative to REVISED_PLAN.md temperature-only recipe; earlier temperature rejection and exploratory significance-gate failures remain valid historical results.",
+  "fit_role": "calibration",
+  "evaluation_and_threshold_role": "operating",
+  "method": "sigmoid(a*logit(clip(p,epsilon,1-epsilon))+b)",
+  "epsilon": 1e-7,
+  "slope_lower_bound": 1e-8,
+  "objective": "recording_mean_binary_NLL",
+  "optimizer": "reuse exploratory verified Platt L-BFGS-B, identity init, maxiter=2000, ftol=1e-12, gtol=1e-8",
+  "threshold": "shared select_threshold with contract tie breaks",
+  "checkpoint_sha256": "f7efe6a547c53a310ed540f10be32fe44b148def168c2f5362cc1d22510f70ec",
+  "reference_precision": "fp16",
+  "promotion": "separate recorded approval after integration verification; never automatic"
+}

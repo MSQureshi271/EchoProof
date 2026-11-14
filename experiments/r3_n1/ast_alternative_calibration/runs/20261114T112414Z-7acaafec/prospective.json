@@ -1,0 +1,53 @@
+{
+  "plan": "# AST-B alternative calibrators \u00e2\u20ac\u201d exploratory only\n\nProspective design authorized by the user on 14 November 2026. No changes to the\nofficial R3-N1 recipe, candidate acceptance, checkpoint, threshold, or bundles.\nOperating outcomes have already been examined. Neither operating evaluation nor\npooled cross-validation is independent confirmation; no promotion is authorized.\n\nUse selected baseline epoch 1 from r3_u2_20261112T134049Z. Inputs are raw canonical\nrecording probabilities and labels, grouped by speaker. No audio, model execution,\ntest scores, Protocol A scores, or training are needed.\n\nFixed candidates: raw, existing temperature implementation (bounds .01\u00e2\u20ac\u201c50),\npositive-slope Platt, nonnegative-slope beta, and isotonic. Epsilon is 1e-7.\nPlatt and beta minimize equal-recording-weight binary NLL using analytic gradients,\nL-BFGS-B, identity initialization, maxiter 2000, ftol 1e-12, gtol 1e-8.\nPlatt slope has numerical lower bound 1e-8; beta slopes have lower bound zero.\nNo regularization, tuning, or outcome-driven restarts. Nonconvergence stops the run.\nIsotonic uses PAVA block event frequencies: these are the binary binomial-NLL\nminimizers as well as squared-loss isotonic solutions. sklearn supplies the PAVA\nfit and linear interpolation between fitted knots, constant extrapolation; output\nis clipped to [1e-7,1-1e-7]. Report knot count and number of fitted probability levels.\nAll scores use epsilon clipping for NLL; Brier uses actual returned probabilities.\n\nCV: calibration LOSO (12 deterministic folds, not meaningfully seed-dependent),\ncalibration grouped 4-fold (3 speakers each), pooled grouped 5-fold (5 speakers each),\nseeds 42/43/44. Grouped folds shuffle sorted speaker IDs with numpy default_rng(seed),\nthen array_split. Verify both classes in training and validation, disjoint speakers,\nand exactly one OOF prediction per recording. All methods share the folds.\nPooled data are calibration plus operating only: 25 speakers, 2000 recordings.\n\nMetrics: NLL, Brier, AUROC, ECE with ten fixed equal-width bins and ten equal-count\nbins. Equal-count bins use stable score sorting with recording-ID order as tie-break,\nthen array_split; tied probabilities can straddle bins. Report bin counts and ranges.\nOOF AUROC can change even for strictly monotone methods because folds use different\nmaps. For a single full-fit map ranking is preserved except clipping/numerical ties;\nisotonic can remove partitions by ties. No threshold-optimized OOF claims are made.\n\nUncertainty: paired speaker-cluster percentile bootstrap, 1000 resamples, seed 42,\nsame sampled speakers for all methods within a dataset. Report candidate-minus-raw\nNLL, Brier, both ECE definitions. Recompute ECE per replicate. Fits/OOF predictions\nare fixed: this does not capture refitting uncertainty, overlapping-CV dependence,\nor multiple-comparison correction. Three CV seeds are not independent experiments.\n\nFit every candidate on all calibration data, evaluate operating once; no model\nselection. Report fixed saved threshold and separate shared operating-threshold\nsearch, fixed before these results. The latter is post-hoc exploratory, not a new\nofficial threshold. Report current candidate rule (strict NLL improvement AND\nnonworsening Brier) without accepting anything. Include per-speaker loss changes\nand leave-one-speaker-out changes in the overall difference as influence diagnostics.\n\nMeaningful-improvement gates: pooled OOF NLL and Brier lower in all three seeds;\npaired NLL bootstrap upper limit below zero in all three seeds (conservative reading);\nboth point-estimate directions agree on operating. Parameter min/max/std and\noptimizer boundary/convergence diagnostics are reported. The user did not define\na numerical parameter-stability tolerance: stability requires review, not an\ninvented cutoff. No candidate can be declared reliably better with that gate unresolved.\n\nOutputs remain under this experiment, in unique runs. Save exact fold membership,\nOOF/full-fit predictions, parameters, reliability tables, source/input hashes,\nenvironment, verification results, and summary. Preserve originals and verify hashes\nagain afterward. Formal follow-up approval would be needed even for promising results.\n",
+  "sources": {
+    "experiments\\r3_n1\\ast_alternative_calibration\\PLAN.md": "a4f110b6e5099c542bde7864386f201c9f55d120971c4f84ef8b260d30657079",
+    "experiments\\r3_n1\\ast_alternative_calibration\\run.py": "1013aea966dcc1752266c9379fb37bd7cc1e1e40a9b3a4557ef1fc9405771c83",
+    "experiments\\r3_n1\\ast_alternative_calibration\\test_experiment.py": "032c8b0fac989675e260210185765df031c3e640e42992f8e78204a0fbadc491",
+    "scripts\\r3_n1_ast_preflight.py": "d52cf5843e56fdc921de5568e88514ca802fe370369cda8748766fc26d825754",
+    "scripts\\r3_n1_ast_calibrate.py": "0701ee5a4883b5380ae9043c3e0fe5673becb90f7ddf2b761589ec67eda13dde",
+    "src\\echoproof\\evaluation\\calibrate.py": "312ebe506dc7b71d97793d8e0afd53be0c6fd83054f7eb1af54f5e0d0510c72d",
+    "src\\echoproof\\evaluation\\metrics.py": "a3b474c25b89ec51e3d6fa29715d458c060f32b807d93897f0e94449d04b3ba5",
+    "src\\echoproof\\evaluation\\threshold.py": "6e5b4460d7dd87724742950ac357746bec2be583c32156299fd7e7a82c7f8722"
+  },
+  "inputs": {
+    "runs\\r3\\r3_u2_20261112T134049Z\\r3_u2_20261112T134049Z-baseline\\best.pt": "f7efe6a547c53a310ed540f10be32fe44b148def168c2f5362cc1d22510f70ec",
+    "runs\\r3\\r3_u2_20261112T134049Z\\experiment_contract.json": "1e5852d01c34116731f77fe829dc24e2b98554a8f6bcdd489a3c2d8218a86270",
+    "runs\\r3\\r3_u2_20261112T134049Z\\predictions_chunks_calibration.parquet": "238e45a4d71cdc5f89d06cdf21e1bcb6614616cfb40ff49ca2de06aee1e797c2",
+    "runs\\r3\\r3_u2_20261112T134049Z\\predictions_chunks_operating.parquet": "1c59debcc1a5da1a80a56c3e357d69e040e1d4b6a05a82697598f59235414e97",
+    "runs\\r3\\r3_u2_20261112T134049Z\\predictions_chunks_selection.parquet": "ca5c6a214bd45c5aaa14b5998a72fd84327abda11fba8321a566cef165e9066e",
+    "runs\\r3\\r3_u2_20261112T134049Z\\predictions_recordings_calibration.parquet": "24cfe378ed01ae298e75d1e82bf84f4db0b4a25ca9519f994e779028b2e56f21",
+    "runs\\r3\\r3_u2_20261112T134049Z\\predictions_recordings_operating.parquet": "651d6265c4b1dfb9284cf16f10c4c0f34aa16d6e13fb1e5a400e7fbd0a12b708",
+    "runs\\r3\\r3_u2_20261112T134049Z\\predictions_recordings_selection.parquet": "4a5d0690f393becdffa85c4d22abe029e50fc6b2034c69a51eecaeeb686be285",
+    "data\\splits\\protocol_B_v1.parquet": "d910f5b2798eae472da5ff1491823c9f9b281fbe05da3407c0b9233d8227d5a8",
+    "data\\processed\\chunks_v1.parquet": "d3f8b8d6d305b91e133b1943dc51690417be79850460e549403d42848f8a8751",
+    "data\\manifests\\cohort_v1.parquet": "51af27a2dd5c0577bf9c232287ac73b2f66af472ce3308721af83b2e48e8e816",
+    "bundles\\r3_u2_ast_partial_B\\model\\ast_detector.json": "d628fe5459bc3454a607768a5f9f335da8d708b31ff40d002ad88d4b79665337",
+    "bundles\\r3_u2_ast_partial_B\\model\\config.json": "05db196e9ba34e6addd79af477bbe7043b7c51b5806691adaef2ca670e3e4bf0",
+    "bundles\\r3_u2_ast_partial_B\\model\\model.safetensors": "61aebb4de36f6f1f045e436866ac44cd701c391cafcc682607859fe8f88a3779",
+    "bundles\\r3_u2_ast_partial_B\\model\\preprocessor_config.json": "8d04ba5a9c6fca5d39d0de2b1fd05ecf79deb589fbba279728bbebac39934231",
+    "runs\\r3\\r3_n1_ast_candidates\\20261113T222724Z-ae8cab60\\evidence.json": "2decb132337cef60f9cd33c1e793fb68f7efe7e69d87a87acc346e3057c5dcba",
+    "runs\\r3\\r3_n1_ast_candidates\\20261113T222724Z-ae8cab60\\input_verification.json": "9d9b9affbd84684b88126b19be8e88b752e2dbea6aced0b20b2f8c92c28ab979",
+    "runs\\r3\\r3_n1_ast_candidates\\20261113T222724Z-ae8cab60\\operating_predictions.parquet": "64ae1c4948916a5202ba932c027c77c4251b98a74bfc8a01e9065d8baaf7d0df",
+    "runs\\r3\\r3_n1_ast_candidates\\20261113T222724Z-ae8cab60\\prospective_policy.json": "b08e64ef994eed4cbb6fb408878ee33284a7e7d059104bc3d42a72a7c558a237",
+    "runs\\r3\\r3_n1_ast_candidates\\20261113T222724Z-ae8cab60\\reliability.json": "80656431a39f80c1b2a45a0a15d61a456e36bf199ba2cbadafc205121a12b067",
+    "runs\\r3\\r3_n1_ast_candidates\\20261113T222724Z-ae8cab60\\bundle\\bundle.json": "ca6b8267153336ac01fa216e5593fff25a063cee2f0aeab2224b7f9801e4b8aa",
+    "runs\\r3\\r3_n1_ast_candidates\\20261113T222724Z-ae8cab60\\bundle\\calibration\\ast.json": "ed3916df8021f2cec302b131e90c112e0800d5d4e1a74f7a9254a2e30ba2a685",
+    "runs\\r3\\r3_n1_ast_candidates\\20261113T222724Z-ae8cab60\\bundle\\model\\ast_detector.json": "d628fe5459bc3454a607768a5f9f335da8d708b31ff40d002ad88d4b79665337",
+    "runs\\r3\\r3_n1_ast_candidates\\20261113T222724Z-ae8cab60\\bundle\\model\\config.json": "05db196e9ba34e6addd79af477bbe7043b7c51b5806691adaef2ca670e3e4bf0",
+    "runs\\r3\\r3_n1_ast_candidates\\20261113T222724Z-ae8cab60\\bundle\\model\\model.safetensors": "61aebb4de36f6f1f045e436866ac44cd701c391cafcc682607859fe8f88a3779",
+    "runs\\r3\\r3_n1_ast_candidates\\20261113T222724Z-ae8cab60\\bundle\\model\\preprocessor_config.json": "8d04ba5a9c6fca5d39d0de2b1fd05ecf79deb589fbba279728bbebac39934231",
+    "locks\\B_lock.json": "a87fec1beed5f263dc233aa204fba2933d706e6b70335bfa4b79570454e76d57",
+    "bundles\\r3_u2_ast_partial_B\\bundle.json": "7b3a9e7ce0c2df67009dd73db4ef6419e3a687221f116e3900c57ebb8ab013bb",
+    "runs\\r3\\r3_u2_20261112T134049Z\\selection.json": "c1dae8714dfb6da54058fbabb8052f08ddf730c1b3d5abd9eadb5d1c224adf25",
+    "runs\\r3\\r3_u2_20261112T134049Z\\evidence.json": "b73fc3a8a3fabccc9b4ef401dd98d52f030c54a45ed6fb4c0cf26df1f978c006"
+  },
+  "status": "exploratory_not_accepted",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "pyarrow": "26.0.1"
+  }
+}

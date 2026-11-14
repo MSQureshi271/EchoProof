@@ -1,0 +1,342 @@
+{
+  "status": "exploratory_complete_not_accepted",
+  "gates": {
+    "temperature": {
+      "pooled_nll_brier_lower_all_seeds": false,
+      "pooled_nll_ci_below_zero_all_seeds": false,
+      "operating_both_lower": false,
+      "operating_candidate_rule": false,
+      "parameter_stability": "review_required_no_predeclared_tolerance",
+      "verdict": "no reliable improvement established under all required gates; not accepted"
+    },
+    "platt": {
+      "pooled_nll_brier_lower_all_seeds": true,
+      "pooled_nll_ci_below_zero_all_seeds": false,
+      "operating_both_lower": true,
+      "operating_candidate_rule": true,
+      "parameter_stability": "review_required_no_predeclared_tolerance",
+      "verdict": "no reliable improvement established under all required gates; not accepted"
+    },
+    "beta": {
+      "pooled_nll_brier_lower_all_seeds": true,
+      "pooled_nll_ci_below_zero_all_seeds": false,
+      "operating_both_lower": true,
+      "operating_candidate_rule": true,
+      "parameter_stability": "review_required_no_predeclared_tolerance",
+      "verdict": "no reliable improvement established under all required gates; not accepted"
+    },
+    "isotonic": {
+      "pooled_nll_brier_lower_all_seeds": true,
+      "pooled_nll_ci_below_zero_all_seeds": false,
+      "operating_both_lower": false,
+      "operating_candidate_rule": false,
+      "parameter_stability": "review_required_no_predeclared_tolerance",
+      "verdict": "no reliable improvement established under all required gates; not accepted"
+    }
+  },
+  "metrics": {
+    "calibration_loso": {
+      "raw": {
+        "nll": 0.18042414830942738,
+        "brier": 0.05493779959760583,
+        "ece_width": 0.05493764594718079,
+        "ece_count": 0.05578440688524981,
+        "auroc": 0.9822916666666667
+      },
+      "temperature": {
+        "nll": 0.17886849811679054,
+        "brier": 0.054012347997016645,
+        "ece_width": 0.053934345919521745,
+        "ece_count": 0.054337925534509425,
+        "auroc": 0.9822337962962963
+      },
+      "platt": {
+        "nll": 0.15601203903396071,
+        "brier": 0.04887689835032564,
+        "ece_width": 0.025371038419404017,
+        "ece_count": 0.01567768177093703,
+        "auroc": 0.9809837962962963
+      },
+      "beta": {
+        "nll": 0.14935377097512506,
+        "brier": 0.04747653533860421,
+        "ece_width": 0.00858137193311906,
+        "ece_count": 0.009531177313882155,
+        "auroc": 0.9809606481481482
+      },
+      "isotonic": {
+        "nll": 0.1728736651407509,
+        "brier": 0.047795181030552206,
+        "ece_width": 0.030996115165177425,
+        "ece_count": 0.012731127828290402,
+        "auroc": 0.9780439814814814
+      }
+    },
+    "calibration_4fold_42": {
+      "raw": {
+        "nll": 0.18042414830942738,
+        "brier": 0.05493779959760583,
+        "ece_width": 0.05493764594718079,
+        "ece_count": 0.05578440688524981,
+        "auroc": 0.9822916666666667
+      },
+      "temperature": {
+        "nll": 0.17915496442814247,
+        "brier": 0.05406401796355519,
+        "ece_width": 0.05389126325917595,
+        "ece_count": 0.053891263259175884,
+        "auroc": 0.9821122685185185
+      },
+      "platt": {
+        "nll": 0.15645810417381614,
+        "brier": 0.04912980107298827,
+        "ece_width": 0.024231697166467996,
+        "ece_count": 0.017231455867652255,
+        "auroc": 0.9809375
+      },
+      "beta": {
+        "nll": 0.1500038707435792,
+        "brier": 0.047734332862736074,
+        "ece_width": 0.016740872337189617,
+        "ece_count": 0.012096657907797601,
+        "auroc": 0.9808738425925926
+      },
+      "isotonic": {
+        "nll": 0.17240736107917112,
+        "brier": 0.047924185447325664,
+        "ece_width": 0.021720081731390235,
+        "ece_count": 0.007580494644912955,
+        "auroc": 0.9788946759259258
+      }
+    },
+    "calibration_4fold_43": {
+      "raw": {
+        "nll": 0.18042414830942738,
+        "brier": 0.05493779959760583,
+        "ece_width": 0.05493764594718079,
+        "ece_count": 0.05578440688524981,
+        "auroc": 0.9822916666666667
+      },
+      "temperature": {
+        "nll": 0.17875888162556156,
+        "brier": 0.05396788416438387,
+        "ece_width": 0.05393703125981381,
+        "ece_count": 0.05433583843058728,
+        "auroc": 0.9822627314814816
+      },
+      "platt": {
+        "nll": 0.1535710667359246,
+        "brier": 0.04797832294101756,
+        "ece_width": 0.026318930700252766,
+        "ece_count": 0.017125589803171783,
+        "auroc": 0.9816956018518519
+      },
+      "beta": {
+        "nll": 0.1467234318583626,
+        "brier": 0.046693073615707785,
+        "ece_width": 0.009053632708810393,
+        "ece_count": 0.004904127163920955,
+        "auroc": 0.9814699074074074
+      },
+      "isotonic": {
+        "nll": 0.18452859877560507,
+        "brier": 0.047442782592588564,
+        "ece_width": 0.017234388412963556,
+        "ece_count": 0.005493597007742193,
+        "auroc": 0.978822337962963
+      }
+    },
+    "calibration_4fold_44": {
+      "raw": {
+        "nll": 0.18042414830942738,
+        "brier": 0.05493779959760583,
+        "ece_width": 0.05493764594718079,
+        "ece_count": 0.05578440688524981,
+        "auroc": 0.9822916666666667
+      },
+      "temperature": {
+        "nll": 0.17876547042656526,
+        "brier": 0.053957068188160616,
+        "ece_width": 0.053964779112938746,
+        "ece_count": 0.05437370483161339,
+        "auroc": 0.9822800925925926
+      },
+      "platt": {
+        "nll": 0.15531958447225072,
+        "brier": 0.04868525550565535,
+        "ece_width": 0.022393729129299374,
+        "ece_count": 0.019321335487827447,
+        "auroc": 0.981105324074074
+      },
+      "beta": {
+        "nll": 0.14779634313099285,
+        "brier": 0.04713934450175607,
+        "ece_width": 0.00834095223121632,
+        "ece_count": 0.010107176155596342,
+        "auroc": 0.9811747685185186
+      },
+      "isotonic": {
+        "nll": 0.17052143091297475,
+        "brier": 0.04747778111258161,
+        "ece_width": 0.018932094604717953,
+        "ece_count": 0.00917926977146022,
+        "auroc": 0.9791637731481482
+      }
+    },
+    "operating": {
+      "raw": {
+        "nll": 0.20594712863158887,
+        "brier": 0.06332347250403522,
+        "ece_width": 0.06232479313905386,
+        "ece_count": 0.06178397069815833,
+        "auroc": 0.9755818540433926
+      },
+      "temperature": {
+        "nll": 0.21040215523969402,
+        "brier": 0.06333341106693444,
+        "ece_width": 0.06051517384157897,
+        "ece_count": 0.06051517384157897,
+        "auroc": 0.9755818540433926
+      },
+      "platt": {
+        "nll": 0.18087006891870266,
+        "brier": 0.05253198751688769,
+        "ece_width": 0.028344233868226616,
+        "ece_count": 0.024097507477402472,
+        "auroc": 0.9755818540433926
+      },
+      "beta": {
+        "nll": 0.19168776458358483,
+        "brier": 0.05207828315874428,
+        "ece_width": 0.027786091438751877,
+        "ece_count": 0.021416105641214333,
+        "auroc": 0.9755818540433926
+      },
+      "isotonic": {
+        "nll": 0.3107415213372189,
+        "brier": 0.05215444641570336,
+        "ece_width": 0.029277279685165265,
+        "ece_count": 0.014667376950122258,
+        "auroc": 0.9600567061143984
+      }
+    },
+    "pooled_5fold_42": {
+      "raw": {
+        "nll": 0.19369609807695154,
+        "brier": 0.05929834950894905,
+        "ece_width": 0.058428704029039866,
+        "ece_count": 0.0584287040290397,
+        "auroc": 0.978716
+      },
+      "temperature": {
+        "nll": 0.19483537580206173,
+        "brier": 0.059344918069512,
+        "ece_width": 0.057884916786152686,
+        "ece_count": 0.05788491678615269,
+        "auroc": 0.9783813333333333
+      },
+      "platt": {
+        "nll": 0.16932922616245602,
+        "brier": 0.05174350629066587,
+        "ece_width": 0.023224492986251455,
+        "ece_count": 0.017381405395348437,
+        "auroc": 0.977604
+      },
+      "beta": {
+        "nll": 0.17280299262493146,
+        "brier": 0.05111913184789527,
+        "ece_width": 0.024002543844408173,
+        "ece_count": 0.015931386315821392,
+        "auroc": 0.9767386666666666
+      },
+      "isotonic": {
+        "nll": 0.17500773032281194,
+        "brier": 0.049463614470588245,
+        "ece_width": 0.014580916406734189,
+        "ece_count": 0.006274385577667884,
+        "auroc": 0.9748479999999999
+      }
+    },
+    "pooled_5fold_43": {
+      "raw": {
+        "nll": 0.19369609807695154,
+        "brier": 0.05929834950894905,
+        "ece_width": 0.058428704029039866,
+        "ece_count": 0.0584287040290397,
+        "auroc": 0.978716
+      },
+      "temperature": {
+        "nll": 0.19470900983941988,
+        "brier": 0.05927088569652521,
+        "ece_width": 0.05805211439970152,
+        "ece_count": 0.05805211439970155,
+        "auroc": 0.9784333333333333
+      },
+      "platt": {
+        "nll": 0.17446321428223793,
+        "brier": 0.05267702310760916,
+        "ece_width": 0.023766738714775408,
+        "ece_count": 0.012811157148809047,
+        "auroc": 0.9757933333333334
+      },
+      "beta": {
+        "nll": 0.18263213091750946,
+        "brier": 0.05225491512594636,
+        "ece_width": 0.022640401187879657,
+        "ece_count": 0.011942884445691889,
+        "auroc": 0.9746426666666667
+      },
+      "isotonic": {
+        "nll": 0.1856493443283083,
+        "brier": 0.051516304770826034,
+        "ece_width": 0.022513847339636305,
+        "ece_count": 0.012846684416794638,
+        "auroc": 0.9714259999999999
+      }
+    },
+    "pooled_5fold_44": {
+      "raw": {
+        "nll": 0.19369609807695154,
+        "brier": 0.05929834950894905,
+        "ece_width": 0.058428704029039866,
+        "ece_count": 0.0584287040290397,
+        "auroc": 0.978716
+      },
+      "temperature": {
+        "nll": 0.1941286934378405,
+        "brier": 0.05921984964028566,
+        "ece_width": 0.058052062584993874,
+        "ece_count": 0.05805206258499393,
+        "auroc": 0.9785706666666666
+      },
+      "platt": {
+        "nll": 0.1692163418603753,
+        "brier": 0.051615049292557676,
+        "ece_width": 0.02073111178170596,
+        "ece_count": 0.01664390162372455,
+        "auroc": 0.9773706666666667
+      },
+      "beta": {
+        "nll": 0.1732205944335997,
+        "brier": 0.05091796100903565,
+        "ece_width": 0.01971090654732858,
+        "ece_count": 0.01190314557865992,
+        "auroc": 0.9766893333333333
+      },
+      "isotonic": {
+        "nll": 0.17414091802501322,
+        "brier": 0.049219096683135614,
+        "ece_width": 0.0113913600355826,
+        "ece_count": 0.006526923453514213,
+        "auroc": 0.9751593333333333
+      }
+    }
+  },
+  "originals_unchanged": true,
+  "limitations": [
+    "Operating and pooled results are post-hoc, not independent evaluation",
+    "Bootstrap fixes fitted models/OOF predictions and omits fitting uncertainty",
+    "CV seeds share data; no multiplicity correction",
+    "Parameter-stability gate needs review"
+  ]
+}

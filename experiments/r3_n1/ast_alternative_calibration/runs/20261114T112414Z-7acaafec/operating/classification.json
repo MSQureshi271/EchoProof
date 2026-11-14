@@ -1,0 +1,217 @@
+{
+  "raw": {
+    "fixed_saved_threshold": {
+      "accuracy": 0.9403846153846154,
+      "tts_precision": 0.9748677248677249,
+      "tts_recall": 0.9448717948717948,
+      "genuine_recall": 0.926923076923077,
+      "macro_f1": 0.9228324142156863,
+      "fpr": 0.07307692307692308,
+      "fnr": 0.05512820512820513,
+      "roc_auc": 0.9755818540433925,
+      "eer": 0.07051282051282048,
+      "average_precision": 0.9919822965182352,
+      "confusion_matrix": [
+        [
+          241,
+          19
+        ],
+        [
+          43,
+          737
+        ]
+      ],
+      "brier_score": 0.06332347250403526,
+      "log_loss": 0.20594712863158884,
+      "tp": 737,
+      "fp": 19,
+      "tn": 241,
+      "fn": 43,
+      "recordings": 1040,
+      "threshold": 0.4010431058704853
+    },
+    "exploratory_optimized_rule": {
+      "schema_version": 1,
+      "kind": "threshold",
+      "threshold": 0.4010431058704853
+    },
+    "optimized_macro_f1": 0.9228324142156863,
+    "optimized_fpr": 0.07307692307692308,
+    "optimized_accuracy": 0.9403846153846154,
+    "optimized_fnr": 0.05512820512820513,
+    "distinct_scores": 1037,
+    "nondecreasing_on_sorted_raw": true
+  },
+  "temperature": {
+    "fixed_saved_threshold": {
+      "accuracy": 0.9336538461538462,
+      "tts_precision": 0.9746328437917223,
+      "tts_recall": 0.9358974358974359,
+      "genuine_recall": 0.926923076923077,
+      "macro_f1": 0.9148228027048746,
+      "fpr": 0.07307692307692308,
+      "fnr": 0.0641025641025641,
+      "roc_auc": 0.9755818540433925,
+      "eer": 0.07051282051282048,
+      "average_precision": 0.9919822965182352,
+      "confusion_matrix": [
+        [
+          241,
+          19
+        ],
+        [
+          50,
+          730
+        ]
+      ],
+      "brier_score": 0.06333341106693445,
+      "log_loss": 0.2104021552396941,
+      "tp": 730,
+      "fp": 19,
+      "tn": 241,
+      "fn": 50,
+      "recordings": 1040,
+      "threshold": 0.4010431058704853
+    },
+    "exploratory_optimized_rule": {
+      "schema_version": 1,
+      "kind": "threshold",
+      "threshold": 0.3825866874709707
+    },
+    "optimized_macro_f1": 0.9228324142156863,
+    "optimized_fpr": 0.07307692307692308,
+    "optimized_accuracy": 0.9403846153846154,
+    "optimized_fnr": 0.05512820512820513,
+    "distinct_scores": 1037,
+    "nondecreasing_on_sorted_raw": true
+  },
+  "platt": {
+    "fixed_saved_threshold": {
+      "accuracy": 0.9259615384615385,
+      "tts_precision": 0.9410288582183187,
+      "tts_recall": 0.9615384615384616,
+      "genuine_recall": 0.8192307692307692,
+      "macro_f1": 0.8990458012861323,
+      "fpr": 0.18076923076923077,
+      "fnr": 0.038461538461538464,
+      "roc_auc": 0.9755818540433925,
+      "eer": 0.07051282051282048,
+      "average_precision": 0.9919822965182352,
+      "confusion_matrix": [
+        [
+          213,
+          47
+        ],
+        [
+          30,
+          750
+        ]
+      ],
+      "brier_score": 0.0525319875168876,
+      "log_loss": 0.18087006891870264,
+      "tp": 750,
+      "fp": 47,
+      "tn": 213,
+      "fn": 30,
+      "recordings": 1040,
+      "threshold": 0.4010431058704853
+    },
+    "exploratory_optimized_rule": {
+      "schema_version": 1,
+      "kind": "threshold",
+      "threshold": 0.6316596289764391
+    },
+    "optimized_macro_f1": 0.9228324142156863,
+    "optimized_fpr": 0.07307692307692308,
+    "optimized_accuracy": 0.9403846153846154,
+    "optimized_fnr": 0.05512820512820513,
+    "distinct_scores": 1037,
+    "nondecreasing_on_sorted_raw": true
+  },
+  "beta": {
+    "fixed_saved_threshold": {
+      "accuracy": 0.9346153846153846,
+      "tts_precision": 0.9564102564102565,
+      "tts_recall": 0.9564102564102565,
+      "genuine_recall": 0.8692307692307693,
+      "macro_f1": 0.9128205128205129,
+      "fpr": 0.13076923076923078,
+      "fnr": 0.04358974358974359,
+      "roc_auc": 0.9755818540433925,
+      "eer": 0.07051282051282048,
+      "average_precision": 0.9919822965182352,
+      "confusion_matrix": [
+        [
+          226,
+          34
+        ],
+        [
+          34,
+          746
+        ]
+      ],
+      "brier_score": 0.052078283158744285,
+      "log_loss": 0.19168776458358378,
+      "tp": 746,
+      "fp": 34,
+      "tn": 226,
+      "fn": 34,
+      "recordings": 1040,
+      "threshold": 0.4010431058704853
+    },
+    "exploratory_optimized_rule": {
+      "schema_version": 1,
+      "kind": "threshold",
+      "threshold": 0.5611352747547621
+    },
+    "optimized_macro_f1": 0.9228324142156863,
+    "optimized_fpr": 0.07307692307692308,
+    "optimized_accuracy": 0.9403846153846154,
+    "optimized_fnr": 0.05512820512820513,
+    "distinct_scores": 946,
+    "nondecreasing_on_sorted_raw": true
+  },
+  "isotonic": {
+    "fixed_saved_threshold": {
+      "accuracy": 0.9326923076923077,
+      "tts_precision": 0.9539641943734015,
+      "tts_recall": 0.9564102564102565,
+      "genuine_recall": 0.8615384615384616,
+      "macro_f1": 0.9100252621379382,
+      "fpr": 0.13846153846153847,
+      "fnr": 0.04358974358974359,
+      "roc_auc": 0.9600567061143984,
+      "eer": 0.0701505016722408,
+      "average_precision": 0.9781369647742804,
+      "confusion_matrix": [
+        [
+          224,
+          36
+        ],
+        [
+          34,
+          746
+        ]
+      ],
+      "brier_score": 0.052154446415703215,
+      "log_loss": 0.3107415213372235,
+      "tp": 746,
+      "fp": 36,
+      "tn": 224,
+      "fn": 34,
+      "recordings": 1040,
+      "threshold": 0.4010431058704853
+    },
+    "exploratory_optimized_rule": {
+      "schema_version": 1,
+      "kind": "threshold",
+      "threshold": 0.5526424053408573
+    },
+    "optimized_macro_f1": 0.9170988401214012,
+    "optimized_fpr": 0.07307692307692308,
+    "optimized_accuracy": 0.9355769230769231,
+    "optimized_fnr": 0.06153846153846154,
+    "distinct_scores": 20,
+    "nondecreasing_on_sorted_raw": true
+  }
+}

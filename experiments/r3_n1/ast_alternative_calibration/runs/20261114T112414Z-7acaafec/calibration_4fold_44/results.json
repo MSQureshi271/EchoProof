@@ -1,0 +1,2578 @@
+{
+  "metrics": {
+    "raw": {
+      "nll": 0.18042414830942738,
+      "brier": 0.05493779959760583,
+      "ece_width": 0.05493764594718079,
+      "ece_count": 0.05578440688524981,
+      "auroc": 0.9822916666666667
+    },
+    "temperature": {
+      "nll": 0.17876547042656526,
+      "brier": 0.053957068188160616,
+      "ece_width": 0.053964779112938746,
+      "ece_count": 0.05437370483161339,
+      "auroc": 0.9822800925925926
+    },
+    "platt": {
+      "nll": 0.15531958447225072,
+      "brier": 0.04868525550565535,
+      "ece_width": 0.022393729129299374,
+      "ece_count": 0.019321335487827447,
+      "auroc": 0.981105324074074
+    },
+    "beta": {
+      "nll": 0.14779634313099285,
+      "brier": 0.04713934450175607,
+      "ece_width": 0.00834095223121632,
+      "ece_count": 0.010107176155596342,
+      "auroc": 0.9811747685185186
+    },
+    "isotonic": {
+      "nll": 0.17052143091297475,
+      "brier": 0.04747778111258161,
+      "ece_width": 0.018932094604717953,
+      "ece_count": 0.00917926977146022,
+      "auroc": 0.9791637731481482
+    }
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "method": "raw",
+      "held_speakers": [
+        "speaker:1363",
+        "speaker:6437",
+        "speaker:2092"
+      ],
+      "fit_speakers": [
+        "speaker:1624",
+        "speaker:1992",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {},
+      "metrics": {
+        "nll": 0.1456971314668359,
+        "brier": 0.04309635288590348,
+        "ece_width": 0.07518449926064383,
+        "ece_count": 0.0695396195645814,
+        "auroc": 0.9943518518518518
+      },
+      "raw_fold_auroc": 0.9943518518518518
+    },
+    {
+      "fold": 0,
+      "method": "temperature",
+      "held_speakers": [
+        "speaker:1363",
+        "speaker:6437",
+        "speaker:2092"
+      ],
+      "fit_speakers": [
+        "speaker:1624",
+        "speaker:1992",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "temperature": 0.8648552120038505,
+        "warnings": [],
+        "at_boundary": false
+      },
+      "metrics": {
+        "nll": 0.14176936666630907,
+        "brier": 0.0420802388164615,
+        "ece_width": 0.07238463907858587,
+        "ece_count": 0.06786016468760757,
+        "auroc": 0.9943518518518518
+      },
+      "raw_fold_auroc": 0.9943518518518518
+    },
+    {
+      "fold": 0,
+      "method": "platt",
+      "held_speakers": [
+        "speaker:1363",
+        "speaker:6437",
+        "speaker:2092"
+      ],
+      "fit_speakers": [
+        "speaker:1624",
+        "speaker:1992",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "a": 1.2960435475291936,
+        "b": 0.8983314288214591,
+        "iterations": 7,
+        "at_boundary": false,
+        "objective": 0.16936352219473008,
+        "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+      },
+      "metrics": {
+        "nll": 0.09811609164490268,
+        "brier": 0.026688233565560604,
+        "ece_width": 0.04077012106278936,
+        "ece_count": 0.02864143591923872,
+        "auroc": 0.9943518518518518
+      },
+      "raw_fold_auroc": 0.9943518518518518
+    },
+    {
+      "fold": 0,
+      "method": "beta",
+      "held_speakers": [
+        "speaker:1363",
+        "speaker:6437",
+        "speaker:2092"
+      ],
+      "fit_speakers": [
+        "speaker:1624",
+        "speaker:1992",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "a": 0.3453509148981695,
+        "b": 3.6511960779777524,
+        "c": -1.492118828743806,
+        "iterations": 15,
+        "at_boundary": false,
+        "objective": 0.15878862001219235,
+        "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+      },
+      "metrics": {
+        "nll": 0.09613208027530222,
+        "brier": 0.027041344877142114,
+        "ece_width": 0.030941937941988355,
+        "ece_count": 0.026488492565046807,
+        "auroc": 0.9943518518518518
+      },
+      "raw_fold_auroc": 0.9943518518518518
+    },
+    {
+      "fold": 0,
+      "method": "isotonic",
+      "held_speakers": [
+        "speaker:1363",
+        "speaker:6437",
+        "speaker:2092"
+      ],
+      "fit_speakers": [
+        "speaker:1624",
+        "speaker:1992",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "x": [
+          8.254430117712478e-06,
+          0.022436714734275092,
+          0.023059510359806672,
+          0.15873996860076053,
+          0.16002714606001972,
+          0.18139784700785336,
+          0.18434828496538103,
+          0.2889595680010473,
+          0.2900208756327629,
+          0.4131210620315479,
+          0.4231045144032188,
+          0.4731809880052294,
+          0.47594271674752237,
+          0.5188812606967985,
+          0.5241914168000221,
+          0.6115656565874815,
+          0.6143860831856728,
+          0.6307530403137207,
+          0.6359810475260019,
+          0.9999944567680359
+        ],
+        "y": [
+          0.0,
+          0.0,
+          0.16981132075471697,
+          0.16981132075471697,
+          0.2,
+          0.2,
+          0.27586206896551724,
+          0.27586206896551724,
+          0.3684210526315789,
+          0.3684210526315789,
+          0.5555555555555556,
+          0.5555555555555556,
+          0.6111111111111112,
+          0.6111111111111112,
+          0.8181818181818182,
+          0.8181818181818182,
+          0.8333333333333334,
+          0.8333333333333334,
+          1.0,
+          1.0
+        ],
+        "knots": 20,
+        "levels": 10
+      },
+      "metrics": {
+        "nll": 0.09120816187455119,
+        "brier": 0.02808112064919887,
+        "ece_width": 0.03414799257913086,
+        "ece_count": 0.04158455731563061,
+        "auroc": 0.9946759259259259
+      },
+      "raw_fold_auroc": 0.9943518518518518
+    },
+    {
+      "fold": 1,
+      "method": "raw",
+      "held_speakers": [
+        "speaker:6081",
+        "speaker:1992",
+        "speaker:587"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1624",
+        "speaker:2092",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:6437",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {},
+      "metrics": {
+        "nll": 0.1793562603099216,
+        "brier": 0.05415328527827996,
+        "ece_width": 0.0797528545210102,
+        "ece_count": 0.06608884185700245,
+        "auroc": 0.985648148148148
+      },
+      "raw_fold_auroc": 0.985648148148148
+    },
+    {
+      "fold": 1,
+      "method": "temperature",
+      "held_speakers": [
+        "speaker:6081",
+        "speaker:1992",
+        "speaker:587"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1624",
+        "speaker:2092",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:6437",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "temperature": 0.8211361385191475,
+        "warnings": [],
+        "at_boundary": false
+      },
+      "metrics": {
+        "nll": 0.17881190868238678,
+        "brier": 0.05321078052656348,
+        "ece_width": 0.06490529739877854,
+        "ece_count": 0.06391335637124416,
+        "auroc": 0.985648148148148
+      },
+      "raw_fold_auroc": 0.985648148148148
+    },
+    {
+      "fold": 1,
+      "method": "platt",
+      "held_speakers": [
+        "speaker:6081",
+        "speaker:1992",
+        "speaker:587"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1624",
+        "speaker:2092",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:6437",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "a": 1.4090878384669225,
+        "b": 1.0188814458999909,
+        "iterations": 9,
+        "at_boundary": false,
+        "objective": 0.15403140531247858,
+        "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+      },
+      "metrics": {
+        "nll": 0.14174773452508563,
+        "brier": 0.042128584489011314,
+        "ece_width": 0.032994422726296276,
+        "ece_count": 0.024227031657940126,
+        "auroc": 0.985648148148148
+      },
+      "raw_fold_auroc": 0.985648148148148
+    },
+    {
+      "fold": 1,
+      "method": "beta",
+      "held_speakers": [
+        "speaker:6081",
+        "speaker:1992",
+        "speaker:587"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1624",
+        "speaker:2092",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:6437",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "a": 0.41941988440207323,
+        "b": 3.873421276133225,
+        "c": -1.451777597977723,
+        "iterations": 14,
+        "at_boundary": false,
+        "objective": 0.14576788567547233,
+        "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+      },
+      "metrics": {
+        "nll": 0.13233164148878865,
+        "brier": 0.04117924808075688,
+        "ece_width": 0.02334746970504692,
+        "ece_count": 0.017919038603717963,
+        "auroc": 0.985648148148148
+      },
+      "raw_fold_auroc": 0.985648148148148
+    },
+    {
+      "fold": 1,
+      "method": "isotonic",
+      "held_speakers": [
+        "speaker:6081",
+        "speaker:1992",
+        "speaker:587"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1624",
+        "speaker:2092",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:6437",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "x": [
+          3.7575834236728646e-05,
+          0.022436714734275092,
+          0.023059510359806672,
+          0.15873996860076053,
+          0.16002714606001972,
+          0.18139784700785336,
+          0.18434828496538103,
+          0.2885919885156909,
+          0.2900208756327629,
+          0.3153276422992349,
+          0.3236403283663094,
+          0.4068517856458129,
+          0.4085320408921689,
+          0.4131210620315479,
+          0.41756656269232434,
+          0.4731809880052294,
+          0.47594271674752237,
+          0.5188812606967985,
+          0.5241914168000221,
+          0.6307530403137207,
+          0.6359810475260019,
+          0.9999944567680359
+        ],
+        "y": [
+          0.0,
+          0.0,
+          0.13114754098360656,
+          0.13114754098360656,
+          0.2222222222222222,
+          0.2222222222222222,
+          0.2962962962962963,
+          0.2962962962962963,
+          0.375,
+          0.375,
+          0.391304347826087,
+          0.391304347826087,
+          0.5,
+          0.5,
+          0.5555555555555556,
+          0.5555555555555556,
+          0.6,
+          0.6,
+          0.8571428571428571,
+          0.8571428571428571,
+          1.0,
+          1.0
+        ],
+        "knots": 22,
+        "levels": 11
+      },
+      "metrics": {
+        "nll": 0.1234347988043298,
+        "brier": 0.04066644074580561,
+        "ece_width": 0.0268466163827666,
+        "ece_count": 0.01666142536424824,
+        "auroc": 0.9868981481481481
+      },
+      "raw_fold_auroc": 0.985648148148148
+    },
+    {
+      "fold": 2,
+      "method": "raw",
+      "held_speakers": [
+        "speaker:32",
+        "speaker:4051",
+        "speaker:1624"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1992",
+        "speaker:2092",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:6437",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {},
+      "metrics": {
+        "nll": 0.18221927674625735,
+        "brier": 0.05398582232274404,
+        "ece_width": 0.0506739533937863,
+        "ece_count": 0.04386501158613719,
+        "auroc": 0.9785185185185186
+      },
+      "raw_fold_auroc": 0.9785185185185186
+    },
+    {
+      "fold": 2,
+      "method": "temperature",
+      "held_speakers": [
+        "speaker:32",
+        "speaker:4051",
+        "speaker:1624"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1992",
+        "speaker:2092",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:6437",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "temperature": 0.8024448902005923,
+        "warnings": [],
+        "at_boundary": false
+      },
+      "metrics": {
+        "nll": 0.1839047695486483,
+        "brier": 0.05280492532594498,
+        "ece_width": 0.049354870720191554,
+        "ece_count": 0.04421029471559388,
+        "auroc": 0.9785185185185186
+      },
+      "raw_fold_auroc": 0.9785185185185186
+    },
+    {
+      "fold": 2,
+      "method": "platt",
+      "held_speakers": [
+        "speaker:32",
+        "speaker:4051",
+        "speaker:1624"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1992",
+        "speaker:2092",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:6437",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "a": 1.4765427893055376,
+        "b": 1.1890522469883889,
+        "iterations": 9,
+        "at_boundary": false,
+        "objective": 0.14538163394577422,
+        "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+      },
+      "metrics": {
+        "nll": 0.16788134020157983,
+        "brier": 0.052100878787517,
+        "ece_width": 0.04846193728094362,
+        "ece_count": 0.029252574503148547,
+        "auroc": 0.9785185185185186
+      },
+      "raw_fold_auroc": 0.9785185185185186
+    },
+    {
+      "fold": 2,
+      "method": "beta",
+      "held_speakers": [
+        "speaker:32",
+        "speaker:4051",
+        "speaker:1624"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1992",
+        "speaker:2092",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:6437",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "a": 0.5505047690517343,
+        "b": 3.7032904126996105,
+        "c": -1.0607389635081108,
+        "iterations": 16,
+        "at_boundary": false,
+        "objective": 0.13940230274024473,
+        "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+      },
+      "metrics": {
+        "nll": 0.15169944412314515,
+        "brier": 0.04888949110418865,
+        "ece_width": 0.04082100949758303,
+        "ece_count": 0.017632829151806403,
+        "auroc": 0.9785185185185185
+      },
+      "raw_fold_auroc": 0.9785185185185186
+    },
+    {
+      "fold": 2,
+      "method": "isotonic",
+      "held_speakers": [
+        "speaker:32",
+        "speaker:4051",
+        "speaker:1624"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1992",
+        "speaker:2092",
+        "speaker:4898",
+        "speaker:5322",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:6437",
+        "speaker:7780"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "x": [
+          8.254430117712478e-06,
+          0.024578120957206313,
+          0.027771713095717132,
+          0.05810889363915602,
+          0.05852626692503691,
+          0.15873996860076053,
+          0.16002714606001972,
+          0.18139784700785336,
+          0.18671439378522336,
+          0.2709615508335576,
+          0.2769336925819516,
+          0.2889595680010473,
+          0.2900208756327629,
+          0.3109545982442796,
+          0.3127095572068356,
+          0.40352797182276845,
+          0.4085320408921689,
+          0.4099552489445029,
+          0.41756656269232434,
+          0.5188812606967985,
+          0.529798486828804,
+          0.6115656565874815,
+          0.6143860831856728,
+          0.6307530403137207,
+          0.6359810475260019,
+          0.9999933838844299
+        ],
+        "y": [
+          0.0,
+          0.0,
+          0.07142857142857142,
+          0.07142857142857142,
+          0.175,
+          0.175,
+          0.2222222222222222,
+          0.2222222222222222,
+          0.22727272727272727,
+          0.22727272727272727,
+          0.25,
+          0.25,
+          0.42857142857142855,
+          0.42857142857142855,
+          0.45454545454545453,
+          0.45454545454545453,
+          0.5,
+          0.5,
+          0.72,
+          0.72,
+          0.8333333333333334,
+          0.8333333333333334,
+          0.8571428571428571,
+          0.8571428571428571,
+          1.0,
+          1.0
+        ],
+        "knots": 26,
+        "levels": 13
+      },
+      "metrics": {
+        "nll": 0.1979347354808039,
+        "brier": 0.04759726536009121,
+        "ece_width": 0.029300454853783957,
+        "ece_count": 0.027019105881329667,
+        "auroc": 0.97875
+      },
+      "raw_fold_auroc": 0.9785185185185186
+    },
+    {
+      "fold": 3,
+      "method": "raw",
+      "held_speakers": [
+        "speaker:4898",
+        "speaker:7780",
+        "speaker:5322"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1624",
+        "speaker:1992",
+        "speaker:2092",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:6437"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {},
+      "metrics": {
+        "nll": 0.21442392471469465,
+        "brier": 0.0685157379034958,
+        "ece_width": 0.05866594060865634,
+        "ece_count": 0.053342208203744246,
+        "auroc": 0.9668518518518519
+      },
+      "raw_fold_auroc": 0.9668518518518519
+    },
+    {
+      "fold": 3,
+      "method": "temperature",
+      "held_speakers": [
+        "speaker:4898",
+        "speaker:7780",
+        "speaker:5322"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1624",
+        "speaker:1992",
+        "speaker:2092",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:6437"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "temperature": 0.8635206182970021,
+        "warnings": [],
+        "at_boundary": false
+      },
+      "metrics": {
+        "nll": 0.21057583680891748,
+        "brier": 0.06773232808367226,
+        "ece_width": 0.05086914199777571,
+        "ece_count": 0.050200772327666406,
+        "auroc": 0.9668518518518519
+      },
+      "raw_fold_auroc": 0.9668518518518519
+    },
+    {
+      "fold": 3,
+      "method": "platt",
+      "held_speakers": [
+        "speaker:4898",
+        "speaker:7780",
+        "speaker:5322"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1624",
+        "speaker:1992",
+        "speaker:2092",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:6437"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "a": 1.4191695269882132,
+        "b": 1.3603295114676799,
+        "iterations": 8,
+        "at_boundary": false,
+        "objective": 0.13173091232900558,
+        "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+      },
+      "metrics": {
+        "nll": 0.2135331715174345,
+        "brier": 0.07382332518053249,
+        "ece_width": 0.05793880330756411,
+        "ece_count": 0.04936647186303967,
+        "auroc": 0.9668518518518519
+      },
+      "raw_fold_auroc": 0.9668518518518519
+    },
+    {
+      "fold": 3,
+      "method": "beta",
+      "held_speakers": [
+        "speaker:4898",
+        "speaker:7780",
+        "speaker:5322"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1624",
+        "speaker:1992",
+        "speaker:2092",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:6437"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "a": 0.3925986417159681,
+        "b": 4.667562050490552,
+        "c": -1.5004268245449308,
+        "iterations": 17,
+        "at_boundary": false,
+        "objective": 0.12197114901487992,
+        "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL"
+      },
+      "metrics": {
+        "nll": 0.21102220663673124,
+        "brier": 0.07144729394493689,
+        "ece_width": 0.04821049006175988,
+        "ece_count": 0.041612357097377074,
+        "auroc": 0.9668518518518519
+      },
+      "raw_fold_auroc": 0.9668518518518519
+    },
+    {
+      "fold": 3,
+      "method": "isotonic",
+      "held_speakers": [
+        "speaker:4898",
+        "speaker:7780",
+        "speaker:5322"
+      ],
+      "fit_speakers": [
+        "speaker:1363",
+        "speaker:1624",
+        "speaker:1992",
+        "speaker:2092",
+        "speaker:32",
+        "speaker:4051",
+        "speaker:587",
+        "speaker:6081",
+        "speaker:6437"
+      ],
+      "fit_counts": [
+        180,
+        540
+      ],
+      "held_counts": [
+        60,
+        180
+      ],
+      "params": {
+        "x": [
+          8.254430117712478e-06,
+          0.022436714734275092,
+          0.023059510359806672,
+          0.058133136645968385,
+          0.05852626692503691,
+          0.17821620499973637,
+          0.18434828496538103,
+          0.3109545982442796,
+          0.3127095572068356,
+          0.4131210620315479,
+          0.41756656269232434,
+          0.4731809880052294,
+          0.47985548824071883,
+          0.5149699697891871,
+          0.5241914168000221,
+          0.6115656565874815,
+          0.6143860831856728,
+          0.9999944567680359
+        ],
+        "y": [
+          0.0,
+          0.0,
+          0.14285714285714285,
+          0.14285714285714285,
+          0.15384615384615385,
+          0.15384615384615385,
+          0.22727272727272727,
+          0.22727272727272727,
+          0.52,
+          0.52,
+          0.75,
+          0.75,
+          0.8,
+          0.8,
+          0.9411764705882353,
+          0.9411764705882353,
+          1.0,
+          1.0
+        ],
+        "knots": 18,
+        "levels": 9
+      },
+      "metrics": {
+        "nll": 0.26950802749221153,
+        "brier": 0.07356629769523058,
+        "ece_width": 0.05472414932004626,
+        "ece_count": 0.04041358000935675,
+        "auroc": 0.9585648148148148
+      },
+      "raw_fold_auroc": 0.9668518518518519
+    }
+  ],
+  "parameter_summary": {
+    "raw": {
+      "boundary_fits": 0
+    },
+    "temperature": {
+      "temperature": {
+        "min": 0.8024448902005923,
+        "max": 0.8648552120038505,
+        "std": 0.027023413744567553
+      },
+      "boundary_fits": 0
+    },
+    "platt": {
+      "a": {
+        "min": 1.2960435475291936,
+        "max": 1.4765427893055376,
+        "std": 0.0654133476814006
+      },
+      "b": {
+        "min": 0.8983314288214591,
+        "max": 1.3603295114676799,
+        "std": 0.17453042597434132
+      },
+      "iterations": {
+        "min": 7.0,
+        "max": 9.0,
+        "std": 0.82915619758885
+      },
+      "objective": {
+        "min": 0.13173091232900558,
+        "max": 0.16936352219473008,
+        "std": 0.013658538606955165
+      },
+      "boundary_fits": 0
+    },
+    "beta": {
+      "a": {
+        "min": 0.3453509148981695,
+        "max": 0.5505047690517343,
+        "std": 0.07609354230973825
+      },
+      "b": {
+        "min": 3.6511960779777524,
+        "max": 4.667562050490552,
+        "std": 0.4088491103179746
+      },
+      "c": {
+        "min": -1.5004268245449308,
+        "max": -1.0607389635081108,
+        "std": 0.183096354732505
+      },
+      "iterations": {
+        "min": 14.0,
+        "max": 17.0,
+        "std": 1.118033988749895
+      },
+      "objective": {
+        "min": 0.12197114901487992,
+        "max": 0.15878862001219235,
+        "std": 0.013256002019533784
+      },
+      "boundary_fits": 0
+    },
+    "isotonic": {
+      "knots": {
+        "min": 18.0,
+        "max": 26.0,
+        "std": 2.958039891549808
+      },
+      "levels": {
+        "min": 9.0,
+        "max": 13.0,
+        "std": 1.479019945774904
+      },
+      "boundary_fits": 0
+    }
+  },
+  "bootstrap": {
+    "temperature": {
+      "nll": {
+        "delta": -0.001658677882862114,
+        "ci95": [
+          -0.004330859124603611,
+          0.001451930832592916
+        ]
+      },
+      "brier": {
+        "delta": -0.0009807314094452124,
+        "ci95": [
+          -0.0014005908371088516,
+          -0.0005523625148758793
+        ]
+      },
+      "ece_width": {
+        "delta": -0.0009728668342420463,
+        "ci95": [
+          -0.011153958642984548,
+          0.00502883083196586
+        ]
+      },
+      "ece_count": {
+        "delta": -0.0014107020536364215,
+        "ci95": [
+          -0.004390926985317386,
+          0.0001595308424243333
+        ]
+      }
+    },
+    "platt": {
+      "nll": {
+        "delta": -0.025104563837176658,
+        "ci95": [
+          -0.04519874101263207,
+          0.005571377875256325
+        ]
+      },
+      "brier": {
+        "delta": -0.006252544091950481,
+        "ci95": [
+          -0.015460364445240954,
+          0.00706917178461324
+        ]
+      },
+      "ece_width": {
+        "delta": -0.03254391681788142,
+        "ci95": [
+          -0.0441680661035764,
+          0.01133756921448272
+        ]
+      },
+      "ece_count": {
+        "delta": -0.036463071397422366,
+        "ci95": [
+          -0.0525095902107288,
+          0.0030169568154936074
+        ]
+      }
+    },
+    "beta": {
+      "nll": {
+        "delta": -0.03262780517843453,
+        "ci95": [
+          -0.05364810342297911,
+          0.0013124836439528547
+        ]
+      },
+      "brier": {
+        "delta": -0.007798455095849761,
+        "ci95": [
+          -0.016358169066128327,
+          0.005537096170172914
+        ]
+      },
+      "ece_width": {
+        "delta": -0.04659669371596447,
+        "ci95": [
+          -0.05515067071378922,
+          0.0005927425157116649
+        ]
+      },
+      "ece_count": {
+        "delta": -0.04567723072965347,
+        "ci95": [
+          -0.05467843176376564,
+          -0.004798127162906748
+        ]
+      }
+    },
+    "isotonic": {
+      "nll": {
+        "delta": -0.009902717396452626,
+        "ci95": [
+          -0.05481278695441722,
+          0.06009613943681024
+        ]
+      },
+      "brier": {
+        "delta": -0.007460018485024221,
+        "ci95": [
+          -0.015646297519318425,
+          0.005964260544092884
+        ]
+      },
+      "ece_width": {
+        "delta": -0.03600555134246284,
+        "ci95": [
+          -0.05480443562103868,
+          0.006815957734451088
+        ]
+      },
+      "ece_count": {
+        "delta": -0.046605137113789594,
+        "ci95": [
+          -0.05578768995023446,
+          -0.0037158051728458986
+        ]
+      }
+    }
+  },
+  "speaker_influence": {
+    "temperature": [
+      {
+        "speaker": "speaker:1363",
+        "n": 80,
+        "mean_delta_nll": -0.0004157759478297659,
+        "mean_delta_brier": -0.0007195239343224312,
+        "overall_delta_without_speaker": [
+          -0.0017716689678649274,
+          -0.0010044775435473347
+        ]
+      },
+      {
+        "speaker": "speaker:1624",
+        "n": 80,
+        "mean_delta_nll": -0.006480117381520328,
+        "mean_delta_brier": -0.002335136562105058,
+        "overall_delta_without_speaker": [
+          -0.0012203652011657828,
+          -0.0008576036682943668
+        ]
+      },
+      {
+        "speaker": "speaker:1992",
+        "n": 80,
+        "mean_delta_nll": -0.0025987810402582955,
+        "mean_delta_brier": -0.0010245135903324295,
+        "overall_delta_without_speaker": [
+          -0.0015732139594623327,
+          -0.0009767512111827881
+        ]
+      },
+      {
+        "speaker": "speaker:2092",
+        "n": 80,
+        "mean_delta_nll": -0.007695715205585607,
+        "mean_delta_brier": -0.0016563816963471839,
+        "overall_delta_without_speaker": [
+          -0.0011098563080689412,
+          -0.0009193086560905372
+        ]
+      },
+      {
+        "speaker": "speaker:32",
+        "n": 80,
+        "mean_delta_nll": 0.012582679051468698,
+        "mean_delta_brier": 7.14572234313619e-05,
+        "overall_delta_without_speaker": [
+          -0.002953346695073877,
+          -0.0010763849215249513
+        ]
+      },
+      {
+        "speaker": "speaker:4051",
+        "n": 80,
+        "mean_delta_nll": -0.0010460832627754353,
+        "mean_delta_brier": -0.0012790116517233689,
+        "overall_delta_without_speaker": [
+          -0.0017143683028698698,
+          -0.0009536150237836128
+        ]
+      },
+      {
+        "speaker": "speaker:4898",
+        "n": 80,
+        "mean_delta_nll": -0.0021247144662459604,
+        "mean_delta_brier": 0.000314711550154371,
+        "overall_delta_without_speaker": [
+          -0.001616310920736181,
+          -0.0010984989512270431
+        ]
+      },
+      {
+        "speaker": "speaker:5322",
+        "n": 80,
+        "mean_delta_nll": -0.0005599596566500439,
+        "mean_delta_brier": -0.0006030201849715361,
+        "overall_delta_without_speaker": [
+          -0.0017585613579721748,
+          -0.001015068793488325
+        ]
+      },
+      {
+        "speaker": "speaker:587",
+        "n": 80,
+        "mean_delta_nll": 0.0009321161174584564,
+        "mean_delta_brier": -0.0008209835372921699,
+        "overall_delta_without_speaker": [
+          -0.0018942046101638578,
+          -0.0009952539432773585
+        ]
+      },
+      {
+        "speaker": "speaker:6081",
+        "n": 80,
+        "mean_delta_nll": 3.361004019523106e-05,
+        "mean_delta_brier": -0.0009820171275248784,
+        "overall_delta_without_speaker": [
+          -0.0018125222395035585,
+          -0.0009806145259834754
+        ]
+      },
+      {
+        "speaker": "speaker:6437",
+        "n": 80,
+        "mean_delta_nll": -0.003671803248165435,
+        "mean_delta_brier": -0.0006724365776563389,
+        "overall_delta_without_speaker": [
+          -0.0014756664860162297,
+          -0.0010087582123351612
+        ]
+      },
+      {
+        "speaker": "speaker:7780",
+        "n": 80,
+        "mean_delta_nll": -0.00885958959443541,
+        "mean_delta_brier": -0.0020619208246534476,
+        "overall_delta_without_speaker": [
+          -0.0010040495454462287,
+          -0.0008824414626081502
+        ]
+      }
+    ],
+    "platt": [
+      {
+        "speaker": "speaker:1363",
+        "n": 80,
+        "mean_delta_nll": -0.041477477681163805,
+        "mean_delta_brier": -0.012719826290491048,
+        "overall_delta_without_speaker": [
+          -0.023616117124086962,
+          -0.005664609346628602
+        ]
+      },
+      {
+        "speaker": "speaker:1624",
+        "n": 80,
+        "mean_delta_nll": 0.028288569681505626,
+        "mean_delta_brier": 0.02056913451716751,
+        "overall_delta_without_speaker": [
+          -0.029958485066147844,
+          -0.008690878510961198
+        ]
+      },
+      {
+        "speaker": "speaker:1992",
+        "n": 80,
+        "mean_delta_nll": -0.06717173057789624,
+        "mean_delta_brier": -0.02418257476900159,
+        "overall_delta_without_speaker": [
+          -0.021280275951656748,
+          -0.004622541303127638
+        ]
+      },
+      {
+        "speaker": "speaker:2092",
+        "n": 80,
+        "mean_delta_nll": -0.05943278271608976,
+        "mean_delta_brier": -0.021880949085572064,
+        "overall_delta_without_speaker": [
+          -0.02198381666636643,
+          -0.004831780001621237
+        ]
+      },
+      {
+        "speaker": "speaker:32",
+        "n": 80,
+        "mean_delta_nll": -0.03802450543348629,
+        "mean_delta_brier": -0.014941638373744608,
+        "overall_delta_without_speaker": [
+          -0.02393002369205765,
+          -0.005462626429969184
+        ]
+      },
+      {
+        "speaker": "speaker:4051",
+        "n": 80,
+        "mean_delta_nll": -0.033277873882051355,
+        "mean_delta_brier": -0.011282326749104045,
+        "overall_delta_without_speaker": [
+          -0.02436153565127901,
+          -0.005795291123118332
+        ]
+      },
+      {
+        "speaker": "speaker:4898",
+        "n": 80,
+        "mean_delta_nll": 0.09629920582506737,
+        "mean_delta_brier": 0.04588801735251731,
+        "overall_delta_without_speaker": [
+          -0.03614127017010798,
+          -0.010992595132356647
+        ]
+      },
+      {
+        "speaker": "speaker:5322",
+        "n": 80,
+        "mean_delta_nll": -0.036375055982038274,
+        "mean_delta_brier": -0.007494680175031759,
+        "overall_delta_without_speaker": [
+          -0.02407997364218929,
+          -0.006139622629852174
+        ]
+      },
+      {
+        "speaker": "speaker:587",
+        "n": 80,
+        "mean_delta_nll": -0.030447662169881384,
+        "mean_delta_brier": -0.01007853381438724,
+        "overall_delta_without_speaker": [
+          -0.024618827625112638,
+          -0.00590472684445623
+        ]
+      },
+      {
+        "speaker": "speaker:6081",
+        "n": 80,
+        "mean_delta_nll": -0.015206184606730396,
+        "mean_delta_brier": -0.0018129937844171135,
+        "overall_delta_without_speaker": [
+          -0.026004416494490003,
+          -0.0066561395744535075
+        ]
+      },
+      {
+        "speaker": "speaker:6437",
+        "n": 80,
+        "mean_delta_nll": -0.0418328590685463,
+        "mean_delta_brier": -0.014623582584965522,
+        "overall_delta_without_speaker": [
+          -0.023583809725234037,
+          -0.005491540592585465
+        ]
+      },
+      {
+        "speaker": "speaker:7780",
+        "n": 80,
+        "mean_delta_nll": -0.06259640943480933,
+        "mean_delta_brier": -0.022470575346375483,
+        "overall_delta_without_speaker": [
+          -0.02169621423739192,
+          -0.0047781776142754575
+        ]
+      }
+    ],
+    "beta": [
+      {
+        "speaker": "speaker:1363",
+        "n": 80,
+        "mean_delta_nll": -0.045822220514140824,
+        "mean_delta_brier": -0.013996926523700732,
+        "overall_delta_without_speaker": [
+          -0.03142831287518991,
+          -0.007234957693317778
+        ]
+      },
+      {
+        "speaker": "speaker:1624",
+        "n": 80,
+        "mean_delta_nll": 0.008641275744712493,
+        "mean_delta_brier": 0.012984432780382815,
+        "overall_delta_without_speaker": [
+          -0.03637953980781292,
+          -0.00968780853914354
+        ]
+      },
+      {
+        "speaker": "speaker:1992",
+        "n": 80,
+        "mean_delta_nll": -0.06690187689216097,
+        "mean_delta_brier": -0.022757734318436862,
+        "overall_delta_without_speaker": [
+          -0.029511980477188057,
+          -0.006438520621069031
+        ]
+      },
+      {
+        "speaker": "speaker:2092",
+        "n": 80,
+        "mean_delta_nll": -0.05904163650290254,
+        "mean_delta_brier": -0.021159686292238047,
+        "overall_delta_without_speaker": [
+          -0.03022654778530247,
+          -0.006583797714359839
+        ]
+      },
+      {
+        "speaker": "speaker:32",
+        "n": 80,
+        "mean_delta_nll": -0.05557708390955114,
+        "mean_delta_brier": -0.01549069582761159,
+        "overall_delta_without_speaker": [
+          -0.030541507111970793,
+          -0.007099160483871325
+        ]
+      },
+      {
+        "speaker": "speaker:4051",
+        "n": 80,
+        "mean_delta_nll": -0.04462368970449759,
+        "mean_delta_brier": -0.012782730608437265,
+        "overall_delta_without_speaker": [
+          -0.03153727022152111,
+          -0.007345339140159899
+        ]
+      },
+      {
+        "speaker": "speaker:4898",
+        "n": 80,
+        "mean_delta_nll": 0.11214967876058621,
+        "mean_delta_brier": 0.04651854585897438,
+        "overall_delta_without_speaker": [
+          -0.045789394627437884,
+          -0.012736364273560943
+        ]
+      },
+      {
+        "speaker": "speaker:5322",
+        "n": 80,
+        "mean_delta_nll": -0.04907201238424547,
+        "mean_delta_brier": -0.012459945162862604,
+        "overall_delta_without_speaker": [
+          -0.031132877250634926,
+          -0.007374683271575784
+        ]
+      },
+      {
+        "speaker": "speaker:587",
+        "n": 80,
+        "mean_delta_nll": -0.04594385409028011,
+        "mean_delta_brier": -0.010926877662970345,
+        "overall_delta_without_speaker": [
+          -0.031417255277359044,
+          -0.007514053044293244
+        ]
+      },
+      {
+        "speaker": "speaker:6081",
+        "n": 80,
+        "mean_delta_nll": -0.028228125480957777,
+        "mean_delta_brier": -0.005237499611162037,
+        "overall_delta_without_speaker": [
+          -0.033027776060024716,
+          -0.008031269230821276
+        ]
+      },
+      {
+        "speaker": "speaker:6437",
+        "n": 80,
+        "mean_delta_nll": -0.04383129655755752,
+        "mean_delta_brier": -0.01300841121034536,
+        "overall_delta_without_speaker": [
+          -0.031609305962152036,
+          -0.007324822721804617
+        ]
+      },
+      {
+        "speaker": "speaker:7780",
+        "n": 80,
+        "mean_delta_nll": -0.07328282061023508,
+        "mean_delta_brier": -0.025263932571788474,
+        "overall_delta_without_speaker": [
+          -0.02893189468463585,
+          -0.006210684416218877
+        ]
+      }
+    ],
+    "isotonic": [
+      {
+        "speaker": "speaker:1363",
+        "n": 80,
+        "mean_delta_nll": -0.055333921515809535,
+        "mean_delta_brier": -0.014566468814300232,
+        "overall_delta_without_speaker": [
+          -0.005772607931057841,
+          -0.006813977545999198
+        ]
+      },
+      {
+        "speaker": "speaker:1624",
+        "n": 80,
+        "mean_delta_nll": -0.00855726662288403,
+        "mean_delta_brier": 0.006560180100319659,
+        "overall_delta_without_speaker": [
+          -0.010025031103141954,
+          -0.008734581992782996
+        ]
+      },
+      {
+        "speaker": "speaker:1992",
+        "n": 80,
+        "mean_delta_nll": -0.06885805334754536,
+        "mean_delta_brier": -0.021048283526470406,
+        "overall_delta_without_speaker": [
+          -0.004543141400900041,
+          -0.006224721663074635
+        ]
+      },
+      {
+        "speaker": "speaker:2092",
+        "n": 80,
+        "mean_delta_nll": -0.0633826847084852,
+        "mean_delta_brier": -0.019650652065610532,
+        "overall_delta_without_speaker": [
+          -0.005040902186269142,
+          -0.006351779068607354
+        ]
+      },
+      {
+        "speaker": "speaker:32",
+        "n": 80,
+        "mean_delta_nll": 0.0969875151917082,
+        "mean_delta_brier": -0.015267144743747157,
+        "overall_delta_without_speaker": [
+          -0.019620011268104906,
+          -0.0067502797342312935
+        ]
+      },
+      {
+        "speaker": "speaker:4051",
+        "n": 80,
+        "mean_delta_nll": -0.0412838723651848,
+        "mean_delta_brier": -0.010458706244530758,
+        "overall_delta_without_speaker": [
+          -0.007049885126569176,
+          -0.007187410506887324
+        ]
+      },
+      {
+        "speaker": "speaker:4898",
+        "n": 80,
+        "mean_delta_nll": 0.29465050076979576,
+        "mean_delta_brier": 0.05111518341712886,
+        "overall_delta_without_speaker": [
+          -0.0375893735933856,
+          -0.01278503683976563
+        ]
+      },
+      {
+        "speaker": "speaker:5322",
+        "n": 80,
+        "mean_delta_nll": -0.05284813842804802,
+        "mean_delta_brier": -0.012484546726457912,
+        "overall_delta_without_speaker": [
+          -0.005998588211763459,
+          -0.007003243190348534
+        ]
+      },
+      {
+        "speaker": "speaker:587",
+        "n": 80,
+        "mean_delta_nll": -0.0626684675025994,
+        "mean_delta_brier": -0.01346148135975092,
+        "overall_delta_without_speaker": [
+          -0.005105831023167886,
+          -0.006914430950958225
+        ]
+      },
+      {
+        "speaker": "speaker:6081",
+        "n": 80,
+        "mean_delta_nll": -0.03623786366663055,
+        "mean_delta_brier": -0.005950768711202167,
+        "overall_delta_without_speaker": [
+          -0.0075086131900741334,
+          -0.007597223009917235
+        ]
+      },
+      {
+        "speaker": "speaker:6437",
+        "n": 80,
+        "mean_delta_nll": -0.04475030255255911,
+        "mean_delta_brier": -0.010828575830203052,
+        "overall_delta_without_speaker": [
+          -0.006734755109535163,
+          -0.00715378599909894
+        ]
+      },
+      {
+        "speaker": "speaker:7780",
+        "n": 80,
+        "mean_delta_nll": -0.07655005400920374,
+        "mean_delta_brier": -0.02347895731546801,
+        "overall_delta_without_speaker": [
+          -0.0038438686134765728,
+          -0.006003751318620313
+        ]
+      }
+    ]
+  },
+  "reliability": {
+    "raw": {
+      "equal_width": [
+        {
+          "bin": 0,
+          "count": 149,
+          "mean_score": 0.02503672760354082,
+          "tts_fraction": 0.0738255033557047,
+          "score_min": 8.254430117712478e-06,
+          "score_max": 0.09922241295377414
+        },
+        {
+          "bin": 1,
+          "count": 47,
+          "mean_score": 0.14850315184888735,
+          "tts_fraction": 0.14893617021276595,
+          "score_min": 0.10038352498668246,
+          "score_max": 0.19812410574545916
+        },
+        {
+          "bin": 2,
+          "count": 32,
+          "mean_score": 0.25215721214529374,
+          "tts_fraction": 0.25,
+          "score_min": 0.20198966216412373,
+          "score_max": 0.2976109119132161
+        },
+        {
+          "bin": 3,
+          "count": 32,
+          "mean_score": 0.34403146522122474,
+          "tts_fraction": 0.4375,
+          "score_min": 0.3100828685232305,
+          "score_max": 0.39584086338679
+        },
+        {
+          "bin": 4,
+          "count": 31,
+          "mean_score": 0.45806834653613265,
+          "tts_fraction": 0.6774193548387096,
+          "score_min": 0.40352797182276845,
+          "score_max": 0.49676891416311264
+        },
+        {
+          "bin": 5,
+          "count": 32,
+          "mean_score": 0.5497061797254337,
+          "tts_fraction": 0.78125,
+          "score_min": 0.5031041848124005,
+          "score_max": 0.599189097682635
+        },
+        {
+          "bin": 6,
+          "count": 36,
+          "mean_score": 0.6500836118049279,
+          "tts_fraction": 0.9166666666666666,
+          "score_min": 0.6027771473995277,
+          "score_max": 0.6997978016734123
+        },
+        {
+          "bin": 7,
+          "count": 25,
+          "mean_score": 0.7500786359022772,
+          "tts_fraction": 1.0,
+          "score_min": 0.7023697465658187,
+          "score_max": 0.7954874883095423
+        },
+        {
+          "bin": 8,
+          "count": 45,
+          "mean_score": 0.851000657770684,
+          "tts_fraction": 1.0,
+          "score_min": 0.8029287819351468,
+          "score_max": 0.8957319898264748
+        },
+        {
+          "bin": 9,
+          "count": 531,
+          "mean_score": 0.9893955578651643,
+          "tts_fraction": 1.0,
+          "score_min": 0.9006872177124023,
+          "score_max": 0.9999944567680359
+        }
+      ],
+      "equal_count": [
+        {
+          "bin": 0,
+          "count": 96,
+          "mean_score": 0.004952875405442693,
+          "tts_fraction": 0.0,
+          "score_min": 8.254430117712478e-06,
+          "score_max": 0.01903469916423108
+        },
+        {
+          "bin": 1,
+          "count": 96,
+          "mean_score": 0.09853385387829476,
+          "tts_fraction": 0.17708333333333334,
+          "score_min": 0.02179763838648796,
+          "score_max": 0.1889607110521562
+        },
+        {
+          "bin": 2,
+          "count": 96,
+          "mean_score": 0.3392143686890123,
+          "tts_fraction": 0.4375,
+          "score_min": 0.18919955087559565,
+          "score_max": 0.4957121640909463
+        },
+        {
+          "bin": 3,
+          "count": 96,
+          "mean_score": 0.63785984621394,
+          "tts_fraction": 0.8854166666666666,
+          "score_min": 0.49593647569417953,
+          "score_max": 0.7954874883095423
+        },
+        {
+          "bin": 4,
+          "count": 96,
+          "mean_score": 0.8956804310400335,
+          "tts_fraction": 1.0,
+          "score_min": 0.8029287819351468,
+          "score_max": 0.9645855188369751
+        },
+        {
+          "bin": 5,
+          "count": 96,
+          "mean_score": 0.98203167416791,
+          "tts_fraction": 1.0,
+          "score_min": 0.9646920661131541,
+          "score_max": 0.9915262162685394
+        },
+        {
+          "bin": 6,
+          "count": 96,
+          "mean_score": 0.9956700113907496,
+          "tts_fraction": 1.0,
+          "score_min": 0.9917254547278086,
+          "score_max": 0.997851183017095
+        },
+        {
+          "bin": 7,
+          "count": 96,
+          "mean_score": 0.9986491911290657,
+          "tts_fraction": 1.0,
+          "score_min": 0.9978843331336975,
+          "score_max": 0.9992108146349589
+        },
+        {
+          "bin": 8,
+          "count": 96,
+          "mean_score": 0.9995353511002447,
+          "tts_fraction": 1.0,
+          "score_min": 0.9992113908131918,
+          "score_max": 0.9998268842697143
+        },
+        {
+          "bin": 9,
+          "count": 96,
+          "mean_score": 0.9999340789436939,
+          "tts_fraction": 1.0,
+          "score_min": 0.9998332262039185,
+          "score_max": 0.9999944567680359
+        }
+      ]
+    },
+    "temperature": {
+      "equal_width": [
+        {
+          "bin": 0,
+          "count": 168,
+          "mean_score": 0.022159438379123337,
+          "tts_fraction": 0.07142857142857142,
+          "score_min": 6.447914605621142e-07,
+          "score_max": 0.09865627710925316
+        },
+        {
+          "bin": 1,
+          "count": 41,
+          "mean_score": 0.1485434455970579,
+          "tts_fraction": 0.21951219512195122,
+          "score_min": 0.10420249331612769,
+          "score_max": 0.1981556240086225
+        },
+        {
+          "bin": 2,
+          "count": 25,
+          "mean_score": 0.2502340161712382,
+          "tts_fraction": 0.32,
+          "score_min": 0.20249431602463994,
+          "score_max": 0.2894886659679907
+        },
+        {
+          "bin": 3,
+          "count": 31,
+          "mean_score": 0.33432793351937357,
+          "tts_fraction": 0.3870967741935484,
+          "score_min": 0.30045231164066855,
+          "score_max": 0.39463739992947217
+        },
+        {
+          "bin": 4,
+          "count": 26,
+          "mean_score": 0.4615403366373059,
+          "tts_fraction": 0.7692307692307693,
+          "score_min": 0.40497677957147826,
+          "score_max": 0.4959734792946556
+        },
+        {
+          "bin": 5,
+          "count": 29,
+          "mean_score": 0.5531522075335302,
+          "tts_fraction": 0.7586206896551724,
+          "score_min": 0.5038683812379146,
+          "score_max": 0.5994638351037371
+        },
+        {
+          "bin": 6,
+          "count": 29,
+          "mean_score": 0.6543348912410858,
+          "tts_fraction": 0.896551724137931,
+          "score_min": 0.6011247267871469,
+          "score_max": 0.6999173614246714
+        },
+        {
+          "bin": 7,
+          "count": 22,
+          "mean_score": 0.7407599503826673,
+          "tts_fraction": 1.0,
+          "score_min": 0.7006819939967149,
+          "score_max": 0.7899974831128673
+        },
+        {
+          "bin": 8,
+          "count": 38,
+          "mean_score": 0.8471843566416238,
+          "tts_fraction": 1.0,
+          "score_min": 0.8006908708501547,
+          "score_max": 0.8958005926219786
+        },
+        {
+          "bin": 9,
+          "count": 551,
+          "mean_score": 0.9913862608224882,
+          "tts_fraction": 1.0,
+          "score_min": 0.9051905218893371,
+          "score_max": 0.999999718340061
+        }
+      ],
+      "equal_count": [
+        {
+          "bin": 0,
+          "count": 96,
+          "mean_score": 0.0020446285933730765,
+          "tts_fraction": 0.0,
+          "score_min": 6.447914605621142e-07,
+          "score_max": 0.009269671057317432
+        },
+        {
+          "bin": 1,
+          "count": 96,
+          "mean_score": 0.06892765267960385,
+          "tts_fraction": 0.17708333333333334,
+          "score_min": 0.009297522009254289,
+          "score_max": 0.15299599276456868
+        },
+        {
+          "bin": 2,
+          "count": 96,
+          "mean_score": 0.31388637573634237,
+          "tts_fraction": 0.4375,
+          "score_min": 0.1542768410627769,
+          "score_max": 0.4947782286901621
+        },
+        {
+          "bin": 3,
+          "count": 96,
+          "mean_score": 0.6601877165361576,
+          "tts_fraction": 0.8854166666666666,
+          "score_min": 0.4950513917297517,
+          "score_max": 0.8388191758413366
+        },
+        {
+          "bin": 4,
+          "count": 96,
+          "mean_score": 0.9259322575219251,
+          "tts_fraction": 1.0,
+          "score_min": 0.8394583055605351,
+          "score_max": 0.9821810204289348
+        },
+        {
+          "bin": 5,
+          "count": 96,
+          "mean_score": 0.9914182959741505,
+          "tts_fraction": 1.0,
+          "score_min": 0.9821917206309099,
+          "score_max": 0.9967172119416783
+        },
+        {
+          "bin": 6,
+          "count": 96,
+          "mean_score": 0.9984584472085579,
+          "tts_fraction": 1.0,
+          "score_min": 0.9967294751319872,
+          "score_max": 0.9993322981088708
+        },
+        {
+          "bin": 7,
+          "count": 96,
+          "mean_score": 0.9996104289095649,
+          "tts_fraction": 1.0,
+          "score_min": 0.9993366181408977,
+          "score_max": 0.9998009890640253
+        },
+        {
+          "bin": 8,
+          "count": 96,
+          "mean_score": 0.9998963289470417,
+          "tts_fraction": 1.0,
+          "score_min": 0.99980483548854,
+          "score_max": 0.9999692507293367
+        },
+        {
+          "bin": 9,
+          "count": 96,
+          "mean_score": 0.9999900767638952,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999700320594503,
+          "score_max": 0.999999718340061
+        }
+      ]
+    },
+    "platt": {
+      "equal_width": [
+        {
+          "bin": 0,
+          "count": 139,
+          "mean_score": 0.018438571141110315,
+          "tts_fraction": 0.05755395683453238,
+          "score_min": 1.903992200447263e-07,
+          "score_max": 0.09902695647013643
+        },
+        {
+          "bin": 1,
+          "count": 30,
+          "mean_score": 0.13623970715076034,
+          "tts_fraction": 0.13333333333333333,
+          "score_min": 0.10060900609655331,
+          "score_max": 0.19615636409622844
+        },
+        {
+          "bin": 2,
+          "count": 23,
+          "mean_score": 0.24939244532318372,
+          "tts_fraction": 0.2608695652173913,
+          "score_min": 0.2032013579968879,
+          "score_max": 0.29433867385745466
+        },
+        {
+          "bin": 3,
+          "count": 19,
+          "mean_score": 0.3529741902482893,
+          "tts_fraction": 0.15789473684210525,
+          "score_min": 0.30864245524338185,
+          "score_max": 0.39366827730447473
+        },
+        {
+          "bin": 4,
+          "count": 16,
+          "mean_score": 0.45700358667626945,
+          "tts_fraction": 0.4375,
+          "score_min": 0.40187483893457354,
+          "score_max": 0.4995800296879184
+        },
+        {
+          "bin": 5,
+          "count": 25,
+          "mean_score": 0.5433295515749799,
+          "tts_fraction": 0.4,
+          "score_min": 0.5027041845541954,
+          "score_max": 0.5985891718440303
+        },
+        {
+          "bin": 6,
+          "count": 21,
+          "mean_score": 0.6435940338860479,
+          "tts_fraction": 0.47619047619047616,
+          "score_min": 0.6031834143114227,
+          "score_max": 0.6979751282263953
+        },
+        {
+          "bin": 7,
+          "count": 31,
+          "mean_score": 0.7544270485047669,
+          "tts_fraction": 0.7419354838709677,
+          "score_min": 0.7050250751466179,
+          "score_max": 0.7923473904810441
+        },
+        {
+          "bin": 8,
+          "count": 50,
+          "mean_score": 0.8570829171068116,
+          "tts_fraction": 0.86,
+          "score_min": 0.8051283470271616,
+          "score_max": 0.8986831333650668
+        },
+        {
+          "bin": 9,
+          "count": 606,
+          "mean_score": 0.9933013148022679,
+          "tts_fraction": 1.0,
+          "score_min": 0.9012723180070409,
+          "score_max": 0.9999999947210694
+        }
+      ],
+      "equal_count": [
+        {
+          "bin": 0,
+          "count": 96,
+          "mean_score": 0.002470677926039288,
+          "tts_fraction": 0.010416666666666666,
+          "score_min": 1.903992200447263e-07,
+          "score_max": 0.012835903505743292
+        },
+        {
+          "bin": 1,
+          "count": 96,
+          "mean_score": 0.1265520183819854,
+          "tts_fraction": 0.17708333333333334,
+          "score_min": 0.012853924945909452,
+          "score_max": 0.29433867385745466
+        },
+        {
+          "bin": 2,
+          "count": 96,
+          "mean_score": 0.5428850132581605,
+          "tts_fraction": 0.4375,
+          "score_min": 0.30864245524338185,
+          "score_max": 0.7559098374500208
+        },
+        {
+          "bin": 3,
+          "count": 96,
+          "mean_score": 0.8650804547789076,
+          "tts_fraction": 0.875,
+          "score_min": 0.7569704040895839,
+          "score_max": 0.9467025281386473
+        },
+        {
+          "bin": 4,
+          "count": 96,
+          "mean_score": 0.9821356512676455,
+          "tts_fraction": 1.0,
+          "score_min": 0.9487183341189054,
+          "score_max": 0.9969333783362024
+        },
+        {
+          "bin": 5,
+          "count": 96,
+          "mean_score": 0.998665401599261,
+          "tts_fraction": 1.0,
+          "score_min": 0.996979011416162,
+          "score_max": 0.9996032054075735
+        },
+        {
+          "bin": 6,
+          "count": 96,
+          "mean_score": 0.9998100327888043,
+          "tts_fraction": 1.0,
+          "score_min": 0.9996079906984668,
+          "score_max": 0.9999281699894785
+        },
+        {
+          "bin": 7,
+          "count": 96,
+          "mean_score": 0.9999642556311713,
+          "tts_fraction": 1.0,
+          "score_min": 0.999928257986297,
+          "score_max": 0.9999862382364428
+        },
+        {
+          "bin": 8,
+          "count": 96,
+          "mean_score": 0.9999936347293058,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999863001717175,
+          "score_max": 0.9999983317900205
+        },
+        {
+          "bin": 9,
+          "count": 96,
+          "mean_score": 0.9999995312767659,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999984828206278,
+          "score_max": 0.9999999947210694
+        }
+      ]
+    },
+    "beta": {
+      "equal_width": [
+        {
+          "bin": 0,
+          "count": 131,
+          "mean_score": 0.03733668336439785,
+          "tts_fraction": 0.05343511450381679,
+          "score_min": 0.0017247362244134175,
+          "score_max": 0.09999801020338059
+        },
+        {
+          "bin": 1,
+          "count": 51,
+          "mean_score": 0.14373624931332576,
+          "tts_fraction": 0.11764705882352941,
+          "score_min": 0.10011009537760762,
+          "score_max": 0.1990784746837764
+        },
+        {
+          "bin": 2,
+          "count": 27,
+          "mean_score": 0.24287282567550253,
+          "tts_fraction": 0.25925925925925924,
+          "score_min": 0.202439555612286,
+          "score_max": 0.2982192004374156
+        },
+        {
+          "bin": 3,
+          "count": 17,
+          "mean_score": 0.3495149917868921,
+          "tts_fraction": 0.35294117647058826,
+          "score_min": 0.30374118482160506,
+          "score_max": 0.3955698041355022
+        },
+        {
+          "bin": 4,
+          "count": 26,
+          "mean_score": 0.44271202639553564,
+          "tts_fraction": 0.46153846153846156,
+          "score_min": 0.4014986429932,
+          "score_max": 0.49757890248126985
+        },
+        {
+          "bin": 5,
+          "count": 17,
+          "mean_score": 0.5635249388315061,
+          "tts_fraction": 0.5294117647058824,
+          "score_min": 0.5290038274040149,
+          "score_max": 0.594381849009398
+        },
+        {
+          "bin": 6,
+          "count": 8,
+          "mean_score": 0.662209055903557,
+          "tts_fraction": 0.625,
+          "score_min": 0.6049721666732333,
+          "score_max": 0.693946232943136
+        },
+        {
+          "bin": 7,
+          "count": 24,
+          "mean_score": 0.7502423923144571,
+          "tts_fraction": 0.7083333333333334,
+          "score_min": 0.7075148049824025,
+          "score_max": 0.7915463135936396
+        },
+        {
+          "bin": 8,
+          "count": 27,
+          "mean_score": 0.8628191210616499,
+          "tts_fraction": 0.8148148148148148,
+          "score_min": 0.8061340305811568,
+          "score_max": 0.898919282352156
+        },
+        {
+          "bin": 9,
+          "count": 632,
+          "mean_score": 0.9958831878102029,
+          "tts_fraction": 0.995253164556962,
+          "score_min": 0.9034324366294175,
+          "score_max": 1.0
+        }
+      ],
+      "equal_count": [
+        {
+          "bin": 0,
+          "count": 96,
+          "mean_score": 0.022516161526393557,
+          "tts_fraction": 0.010416666666666666,
+          "score_min": 0.0017247362244134175,
+          "score_max": 0.050076492436042015
+        },
+        {
+          "bin": 1,
+          "count": 96,
+          "mean_score": 0.1271146457879566,
+          "tts_fraction": 0.16666666666666666,
+          "score_min": 0.05112654618498396,
+          "score_max": 0.2249600624843738
+        },
+        {
+          "bin": 2,
+          "count": 96,
+          "mean_score": 0.46582267571729713,
+          "tts_fraction": 0.4479166666666667,
+          "score_min": 0.22506817990950292,
+          "score_max": 0.7429281739624742
+        },
+        {
+          "bin": 3,
+          "count": 96,
+          "mean_score": 0.9049532563636626,
+          "tts_fraction": 0.875,
+          "score_min": 0.7497317643816628,
+          "score_max": 0.9900468892099646
+        },
+        {
+          "bin": 4,
+          "count": 96,
+          "mean_score": 0.9984403683871896,
+          "tts_fraction": 1.0,
+          "score_min": 0.9901318798856704,
+          "score_max": 0.9999911214132675
+        },
+        {
+          "bin": 5,
+          "count": 96,
+          "mean_score": 0.9999986556027066,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999912326169768,
+          "score_max": 0.999999975129815
+        },
+        {
+          "bin": 6,
+          "count": 96,
+          "mean_score": 0.9999999956610691,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999999764015711,
+          "score_max": 0.9999999997847044
+        },
+        {
+          "bin": 7,
+          "count": 96,
+          "mean_score": 0.9999999999462448,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999999997952123,
+          "score_max": 0.9999999999975351
+        },
+        {
+          "bin": 8,
+          "count": 96,
+          "mean_score": 0.9999999999995568,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999999999975568,
+          "score_max": 0.9999999999999971
+        },
+        {
+          "bin": 9,
+          "count": 96,
+          "mean_score": 0.9999999999999997,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999999999999973,
+          "score_max": 1.0
+        }
+      ]
+    },
+    "isotonic": {
+      "equal_width": [
+        {
+          "bin": 0,
+          "count": 105,
+          "mean_score": 0.004139021381888979,
+          "tts_fraction": 0.01904761904761905,
+          "score_min": 1e-07,
+          "score_max": 0.07744448795548571
+        },
+        {
+          "bin": 1,
+          "count": 78,
+          "mean_score": 0.15892528351973417,
+          "tts_fraction": 0.15384615384615385,
+          "score_min": 0.13114754098360656,
+          "score_max": 0.1919436789656771
+        },
+        {
+          "bin": 2,
+          "count": 44,
+          "mean_score": 0.24210955028679246,
+          "tts_fraction": 0.2727272727272727,
+          "score_min": 0.2,
+          "score_max": 0.2962962962962963
+        },
+        {
+          "bin": 3,
+          "count": 15,
+          "mean_score": 0.3757795261334432,
+          "tts_fraction": 0.6,
+          "score_min": 0.316542729032235,
+          "score_max": 0.391304347826087
+        },
+        {
+          "bin": 4,
+          "count": 12,
+          "mean_score": 0.45466395749785576,
+          "tts_fraction": 0.4166666666666667,
+          "score_min": 0.42857142857142855,
+          "score_max": 0.4847373732433561
+        },
+        {
+          "bin": 5,
+          "count": 17,
+          "mean_score": 0.5334872656147119,
+          "tts_fraction": 0.4117647058823529,
+          "score_min": 0.5,
+          "score_max": 0.591505737672324
+        },
+        {
+          "bin": 6,
+          "count": 9,
+          "mean_score": 0.6037037037037037,
+          "tts_fraction": 0.8888888888888888,
+          "score_min": 0.6,
+          "score_max": 0.6111111111111112
+        },
+        {
+          "bin": 7,
+          "count": 14,
+          "mean_score": 0.7361295834802963,
+          "tts_fraction": 0.5714285714285714,
+          "score_min": 0.72,
+          "score_max": 0.7751255130581527
+        },
+        {
+          "bin": 8,
+          "count": 25,
+          "mean_score": 0.8324384987133897,
+          "tts_fraction": 0.8,
+          "score_min": 0.8,
+          "score_max": 0.8598802167524938
+        },
+        {
+          "bin": 9,
+          "count": 641,
+          "mean_score": 0.998898681352666,
+          "tts_fraction": 0.9937597503900156,
+          "score_min": 0.9411764705882353,
+          "score_max": 0.9999999
+        }
+      ],
+      "equal_count": [
+        {
+          "bin": 0,
+          "count": 96,
+          "mean_score": 1e-07,
+          "tts_fraction": 0.0,
+          "score_min": 1e-07,
+          "score_max": 1e-07
+        },
+        {
+          "bin": 1,
+          "count": 96,
+          "mean_score": 0.1544426234338658,
+          "tts_fraction": 0.15625,
+          "score_min": 1e-07,
+          "score_max": 0.22727272727272727
+        },
+        {
+          "bin": 2,
+          "count": 96,
+          "mean_score": 0.41679547243088244,
+          "tts_fraction": 0.4583333333333333,
+          "score_min": 0.22727272727272727,
+          "score_max": 0.72
+        },
+        {
+          "bin": 3,
+          "count": 96,
+          "mean_score": 0.9338634269126848,
+          "tts_fraction": 0.8854166666666666,
+          "score_min": 0.75,
+          "score_max": 0.9999999
+        },
+        {
+          "bin": 4,
+          "count": 96,
+          "mean_score": 0.9999999000000002,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999999,
+          "score_max": 0.9999999
+        },
+        {
+          "bin": 5,
+          "count": 96,
+          "mean_score": 0.9999999000000002,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999999,
+          "score_max": 0.9999999
+        },
+        {
+          "bin": 6,
+          "count": 96,
+          "mean_score": 0.9999999000000002,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999999,
+          "score_max": 0.9999999
+        },
+        {
+          "bin": 7,
+          "count": 96,
+          "mean_score": 0.9999999000000002,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999999,
+          "score_max": 0.9999999
+        },
+        {
+          "bin": 8,
+          "count": 96,
+          "mean_score": 0.9999999000000002,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999999,
+          "score_max": 0.9999999
+        },
+        {
+          "bin": 9,
+          "count": 96,
+          "mean_score": 0.9999999000000002,
+          "tts_fraction": 1.0,
+          "score_min": 0.9999999,
+          "score_max": 0.9999999
+        }
+      ]
+    }
+  }
+}

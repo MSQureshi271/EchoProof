@@ -1,0 +1,14 @@
+{
+  "command": ".venv/Scripts/python.exe -B -m unittest discover -s experiments/r3_n1/ast_alternative_calibration -p test_experiment.py -v",
+  "passed": 11,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_seconds": 0.203,
+  "source_sha256": {
+    "run.py": "1013aea966dcc1752266c9379fb37bd7cc1e1e40a9b3a4557ef1fc9405771c83",
+    "test_experiment.py": "032c8b0fac989675e260210185765df031c3e640e42992f8e78204a0fbadc491",
+    "PLAN.md": "a4f110b6e5099c542bde7864386f201c9f55d120971c4f84ef8b260d30657079"
+  },
+  "prior_attempt": "20261114T112206Z-e2c46249 stopped at NumPy scalar passed to DecisionRule; partial outputs preserved. Caller converts to Python float; methodology unchanged."
+}

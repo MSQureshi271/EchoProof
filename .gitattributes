@@ -1,0 +1,8 @@
+# Keep verified AST source/evidence bytes stable across operating systems.
+/experiments/r3_n1/ast_alternative_calibration/** -text
+/experiments/r3_n1/ast_platt_verification/** -text
+/scripts/r3_n1_ast_*.py -text
+/src/echoproof/models/r3_n1_ast_*.py -text
+/tests/test_r3_n1_ast_*.py -text
+/configs/r3_n1_ast_*.json -text
+/docs/evidence/r3_n1_ast_platt/** -text
