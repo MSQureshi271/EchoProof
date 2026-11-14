@@ -172,6 +172,30 @@ def load_lr_bundle(bundle_path: str | Path, threshold: float | None = None) -> L
     )
 
 
+def load_inference_bundle(bundle_path: str | Path, threshold: float | None = None) -> LoadedBundle:
+    """Route a bundle to its loader by the model family in `bundle.json`.
+
+    `threshold=None` means "use the bundle's own serialized decision rule". An override is accepted only by bundles that allow one (uncalibrated
+    development bundles and legacy LR directories); a calibrated bundle refuses it. A directory without `bundle.json` is a legacy LR model directory.
+    """
+    import json
+
+    path = Path(bundle_path)
+    if not path.exists():
+        raise FileNotFoundError(f"Path does not exist: {bundle_path}")
+    manifest = path / "bundle.json"
+    if not manifest.is_file():
+        return load_lr_bundle(path, threshold)
+    version = str(json.loads(manifest.read_text(encoding="utf-8")).get("model_version", ""))
+    family = version.split(":", 1)[0]
+    if family == "logistic_regression":
+        return load_lr_bundle(path, threshold)
+    if family == "wavlm_head":
+        from echoproof.models.r3_n1_wavlm_bundle import load_wavlm_bundle
+        return load_wavlm_bundle(path, threshold=threshold)
+    raise ContractError(f"no inference loader for model version {version!r}")
+
+
 @dataclass
 class Analysis:
     """The result plus the intermediate arrays the application draws. Only `result` is a contract object."""

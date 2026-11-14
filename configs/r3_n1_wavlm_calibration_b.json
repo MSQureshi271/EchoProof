@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "task": "R3-N1-WavLM",
+  "status": "owner_confirmed_2026-11-14",
+  "protocol": "B",
+  "authority": "WAVLM_CALIBRATION.md, revised 14 November 2026. Acceptance rule, shared-file edits, replay tolerance, the affine comparison and the transformers pin were decided by the project owner on 14 November 2026 before any fit used the calibration or operating role.",
+  "model": {
+    "selected": "mean_std",
+    "epoch": 14,
+    "checkpoint_sha256": "462ee3c1b8e0b8d50e81ddd9df7587ac85bbac75d1cf7938edf01d3901a4c904",
+    "split_sha256": "0854de6b00ae059a858d60f18f95df3f1501f579ea3e2fdefbd8de076e2034d7",
+    "encoder_revision": "4c66d4806a428f2e922ccfa1a962776e232d487b",
+    "source_bundle": "bundles/r3_u1_wavlm_head_B",
+    "source_bundle_id": "bundle:r3-u1-wavlm-head-B-mean_std",
+    "source_bundle_json_sha256": "b2f309264515bf421afacf0700dc0b7360c51e50f6963bcc2ab86df9d7f76128",
+    "model_version": "wavlm_head:B"
+  },
+  "inputs": {
+    "directory": "reports/r3/r3_u1_B",
+    "selection_json_sha256": "a37cd975525a769859583373ca99529ebe90afe53431bc82d92132547c6f6886",
+    "evidence_json_sha256": "c2171d6bba07d4f2b54c7933a3224cef89b93e32311e25ebdb447558bf915682",
+    "predictions_sha256": {
+      "predictions_chunks_calibration.parquet": "402acefe80386d99bd891db756fa98b2f46aa4cdb5aa210dd8a909356176fa49",
+      "predictions_chunks_operating.parquet": "702408f65e6a128c4e17495a84d117c3ff4ba6d3ecddc314cf8312235b0b62b6",
+      "predictions_chunks_selection.parquet": "d70e37e02c8a359d840b73e7b0c06a1e8f52d7917ce730bdf9df430eda2deaa4",
+      "predictions_recordings_calibration.parquet": "bcd449b4628cdd76120a225b056c8a3fe0fc7e6920efa590f381d4336f55da9a",
+      "predictions_recordings_operating.parquet": "d957a8f2a39e1f3c6c1dc57f0f9d804893b1f27720946043f7a592cb21a89a6e",
+      "predictions_recordings_selection.parquet": "def069b46eced013dc7f3086ab9beb6547d72234a3d36cec3f4522d0e1cc1262"
+    }
+  },
+  "roles": {
+    "selection": {
+      "recordings": 2000,
+      "speakers": 25,
+      "chunks": 10029,
+      "per_component": 500
+    },
+    "calibration": {
+      "recordings": 960,
+      "speakers": 12,
+      "chunks": 4712,
+      "per_component": 240
+    },
+    "operating": {
+      "recordings": 1040,
+      "speakers": 13,
+      "chunks": 5135,
+      "per_component": 260
+    }
+  },
+  "expected_raw_summary_at_0_5": {
+    "decimals": 4,
+    "calibration": {
+      "macro_f1": 0.9224,
+      "genuine_fpr": 0.0083,
+      "eer": 0.0444,
+      "roc_auc": 0.9908
+    },
+    "operating": {
+      "macro_f1": 0.8837,
+      "genuine_fpr": 0.0923,
+      "eer": 0.0923,
+      "roc_auc": 0.9791
+    }
+  },
+  "expected_saturation": {
+    "selection": {
+      "high": 32,
+      "exactly_one": 20,
+      "low": 1,
+      "distinct_before": 1891,
+      "distinct_after": 1881
+    },
+    "calibration": {
+      "high": 10,
+      "exactly_one": 5,
+      "low": 1,
+      "distinct_before": 926,
+      "distinct_after": 921
+    },
+    "operating": {
+      "high": 24,
+      "exactly_one": 17,
+      "low": 1,
+      "distinct_before": 980,
+      "distinct_after": 977
+    }
+  },
+  "epsilon": 1e-07,
+  "seed": 42,
+  "weighting": "one row, equal weight, per recording",
+  "candidates": [
+    "identity",
+    "temperature",
+    "affine"
+  ],
+  "temperature": {
+    "bounds": [
+      0.01,
+      50.0
+    ],
+    "bound_tolerance": 1e-06
+  },
+  "affine": {
+    "parameterisation": "a = exp(u)",
+    "u_bounds": [
+      -4.0,
+      4.0
+    ],
+    "b_bounds": [
+      -5.0,
+      5.0
+    ],
+    "regularisation": 0.01,
+    "start": [
+      0.0,
+      0.0
+    ],
+    "optimizer": "scipy L-BFGS-B",
+    "bound_tolerance": 1e-06
+  },
+  "selection_rule": {
+    "cross_validation": "leave-one-speaker-out inside the calibration role",
+    "statistic": "mean over held-out speakers of per-speaker log loss",
+    "standard_error": "sample standard deviation (ddof 1) of the best candidate's per-speaker losses / sqrt(number of speakers)",
+    "choice": "simplest candidate (identity, temperature, affine) whose mean is at most best mean + standard error",
+    "failed_candidates": "excluded and reported; identity if every non-identity candidate fails"
+  },
+  "acceptance_rule": {
+    "applies_to": "the mapping selected by selection_rule; identity is rejected by definition",
+    "conditions": [
+      "valid fit: solver success, finite objective, parameters strictly inside their bounds (not within bound_tolerance), calibrated scores finite and in [0,1]",
+      "operating log loss of calibrated scores strictly lower than raw",
+      "operating Brier score of calibrated scores not higher than raw"
+    ],
+    "tie": "rejected",
+    "accepted": {
+      "score_type": "calibrated_probability",
+      "threshold_scores": "calibrated"
+    },
+    "rejected": {
+      "score_type": "model_score",
+      "threshold_scores": "raw"
+    }
+  },
+  "threshold_rule": {
+    "function": "echoproof.evaluation.threshold.select_threshold",
+    "tie_break": "contract",
+    "decision": "score >= threshold",
+    "all_negative": "explicit"
+  },
+  "bootstrap": {
+    "resamples": 1000,
+    "seed": 42,
+    "alpha": 0.05,
+    "unit": "speaker"
+  },
+  "reliability": {
+    "bins": 10,
+    "definition": "equal width on [0,1], last bin closed, empty bins omitted"
+  },
+  "known_components": [
+    "genuine",
+    "melo",
+    "vits"
+  ],
+  "unseen_components": [
+    "genuine",
+    "xtts"
+  ],
+  "duration_matched": {
+    "file": "data/eda/r2_s3_shortcut/duration_matched_B_v1.json",
+    "key": "ids.selection"
+  },
+  "replay_tolerance_recording_score": 0.001,
+  "transformers_pin": "5.22.0",
+  "output_root": "runs/r3/r3_n1_wavlm",
+  "bundle_destination": "bundles/r3_n1_wavlm_head_B_calibrated",
+  "restrictions": [
+    "no model retraining",
+    "no test or Chatterbox data",
+    "no changes to the source bundle, exports or locks",
+    "operating role opened once, after the mapping is frozen"
+  ]
+}

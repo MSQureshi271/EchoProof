@@ -51,7 +51,7 @@ def main(argv=None):
     predict = sub.add_parser("predict", help="Run inference on an audio recording using a model bundle")
     predict.add_argument("--bundle", required=True, help="Path to model bundle directory")
     predict.add_argument("--audio", required=True, help="Path to audio file")
-    predict.add_argument("--threshold", type=float, default=0.5, help="Decision threshold (default: 0.5)")
+    predict.add_argument("--threshold", type=float, default=None, help="Decision threshold override (default: the bundle's own decision rule; refused for calibrated bundles)")
     data = sub.add_parser('data', help='Dataset audit operations')
     data_actions = data.add_subparsers(dest='data_action', required=True, parser_class=Parser)
     inventory = data_actions.add_parser('inventory')
@@ -153,7 +153,7 @@ def main(argv=None):
             print(json.dumps({"status": "error", "type": "environment_failed", "message": str(exc)}), file=sys.stderr)
             return 4
     if args.command == "predict":
-        if args.threshold < 0.0 or args.threshold > 1.0:
+        if args.threshold is not None and (args.threshold < 0.0 or args.threshold > 1.0):
             print(json.dumps({"status": "error", "type": "invalid_input", "message": "--threshold must be between 0.0 and 1.0"}), file=sys.stderr)
             return 2
         bundle_path = Path(args.bundle)
@@ -161,8 +161,8 @@ def main(argv=None):
             print(json.dumps({"status": "error", "type": "bundle_error", "message": f"Bundle path does not exist: {args.bundle}"}), file=sys.stderr)
             return 2
         try:
-            from .inference import load_lr_bundle, predict_recording
-            bundle = load_lr_bundle(bundle_path, threshold=args.threshold)
+            from .inference import load_inference_bundle, predict_recording
+            bundle = load_inference_bundle(bundle_path, threshold=args.threshold)
         except Exception as exc:
             print(json.dumps({"status": "error", "type": "bundle_error", "message": f"Failed to load bundle: {exc}"}), file=sys.stderr)
             return 4

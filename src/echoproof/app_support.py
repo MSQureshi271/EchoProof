@@ -27,3 +27,15 @@ def present(result: InferenceResult) -> dict:
 
 def result_json(result: InferenceResult) -> str:
     return json.dumps(result.to_dict(), indent=2, sort_keys=True, allow_nan=False)
+
+
+def diagnostics(analysis, bundle) -> dict:
+    """Score details for the details block and the downloadable JSON. The InferenceResult contract is unchanged; these are extra fields."""
+    rule = bundle.spec.decision_rule
+    return {"raw_recording_score": analysis.raw_score, "reported_score": analysis.result.score, "score_type": analysis.result.score_type,
+            "calibrated": analysis.result.score_type == "calibrated_probability", "decision_rule": {"kind": rule.kind, "threshold": rule.threshold},
+            "bundle_id": bundle.spec.bundle_id, "model_version": bundle.spec.model_version, "chunks_scored": len(analysis.chunk_scores)}
+
+
+def result_json_with_diagnostics(analysis, bundle) -> str:
+    return json.dumps({**analysis.result.to_dict(), "diagnostics": diagnostics(analysis, bundle)}, indent=2, sort_keys=True, allow_nan=False)

@@ -1,23 +1,26 @@
 """EchoProof demo application (R2-N1 LR integration). Run from the repository root: streamlit run app/main.py"""
 import hashlib
+import os
 from pathlib import Path
 
 import streamlit as st
 
-from echoproof.app_support import present, result_json
-from echoproof.inference import analyze, load_lr_bundle
+from echoproof.app_support import diagnostics, present, result_json, result_json_with_diagnostics
+from echoproof.inference import analyze, load_inference_bundle
 from echoproof import viz
 
 st.set_page_config(page_title="EchoProof", page_icon=None, layout="centered")
 
 DEFAULT_BUNDLE_PATH = Path("runs/r2/r2_m1_20261106T140611Z/model")
+# Set ECHOPROOF_BUNDLE to a bundle folder (for example bundles/r3_n1_wavlm_head_B_calibrated) to use another model; the default is unchanged.
+BUNDLE_PATH = Path(os.environ.get("ECHOPROOF_BUNDLE", str(DEFAULT_BUNDLE_PATH)))
 
 
 @st.cache_resource
 def load_bundle(bundle_path=None):
-    """Load the provisionally fitted Protocol B LR bundle."""
-    target = Path(bundle_path) if bundle_path else DEFAULT_BUNDLE_PATH
-    return load_lr_bundle(target)
+    """Load the configured bundle (the Protocol B LR bundle unless ECHOPROOF_BUNDLE says otherwise)."""
+    target = Path(bundle_path) if bundle_path else BUNDLE_PATH
+    return load_inference_bundle(target)
 
 
 try:
@@ -76,4 +79,6 @@ if upload is not None:
             st.caption("Each 4 s window (2 s stride) is scored separately; the recording score is their mean.")
             st.dataframe({"start_s": [a / wave.sample_rate for a, _ in analysis.windows], "end_s": [b / wave.sample_rate for _, b in analysis.windows],
                           "score": [round(s, 4) for s in analysis.chunk_scores]}, hide_index=True)
-            st.download_button("Download result (JSON)", result_json(analysis.result), file_name="echoproof_result.json", mime="application/json")
+            with st.expander("Score details"):
+                st.json(diagnostics(analysis, bundle))
+            st.download_button("Download result (JSON)", result_json_with_diagnostics(analysis, bundle), file_name="echoproof_result.json", mime="application/json")
