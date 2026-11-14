@@ -1,0 +1,14 @@
+{
+  "method": "platt_on_recording_log_odds",
+  "a": 1.391048549348291,
+  "b": 1.0973216440921831,
+  "iterations": 9,
+  "at_boundary": false,
+  "objective": 0.15076225543818395,
+  "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+  "epsilon": 1e-07,
+  "fit_role": "calibration",
+  "recordings": 960,
+  "speakers": 12,
+  "calibration_predictions_sha256": "24cfe378ed01ae298e75d1e82bf84f4db0b4a25ca9519f994e779028b2e56f21"
+}

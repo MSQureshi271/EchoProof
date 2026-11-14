@@ -1,0 +1,52 @@
+[
+  {
+    "original": "reports/r3/ast_platt_recipient_verification/20261114T153757Z-1b9197c8/verification.json",
+    "published": "docs/evidence/r3_n1_ast_platt/recipient_verification.json",
+    "sha256": "645cb7bd093edb82f9e8d5e9083c31988ab9cb7f4253a16c0937ef64e1cb260d"
+  },
+  {
+    "original": "reports/r3/ast_platt_recipient_verification/software_02f4b3ffe136443c93a202cf6f952a59/software_tests.log",
+    "published": "docs/evidence/r3_n1_ast_platt/software_tests.log",
+    "sha256": "66a5dade912649973a80a583149f7f5b029b45612516aefb4a769df062bb02db"
+  },
+  {
+    "original": "reports/r3/ast_platt_recipient_verification/software_02f4b3ffe136443c93a202cf6f952a59/waveform_verification.log",
+    "published": "docs/evidence/r3_n1_ast_platt/waveform_verification.log",
+    "sha256": "008dcd8e42386aa2b31c39c3740cff90a8d07870b00bd41706c18a3a63039ccc"
+  },
+  {
+    "original": "reports/r3/r3_n1_ast_platt_software_20261114T150254Z.json",
+    "published": "docs/evidence/r3_n1_ast_platt/local_software.json",
+    "sha256": "d2c18def7cdc3d38d068b9d712ac32a4a36e2ea77f28b1c00374ecddb6a09ed6"
+  },
+  {
+    "original": "runs/r3/r3_n1_ast_platt_candidates/20261114T150254Z-046f980d/fit.json",
+    "published": "docs/evidence/r3_n1_ast_platt/candidate_fit.json",
+    "sha256": "ac44f87054082bb4fdeba70ded7aff7b3af19799388371be6746b6d024b1e055"
+  },
+  {
+    "original": "runs/r3/r3_n1_ast_platt_candidates/20261114T150254Z-046f980d/evidence.json",
+    "published": "docs/evidence/r3_n1_ast_platt/candidate_evidence.json",
+    "sha256": "4f7919cd7633363778884ce0aea2b563418064c06b726390ddd7d38aeaddcb55"
+  },
+  {
+    "original": "runs/r3/r3_n1_ast_platt_candidates/20261114T150254Z-046f980d/manifest.json",
+    "published": "docs/evidence/r3_n1_ast_platt/candidate_manifest.json",
+    "sha256": "1027f0d132e64319bca36106f59a42dc75844b48ae62171e835b8976c7e900b6"
+  },
+  {
+    "original": "runs/r3/r3_n1_ast_platt_candidates/20261114T150254Z-046f980d/reliability.json",
+    "published": "docs/evidence/r3_n1_ast_platt/candidate_reliability.json",
+    "sha256": "e2e4c18e57588883f852476ef4ae9dc92d55e43315bb005d05ebc79a017aa2fe"
+  },
+  {
+    "original": "runs/r3/r3_n1_ast_platt_candidates/20261114T150254Z-046f980d/reliability.svg",
+    "published": "docs/evidence/r3_n1_ast_platt/candidate_reliability.svg",
+    "sha256": "ba21f36b341576c7a1cdbe4d0704f5a192a053cadb472565912d1fa891ea210b"
+  },
+  {
+    "original": "runs/r3/r3_n1_ast_platt_candidates/20261114T150254Z-046f980d/prospective.json",
+    "published": "docs/evidence/r3_n1_ast_platt/candidate_prospective.json",
+    "sha256": "c0abd2083c84ee38b441345c5fac6e53e3b77268999534496ce97bca75adc2d6"
+  }
+]

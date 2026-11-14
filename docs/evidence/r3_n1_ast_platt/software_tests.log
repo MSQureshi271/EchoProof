@@ -1,0 +1,12 @@
+test_actual_inference_pipeline_with_fixture_scorer (test_r3_n1_ast_platt.PlattTests.test_actual_inference_pipeline_with_fixture_scorer) ... ok
+test_aggregate_before_calibration (test_r3_n1_ast_platt.PlattTests.test_aggregate_before_calibration) ... ok
+test_identity_and_clipping (test_r3_n1_ast_platt.PlattTests.test_identity_and_clipping) ... ok
+test_invalid_rejected (test_r3_n1_ast_platt.PlattTests.test_invalid_rejected) ... ok
+test_monotone_and_extreme (test_r3_n1_ast_platt.PlattTests.test_monotone_and_extreme) ... ok
+test_precision_guard (test_r3_n1_ast_platt.PlattTests.test_precision_guard) ... ok
+test_roundtrip_and_tampering (test_r3_n1_ast_platt.PlattTests.test_roundtrip_and_tampering) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.547s
+
+OK

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="570" viewBox="0 0 650 570">
+<rect width="650" height="570" fill="white"/>
+<g font-family="sans-serif" font-size="13">
+<text x="65" y="25">AST-B operating reliability: 10 fixed equal-width bins</text>
+<path d="M70 60V480H550" fill="none" stroke="black"/>
+<path d="M70 480L550 60" stroke="gray" stroke-dasharray="5 5"/>
+<text x="62" y="500">0.0</text>
+<text x="35" y="484">0.0</text>
+<text x="110" y="500">0.1</text>
+<text x="35" y="442">0.1</text>
+<text x="158" y="500">0.2</text>
+<text x="35" y="400">0.2</text>
+<text x="206" y="500">0.3</text>
+<text x="35" y="358">0.3</text>
+<text x="254" y="500">0.4</text>
+<text x="35" y="316">0.4</text>
+<text x="302" y="500">0.5</text>
+<text x="35" y="274">0.5</text>
+<text x="350" y="500">0.6</text>
+<text x="35" y="232">0.6</text>
+<text x="398" y="500">0.7</text>
+<text x="35" y="190">0.7</text>
+<text x="446" y="500">0.8</text>
+<text x="35" y="148">0.8</text>
+<text x="494" y="500">0.9</text>
+<text x="35" y="106">0.9</text>
+<text x="542" y="500">1.0</text>
+<text x="35" y="64">1.0</text>
+<polyline points="81.82063840181462,447.8688524590164 138.22775081707601,384.54545454545456 190.60920869991344,340.0 234.99960300916842,340.0 284.27941778277864,116.75675675675672 333.41749674604483,90.0 381.72804627581564,111.21951219512192 432.83195600515376,76.15384615384613 478.8550963398581,83.77358490566036 544.8356378203923,62.206654991243454" fill="none" stroke="#1565c0" stroke-width="2"/>
+<text x="380" y="40" fill="#1565c0">raw</text>
+<circle cx="81.82063840181462" cy="447.8688524590164" r="4" fill="#1565c0"><title>n=183</title></circle>
+<circle cx="138.22775081707601" cy="384.54545454545456" r="4" fill="#1565c0"><title>n=44</title></circle>
+<circle cx="190.60920869991344" cy="340.0" r="4" fill="#1565c0"><title>n=30</title></circle>
+<circle cx="234.99960300916842" cy="340.0" r="4" fill="#1565c0"><title>n=27</title></circle>
+<circle cx="284.27941778277864" cy="116.75675675675672" r="4" fill="#1565c0"><title>n=37</title></circle>
+<circle cx="333.41749674604483" cy="90.0" r="4" fill="#1565c0"><title>n=28</title></circle>
+<circle cx="381.72804627581564" cy="111.21951219512192" r="4" fill="#1565c0"><title>n=41</title></circle>
+<circle cx="432.83195600515376" cy="76.15384615384613" r="4" fill="#1565c0"><title>n=26</title></circle>
+<circle cx="478.8550963398581" cy="83.77358490566036" r="4" fill="#1565c0"><title>n=53</title></circle>
+<circle cx="544.8356378203923" cy="62.206654991243454" r="4" fill="#1565c0"><title>n=571</title></circle>
+<polyline points="78.84776080018908,453.13953488372096 139.43591158394958,375.0 187.88006809001703,386.6666666666667 235.91824222626752,331.7647058823529 289.2815004695888,381.1764705882353 332.61542642481095,300.0 385.5929857286994,130.0 428.6808657926799,127.74193548387098 482.4336458592186,109.41176470588238 546.9287336705629,64.50229709035222" fill="none" stroke="#c62828" stroke-width="2"/>
+<text x="380" y="58" fill="#c62828">platt</text>
+<circle cx="78.84776080018908" cy="453.13953488372096" r="4" fill="#c62828"><title>n=172</title></circle>
+<circle cx="139.43591158394958" cy="375.0" r="4" fill="#c62828"><title>n=36</title></circle>
+<circle cx="187.88006809001703" cy="386.6666666666667" r="4" fill="#c62828"><title>n=18</title></circle>
+<circle cx="235.91824222626752" cy="331.7647058823529" r="4" fill="#c62828"><title>n=17</title></circle>
+<circle cx="289.2815004695888" cy="381.1764705882353" r="4" fill="#c62828"><title>n=17</title></circle>
+<circle cx="332.61542642481095" cy="300.0" r="4" fill="#c62828"><title>n=21</title></circle>
+<circle cx="385.5929857286994" cy="130.0" r="4" fill="#c62828"><title>n=24</title></circle>
+<circle cx="428.6808657926799" cy="127.74193548387098" r="4" fill="#c62828"><title>n=31</title></circle>
+<circle cx="482.4336458592186" cy="109.41176470588238" r="4" fill="#c62828"><title>n=51</title></circle>
+<circle cx="546.9287336705629" cy="64.50229709035222" r="4" fill="#c62828"><title>n=653</title></circle>
+<text x="170" y="535">Mean predicted P(TTS) in each bin</text>
+<text transform="translate(18 370) rotate(-90)">Observed TTS fraction</text>
+<text x="70" y="560">Empty bins omitted; counts available in reliability.json. Development data.</text>
+</g></svg>

@@ -1,0 +1,22 @@
+{
+  "status": "local_software_and_artifact_verification_passed_waveform_model_verification_pending",
+  "candidate": "runs\\r3\\r3_n1_ast_platt_candidates\\20261114T150254Z-046f980d",
+  "candidate_manifest_sha256": "1027f0d132e64319bca36106f59a42dc75844b48ae62171e835b8976c7e900b6",
+  "manifest_entries_verified": 12,
+  "tests": {
+    "command": ".venv/Scripts/python.exe -B -m unittest discover -s tests -p test_r3_n1_ast_platt.py -v",
+    "passed": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 33.193,
+    "scope": "Real decode/chunk/aggregate/calibrate/decision with fixture scorer; not actual AST waveform parity"
+  },
+  "source_sha256": {
+    "scripts/r3_n1_ast_platt.py": "fa3fa8ab365c3b8824ec487315fa108d4d669524d1c844b8677b8ddbfb97fdc9",
+    "src/echoproof/models/r3_n1_ast_platt_bundle.py": "6d6ee2f20c0500732ef264b102d1c520d9c83c1ca42133098de489db56cdcc07",
+    "tests/test_r3_n1_ast_platt.py": "b0496c6101040b7deb06f198b6e4373dc8973ade9994bd49bcfaf523103e4a6a"
+  },
+  "actual_model_inference": "unexecuted: torch and transformers unavailable",
+  "git_diff_check": "passed"
+}

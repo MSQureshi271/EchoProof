@@ -1,0 +1,162 @@
+/content/drive/MyDrive/Colab_R2_U1_Workspace/reports/r3/ast_platt_recipient_verification/20261114T153757Z-1b9197c8/verification.json
+{
+  "status": "sample_checks_passed_review_pending",
+  "candidate": "/content/drive/MyDrive/Colab_R2_U1_Workspace/runs/r3/r3_n1_ast_platt_candidates/20261114T150254Z-046f980d",
+  "manifest_sha256": "1027f0d132e64319bca36106f59a42dc75844b48ae62171e835b8976c7e900b6",
+  "source_manifest_sha256": "8464e6bc33dd76a0b8701532a14200e383c8f76dd753ddc33a8b7874aeecd265",
+  "gpu": "Tesla T4",
+  "torch": "2.14.1+cu130",
+  "transformers": "5.22.1",
+  "python": "3.13.16",
+  "training": false,
+  "official_promotion": false,
+  "precision": "fp16",
+  "records": [
+    {
+      "recording_id": "phonemedf:xtts:3807-4955-0029",
+      "component": "xtts",
+      "chunks": 6,
+      "max_chunk_difference": 0.0,
+      "raw_recording_difference": 0.0,
+      "platt_difference": 0.0,
+      "decision": 1,
+      "expected_decision": 1,
+      "aggregation_calibration_order_matches": true
+    },
+    {
+      "recording_id": "phonemedf:xtts:7517-100442-0029",
+      "component": "xtts",
+      "chunks": 5,
+      "max_chunk_difference": 0.0,
+      "raw_recording_difference": 0.0,
+      "platt_difference": 0.0,
+      "decision": 1,
+      "expected_decision": 1,
+      "aggregation_calibration_order_matches": true
+    },
+    {
+      "recording_id": "phonemedf:xtts:1723-141149-0022",
+      "component": "xtts",
+      "chunks": 5,
+      "max_chunk_difference": 0.0,
+      "raw_recording_difference": 0.0,
+      "platt_difference": 0.0,
+      "decision": 1,
+      "expected_decision": 1,
+      "aggregation_calibration_order_matches": true
+    },
+    {
+      "recording_id": "phonemedf:xtts:3240-131231-0005",
+      "component": "xtts",
+      "chunks": 5,
+      "max_chunk_difference": 0.0,
+      "raw_recording_difference": 0.0,
+      "platt_difference": 0.0,
+      "decision": 1,
+      "expected_decision": 1,
+      "aggregation_calibration_order_matches": true
+    },
+    {
+      "recording_id": "phonemedf:genuine:1040-133433-0041",
+      "component": "genuine",
+      "chunks": 6,
+      "max_chunk_difference": 0.0,
+      "raw_recording_difference": 0.0,
+      "platt_difference": 0.0,
+      "decision": 0,
+      "expected_decision": 0,
+      "aggregation_calibration_order_matches": true
+    },
+    {
+      "recording_id": "phonemedf:genuine:150-126107-0002",
+      "component": "genuine",
+      "chunks": 5,
+      "max_chunk_difference": 0.0,
+      "raw_recording_difference": 0.0,
+      "platt_difference": 0.0,
+      "decision": 0,
+      "expected_decision": 0,
+      "aggregation_calibration_order_matches": true
+    },
+    {
+      "recording_id": "phonemedf:melo:150-126112-0007",
+      "component": "melo",
+      "chunks": 4,
+      "max_chunk_difference": 0.0,
+      "raw_recording_difference": 0.0,
+      "platt_difference": 0.0,
+      "decision": 1,
+      "expected_decision": 1,
+      "aggregation_calibration_order_matches": true
+    },
+    {
+      "recording_id": "phonemedf:melo:3807-4955-0029",
+      "component": "melo",
+      "chunks": 6,
+      "max_chunk_difference": 0.0,
+      "raw_recording_difference": 0.0,
+      "platt_difference": 0.0,
+      "decision": 1,
+      "expected_decision": 1,
+      "aggregation_calibration_order_matches": true
+    },
+    {
+      "recording_id": "phonemedf:vits:1040-133433-0068",
+      "component": "vits",
+      "chunks": 2,
+      "max_chunk_difference": 0.0,
+      "raw_recording_difference": 0.0,
+      "platt_difference": 0.0,
+      "decision": 1,
+      "expected_decision": 1,
+      "aggregation_calibration_order_matches": true
+    },
+    {
+      "recording_id": "phonemedf:vits:7517-100429-0003",
+      "component": "vits",
+      "chunks": 4,
+      "max_chunk_difference": 0.0,
+      "raw_recording_difference": 0.0,
+      "platt_difference": 0.0,
+      "decision": 1,
+      "expected_decision": 1,
+      "aggregation_calibration_order_matches": true
+    },
+    {
+      "recording_id": "phonemedf:xtts:3699-47246-0016",
+      "component": "xtts",
+      "chunks": 4,
+      "max_chunk_difference": 0.0,
+      "raw_recording_difference": 0.0,
+      "platt_difference": 0.0,
+      "decision": 1,
+      "expected_decision": 1,
+      "aggregation_calibration_order_matches": true
+    },
+    {
+      "recording_id": "phonemedf:xtts:233-155990-0007",
+      "component": "xtts",
+      "chunks": 5,
+      "max_chunk_difference": 0.0,
+      "raw_recording_difference": 0.0,
+      "platt_difference": 0.0,
+      "decision": 1,
+      "expected_decision": 1,
+      "aggregation_calibration_order_matches": true
+    }
+  ],
+  "selection_rule": "4 nearest calibrated threshold plus 2 fixed-ID-hash/component; deduplicated; no outcome-driven reselection",
+  "inherited_chunk_tolerance": 0.01,
+  "chunk_parity_passed": true,
+  "all_sampled_decisions_match": true,
+  "aggregation_order_passed": true,
+  "limitations": [
+    "Sample only, not all operating recordings",
+    "CPU/fp32 not verified",
+    "No automatic approval; inherited chunk tolerance is not a bound on all recording scores"
+  ],
+  "originals_unchanged": true
+}
+
+Loading weights:   0%|          | 0/203 [00:00<?, ?it/s]
+Loading weights: 100%|██████████| 203/203 [00:00<00:00, 3157.64it/s]

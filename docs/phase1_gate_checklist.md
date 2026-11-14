@@ -44,7 +44,7 @@ The observed environment is Python 3.13.16, torch 2.11.0+cu130, CUDA build 13.0,
 - [x] Baseline 100-iteration profiling and its provisional limitations are recorded.
 - [ ] Full four-model/eight-fit A/B feasibility, pretrained profiling and offline reproduction.
 - [ ] OPEN-003 closed for the complete research study, including actual training recovery and reviewed capacity.
-- [ ] OPEN-004 named demo hardware and ten-second end-to-end latency qualification.
+- [ ] OPEN-004 named demo hardware and ten-second end-to-end latency qualification. (14 Nov 2026: device named "Subhan's HP", user-reported team-reviewed, named after timing; formal qualification not done. See docs/decision_log.md.)
 - [x] Baseline fresh-runtime checks and an evidence index reference real supplied artifacts.
 - [ ] Independent reviewers record actual review dates, findings and dispositions.
 

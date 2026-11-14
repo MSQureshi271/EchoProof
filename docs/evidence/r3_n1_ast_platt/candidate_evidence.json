@@ -1,0 +1,122 @@
+{
+  "status": "candidate_built_not_promoted",
+  "fit": {
+    "method": "platt_on_recording_log_odds",
+    "a": 1.391048549348291,
+    "b": 1.0973216440921831,
+    "iterations": 9,
+    "at_boundary": false,
+    "objective": 0.15076225543818395,
+    "optimizer_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+    "epsilon": 1e-07,
+    "fit_role": "calibration",
+    "recordings": 960,
+    "speakers": 12,
+    "calibration_predictions_sha256": "24cfe378ed01ae298e75d1e82bf84f4db0b4a25ca9519f994e779028b2e56f21"
+  },
+  "decision_rule": {
+    "schema_version": 1,
+    "kind": "threshold",
+    "threshold": 0.6316596289764391
+  },
+  "raw_at_0_5": {
+    "accuracy": 0.9144230769230769,
+    "tts_precision": 0.980528511821975,
+    "tts_recall": 0.9038461538461539,
+    "genuine_recall": 0.9461538461538461,
+    "macro_f1": 0.8937214597453954,
+    "fpr": 0.05384615384615385,
+    "fnr": 0.09615384615384616,
+    "roc_auc": 0.9755818540433925,
+    "eer": 0.07051282051282048,
+    "average_precision": 0.9919822965182352,
+    "confusion_matrix": [
+      [
+        246,
+        14
+      ],
+      [
+        75,
+        705
+      ]
+    ],
+    "brier_score": 0.06332347250403526,
+    "log_loss": 0.20594712863158884,
+    "tp": 705,
+    "fp": 14,
+    "tn": 246,
+    "fn": 75,
+    "recordings": 1040,
+    "threshold": 0.5
+  },
+  "platt_at_0_5": {
+    "accuracy": 0.9346153846153846,
+    "tts_precision": 0.9564102564102565,
+    "tts_recall": 0.9564102564102565,
+    "genuine_recall": 0.8692307692307693,
+    "macro_f1": 0.9128205128205129,
+    "fpr": 0.13076923076923078,
+    "fnr": 0.04358974358974359,
+    "roc_auc": 0.9755818540433925,
+    "eer": 0.07051282051282048,
+    "average_precision": 0.9919822965182352,
+    "confusion_matrix": [
+      [
+        226,
+        34
+      ],
+      [
+        34,
+        746
+      ]
+    ],
+    "brier_score": 0.0525319875168876,
+    "log_loss": 0.18087006891870264,
+    "tp": 746,
+    "fp": 34,
+    "tn": 226,
+    "fn": 34,
+    "recordings": 1040,
+    "threshold": 0.5
+  },
+  "platt_at_selected_threshold": {
+    "accuracy": 0.9403846153846154,
+    "tts_precision": 0.9748677248677249,
+    "tts_recall": 0.9448717948717948,
+    "genuine_recall": 0.926923076923077,
+    "macro_f1": 0.9228324142156863,
+    "fpr": 0.07307692307692308,
+    "fnr": 0.05512820512820513,
+    "roc_auc": 0.9755818540433925,
+    "eer": 0.07051282051282048,
+    "average_precision": 0.9919822965182352,
+    "confusion_matrix": [
+      [
+        241,
+        19
+      ],
+      [
+        43,
+        737
+      ]
+    ],
+    "brier_score": 0.0525319875168876,
+    "log_loss": 0.18087006891870264,
+    "tp": 737,
+    "fp": 19,
+    "tn": 241,
+    "fn": 43,
+    "recordings": 1040,
+    "threshold": 0.6316596289764391
+  },
+  "probability_and_decision_reload_parity": true,
+  "canonical_membership_verified": true,
+  "waveform_inference": "not_executed: local torch and transformers unavailable; CUDA/fp16 export-reference verification pending",
+  "historical_significance_gates": "not passed; unchanged; method authorized separately as reported by user",
+  "promotion_requirements": [
+    "Actual AST waveform-to-decision parity at selected threshold",
+    "Documented recipient/reviewer integration approval",
+    "Separate explicit promotion; no lock updates performed"
+  ],
+  "originals_unchanged": true
+}
