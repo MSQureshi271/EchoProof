@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "task": "R4-N1-Calibration-A",
+  "status": "user_predeclared_2026-11-15",
+  "protocol": "A",
+  "authority": "Procedure predeclared by the project owner in the R4-N1 task instruction on 15 November 2026. Do not change after inspecting model results without an explicit, documented owner-approved amendment.",
+  "scope": {
+    "models": ["wavlm", "ast", "lr", "bigru"],
+    "input_state": "partial_verified",
+    "note": "LR-A and BiGRU-A export evidence and Parquet files are locally verified. WavLM-A and AST-A exports are not present in this checkout; their metadata and hashes remain pending. This recipe does not claim the four-model input set is verified."
+  },
+  "protocol_contract": {
+    "split_sha256": "a9075367c89295a953eab1de7dc9f2380b14b3f628c2fabca42aaff94a6201a5",
+    "r4_s1_manifest": {
+      "path": "data/features/r4_s1_A/r4_s1_manifest.json",
+      "sha256": "c9eb82f61e3a98e177758856706480688cbfdca0e8cbe300eb1b97837775c70f",
+      "verification_state": "documented_hash_not_locally_present",
+      "evidence_path": "reports/r4/r4_s1_colab_20261114T212857Z.json",
+      "evidence_state": "not_locally_present"
+    },
+    "label_map": {"genuine": 0, "tts": 1},
+    "components": {
+      "genuine": {"label": 0, "role": "genuine"},
+      "melo": {"label": 1, "role": "generator"},
+      "vits": {"label": 1, "role": "generator"},
+      "xtts": {"label": 1, "role": "generator"},
+      "chatterbox": {"label": 1, "role": "generator"}
+    }
+  },
+  "models": {
+    "lr": {
+      "verification_state": "verified_local",
+      "model": "lr",
+      "protocol": "A",
+      "split_sha256": "a9075367c89295a953eab1de7dc9f2380b14b3f628c2fabca42aaff94a6201a5",
+      "selected_model_path": "runs/r4/r4_m1_a_v1_lr/model/weights.npz",
+      "selected_model_sha256": "4baa5007e44d58e9d55c2ac423c8b11bc623e72b36fd78aaaa48f5d33fe9d6ea",
+      "model_metadata_path": "runs/r4/r4_m1_a_v1_lr/model/lr_model.json",
+      "training_evidence_path": "runs/r4/r4_m1_a_v1_lr/evidence.json",
+      "training_evidence_sha256": "f2c98e412d95de4135db6f0cb6833310043a3d178e8a5aa8195ab27bbab2bb31",
+      "export_directory": "runs/r4/r4_m1_a_v1_lr_export",
+      "export_evidence_path": "runs/r4/r4_m1_a_v1_lr_export/evidence.json",
+      "export_evidence_sha256": "c83c27fc867c8ffa7cd925c55ec878d8a90d163aab6588ce9c5d2649712f83b9",
+      "export_evidence_status": "complete",
+      "role_column": "role",
+      "score_column": "raw_score",
+      "prediction_sha256": {
+        "predictions_chunks_selection.parquet": "08b03b99385b3081516b9ae375f0721fe3614d0890b3d1f0584298b34963a2d0",
+        "predictions_chunks_calibration.parquet": "151c57eb2724497031b33ecc42a7ca9eadbccad64ec76a8359bf82d918504d5c",
+        "predictions_chunks_operating.parquet": "1f7c3813b61daa32c91af09c6eb97aa3136a6a40ec98747cbb53f22c70f2e9b9",
+        "predictions_recordings_selection.parquet": "af9cc3da133803d0cfe96777a51d87762a74da51e0e77ea4d71b52d195fd8c80",
+        "predictions_recordings_calibration.parquet": "bb0e7cf97a0fa747f808837742ed8c5b26742ca65cd63b82b5ed6978ed35b587",
+        "predictions_recordings_operating.parquet": "9f7040e0c8ff7a94e5b3a86bba2b171e364c0276914606a66ef680cb4dfac978"
+      }
+    },
+    "bigru": {
+      "verification_state": "verified_local",
+      "model": "bigru",
+      "protocol": "A",
+      "split_sha256": "a9075367c89295a953eab1de7dc9f2380b14b3f628c2fabca42aaff94a6201a5",
+      "selected_epoch": 19,
+      "selected_model_path": "runs/r4/r4_m1_a_v1_bigru/best.pt",
+      "selected_model_sha256": "c0b3b5f7b3b8f6fdc2ceea11bf85d6bbfef684d58d354f0f0e1ec85ce44e1b81",
+      "training_evidence_path": "runs/r4/r4_m1_a_v1_bigru/training_evidence.json",
+      "training_evidence_sha256": "08278e22e6720ef5884ff7574ec92275dbc0a103252b805ba8e63a92ceead3b8",
+      "export_directory": "runs/r4/r4_m1_a_v1_bigru_export",
+      "export_evidence_path": "runs/r4/r4_m1_a_v1_bigru_export/evidence.json",
+      "export_evidence_sha256": "98e38f2485361f82da5192e914c35ef40206327d80515db256186d6e0e9be16b",
+      "export_evidence_status": "complete",
+      "role_column": "role",
+      "score_column": "raw_score",
+      "prediction_sha256": {
+        "predictions_chunks_selection.parquet": "12dae16c116c9ace7d331e1b9edbac0a7ff87b12ddf26ab575a818709a765906",
+        "predictions_chunks_calibration.parquet": "7035aff5ea001f30b8ddcc53d5e1790a2225f7d0342a5e560d24a4dd4c5030b9",
+        "predictions_chunks_operating.parquet": "13d994186ed5bed374576e7dfce440af2eddd15e340231058b690d38cef34e6b",
+        "predictions_recordings_selection.parquet": "07f5247692cb1aea81c32f5a372b93351ebb2cc2577ab9d71aa8290316434ccc",
+        "predictions_recordings_calibration.parquet": "d8856ad774fa487caeb3a44cf7f70c662f6a73c0867233a1f7291d95a97c7749",
+        "predictions_recordings_operating.parquet": "3801b68ac51c02e2bb102260c60ef3d5ad5b86b6828e13bcdb86b05b1a2534d7"
+      }
+    },
+    "wavlm": {
+      "verification_state": "pending_exports_not_present_locally",
+      "model": "wavlm",
+      "protocol": "A",
+      "split_sha256": "a9075367c89295a953eab1de7dc9f2380b14b3f628c2fabca42aaff94a6201a5",
+      "export_directory": null,
+      "export_evidence_path": null,
+      "export_evidence_sha256": null,
+      "prediction_sha256": null,
+      "required_prediction_files": [
+        "predictions_recordings_selection.parquet",
+        "predictions_recordings_calibration.parquet",
+        "predictions_recordings_operating.parquet"
+      ],
+      "note": "Documentation reports WavLM-A validation exports, but no corresponding export folder or prediction files are present locally. Populate these fields only after inspecting and hash-verifying the delivered files and evidence."
+    },
+    "ast": {
+      "verification_state": "pending_exports_not_present_locally",
+      "model": "ast",
+      "protocol": "A",
+      "split_sha256": "a9075367c89295a953eab1de7dc9f2380b14b3f628c2fabca42aaff94a6201a5",
+      "export_directory": null,
+      "export_evidence_path": null,
+      "export_evidence_sha256": null,
+      "prediction_sha256": null,
+      "required_prediction_files": [
+        "predictions_recordings_selection.parquet",
+        "predictions_recordings_calibration.parquet",
+        "predictions_recordings_operating.parquet"
+      ],
+      "note": "Documentation reports AST-A validation exports, but no corresponding export folder or prediction files are present locally. Populate these fields only after inspecting and hash-verifying the delivered files and evidence."
+    }
+  },
+  "roles": {
+    "selection": {"recordings": 2500, "speakers": 25, "chunks": 12331, "per_component": 500},
+    "calibration": {"recordings": 1200, "speakers": 12, "chunks": 5777, "per_component": 240},
+    "operating": {"recordings": 1300, "speakers": 13, "chunks": 6304, "per_component": 260}
+  },
+  "schema": {
+    "recording_columns": ["recording_id", "group_id", "component", "role", "label", "raw_score", "chunk_count"],
+    "chunk_columns": ["chunk_id", "recording_id", "group_id", "component", "role", "label", "raw_score"],
+    "role_values": ["selection", "calibration", "operating"],
+    "score_semantics": "Mean chunk probability for TTS, saved as raw_score at recording level; probabilities must be finite and in [0,1]."
+  },
+  "epsilon": 1e-7,
+  "weighting": {
+    "fit_objective": "Equal weight per recording within each fit.",
+    "loso_selection": "Calculate one log loss per held-out speaker and average those speaker losses equally."
+  },
+  "candidates": ["identity", "temperature", "affine"],
+  "temperature": {
+    "bounds": [0.01, 50.0],
+    "bound_tolerance": 1e-6,
+    "fit_objective": "Mean binary log loss on calibration recordings.",
+    "optimizer": "scipy.optimize.minimize_scalar(method='bounded'); golden-section fallback only if SciPy is unavailable"
+  },
+  "affine": {
+    "parameterisation": "a = exp(u), q = sigmoid(a * logit(clip(p, epsilon, 1-epsilon)) + b)",
+    "u_bounds": [-4.0, 4.0],
+    "b_bounds": [-5.0, 5.0],
+    "regularisation": 0.01,
+    "regularisation_objective": "Mean log loss + regularisation * (u^2 + b^2)",
+    "start": [0.0, 0.0],
+    "optimizer": "scipy L-BFGS-B",
+    "bound_tolerance": 1e-6
+  },
+  "selection_rule": {
+    "cross_validation": "Leave one speaker out within the calibration role; fit on all other calibration speakers and score the held-out speaker.",
+    "statistic": "Mean over held-out speakers of per-speaker recording-level log loss.",
+    "standard_error": "Sample standard deviation (ddof=1) of the best candidate's per-speaker losses divided by sqrt(number of calibration speakers).",
+    "choice": "Choose the simplest eligible candidate whose mean is <= best mean + one standard error.",
+    "candidate_simplicity_order": ["identity", "temperature", "affine"],
+    "failed_candidates": "Exclude and report a candidate if any LOSO fold or its full-calibration refit fails; exclude non-finite and bound-hitting fits. Identity remains eligible; if every non-identity candidate fails, select identity.",
+    "tie_resolution": "Exact mean ties for best use candidate_simplicity_order; the one-SE eligible choice uses the first eligible candidate in that order."
+  },
+  "acceptance_rule": {
+    "applies_to": "The selected non-identity mapping; identity is rejected by definition.",
+    "valid_fit": "Optimizer success where exposed, finite objective and parameters, parameters strictly inside bounds by more than bound_tolerance, finite calibrated probabilities in [0,1].",
+    "conditions": [
+      "Operating log loss of mapped scores is strictly lower than raw-score log loss.",
+      "Operating Brier score of mapped scores is no higher than raw-score Brier score."
+    ],
+    "tie": "Reject mapping if operating log loss ties raw.",
+    "accepted": {"score_type": "calibrated_probability", "threshold_scores": "mapped scores"},
+    "rejected": {"score_type": "model_score", "threshold_scores": "raw scores"}
+  },
+  "threshold_rule": {
+    "function": "echoproof.evaluation.threshold.select_threshold",
+    "objective": "Maximize macro F1 over all distinct score-induced partitions on the operating role, plus explicit all-negative.",
+    "tie_break": "contract",
+    "tie_break_order": ["higher macro F1", "lower genuine FPR", "closer to 0.5", "smaller threshold"],
+    "metric_tie_tolerance": 1e-12,
+    "implementation_note": "The inspected threshold.py contract branch currently favors the larger threshold at the final tie (its max sort key uses -threshold), which conflicts with this predeclared smaller-threshold rule. R4-N1 must enforce this recipe in A-specific orchestration; leave the B helper unchanged.",
+    "decision": "score >= threshold",
+    "all_negative": {"explicit": true, "rule_kind": "all_negative", "threshold": null},
+    "plateau": "Record the count of thresholds tied at maximum macro F1 before secondary tie-breaks; also record the count remaining after the genuine-FPR tie-break."
+  },
+  "reliability": {
+    "bins": 10,
+    "definition": "Equal-width bins on [0,1], last bin closed, empty bins omitted."
+  },
+  "bootstrap": {
+    "resamples": 1000,
+    "seed": 42,
+    "alpha": 0.05,
+    "unit": "speaker",
+    "scope": "Descriptive intervals only; resample speakers as clusters."
+  },
+  "diagnostics": {
+    "per_component": "For each TTS generator, report genuine-versus-that-generator diagnostics for Melo, VITS, XTTS, and Chatterbox; informational only.",
+    "per_speaker": "Report per-speaker genuine false alarms/counts and rates; descriptive only.",
+    "threshold_plateau_size": true
+  },
+  "output_root": "runs/r4/r4_n1_lr",
+  "overwrite_existing_runs": false,
+  "restrictions": [
+    "Fit mapping candidates and the selected final mapping using calibration-role recordings only.",
+    "Freeze and persist the selected mapping before opening operating predictions.",
+    "Open operating predictions only after mapping freeze, for the predeclared acceptance checks and threshold selection.",
+    "Never read, score, hash, or otherwise access the Protocol A test partition.",
+    "Never modify Protocol B source, configuration, artifacts, or locks/B_lock_gr3.json.",
+    "Never overwrite existing runs, outputs, or artifacts; fail if the destination exists.",
+    "Do not change this procedure based on model results without an explicit, documented owner-approved amendment."
+  ]
+}

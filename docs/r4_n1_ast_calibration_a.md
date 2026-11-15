@@ -29,3 +29,11 @@ Transfer both `configs/r4_n1_ast_*.json` files; `src/echoproof/evaluation/r4_n1_
 Open `notebooks/R4_N1_AST_Colab_Parity.ipynb`, set PROJECT_ROOT to that execution workspace and SHARD_DIR to its canonical shards, use a T4, then run cells. It verifies source hashes from the parity-source manifest and writes a uniquely named report. Python source may match exact bytes or a pinned LF equivalent; notebook executable cells are hashed without mutable outputs/metadata. Source edits fail verification. The A sampler includes Chatterbox; the B sampler is not used. It selects 50 stratified selection chunks and includes every chunk of their recordings before comparing calibrated recording decisions. Any flips are listed and require review.
 
 Remaining: broader software checks in the supported environment, independent review, and coordination with the other three A-model owners before any separate A lock. Generated runs, bundles and receipts remain ignored and are shared through Drive; this document records their paths and the inspected receipt identity without copying ignored outputs into Git. No automatic promotion or lock write.
+
+## Local sync check (16 November 2026, added by the project owner's session)
+
+- `runs/r4/r4_n1_ast/candidate_20261115_approved_recipe` is present and complete; the recipe's input hashes (AST evidence and selection, source bundle, split, cohort and chunk files, R4-S1 manifest, B lock after line-ending normalisation) match the local files.
+- The parity receipt `reports/r4/r4_n1_ast_parity/1b6e0a5518c741319e6f1df99bc46367.json` is present and its sha256 equals `3e0fd2ef...`; it records `approved: false`, 163 chunks, no flips, largest raw difference 4.0e-7.
+- Operating figures recomputed from the saved files: temperature T 0.2921, threshold 0.9703, macro F1 0.9964, 1 genuine false alarm (`speaker:6476`) and 2 missed TTS recordings of 1,300; VITS is the weakest generator panel (F1 0.9942). The Brier-difference bootstrap interval includes zero.
+- **Not present locally:** `bundles/r4_n1_ast_A_candidate_20261115`. Its hashes in the receipt cannot be rechecked until it is synced.
+- `tests/test_r4_n1_ast.py` and `tests/test_r4_n1_ast_parity_runner.py` pass locally under pytest (the document records only unittest). See `docs/r4_n1_calibration_summary_a.md`.
