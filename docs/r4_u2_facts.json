@@ -1,0 +1,114 @@
+{
+  "status": "draft_for_peer_review",
+  "task": "R4-U2",
+  "sources_sha256": {
+    "reports/r4/r4_u1_ast_colab_20261115T122234Z.json": "911330847f825096695ae5dea7d556c8ef4bba59f94bbd66f8beaf31c96646c6",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/evidence.json": "1edb568750a465d6c13b9729feb8f652725bf2968104186bebb1e3cd0b962e89",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/selection.json": "d423f68e70909d2bb87216c163274f8a18a5b3d344324a467f08b8d2b551e575",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/adaptation_evidence.json": "369e867495343fa8d70096420d2d1072083814b1db013cb4b3e4119b59b538d4",
+    "reports/r4/r4_u1_ast_parity_20261115T122217Z.json": "3723c81137ca49d92189736aef5d2e2d4918cd31e45962defb012e0627340b1c",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/resolved_config.json": "7fabdf319ecf39a96d1ca1d8b379dbcc2f7aae7127d4867c8416df4089cd0353",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z_contract.json": "eef7c2fd96132198a39fb4b66d2d76633d75380457c1a9959555f41177d06f31",
+    "scripts/r4_u1_ast (2).py": "d0bf7426a9592511d2107e54dca7f76c9a3e96743fbdf8f0628cf9d6e05c55a8",
+    "git:a38feb90e5aeecf3d27395642a5dc8f2ec495c03:src/echoproof/training/r4_u1_ast_train.py": "790f5f6112fd5edd88cb2ae58de186de69b29551a26322d97e7c74a23206581c",
+    "git:a38feb90e5aeecf3d27395642a5dc8f2ec495c03:src/echoproof/training/r4_u1_ast_data.py": "31bbeb507c1d96a45676e662419e6127f2a87aa1fc4d9e43bb93467cd3e0b741",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/best.pt": "b0d81b5b0f7dc12bb95af3520e09760be4778f8f6ae5782c9845123541b44d41",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/predictions_chunks_calibration.parquet": "50ef9b6aba5f3548d95f8ee018e23e6f2b34c5963c025384b4a4651b74ef0a87",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/predictions_chunks_operating.parquet": "03b088efc0a234ea629a14eb919b1f29ab192c24393e12b6e9290449a864f196",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/predictions_chunks_selection.parquet": "1e246ee36522a6c4108c3d92bd64c405f2f48181306b305abfc9492385b84881",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/predictions_recordings_calibration.parquet": "51ed6b35a9a6dab5e4e13bb7f0804d804b8a4d20c5539eb496bf92a38d6be145",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/predictions_recordings_operating.parquet": "d581bb5bfe054f6cf899175e6f7fa4cdea755f1a91d61cab8efd02718f4591aa",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/predictions_recordings_selection.parquet": "07c98e9b89b566859b3172e4eb0b10681b4e5dc82800795592fd8838051c263d",
+    "bundles/r4_u1_ast_partial_A/model/ast_detector.json": "69a60e6782f8c40427333c8b2754ffc6eaf9d7814c6b75e9a45e012f4809417a",
+    "bundles/r4_u1_ast_partial_A/model/config.json": "05db196e9ba34e6addd79af477bbe7043b7c51b5806691adaef2ca670e3e4bf0",
+    "bundles/r4_u1_ast_partial_A/model/model.safetensors": "493b48a3be7baf3a56cf34218abcb520fe338f17c49017d8fe8d955d4496fb5e",
+    "bundles/r4_u1_ast_partial_A/model/preprocessor_config.json": "8d04ba5a9c6fca5d39d0de2b1fd05ecf79deb589fbba279728bbebac39934231",
+    "reports/r3/r3_u1_B/selection.json": "a37cd975525a769859583373ca99529ebe90afe53431bc82d92132547c6f6886",
+    "reports/r4/r4_u1_wavlm_A/selection.json": "0af09a9b80f2d1dbebc18a8b6e64e9fc9f549acfafb05533f0ef71e6d9405662",
+    "reports/r3/r3_u2_20261112T134049Z.json": "b9cff8212109e6d3a9de8b2fffc511cd8f82d7272849b0cb2a9f2ca6a07d9423",
+    "configs/r3_u1_wavlm_head_b.json": "bf66dc2447a705007c391aa4dca2461e31588460d7fba4dbfc5d3a8ed2cc2568",
+    "reports/r3/r3_u1_B/run_mean/history.jsonl": "b6e538cb67f448eec3cd04f678013c38429e262bfb7d80e4b7174d3cc30f9d6b",
+    "reports/r3/r3_u1_B/run_mean_std/history.jsonl": "3159345a4f73e3c5289870acf7b4cdc49153cf3493b01b99a16172395295ba5d",
+    "reports/r4/r4_u1_wavlm_A/run_mean_std/history.jsonl": "077ae5e768e909729f7d0027ee2a859ae9e34e182662e6c786424d7f536b2409",
+    "runs/r3/r3_u2_20261112T134049Z/r3_u2_20261112T134049Z-baseline/history.jsonl": "75cef590ef0d591812d68691bca5b60d3fc977c5498b6d709f17add93788c5f9",
+    "runs/r3/r3_u2_20261112T134049Z/r3_u2_20261112T134049Z-lower_backbone_lr/history.jsonl": "cefe850bdbbbf970f2fb14e3bfb9ca55bf800d38b18723d2ca55800dd20be160",
+    "runs/r4/r4_u1_ast_warmup_A_20261115T065205Z/history.jsonl": "0d601606b377fbffa5ab6bfa4402ae879107a11ac0d9b923792da013f5054584",
+    "runs/r4/r4_u1_ast_ft_A_20261115T074952Z/history.jsonl": "fc458719c6e0f21b8324b7c46ed744483fc4e25076e567a175732895059cdc42",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/history.jsonl": "493500450d7595040a4a6c484ff9af5631220a2df5fce33673e892707097cbef",
+    "scripts/r4_u2_report.py": "86dccbca312832270baffd4afafed8abc0face2e98c1637761edb85a642eecdf"
+  },
+  "ast_a_run": "runs/r4/r4_u1_ast_ft_A_20261115T102637Z",
+  "ast_a_selected_epoch": 8,
+  "ast_a_macro_f1": 0.9968679458309979,
+  "compute": [
+    {
+      "path": "reports/r3/r3_u1_B/run_mean/history.jsonl",
+      "epochs_recorded": 20,
+      "epoch_loop_seconds": 12.494,
+      "peak_vram_mb": 0,
+      "device_kind": "CPU",
+      "status": "saved epoch history"
+    },
+    {
+      "path": "reports/r3/r3_u1_B/run_mean_std/history.jsonl",
+      "epochs_recorded": 20,
+      "epoch_loop_seconds": 16.918,
+      "peak_vram_mb": 0,
+      "device_kind": "CPU",
+      "status": "saved epoch history"
+    },
+    {
+      "path": "reports/r4/r4_u1_wavlm_A/run_mean_std/history.jsonl",
+      "epochs_recorded": 20,
+      "epoch_loop_seconds": 26.921,
+      "peak_vram_mb": 0,
+      "device_kind": "CPU",
+      "status": "saved epoch history"
+    },
+    {
+      "path": "runs/r3/r3_u2_20261112T134049Z/r3_u2_20261112T134049Z-baseline/history.jsonl",
+      "epochs_recorded": 8,
+      "epoch_loop_seconds": 3623.6021336010003,
+      "peak_vram_mb": 1288.0322265625,
+      "device_kind": "CUDA",
+      "status": "saved epoch history"
+    },
+    {
+      "path": "runs/r3/r3_u2_20261112T134049Z/r3_u2_20261112T134049Z-lower_backbone_lr/history.jsonl",
+      "epochs_recorded": 8,
+      "epoch_loop_seconds": 3640.3354877429992,
+      "peak_vram_mb": 1290.6416015625,
+      "device_kind": "CUDA",
+      "status": "saved epoch history"
+    },
+    {
+      "path": "runs/r4/r4_u1_ast_warmup_A_20261115T065205Z/history.jsonl",
+      "epochs_recorded": 2,
+      "epoch_loop_seconds": 1140.230046189,
+      "peak_vram_mb": 862.1669921875,
+      "device_kind": "CUDA",
+      "status": "saved epoch history"
+    },
+    {
+      "path": "runs/r4/r4_u1_ast_ft_A_20261115T074952Z/history.jsonl",
+      "epochs_recorded": 2,
+      "epoch_loop_seconds": 1327.42614104,
+      "peak_vram_mb": 1288.0322265625,
+      "device_kind": "CUDA",
+      "status": "partial historical attempt"
+    },
+    {
+      "path": "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/history.jsonl",
+      "epochs_recorded": 8,
+      "epoch_loop_seconds": 5208.070104710001,
+      "peak_vram_mb": 1288.0322265625,
+      "device_kind": "CUDA",
+      "status": "saved epoch history"
+    }
+  ],
+  "limits": [
+    "timings cover recorded epoch loops, including validation; not complete project compute",
+    "no billing, account allocation, energy or full failed-attempt census verified",
+    "validation estimates, single seed, no sealed test results"
+  ]
+}
