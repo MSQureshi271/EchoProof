@@ -1,0 +1,108 @@
+{
+  "epsilon": 1e-07,
+  "temperature": {
+    "bounds": [
+      0.01,
+      50.0
+    ],
+    "bound_tolerance": 1e-06
+  },
+  "affine": {
+    "parameterisation": "a = exp(u)",
+    "u_bounds": [
+      -4.0,
+      4.0
+    ],
+    "b_bounds": [
+      -5.0,
+      5.0
+    ],
+    "regularisation": 0.01,
+    "start": [
+      0.0,
+      0.0
+    ],
+    "optimizer": "scipy L-BFGS-B",
+    "bound_tolerance": 1e-06
+  },
+  "selection_rule": {
+    "cross_validation": "leave-one-speaker-out inside the calibration role",
+    "statistic": "mean over held-out speakers of per-speaker log loss",
+    "standard_error": "sample standard deviation (ddof 1) of the best candidate's per-speaker losses / sqrt(number of speakers)",
+    "choice": "simplest candidate (identity, temperature, affine) whose mean is at most best mean + standard error",
+    "failed_candidates": "excluded and reported; identity if every non-identity candidate fails"
+  },
+  "acceptance_rule": {
+    "applies_to": "the mapping selected by selection_rule; identity is rejected by definition",
+    "conditions": [
+      "valid fit: solver success, finite objective, parameters strictly inside their bounds (not within bound_tolerance), calibrated scores finite and in [0,1]",
+      "operating log loss of calibrated scores strictly lower than raw",
+      "operating Brier score of calibrated scores not higher than raw"
+    ],
+    "tie": "rejected",
+    "accepted": {
+      "score_type": "calibrated_probability",
+      "threshold_scores": "calibrated"
+    },
+    "rejected": {
+      "score_type": "model_score",
+      "threshold_scores": "raw"
+    }
+  },
+  "threshold_rule": {
+    "function": "echoproof.evaluation.threshold.select_threshold",
+    "tie_break": "contract",
+    "decision": "score >= threshold",
+    "all_negative": "explicit"
+  },
+  "bootstrap": {
+    "resamples": 1000,
+    "seed": 42,
+    "alpha": 0.05,
+    "unit": "speaker"
+  },
+  "reliability": {
+    "bins": 10,
+    "definition": "equal width on [0,1], last bin closed, empty bins omitted"
+  },
+  "schema_version": 1,
+  "task": "R4-N1-AST",
+  "protocol": "A",
+  "status": "team_agreed_user_reported_2026-11-15",
+  "authority": "User reports full approval of the supplied R4-N1 plan before any A calibration fit. AST-only implementation; no independent reviewer signature supplied.",
+  "input_directory": "runs/r4/r4_u1_ast_ft_A_20261115T102637Z",
+  "source_bundle": "bundles/r4_u1_ast_partial_A",
+  "roles": {
+    "selection": 2500,
+    "calibration": 1200,
+    "operating": 1300
+  },
+  "components": [
+    "genuine",
+    "melo",
+    "vits",
+    "xtts",
+    "chatterbox"
+  ],
+  "input_hashes": {
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/evidence.json": "1edb568750a465d6c13b9729feb8f652725bf2968104186bebb1e3cd0b962e89",
+    "runs/r4/r4_u1_ast_ft_A_20261115T102637Z/selection.json": "d423f68e70909d2bb87216c163274f8a18a5b3d344324a467f08b8d2b551e575",
+    "bundles/r4_u1_ast_partial_A/bundle.json": "25af6d8bdf10f4843c21269658ff0ac64eb4edd6e8491ef0894aea75aa8746d7",
+    "data/splits/protocol_A_v1.parquet": "6b3a5649ccfced554696dcbe3b6fb8ac21f4b1cf97a2ea1a30fb5c983d1a5e9f",
+    "data/manifests/cohort_v1.parquet": "51af27a2dd5c0577bf9c232287ac73b2f66af472ce3308721af83b2e48e8e816",
+    "data/processed/chunks_v1.parquet": "d3f8b8d6d305b91e133b1943dc51690417be79850460e549403d42848f8a8751",
+    "data/features/r4_s1_A/r4_s1_manifest.json": "c9eb82f61e3a98e177758856706480688cbfdca0e8cbe300eb1b97837775c70f",
+    "locks/B_lock_gr3.json": "6262d24a8d36338ebe8c9004e0f428c17d85239a668394eff81ca88b276f5937"
+  },
+  "candidates": [
+    "identity",
+    "temperature",
+    "affine"
+  ],
+  "restrictions": [
+    "no test access",
+    "no B edits",
+    "no model reselection",
+    "no automatic lock or promotion"
+  ]
+}
