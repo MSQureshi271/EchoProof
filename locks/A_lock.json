@@ -1,0 +1,694 @@
+{
+  "b_lock": {
+    "note": "the recorded hash is of the CRLF form the lock was written in; the checkout may hold LF",
+    "path": "locks/B_lock_gr3.json",
+    "sha256": "6262d24a8d36338ebe8c9004e0f428c17d85239a668394eff81ca88b276f5937",
+    "sha256_of_file_as_checked_out": "f9fb6725586c98d0ead63921790a6e63ad030a4e464d6c9fc17e62a4133d32c1",
+    "unchanged": true
+  },
+  "calibration_procedure": {
+    "outcomes": {
+      "AST": {
+        "accepted": true,
+        "mapping": "temperature",
+        "score_type": "calibrated_probability"
+      },
+      "BiGRU": {
+        "accepted": false,
+        "mapping": "identity",
+        "score_type": "model_score"
+      },
+      "LR": {
+        "accepted": false,
+        "mapping": "identity",
+        "score_type": "model_score"
+      },
+      "WavLM": {
+        "accepted": true,
+        "mapping": "affine",
+        "score_type": "calibrated_probability"
+      }
+    },
+    "recipe_status": "team-agreed on the project owner's report, 15 November 2026; no individual approval record",
+    "summary": "identity, temperature and affine on log-odds; leave-one-speaker-out per-speaker log loss on the calibration role; simplest within one standard error; strict acceptance on the operating role; macro-F1 threshold with the contract tie-breaks; no FPR cap, prevalence correction or abstention"
+  },
+  "candidates": {
+    "AST": {
+      "bundle_extra": {
+        "locked": false,
+        "promoted": false,
+        "stage": "r4_n1_ast_candidate"
+      },
+      "bundle_id": "bundle:r4-n1-ast-A:candidate_20261115_approved_recipe",
+      "bundle_json_sha256": "88d26ab4484fbf7b3985247d364b607e9738f61c255623b64d6d9ed9c6718b0b",
+      "bundle_path": "bundles/r4_n1_ast_A_candidate_20261115",
+      "calibration": {
+        "accepted": true,
+        "mapping": "temperature",
+        "parameters": {
+          "temperature": 0.292069762645965
+        },
+        "score_type": "calibrated_probability"
+      },
+      "components": {
+        "calibration/ast_a.json": {
+          "bytes": 565,
+          "sha256": "03640cedd7f499d654d9ad302375ac0062b2920c21d7559a1149a73384a9e432"
+        },
+        "model/ast_detector.json": {
+          "bytes": 3236,
+          "sha256": "69a60e6782f8c40427333c8b2754ffc6eaf9d7814c6b75e9a45e012f4809417a"
+        },
+        "model/config.json": {
+          "bytes": 664,
+          "sha256": "05db196e9ba34e6addd79af477bbe7043b7c51b5806691adaef2ca670e3e4bf0"
+        },
+        "model/model.safetensors": {
+          "bytes": 344790040,
+          "sha256": "493b48a3be7baf3a56cf34218abcb520fe338f17c49017d8fe8d955d4496fb5e"
+        },
+        "model/preprocessor_config.json": {
+          "bytes": 297,
+          "sha256": "8d04ba5a9c6fca5d39d0de2b1fd05ecf79deb589fbba279728bbebac39934231"
+        }
+      },
+      "decision_rule": {
+        "kind": "threshold",
+        "schema_version": 1,
+        "threshold": 0.9702610119277397
+      },
+      "evidence": {
+        "decisions.json": {
+          "path": "runs/r4/r4_n1_ast/candidate_20261115_approved_recipe/decisions.json",
+          "sha256": "cb0fca63e35306a2f34c1aaa882bf84c9f254c3bab5ddbd164959672cba7ee7e"
+        },
+        "fit.json": {
+          "path": "runs/r4/r4_n1_ast/candidate_20261115_approved_recipe/fit.json",
+          "sha256": "534d68dd8ad1b0daa506b8196132bea75f4f29f21a7e52bbbf6eaa6e379625f9"
+        },
+        "local_verification.json": {
+          "path": "runs/r4/r4_n1_ast/candidate_20261115_approved_recipe/local_verification.json",
+          "sha256": "739c8cbd15b698489dc8277b612054c524c877d78f77a519e5929607da9927a3"
+        },
+        "operating.json": {
+          "path": "runs/r4/r4_n1_ast/candidate_20261115_approved_recipe/operating.json",
+          "sha256": "d81f31ce9141c8064498b7f29ff22124fc124589c59cf9875ad585ab22f46105"
+        },
+        "parity_receipt": {
+          "path": "reports/r4/r4_n1_ast_parity/1b6e0a5518c741319e6f1df99bc46367.json",
+          "sha256": "3e0fd2efe027eabf7f97be5f6123098ff0158280c3c13a12b823173aa4df4883"
+        },
+        "prospective.json": {
+          "path": "runs/r4/r4_n1_ast/candidate_20261115_approved_recipe/prospective.json",
+          "sha256": "85650e96fd4420da0eee2b5920f5503ce6beab3e708ae2885e6a56d500b763ea"
+        },
+        "recipe": {
+          "path": "configs/r4_n1_ast_calibration_a.json",
+          "sha256": "56a9d1e789e543d7021c0e9ea3dde23292345872034c6b41afd00e46f0718d8c"
+        },
+        "run": "runs/r4/r4_n1_ast/candidate_20261115_approved_recipe",
+        "source_bundle_json": {
+          "path": "bundles/r4_u1_ast_partial_A/bundle.json",
+          "sha256": "25af6d8bdf10f4843c21269658ff0ac64eb4edd6e8491ef0894aea75aa8746d7"
+        }
+      },
+      "model_version": "ast_partial:A",
+      "operating_role": {
+        "brier_difference_bootstrap_includes_zero": true,
+        "fn": 2,
+        "fp": 1,
+        "genuine_fpr": 0.0038461538461538464,
+        "macro_f1": 0.9963994205836816,
+        "selected_on": "operating role (development result, not independent)",
+        "threshold_plateau": {
+          "candidate_thresholds": [
+            0.9702610119277397
+          ],
+          "tied_score_partitions": 1
+        },
+        "tn": 259,
+        "tp": 1038,
+        "tts_recall": 0.9980769230769231
+      },
+      "preprocessing_hash": "879a76dabd6e486460c0d9bf40fe6cace934f993a5c0e6e09628a2640c1fa17a",
+      "replay": {
+        "approved_flag_in_receipt": false,
+        "chunks": 163,
+        "decision_flips": 0,
+        "kind": "sampled CUDA fp16 parity (all chunks of 50 stratified selection recordings), recipient run on Colab",
+        "max_score_difference": 4.034882294945419e-07,
+        "operating_scores_recomputed_from_saved_calibration": 1300,
+        "passed": true,
+        "recordings": 50,
+        "reference_precision": "cuda_fp16",
+        "tolerance": 0.01
+      }
+    },
+    "BiGRU": {
+      "bundle_extra": {
+        "calibration_accepted": false,
+        "locked": false,
+        "promoted": false,
+        "protocol": "A",
+        "score_type": "model_score",
+        "stage": "r4_n1_bigru_development"
+      },
+      "bundle_id": "bundle:r4-n1-bigru-A-raw-threshold",
+      "bundle_json_sha256": "3cf8b5c7f49b553b38926f0f407380b316f6b403ecb70cd6451e24e1cd9eb824",
+      "bundle_path": "bundles/r4_n1_bigru_A_raw_threshold",
+      "calibration": {
+        "accepted": false,
+        "mapping": "identity",
+        "parameters": {},
+        "score_type": "model_score"
+      },
+      "components": {
+        "decision/score_rule.json": {
+          "bytes": 1535,
+          "sha256": "f0a4bef7504bb9db245f072614b714a9c297fa9f315a1306e2071fc66cd235c0"
+        },
+        "model/bigru_model.json": {
+          "bytes": 1324,
+          "sha256": "b01dbdbd5e3cbd8e98cf86c8f17584fdf01f2a76a9c1d65f2611382c4c3489f9"
+        },
+        "model/normalization.npz": {
+          "bytes": 1012,
+          "sha256": "aea35bd3cf99546557c4f3ba7fab6a45aeed642e02020d617ba10859048c73bb"
+        },
+        "model/weights.pt": {
+          "bytes": 1855761,
+          "sha256": "9095b83d92b637e9774f12acd1dc701f86c3cd4b5e96cee75f7bdf1338ce8e63"
+        }
+      },
+      "decision_rule": {
+        "kind": "threshold",
+        "schema_version": 1,
+        "threshold": 0.610876834796857
+      },
+      "evidence": {
+        "fit/calibration.json": {
+          "path": "runs/r4/r4_n1_bigru/fit/calibration.json",
+          "sha256": "8898120a2192c5266a45e4ca0a8850cae120d477bf6a5316682e5e383469b817"
+        },
+        "handoff/bundle_packaging.json": {
+          "path": "runs/r4/r4_n1_bigru/handoff/bundle_packaging.json",
+          "sha256": "5b6564718c29d6562c60d501d978d0b234209622f88ac5255a4170eadb0f0c20"
+        },
+        "handoff/waveform_parity.json": {
+          "path": "runs/r4/r4_n1_bigru/handoff/waveform_parity.json",
+          "sha256": "de4020c4899b09bab87ba9de2cdddb3fbb7f0f461c2ac5a5185f23d20dfa1a82"
+        },
+        "input_audit.json": {
+          "path": "runs/r4/r4_n1_bigru/input_audit.json",
+          "sha256": "931726f22653d55a00b90cc114da2690cf3fdd90fdddb30953e3b196f11afb23"
+        },
+        "operating/operating_results.json": {
+          "path": "runs/r4/r4_n1_bigru/operating/operating_results.json",
+          "sha256": "a44ce76e86950adc3373d2a909f738fd297db8ae22592573ff12f066d4dfcd1e"
+        },
+        "recipe": {
+          "path": "configs/r4_n1_calibration_a.json",
+          "sha256": "cfa3c590bb010b67086637a43e348418d933a7e5b3fb23c3cc284ac8b0d5b52e"
+        },
+        "run": "runs/r4/r4_n1_bigru"
+      },
+      "model_version": "bigru:A",
+      "operating_role": {
+        "fn": 2,
+        "fp": 19,
+        "genuine_fpr": 0.07307692307692308,
+        "macro_f1": 0.9741180954331237,
+        "selected_on": "operating role (development result, not independent)",
+        "threshold_plateau": {
+          "all_negative_tied_at_max_macro_f1": false,
+          "macro_f1_max": 0.9741180954331237,
+          "thresholds_remaining_after_closeness_tie_break": 1,
+          "thresholds_remaining_after_fpr_tie_break": 1,
+          "thresholds_tied_at_max_macro_f1": 1,
+          "tolerance": 1e-12
+        },
+        "tn": 241,
+        "tp": 1038,
+        "tts_recall": 0.9980769230769231
+      },
+      "preprocessing_hash": "879a76dabd6e486460c0d9bf40fe6cace934f993a5c0e6e09628a2640c1fa17a",
+      "replay": {
+        "decision_flips": 1,
+        "environment": {
+          "gpu": "Tesla T4",
+          "librosa": "0.11.0",
+          "numpy": "2.4.6",
+          "torch": "2.14.1+cu130"
+        },
+        "flips_explained": true,
+        "kind": "waveform parity through the bundle (2 tiers)",
+        "max_score_difference": 1.1920928955078125e-07,
+        "passed": true,
+        "recordings": 1500,
+        "roles": {
+          "calibration": 100,
+          "operating": 1300,
+          "selection": 100
+        },
+        "tolerance": 1e-05
+      }
+    },
+    "LR": {
+      "bundle_extra": {
+        "calibration_accepted": false,
+        "locked": false,
+        "promoted": false,
+        "protocol": "A",
+        "score_type": "model_score",
+        "stage": "r4_n1_lr_development"
+      },
+      "bundle_id": "bundle:r4-n1-lr-A-raw-threshold",
+      "bundle_json_sha256": "308640fdea33c05e0b160a068e83f63a9ba33fd43fe2378033e631e0b6076a8f",
+      "bundle_path": "bundles/r4_n1_lr_A_raw_threshold",
+      "calibration": {
+        "accepted": false,
+        "mapping": "identity",
+        "parameters": {},
+        "score_type": "model_score"
+      },
+      "components": {
+        "decision/score_rule.json": {
+          "bytes": 1533,
+          "sha256": "dd5028a9984fdc525cd82692687d0c9664331e8d0d5c68dabeb55b9f903ba3b3"
+        },
+        "model/lr_model.json": {
+          "bytes": 2140,
+          "sha256": "fa465a78ab8d9f321b289733194bd37fccd26058311d174986f2a67ebf603340"
+        },
+        "model/weights.npz": {
+          "bytes": 3392,
+          "sha256": "4baa5007e44d58e9d55c2ac423c8b11bc623e72b36fd78aaaa48f5d33fe9d6ea"
+        }
+      },
+      "decision_rule": {
+        "kind": "threshold",
+        "schema_version": 1,
+        "threshold": 0.5910800081638822
+      },
+      "evidence": {
+        "fit/calibration.json": {
+          "path": "runs/r4/r4_n1_lr/fit/calibration.json",
+          "sha256": "602d841f507671c406cac72903d0a4b88b4dbaeaec4c53fb3049d8812004dd02"
+        },
+        "handoff/bundle_packaging.json": {
+          "path": "runs/r4/r4_n1_lr/handoff/bundle_packaging.json",
+          "sha256": "1a3f4d8b819213babacae1a57b88bb58a1311f239ffaf96ee2bd5c2209bc61a1"
+        },
+        "handoff/waveform_parity.json": {
+          "path": "runs/r4/r4_n1_lr/handoff/waveform_parity.json",
+          "sha256": "20030de126d7428009539c2ba1b30b153b1ac47014e9aa73089c93834868a556"
+        },
+        "input_audit.json": {
+          "path": "runs/r4/r4_n1_lr/input_audit.json",
+          "sha256": "5b5853db021f559218422a1cbff6e7cfad810d77abb0604fe42e4efdc853253a"
+        },
+        "operating/operating_results.json": {
+          "path": "runs/r4/r4_n1_lr/operating/operating_results.json",
+          "sha256": "b35a9bb4acb9fc374213e99a022714df5512aa65464f34f03aa91c08f4ef94c2"
+        },
+        "recipe": {
+          "path": "configs/r4_n1_calibration_a.json",
+          "sha256": "cfa3c590bb010b67086637a43e348418d933a7e5b3fb23c3cc284ac8b0d5b52e"
+        },
+        "run": "runs/r4/r4_n1_lr"
+      },
+      "model_version": "logistic_regression:A",
+      "operating_role": {
+        "fn": 43,
+        "fp": 47,
+        "genuine_fpr": 0.18076923076923077,
+        "macro_f1": 0.8911976074632861,
+        "selected_on": "operating role (development result, not independent)",
+        "threshold_plateau": {
+          "all_negative_tied_at_max_macro_f1": false,
+          "macro_f1_max": 0.8911976074632861,
+          "thresholds_remaining_after_closeness_tie_break": 1,
+          "thresholds_remaining_after_fpr_tie_break": 1,
+          "thresholds_tied_at_max_macro_f1": 1,
+          "tolerance": 1e-12
+        },
+        "tn": 213,
+        "tp": 997,
+        "tts_recall": 0.9586538461538462
+      },
+      "preprocessing_hash": "879a76dabd6e486460c0d9bf40fe6cace934f993a5c0e6e09628a2640c1fa17a",
+      "replay": {
+        "decision_flips": 1,
+        "environment": {
+          "gpu": null,
+          "librosa": "0.11.0",
+          "numpy": "2.4.6",
+          "torch": "2.14.1+cu130"
+        },
+        "flips_explained": true,
+        "kind": "waveform parity through the bundle (2 tiers)",
+        "max_score_difference": 3.881744854439262e-07,
+        "passed": true,
+        "recordings": 1500,
+        "roles": {
+          "calibration": 100,
+          "operating": 1300,
+          "selection": 100
+        },
+        "tolerance": 1e-06
+      }
+    },
+    "WavLM": {
+      "bundle_extra": {
+        "calibration_accepted": true,
+        "locked": false,
+        "promoted": false,
+        "protocol": "A",
+        "score_type": "calibrated_probability",
+        "stage": "r4_n1_wavlm_development"
+      },
+      "bundle_id": "bundle:r4-n1-wavlm-head-A-calibrated",
+      "bundle_json_sha256": "c7d8fefb87cdb55e65b126acb88c478ba880f47a3fd0b6f22d3d0a5a53cd1c6b",
+      "bundle_path": "bundles/r4_n1_wavlm_head_A_calibrated",
+      "calibration": {
+        "accepted": true,
+        "mapping": "affine",
+        "parameters": {
+          "a": 1.4385232360329965,
+          "b": 0.19759203048240148,
+          "u": 0.3636170568390333
+        },
+        "score_type": "calibrated_probability"
+      },
+      "components": {
+        "calibration/calibration.json": {
+          "bytes": 1597,
+          "sha256": "9c9bc1e638c02fa95babaa729e68ac0b9418a658e4c49e608b48a4ed46c019d4"
+        },
+        "model/encoder/config.json": {
+          "bytes": 2426,
+          "sha256": "99bb54733c9251511848f1f24bda2df66024417c3b344d37dfea345513d098d5"
+        },
+        "model/encoder/model.safetensors": {
+          "bytes": 377555872,
+          "sha256": "1a252e49ddf1897f1f07f0d73c2a7cca86a05b0ad8d0189a6edc0ad3e55f1ae6"
+        },
+        "model/encoder/preprocessor_config.json": {
+          "bytes": 215,
+          "sha256": "99272fe8ccfab114b68b478681ea47ee3a1ce62bb788cb92dd6e4f69fb1f1da2"
+        },
+        "model/head_weights.pt": {
+          "bytes": 790415,
+          "sha256": "631eb76c9ab12e0aeacfaee53797e1be7ba086ee3a5e23e707661dbdea4e9bb6"
+        },
+        "model/wavlm_head.json": {
+          "bytes": 1397,
+          "sha256": "82fdccaed49d838964e90cf5bb805f21c0084ccb5c5b7bee6564cb1e95694340"
+        }
+      },
+      "decision_rule": {
+        "kind": "threshold",
+        "schema_version": 1,
+        "threshold": 0.6254072047507503
+      },
+      "evidence": {
+        "fit/calibration.json": {
+          "path": "runs/r4/r4_n1_wavlm/20261115T180831Z-2ecb50405784/fit/calibration.json",
+          "sha256": "fef968caa144b1f65f4ff91c03ea5cc2850a8ed248347598501f7bb795035537"
+        },
+        "handoff/bundle_packaging.json": {
+          "path": "runs/r4/r4_n1_wavlm/20261115T180831Z-2ecb50405784/handoff/bundle_packaging.json",
+          "sha256": "f0b4ce02db3709245d40c4b407fb0a4e6148a6a980f5d6912a86f57824af9e17"
+        },
+        "handoff/handoff.json": {
+          "path": "runs/r4/r4_n1_wavlm/20261115T180831Z-2ecb50405784/handoff/handoff.json",
+          "sha256": "c48a55f62da4f32474e977033a3837a67f5285118fb926fbf7ebabba29a831e2"
+        },
+        "handoff/replay.json": {
+          "path": "runs/r4/r4_n1_wavlm/20261115T180831Z-2ecb50405784/handoff/replay.json",
+          "sha256": "725bb73f2d6474f0c9f741d88d93b280d908be70aeccc7d84954874bce1997b4"
+        },
+        "operating/evidence.json": {
+          "path": "runs/r4/r4_n1_wavlm/20261115T180831Z-2ecb50405784/operating/evidence.json",
+          "sha256": "6ee3fa53dc31cf536ffd14ecb3a55aa7cf42e9d1a1f0c752e387aa476adba24f"
+        },
+        "operating/metrics.json": {
+          "path": "runs/r4/r4_n1_wavlm/20261115T180831Z-2ecb50405784/operating/metrics.json",
+          "sha256": "dc6ca8889111376dbd984de30930b5706294646c62f95cde85b4abb406ce03b6"
+        },
+        "operating/threshold.json": {
+          "path": "runs/r4/r4_n1_wavlm/20261115T180831Z-2ecb50405784/operating/threshold.json",
+          "sha256": "53adf83c1da00e39a0eed569011cb1ca0ac3eb77b6390c7463d8575a4cbff440"
+        },
+        "recipe": {
+          "path": "configs/r4_n1_wavlm_calibration_a.json",
+          "sha256": "d947dc5bf73da74df3513d807ac424400bde4ca6dd490b6b3f6a1c36deaecac3"
+        },
+        "run": "runs/r4/r4_n1_wavlm/20261115T180831Z-2ecb50405784",
+        "source_bundle_json": {
+          "path": "bundles/r4_u1_wavlm_head_A/bundle.json",
+          "sha256": "9b54197d60bb7c93bc5044bd0b7ff21c6c6a5d063e08f209eaee01c0836023db"
+        }
+      },
+      "model_version": "wavlm_head:A",
+      "operating_role": {
+        "fn": 0,
+        "fp": 0,
+        "genuine_fpr": 0.0,
+        "macro_f1": 1.0,
+        "raw_at_0_5": {
+          "fn": 0,
+          "fp": 2,
+          "genuine_fpr": 0.007692307692307693,
+          "macro_f1": 0.9975891906727641
+        },
+        "selected_on": "operating role (development result, not independent)",
+        "threshold_plateau": {
+          "best_macro_f1": 1.0,
+          "highest_threshold_at_best": 0.6254072047507503,
+          "lowest_threshold_at_best": 0.6254072047507503,
+          "partitions": 1179,
+          "partitions_at_best": 1,
+          "partitions_within_0_001_of_best": 1
+        },
+        "tn": 260,
+        "tp": 1040,
+        "tts_recall": 1.0
+      },
+      "preprocessing_hash": "879a76dabd6e486460c0d9bf40fe6cace934f993a5c0e6e09628a2640c1fa17a",
+      "replay": {
+        "decision_flips": 0,
+        "environment": {
+          "gpu": "Tesla T4",
+          "torch": "2.14.1+cu130",
+          "transformers": "5.22.0",
+          "transformers_pin": "5.22.0"
+        },
+        "kind": "waveform replay through the bundle (2 tiers), Colab T4",
+        "max_score_difference": 2.582540665985178e-06,
+        "passed": true,
+        "recordings": 1500,
+        "roles": {
+          "calibration": 100,
+          "operating": 1300,
+          "selection": 100
+        },
+        "tolerance": 0.001
+      }
+    }
+  },
+  "code": {
+    "git_head": "cd99944e6a850c16b8a9948c8362ea00c7c0f88e",
+    "python": "3.14.4",
+    "scripts_r4_sha256": {
+      "scripts/r4_m1_bigru.py": "95fca618680c2db3df7fce7df69bed94ed7a75f1877b38298a74967576a0cea5",
+      "scripts/r4_m1_export.py": "3d199db643ee820ee181264daa7ea10d70c4df12a0ebd71ecde89d57321d1486",
+      "scripts/r4_m1_lr.py": "2791ba92923f49512d1dcf135aa906e4451376c0c5451b4b68bdc393ffdd8255",
+      "scripts/r4_m1_preflight.py": "f19dc97e61b7448a45876b37405ad9b8e17b166bd7c0894dc846784dbc764a21",
+      "scripts/r4_n1_ast_calibrate.py": "cc086808ccdff249a23436686e45a959274385149f8212648d9d8ed516379871",
+      "scripts/r4_n1_ast_parity.py": "3d3b5002f58032ce9fb9742d2802b73f4174fd429ef46e1800f5bfd40f6cda6b",
+      "scripts/r4_n1_calibrate.py": "97a4a94b58bce9b0cc5b1c88bf9540a9afcbd96e45f1448bdb44797e0ed4ce6e",
+      "scripts/r4_n1_raw_bundle.py": "9e163b9d5195af5ef3893cc79ce0e6a56c70fa3899cacbec96bac5b1443ba506",
+      "scripts/r4_n1_raw_parity.py": "2ca33fdeb4f007a774a58788b706ce6092ac6b320ad604fa43975164a254921d",
+      "scripts/r4_n1_wavlm_calibrate.py": "37092aa91a4da8b2613649b96f6e783a9ec15e356fb9d06cece72ab2464f7c9c",
+      "scripts/r4_n1_wavlm_replay.py": "ad44da39569ea2654f8ec489a7c14ec65083fc567580deef32a84caa1e1f44db",
+      "scripts/r4_s1_features.py": "f902753eb0fcf77bde3eb2c92a3066545ec5f57c957b8feb07625589a2168e4f",
+      "scripts/r4_u0_wavlm_cache.py": "d8a1300b653a61a9aa8da00d0b7d2882d5cf510a04e57f9a4557029cb7cdac12",
+      "scripts/r4_u1_ast.py": "d0bf7426a9592511d2107e54dca7f76c9a3e96743fbdf8f0628cf9d6e05c55a8",
+      "scripts/r4_u1_wavlm_head.py": "13ea0ad9037b1d37eb3ea10fd92461dcdcc68650d4c1774e3b528d23cca79638",
+      "scripts/r4_u2_report.py": "3b9431b0b8a0a0c637577af6d0ed21a7cb2979fced02fc97fcb049555c7d3d7e"
+    },
+    "src_echoproof_sha256": {
+      "src/echoproof/__init__.py": "b92a73b7a198ae03e2344cebaee188060400f910551ed32e4c779726d25a6852",
+      "src/echoproof/__main__.py": "4bc83b62363a9528b3697e6d7d4dfc71bd172aafc0450acf3fbcb89ab2b0be6b",
+      "src/echoproof/app_support.py": "3c3c1c1dd38b676096f8ce94b8776c48e2c3f3e36f332c6180f32131eec0a644",
+      "src/echoproof/artifacts.py": "5e38663230cf91f66853abac285e3d7a9a149f9dbd941e9b4753610c5f02529d",
+      "src/echoproof/benchmark.py": "970b71c710bb85efe1cbeb2a1738e068966f3092277438e5f9f3899f260b1547",
+      "src/echoproof/budget.py": "d37ca17989571917d96b0de4033a71a8defa92dd0d8db26d796dba4557ba73fa",
+      "src/echoproof/bundle.py": "09349815f4fe96d82e9160a54c1a4e6dfe024344d9d917c0ee458ca2fe21b74a",
+      "src/echoproof/cli.py": "6ffb52d3f5db7f418e0cb7f7539aa6f006ca5587215480b13c69e80a53ddb333",
+      "src/echoproof/config.py": "81ad257f6ab3da17fe47a6b55f70de92648f28f24154058e8edd4f3587d5e5da",
+      "src/echoproof/contracts.py": "c17aa041ccdf5e6b54ea9c688697b7adb0d2186855b897de2f729690202cdf44",
+      "src/echoproof/data/__init__.py": "99f45d776afae4b93dc23ee6d8d2c85fa86752aeb0064165e06a09945c4171ff",
+      "src/echoproof/data/audio.py": "59d084684919244fecbba447d594248d7cc9340b31c749bd641948d78349fb46",
+      "src/echoproof/data/audio_probe.py": "207eec37487b8575e350357c017f8f30b0f62e1a4a32976e00dd91fee7c34ff5",
+      "src/echoproof/data/audit_contracts.py": "a61356a6d345b3b1276c6aa40918f8293faa7f11cdee7ddb41042341700c6b03",
+      "src/echoproof/data/chunks.py": "ef3fdc6b4790afdc82f234094760666876a4746fff3836a675ec4f716cfa3789",
+      "src/echoproof/data/cohort.py": "39a8b009142420d7cf6221331efe709084cc63b3e1a54e380400f2ae9e35407b",
+      "src/echoproof/data/corruption.py": "d736247d8a1adc3b987d3012396283b0d67a4b4a6c75fb075988a8bf1a347783",
+      "src/echoproof/data/corruption_sample.py": "dbc71b647604d7c608c43b66906a5ba122496fb6218292becbd0ccd89caa27a4",
+      "src/echoproof/data/fixtures.py": "5f3e0a58e76bc670b86c11186df335c1383a419f9e0d4083f0d18007a17eeb60",
+      "src/echoproof/data/inventory.py": "bf4b42bce2a70217ec251faef59ba19a74996713db1a8ce75cad44fc7cfbb2bb",
+      "src/echoproof/data/leakage.py": "93a24a4e899dc0b4139c2b1d37ac1f6caa8388c02c19495f1a57f30455fda4a1",
+      "src/echoproof/data/mp3_probe.py": "6362d387af0fa9d5a17220aeba8fe8a7e9a3662a5cf3847b31241a3da673959c",
+      "src/echoproof/data/mp3_probe_run.py": "e259276935acb45e3829c7ee3c8901b7e840fc7836482fcc19f8c1ff593ca24b",
+      "src/echoproof/data/pairing.py": "02de21adbc058f370e7aa18b6dd6d133a13f332105bafc7592cd78efe860bf22",
+      "src/echoproof/data/phase2_handoff.py": "be56346865783adc4a339d33389f614e3bcf068b8109791bef73d90548ed0a7a",
+      "src/echoproof/data/phase2_quality.py": "93df254b6fa0a2ad63ada7cd0b7d3d6c2f1eddc92eb7dfd881bef474e091fae3",
+      "src/echoproof/data/phonemedf_adapter.py": "525cfc2148535ce0d8d600e308bd09713fbd9a817ce40a7d72b226a4324ddd83",
+      "src/echoproof/data/splits.py": "2ed05ad911168c9d0ce4a1f009bc106490976331122fae170f9d1228ddd3d564",
+      "src/echoproof/eda/__init__.py": "afca4d98cfc7b63b193b391273e566833aef58bbd2099dd48a7a420f6d8b089e",
+      "src/echoproof/eda/figures.py": "547a57b8d4b6b06d71aff69c5988cb4c8c8aa2cd5290cc8e5d7734b1e7b38538",
+      "src/echoproof/eda/measure.py": "e9e257f3d8c62e04bee1cbf3422c6fad909810ef05fca6ef5605cf5bb5f231b9",
+      "src/echoproof/eda/selection.py": "c513a1d27bb13daa8b48f803bd5272f53ba5f17c50f2cf4785cffa99e70830fd",
+      "src/echoproof/eda/shortcut.py": "9904bcd08194e4574ff3c99e2252e200b448d68293c9910038fcf66c5603b1ad",
+      "src/echoproof/environment.py": "9d0227553b792a13f9687a411f65ee0b009e3a56bfb7b526ac019c297069a3aa",
+      "src/echoproof/environment_lock.py": "8d4ecc66bded950801dfaa35f95926547948dd02420768bbece46ff599da41f2",
+      "src/echoproof/evaluation/__init__.py": "2bdabed17105056540cccb525978abdddafde2e22d5f322b5c425d514ead39ba",
+      "src/echoproof/evaluation/affine_calibration.py": "8f4fa823ab5b31dffd1a68fa937145f2c8429ed836a99a23c9adc1bbb97c1bdf",
+      "src/echoproof/evaluation/aggregate.py": "7162f889e2650f30229c1d59585517b6cfc82af1345ad67ba2476f22de5a38f4",
+      "src/echoproof/evaluation/bootstrap.py": "fabed5480940fda52dbe20e6cb762170476be4fa658e253c2b3f7f02515a2755",
+      "src/echoproof/evaluation/calibrate.py": "900aa77dbd6e69300e023b3c06fa57e263327f237931cb2ee699625dee1b8e0e",
+      "src/echoproof/evaluation/metrics.py": "3719ac831b2839534dc521342ea073467e5fe8539cbbf830d83acc51c009d04f",
+      "src/echoproof/evaluation/r3_n1_wavlm.py": "3a0161ded7bf13fde768dff8c50098c4cf9712bd60636b8b0a16425fc00aa600",
+      "src/echoproof/evaluation/r3_n1_wavlm_operating.py": "aec8aea4647a5c27e598cfb96e9644d3c39d29351068803e2f3e90628a2101e2",
+      "src/echoproof/evaluation/r3_n1_wavlm_replay.py": "beab05e9e8a608911aa761e4500245138d0a4a7b4709c7616a05c81ee04cbf54",
+      "src/echoproof/evaluation/r4_n1.py": "e53bc9b329c6bcf05a714fa302b9dbfa857834ff8de6f663b91376ca2519bd7d",
+      "src/echoproof/evaluation/r4_n1_a_lock.py": "3d32699abc714bb010aa6abe2022249a9c7a3acdf697f2f0faa0486002501fe2",
+      "src/echoproof/evaluation/r4_n1_ast.py": "7dc485d997693efe71a599c9d717798b2277bade861e376d28740f1f34e35ed2",
+      "src/echoproof/evaluation/r4_n1_wavlm.py": "c4ba9542e82f60e97cbec01d57f8f458fa70042163600f6390287d248b25557e",
+      "src/echoproof/evaluation/reliability.py": "fa7142064c498e4e284290fae805a5d4ecc6940386d85560e6fc9098c55900c9",
+      "src/echoproof/evaluation/threshold.py": "e93b24f28e700549b46a6f1cc0dd8ce51e6af8c3dd2ead5834313e30665d82be",
+      "src/echoproof/features/__init__.py": "2bdabed17105056540cccb525978abdddafde2e22d5f322b5c425d514ead39ba",
+      "src/echoproof/features/acoustic.py": "2961146cc3956bb208d4676851beb6ba5ba9c67f3dcfb6d6375eafadcc33fafc",
+      "src/echoproof/features/pretrained.py": "46aa840888dbdb20140631a984103d7ab5afc2fa77b4318c63a125fecfb93a57",
+      "src/echoproof/features/r2_s1.py": "06346d7b1bc14c9f8c50752d7295c03d126acd3e0bdb8c8b7a3a6a997a2a6997",
+      "src/echoproof/features/r2_u1.py": "97248d4ce7d797c887f0dcf805a3acf73950b3bc32c2786a177eb7dfb700f313",
+      "src/echoproof/features/r4_s1.py": "bbc521bcad1096f50ec48265ba1c094b2b163d7a06e503435ef2b95d71416854",
+      "src/echoproof/features/r4_u0.py": "4c06394c4e45e06abd45655c6d55e761b0f4c770abc1707728f08a08692a852f",
+      "src/echoproof/features/stats.py": "ae649f3cface67501b8ae11a5e87e83e2aa42a858c032d65c64db9c12e803d5e",
+      "src/echoproof/gpu_budget.py": "b32f23c70bf3ded222ffbad9b8c202e4bd92f6664491aef781b1f5c3d1bbc1f4",
+      "src/echoproof/inference.py": "42761e21cdb931813fb749bce172549ce4455a78693f154581ccfa48cb77a333",
+      "src/echoproof/lock.py": "8766b83281e12bfe2847a990b1e22d566e6e1d2b8d80a4714c58a6929cba2758",
+      "src/echoproof/models/__init__.py": "2bdabed17105056540cccb525978abdddafde2e22d5f322b5c425d514ead39ba",
+      "src/echoproof/models/ast_adapter.py": "f1e5be4c910e0bc32b350bb985beefd3f69ee57d7bf166b21b1874981389e572",
+      "src/echoproof/models/ast_detector.py": "705a52fdf63304158040bb27e1fad5e6122df57b9efeb99b87f249cf53ec7f3c",
+      "src/echoproof/models/base.py": "415f612795d2e1c131ff8634dd7012e0012c759dfe70b6aeac8298f63ec8d92b",
+      "src/echoproof/models/bigru.py": "89e4d57c5fc93a2c856e3ee947d9edbe60970c35487266c0722dc061ecd43d0e",
+      "src/echoproof/models/bigru_adapter.py": "58b13f1d0e0867be82cdd8021ca210f6cc1e483441c3ae81f3e3984bf002f46f",
+      "src/echoproof/models/bigru_waveform.py": "f8c83be7a79702b11e625c5932e0ad637becaf8cab2a2074b75899ac608b40df",
+      "src/echoproof/models/fixture_probes.py": "dd47a091a32b18075212671ceef5f0e4e4af748edc9a8de6c0b0a8dd567d221a",
+      "src/echoproof/models/lr.py": "3ba512cb09401f2cb9a2e48eace1a265d3c058c4444aff1999272501fc16b0b6",
+      "src/echoproof/models/lr_adapter.py": "6da85956ce3e54cc154009311d90f3c99259d0e7a6299955e44aac469e8c5240",
+      "src/echoproof/models/lr_detector.py": "02a64ecc2e4d251856e8cf049b8f69c2b86a9fb0e264ad7e8850c9703f00b636",
+      "src/echoproof/models/lr_subset.py": "085577a9b0cf02128e1f43c9296037774c50308dd99df47a22cf1304f5ecaaf9",
+      "src/echoproof/models/r3_m2_bundle.py": "7bb6b7a9b83c53696c1b010753bcf797dfb4e326be119e8f67cdab2e00694331",
+      "src/echoproof/models/r3_n1_ast_bundle.py": "88f8ccda92081e9d44e8f913292cb2342c0381ac25c9fefcbe8a2c2a42f79cb5",
+      "src/echoproof/models/r3_n1_ast_platt_bundle.py": "6d6ee2f20c0500732ef264b102d1c520d9c83c1ca42133098de489db56cdcc07",
+      "src/echoproof/models/r3_n1_bigru_bundle.py": "35ad59fa7cfc754eefdffbf9a4921a108149b087f09827dd0ea9323e411e2d79",
+      "src/echoproof/models/r3_n1_lr_bundle.py": "c841c2bdb935ac49420948209c7cfddf814a9386d8680866376248af528d4d9b",
+      "src/echoproof/models/r3_n1_wavlm_bundle.py": "956b15de96f8ce1dd9b8da45c7d1c60aa002f7615ca3103a1a3f4714c1368314",
+      "src/echoproof/models/r3_u1_bundle.py": "5f60f3d37e8be0388dbdc7119bfea6c97467099d60059c88a9ca25184881a468",
+      "src/echoproof/models/r3_u2_bundle.py": "798284693cdbe0c704c9c6aa9ce742ea89bf02d55012e2fcc45454930621c46d",
+      "src/echoproof/models/r4_n1_ast_bundle.py": "cc97cf19b4af373a852b5e07301cf2425a6b258b99c913391705cab90ab46d04",
+      "src/echoproof/models/r4_n1_raw_bundles.py": "ee360dacdeb36445f152cd8a10df43697ab21512ccae88302bf295d013190c7d",
+      "src/echoproof/models/r4_n1_wavlm_bundle.py": "f78f13ebe8b8c340769d6ae6859b2695ce6fe11ac94168d282a67f965e5ade01",
+      "src/echoproof/models/wavlm_adapter.py": "c67f8973ad2770b8178172adaf96dba1bf0589ffedd233ccfaef4dc068687067",
+      "src/echoproof/models/wavlm_head.py": "cc8470d89d6e5f0476f43c8adea1cd75bc26e8e30b3f2da4f009d8fc846551d9",
+      "src/echoproof/phase2_config.py": "7e398695ca2f5c55aac84b19ff91adc9358335f91e27d0f6886e3e1e6f887e9d",
+      "src/echoproof/reporting/__init__.py": "35c373ef200fb2526b39651b740f71de6814e8c9bc6e62d976d04c304215067d",
+      "src/echoproof/reporting/facts.py": "3b801fd293c729b3e808375dda4b009fc9cbe277641d050969409fd0f5b8b87b",
+      "src/echoproof/reporting/figures.py": "a1f74d1cb3acc860c8f2a9be492ea3f2e9010a2c2c9d047d00d359064a4a5da1",
+      "src/echoproof/reporting/render.py": "32c10bac787d51dcf216e05c11891b3c568185979142cb1869e888bcc09cdcc1",
+      "src/echoproof/reproducibility.py": "a3b2da1daa1f0e209d99a205e6fe01c39a1659b29b717b33933b63032d3097f4",
+      "src/echoproof/training/__init__.py": "2bdabed17105056540cccb525978abdddafde2e22d5f322b5c425d514ead39ba",
+      "src/echoproof/training/datasets.py": "a011bcd63fbf73dcdb58b8a91eb57eba5aa46becf38359cb9bab0473fe16e7a6",
+      "src/echoproof/training/ledger.py": "5922367153bd7c86f7b0de125efdf40ae0f06039f9bd12e4ad6725b6d932e113",
+      "src/echoproof/training/r2_u2_acceptance.py": "7355bff8ec82a9f4cc3e049a5187c6999e0dbc30919663f5ba1eb4f28ca33592",
+      "src/echoproof/training/r2_u2_contract.py": "a011730ffb08bb6fe28339483f371e6ad5fc5e12c692ae7e5a7e291896c8f807",
+      "src/echoproof/training/r2_u2_numerical_trainer.py": "0b8a5083b99a61b5f6566a409f3dbdcb5fba2b1e5cd38e17a843bc28882ec754",
+      "src/echoproof/training/r2_u2_scope.py": "3a54561ca28249b78bfa16cf3818424dccc1077757bdc4bb3dc6fcf424bd768c",
+      "src/echoproof/training/r3_m1_data.py": "cb0fe53d75707461a0feaa37fe457c83043b3c5923609864ead2a880c097a8d4",
+      "src/echoproof/training/r3_m1_export.py": "6719b9163c7d4ceb4dd5cec031b88ea49cd3932958538e174b2518d35787ab27",
+      "src/echoproof/training/r3_m1_selection.py": "39a57f06939da16ce25afb5a8ddfbdb2bb95d295ca273b530d403f27e60005d1",
+      "src/echoproof/training/r3_u1_data.py": "8890f4c823ad734569affa533b1dd1fc01dc45bbea0a999228e7f6a17e194bd9",
+      "src/echoproof/training/r3_u1_parity.py": "1cd729a3ed78f157a12d176ad3a85042ab705916897d5131802751e8a1d9ddc1",
+      "src/echoproof/training/r3_u1_train.py": "0e3b9a5b6bc393ec753d0128eaf3cd8478fbca883264c3442fe16a6a626b2a2c",
+      "src/echoproof/training/r3_u2_data.py": "be4860de879952fcb65a298e84f729aca8783b8c5119e6b2aaabb81244684f0c",
+      "src/echoproof/training/r3_u2_parity.py": "8210b144daafcff351a860e6292b0326e7e7101b2862f7d9a2cbcb0cfaf33b7e",
+      "src/echoproof/training/r3_u2_train.py": "1fea16b598479e8a66eb4d77471f9a934eb73919065c318923c20b4d02872ef1",
+      "src/echoproof/training/r4_m1_bigru.py": "d3774fe31745440f32ee2d194037846f1a9c686534ef07ec5db82ab0a64e2ab3",
+      "src/echoproof/training/r4_m1_data.py": "3c044f1f24628424f1c723d310dbc767f4bb3962e96e543b8710dfd20dcfbbb9",
+      "src/echoproof/training/r4_m1_export.py": "e25968a5267e37d818b360d5dc9a8a947d7e36e8b638b8d0f6089f6792f83759",
+      "src/echoproof/training/r4_m1_lr.py": "32f6773c155859186e9f7f62855de7c4dbdeae11d14b0f8567f51dc336369474",
+      "src/echoproof/training/r4_u1_ast_data.py": "31bbeb507c1d96a45676e662419e6127f2a87aa1fc4d9e43bb93467cd3e0b741",
+      "src/echoproof/training/r4_u1_ast_train.py": "790f5f6112fd5edd88cb2ae58de186de69b29551a26322d97e7c74a23206581c",
+      "src/echoproof/training/r4_u1_wavlm_data.py": "e4d0758ab558f8b6ba2d3c913a5a16579d6587ef8d9b65584d49ba1b6086ac0e",
+      "src/echoproof/training/r4_u1_wavlm_train.py": "3beec593f1189baa590e2b8c177cec35f6ead174e3c17769a1fefd9c18e08433",
+      "src/echoproof/training/seeding.py": "4f85c4c23142684c6909da5a43195d54de30f2ec20606e3fa7ab2dfb8cb64433",
+      "src/echoproof/training/trainer.py": "41bdccf0ea6053693fe0bb8e80a697437dbe2c48735343529ead9e5925fa1f9e",
+      "src/echoproof/viz.py": "f1930782002ddbb60f79af992c365f8d82ed2d83376001c30b69179aa4fd6630"
+    },
+    "uncommitted_entries": [],
+    "uncommitted_entries_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "working_tree_dirty": false
+  },
+  "created_utc": "2026-11-15T20:48:59Z",
+  "limitations": [
+    "All four bundles are development bundles: none is promoted, none has an independent review record, and the calibration recipe was accepted by the team on the project owner's report (no individual approval record in the repository).",
+    "Every threshold was chosen on the operating role, so the operating figures are development results, not independent test performance. The A test partition was never read, and no model choice used it.",
+    "Protocol A has no unseen generator and every operating figure is in-distribution; nothing here measures generalisation (that is R5, on the sealed test partition).",
+    "The operating role has 260 genuine recordings from 13 speakers: 0 false alarms still allows a true rate of about 1.9%. WavLM-A separates the operating role perfectly; its threshold equals the lowest TTS operating score and the real margin is an interval (0.5689, 0.6254], not a point.",
+    "Candidate thresholds are observed operating scores, so the recording that sits on a threshold is decided by float rounding: the Colab parity runs had one explained flip each for LR-A and BiGRU-A (the flipped recording is within tolerance of the threshold).",
+    "LR-A and BiGRU-A keep raw model scores (calibration rejected). All BiGRU-A false alarms come from one speaker (speaker:6454, 19 of 20 recordings); LR-A is weak overall (genuine FPR 18.1%).",
+    "AST-A calibration was accepted by the point-estimate rule, but the bootstrap interval of the Brier difference includes zero. AST-A is verified on CUDA fp16 only, by a sampled parity (all chunks of 50 selection recordings) whose receipt carries approved=false; its loader refuses CPU and other precisions.",
+    "Parity checks reuse canonical audio from the shards and so do not test resampling of original files; the verified LR feature path used librosa 0.11.0 on Colab.",
+    "Single seed per model. BiGRU-A is the best of 20 selection epochs and its run was resumed once (not bit-exact); recorded source-hash differences for acoustic.py and bigru_waveform.py remain.",
+    "No latency or memory measurement was made for any A bundle, and the app and CLI cannot route A bundles yet (R4-N2). Production stays with the Protocol B lock (locks/B_lock_gr3.json), which this lock does not change."
+  ],
+  "lock_id": "lock:protocol_a_gr4_v1",
+  "production_selection": {
+    "note": "This lock does not select a deployment model. Production remains the Protocol B WavLM bundle of locks/B_lock_gr3.json; any use of an A bundle is decided in R4-N2 or later.",
+    "selected": null
+  },
+  "protocol": "A",
+  "review_status": "no independent review recorded for R4-S1, R4-U0, R4-U1, R4-M1 or R4-N1",
+  "schema_version": 1,
+  "split": {
+    "components": [
+      "genuine",
+      "melo",
+      "vits",
+      "xtts",
+      "chatterbox"
+    ],
+    "r4_s1_manifest": {
+      "path": "data/features/r4_s1_A/r4_s1_manifest.json",
+      "sha256": "c9eb82f61e3a98e177758856706480688cbfdca0e8cbe300eb1b97837775c70f"
+    },
+    "roles": {
+      "calibration": 1200,
+      "operating": 1300,
+      "selection": 2500
+    },
+    "split_file_sha256": "6b3a5649ccfced554696dcbe3b6fb8ac21f4b1cf97a2ea1a30fb5c983d1a5e9f",
+    "split_hash": "a9075367c89295a953eab1de7dc9f2380b14b3f628c2fabca42aaff94a6201a5",
+    "split_version": "protocol_A_v1"
+  },
+  "supersedes_note": "locks/B_lock_gr3.json (Protocol B, production candidates) is not changed by this lock.",
+  "test_access_audit": {
+    "audit_status": "partially_verified",
+    "note": "Every run and report named here records that no A test recording was read, and the split loader withholds test rows by default. Earlier work by other owners was not re-audited and filesystem access was not monitored (as in the B locks).",
+    "test_partition_accessed": false
+  }
+}
