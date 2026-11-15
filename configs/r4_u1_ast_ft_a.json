@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "task": "R4-U1b",
+  "status": "draft_pending_team_agreement",
+  "protocol": "A",
+  "derived_from": {
+    "file": "configs/r3_u2_ast_ft_b.json",
+    "sha256": "a4bee3ed470b363c09fa880548ff67995f8290447921bdd86933fa13cf7e931c",
+    "rule": "Protocol A reuses the B-selected configuration (the baseline experiment). The model, selection and baseline blocks and the train block must equal the B recipe's, except warmup_steps, which keeps the B proportion of about 5 percent of the optimiser steps for the larger A training set (B: 114 of 2,272; A: 189 of 3,776, i.e. 7,550 crops, batch 8, accumulation 2, 8 epochs). The loader checks that arithmetic."
+  },
+  "model": {
+    "name": "ast_partial",
+    "backbone": "MIT/ast-finetuned-audioset-10-10-0.4593",
+    "stage": "partial",
+    "unfrozen_blocks": 2,
+    "also_trainable": [
+      "final LayerNorm",
+      "classifier.* (including its LayerNorm)"
+    ],
+    "frozen": "blocks 0 to 9 and the embeddings, parameters and buffers"
+  },
+  "train": {
+    "seed": 42,
+    "max_epochs": 8,
+    "batch_size": 8,
+    "accumulation_steps": 2,
+    "eval_batch_size": 16,
+    "weight_decay": 0.01,
+    "grad_clip": 1.0,
+    "scheduler": "cosine",
+    "warmup_steps": 189,
+    "patience": 8,
+    "min_delta": 0.0,
+    "selection_threshold": 0.5,
+    "precision": "fp16",
+    "class_strategy": "none",
+    "num_workers": 0,
+    "device": "cuda",
+    "deterministic": true
+  },
+  "experiments": {
+    "baseline": {
+      "backbone_lr": 1e-05,
+      "head_lr": 0.0001
+    }
+  },
+  "selection": {
+    "role": "selection",
+    "metric": "recording macro F1 at fixed threshold 0.5",
+    "aggregation": "arithmetic mean of chunk probabilities",
+    "epoch_tie_rule": "earliest epoch",
+    "calibration_and_operating_roles": "scored only after the selection is frozen; never used to choose an epoch or an experiment"
+  },
+  "init": {
+    "source": "the A warm-up result (warmup_result.json of the A warm-up run, which records its best checkpoint, epoch, selection macro F1 and SHA-256)",
+    "load": "model weights only, strict; a new optimizer, scaler, scheduler and RNG state; nothing is restored from latest.pt",
+    "warmup_epoch0_tolerance": 0.003,
+    "pretrained_group_sha256": {
+      "block.00": "45fe4c13188c39d4e82716a8fcfe49ebb414303f15e3d7b4bdf0e6bb5a48c06d",
+      "block.01": "4cf0594841bdae43c6de1a8f9750335c0390554694b9a83d92759cb03d924fa9",
+      "block.02": "21f153137958676378e5ab3091304d2546972e74df254d4266f0b0bab87f01fc",
+      "block.03": "8330a36c82868597becc9b039552110d97efd9731cc6783555ee94e9999d8e8a",
+      "block.04": "07b00b9f9761ad25a28a869bfb4159b583a1fc3c9c2cb523efa3e35f89f4d525",
+      "block.05": "70ee332a2a611f05a3f2047187075494b6b73966893e3fa39423077ab8b76eb1",
+      "block.06": "288b5d36052c894abd36da170b43ec462ce3a38110420bacea9b56623a544d83",
+      "block.07": "1fc6ee7c917ed3d5b231cb35ba3d1623bd500b451a9727dcfb4e2aa75e2892e9",
+      "block.08": "e4bcb893366ddb8e40b1ec92a66b25ab358485dfbfded022ce9b30d49d9bae36",
+      "block.09": "8da078bec51cbed3890f87dbffc57004ee146a077f6ce8779884c443dada71e4",
+      "block.10": "e382678642f33acc488abfef82281560e3ca6a06bb87bc48b1680928f5ad118e",
+      "block.11": "0c79fe1f8301210cff4a698692f40fe3a858f85638119a74fa0679f8ad91acc8",
+      "embeddings": "c49d115d367c516f1e49b1041ad67eca0dbd708278365299ec0264f9440f73b2",
+      "final_norm": "056f6ef75bbda91fb59550edf159c278d285d284ceecb76741f352be15a03e06"
+    }
+  },
+  "decisions": {
+    "authority": "REVISED_PLAN.md Phase R4 and the user's choices of 15 November 2026: a fresh A warm-up, then the B-selected baseline fine-tune only (no lower_backbone_lr). The status stays draft until the project owner reports the team's agreement; the training command refuses a recipe whose status does not start with team_agreed.",
+    "warmup_steps": "189 = round(0.05 x 3,776 optimiser steps); the B value 114 was round(0.05 x 2,272).",
+    "epoch0": "Before training, the loaded A warm-up is scored on the selection role. Its macro F1 must equal the warm-up result's recorded best F1 within the tolerance (in B the reference was the R2-U2 value). Its predictions are the paired comparison.",
+    "panels": "A has no unseen generator. Selection and paired panels are per component (genuine versus each generator) for information only and never choose the epoch.",
+    "scope": "One seeded four-second crop per A training recording per epoch; selection chunks during training; calibration and operating audio first scored by the export after the selection is frozen; no test audio.",
+    "seed": "42. Single seed: differences between warm-up and adapted, and between A and B, may be within seed noise."
+  }
+}

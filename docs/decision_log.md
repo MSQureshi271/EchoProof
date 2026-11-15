@@ -372,3 +372,27 @@ Before R3-M1 training, use the baseline and one lower-learning-rate alternative 
 - **Discrepancies recorded, not hidden:** (1) the Drive copy of `src/echoproof/contracts.py` is older than the repository (`20483ebc...` against the locked `c17aa041...`), a docstring-only difference, same copy as R2-U1 and R4-S1 used; refresh Drive from git. (2) `read_embeddings_a` was optimised after the run (each pack array loaded once); build and verification code and all outputs unchanged, so the file hash differs from the Colab report's.
 - **Schedule:** R4-U0 was planned for D10; it completed on D13 to D14, after R4-S1, so the R4 slip stands. R4-U1 (WavLM-head-A, AST-A) and R4-M1 can use the caches.
 - **Limits:** development-grade, no independent review (the review is a separate status), no trained-head parity (R4-U1), AST-A does not use this cache.
+
+## R4-U0: team review reported - 15 November 2026
+
+- **Report (user-reported):** the project owner reports that the team reviewed R4-U0. No individual approval record exists in the repository; this entry records the report, not an independently obtained teammate signature. The plan names Subhan as the R4-U0 reviewer.
+- **Scope reviewed:** the A gap cache `data/features/r4_u0_A/` (manifest sha256 `8217a7431fc13b3d56f6a74e8938600a9f20bc020d93c564fb2d30b08dbb5b6c`), the evidence report `reports/r4/r4_u0_colab_20261114T224150Z_92e256a0.json` and the entry above (18,848 rows; 60,194-row A union with the B cache; identity equal to B's; parity at most 7.7e-6 against B's stored vectors; no test rows).
+- **Still open, unchanged by the review:** the Drive copy of `src/echoproof/contracts.py` is older than the repository (docstring-only difference; refresh it before further Colab runs), and `read_embeddings_a` was optimised after the run (outputs unchanged). Everything remains development-grade; no trained-head parity yet (R4-U1).
+- **Consequence:** R4-U1 (WavLM-head-A and AST-A) may use the R4-U0 cache.
+
+## R4-U1a: WavLM-head-A recipe agreed (user-reported) - 15 November 2026
+
+- **Report (user-reported):** the project owner reports that the team verified the Protocol A WavLM head recipe `configs/r4_u1_wavlm_head_a.json`. No individual approval record exists in the repository. Its status field is now `team_agreed_user_reported_2026-11-15`.
+- **Content:** the B-selected configuration unchanged (mean+std pooling, 20 epochs, AdamW 1e-3, weight decay 0.01, batch 128, seed 42, best selection epoch kept), only the protocol and data differ; the loader compares the model and train blocks with the B recipe and refuses any difference.
+- **State:** implemented and tested locally (`scripts/r4_u1_wavlm_head.py`, `src/echoproof/training/r4_u1_wavlm_*.py`); the real-data alignment check passed on 60,194 rows (35,782 crops, 24,412 chunks). Training, parity and packaging run on Colab and are not yet done.
+
+## R4-U1a: WavLM-head-A trained, selected and packaged - 15 November 2026
+
+- **Run:** Colab (Tesla T4, torch 2.14.1+cu130, transformers 5.22.0), 15 November 2026, `notebooks/R4_U1_Colab_WavLM_Head_A.ipynb`, run by Usman; recipe `configs/r4_u1_wavlm_head_a.json` (the B-selected configuration unchanged, status `team_agreed_user_reported_2026-11-15`). Evidence `reports/r4/r4_u1_wavlm_colab_20261115T000705Z.json` with the alignment and parity reports and `reports/r4/r4_u1_wavlm_A/`; details in `docs/r4_u1_wavlm_head.md`.
+- **Alignment:** passed on the 60,194 A embeddings (35,782 crops, 24,412 chunks; selection 12,331, calibration 5,777, operating 6,304); split hash `a9075367...`; the A cache identity equals B's. No test row read.
+- **Selection (frozen before the later roles were scored):** epoch 13 of 20, selection-role recording macro F1 0.999375 at 0.5; checkpoint `d38dded7...`, `selection.json` sha256 `0af09a9b...`. Per-component selection panels: F1 1.000 for chatterbox, vits and xtts against genuine, 0.999 for melo.
+- **Parity:** 50 selection chunks across all five components: max embedding difference 8.3e-7, max probability difference 1.2e-7, 0 decision flips (tolerance 1e-4).
+- **Bundle:** `bundles/r4_u1_wavlm_head_A` (protocol A, raw uncalibrated); all component hashes verified locally. Predictions for the three validation roles exported in the B column layout; their hashes match the report.
+- **Reading it:** the near-perfect A score reflects that every generator is in A's train, validation and test; it is not comparable with B (0.914 with XTTS unseen) and does not measure generalisation to new generators. Single seed; raw scores need R4-N1.
+- **Verified here:** the report, alignment, parity, evidence, selection, checkpoint, output and bundle hashes; the source hashes in `environment.json` equal this repository. The ledger row `r4_u1_wavlm_head_A_20261114T235631Z` was verified after `reports/ledger.csv` was synced (config hash `b7514d21...`, best epoch 13, F1 0.99938, split hash `a9075367...`). **Not recorded:** Muneeb's review.
+- **Schedule:** R4-U1a was planned for D10 to D11; it ran on 15 November after the slipped R4-S1 and R4-U0. R4-U1b (AST-A) is still to do.

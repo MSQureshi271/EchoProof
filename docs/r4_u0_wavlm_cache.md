@@ -1,9 +1,9 @@
 # R4-U0: Protocol A WavLM embeddings the B cache lacks
 
 Code: `src/echoproof/features/r4_u0.py` (planner, extraction, verification, combined reader), `scripts/r4_u0_wavlm_cache.py` (`plan`, `build`, `verify`).
-Tests: `tests/test_r4_u0_wavlm_cache.py`. Colab: `notebooks/R4_U0_Colab_WavLM_Cache.ipynb` (GPU). Owner: Usman, with Subhan. Reviewer: to be recorded.
+Tests: `tests/test_r4_u0_wavlm_cache.py`. Colab: `notebooks/R4_U0_Colab_WavLM_Cache.ipynb` (GPU). Owner: Usman, with Subhan. Reviewer: Subhan (plan table); review user-reported.
 
-**Status: extracted and verified on Colab (Tesla T4, 14 November 2026); independent review pending.** Evidence: `reports/r4/r4_u0_colab_20261114T224150Z_92e256a0.json`, manifest `data/features/r4_u0_A/r4_u0_manifest.json` (sha256 `8217a743…`).
+**Status: extracted and verified on Colab (Tesla T4, 14 November 2026); team review reported by the project owner on 15 November 2026 (user-reported, no individual approval record).** Evidence: `reports/r4/r4_u0_colab_20261114T224150Z_92e256a0.json`, manifest `data/features/r4_u0_A/r4_u0_manifest.json` (sha256 `8217a743…`).
 
 ## What it does
 
@@ -70,4 +70,4 @@ The new vectors reproduce B's stored vectors to about 1e-5, so A-cache and B-cac
 
 - **`contracts.py` on Drive is older than the repository.** The Colab source hash of `src/echoproof/contracts.py` (`20483ebc…`) differs from the repository and the GR3 lock (`c17aa041…`). The only difference between the two versions (commit `f2c910c`, 9 November) is a docstring on `ModelAdapter`, with no code change. The same older copy was used by the R2-U1 and R4-S1 Colab runs. No result is affected, but the Drive copy should be refreshed from git.
 - **`r4_u0.py` was changed after the run.** `read_embeddings_a` re-read each NPZ array on every row access, which made the full read take over half an hour locally. It now loads each pack array once; behaviour and outputs are unchanged (the 23 R4-U0 tests still pass, and the full union read now takes about 70 s). The build, verification and parity code the run used is untouched, but the file's hash differs from the one in the Colab report (`261d3833…` then, now `1ad072ee…`).
-- Review by a teammate is not recorded here.
+- The team review is user-reported only; see the decision log (15 November 2026).

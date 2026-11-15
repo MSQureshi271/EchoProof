@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "task": "R4-U1a",
+  "status": "team_agreed_user_reported_2026-11-15",
+  "protocol": "A",
+  "derived_from": {
+    "file": "configs/r3_u1_wavlm_head_b.json",
+    "sha256": "bf66dc2447a705007c391aa4dca2461e31588460d7fba4dbfc5d3a8ed2cc2568",
+    "rule": "Protocol A reuses the B-selected configuration. The model and train blocks below must equal the B recipe's; the loader compares them and refuses any difference. B selected mean+std pooling (selected_epoch 14 of 20), so only that variant is trained."
+  },
+  "model": {
+    "name": "wavlm_head",
+    "architecture": "Linear(in_dim, 128) -> GELU -> Dropout(0.2) -> Linear(128, 2)",
+    "hidden": 128,
+    "dropout": 0.2,
+    "in_dim": {"mean": 768, "mean_std": 1536},
+    "label_map": {"genuine": 0, "tts": 1}
+  },
+  "train": {
+    "optimizer": "AdamW",
+    "lr": 0.001,
+    "weight_decay": 0.01,
+    "max_epochs": 20,
+    "early_stopping": false,
+    "batch_size": 128,
+    "scheduler": "constant",
+    "loss": "cross_entropy",
+    "class_strategy": "none",
+    "recording_equal_weights": true,
+    "seed": 42
+  },
+  "variants": ["mean_std"],
+  "selection": {
+    "role": "selection",
+    "metric": "recording macro F1 at fixed threshold 0.5",
+    "aggregation": "arithmetic mean of chunk probabilities",
+    "epoch_tie_rule": "earliest epoch",
+    "calibration_and_operating_roles": "scored only after the selection is frozen; never used to choose an epoch"
+  },
+  "input": {
+    "cache": "B cache data/features/r2_u1_B plus A gap cache data/features/r4_u0_A, read together by echoproof.features.r4_u0.read_embeddings_a",
+    "partitions_read": ["train", "validation"],
+    "test_partition": "not read; the A reader refuses it",
+    "components": "genuine, melo, vits, xtts, chatterbox, all present in train and in every validation role"
+  },
+  "decisions": {
+    "authority": "REVISED_PLAN.md Phase R4: Protocol A reuses each model's B-selected configuration; the only development choice in A is the checkpoint on the A selection role. Nothing below differs from the B recipe. The project owner reported on 15 November 2026 that the team verified this recipe (status team_agreed_user_reported_2026-11-15); no individual approval record exists in the repository. The training command refuses a recipe whose status does not start with team_agreed.",
+    "variant": "Only mean+std pooling, the B selection. The B comparison between the two poolings is not repeated in A, so no pooling is chosen on A data.",
+    "epochs": "Always 20, best selection epoch kept, as in B.",
+    "panels": "A has no unseen generator. Selection-role panels are reported per component (genuine versus each generator) for information only and are never used to choose the epoch.",
+    "seed": "42. Single seed: differences between A and B models may be within seed noise."
+  }
+}
