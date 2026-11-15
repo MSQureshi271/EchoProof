@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task": "R4-U1b",
-  "status": "draft_pending_team_agreement",
+  "status": "team_agreed_user_reported_2026-11-15",
   "protocol": "A",
   "derived_from": {
     "file": "configs/r3_u2_ast_ft_b.json",
@@ -73,7 +73,7 @@
     }
   },
   "decisions": {
-    "authority": "REVISED_PLAN.md Phase R4 and the user's choices of 15 November 2026: a fresh A warm-up, then the B-selected baseline fine-tune only (no lower_backbone_lr). The status stays draft until the project owner reports the team's agreement; the training command refuses a recipe whose status does not start with team_agreed.",
+    "authority": "REVISED_PLAN.md Phase R4 and the user's choices of 15 November 2026: a fresh A warm-up, then the B-selected baseline fine-tune only (no lower_backbone_lr). The project owner reported on 15 November 2026 that the team agreed on this recipe (status team_agreed_user_reported_2026-11-15); no individual approval record exists in the repository. The training command refuses a recipe whose status does not start with team_agreed.",
     "warmup_steps": "189 = round(0.05 x 3,776 optimiser steps); the B value 114 was round(0.05 x 2,272).",
     "epoch0": "Before training, the loaded A warm-up is scored on the selection role. Its macro F1 must equal the warm-up result's recorded best F1 within the tolerance (in B the reference was the R2-U2 value). Its predictions are the paired comparison.",
     "panels": "A has no unseen generator. Selection and paired panels are per component (genuine versus each generator) for information only and never choose the epoch.",

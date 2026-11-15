@@ -20,6 +20,16 @@ from echoproof.training import r4_u1_wavlm_data as D, r4_u1_wavlm_train as T  # 
 from test_r4_u0_wavlm_cache import A_HASH, World  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def digest_in_lock(path, lock_text):
+    """True if the file's SHA-256 is in the GR3 lock. The lock hashed the Windows (CRLF) checkout, so the same text with LF line endings (a Linux
+    or Colab checkout) is accepted too: only the line endings may differ, never the content."""
+    import hashlib
+    raw = Path(path).read_bytes()
+    lf = raw.replace(b"\r\n", b"\n")
+    return any(hashlib.sha256(variant).hexdigest() in lock_text for variant in (raw, lf, lf.replace(b"\n", b"\r\n")))
+
 RECIPE = ROOT / "configs/r4_u1_wavlm_head_a.json"
 COMPONENTS = D.COMPONENTS
 
@@ -313,7 +323,7 @@ class FrozenSources(unittest.TestCase):
         lock = json.dumps(json.loads((ROOT / "locks/B_lock_gr3.json").read_text(encoding="utf-8")))
         for rel in ("src/echoproof/training/r3_u1_data.py", "src/echoproof/training/r3_u1_train.py", "src/echoproof/training/r3_u1_parity.py",
                     "src/echoproof/models/r3_u1_bundle.py", "src/echoproof/models/wavlm_head.py"):
-            self.assertIn(file_digest(ROOT / rel), lock, f"{rel} differs from the hash recorded in the GR3 lock")
+            self.assertTrue(digest_in_lock(ROOT / rel, lock), f"{rel} differs from the hash recorded in the GR3 lock (beyond line endings)")
 
 
 if __name__ == "__main__":

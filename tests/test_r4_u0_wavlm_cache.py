@@ -23,6 +23,16 @@ from echoproof.data.cohort import flac_bytes, pcm_sha256, write_table
 from echoproof.features import r2_u1, r4_s1, r4_u0
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def digest_in_lock(path, lock_text):
+    """True if the file's SHA-256 is in the GR3 lock. The lock hashed the Windows (CRLF) checkout, so the same text with LF line endings (a Linux
+    or Colab checkout) is accepted too: only the line endings may differ, never the content."""
+    import hashlib
+    raw = Path(path).read_bytes()
+    lf = raw.replace(b"\r\n", b"\n")
+    return any(hashlib.sha256(variant).hexdigest() in lock_text for variant in (raw, lf, lf.replace(b"\n", b"\r\n")))
+
 RATE = 16000
 A_HASH, B_HASH = "a" * 64, "b" * 64
 B_TRAIN = {"genuine", "melo", "vits"}
@@ -423,7 +433,7 @@ class R4U0(unittest.TestCase):
         lock = json.loads((ROOT / "locks/B_lock_gr3.json").read_text(encoding="utf-8"))
         text = json.dumps(lock)
         for rel in ("src/echoproof/features/r2_u1.py", "src/echoproof/features/r2_s1.py", "src/echoproof/features/pretrained.py"):
-            self.assertIn(file_digest(ROOT / rel), text, f"{rel} differs from the hash recorded in the GR3 lock")
+            self.assertTrue(digest_in_lock(ROOT / rel, text), f"{rel} differs from the hash recorded in the GR3 lock (beyond line endings)")
 
 
 if __name__ == "__main__":

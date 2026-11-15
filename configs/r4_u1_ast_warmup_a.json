@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task": "R4-U1b-warmup",
-  "status": "draft_pending_team_agreement",
+  "status": "team_agreed_user_reported_2026-11-15",
   "protocol": "A",
   "derived_from": {
     "file": "configs/r2_u2_ast_b.json",
@@ -46,7 +46,7 @@
   },
   "pretrained_group_sha256": "taken from configs/r3_u2_ast_ft_b.json init.pretrained_group_sha256 (14 groups); the loader refuses a backbone that differs",
   "decisions": {
-    "authority": "REVISED_PLAN.md Phase R4: AST-A is a warm-up followed by partial fine-tuning with the B recipe. The user chose on 15 November 2026 a fresh warm-up on Protocol A rather than the B warm-up checkpoint. Nothing below differs from the B warm-up recipe. The status stays draft until the project owner reports the team's agreement; the training command refuses a recipe whose status does not start with team_agreed.",
+    "authority": "REVISED_PLAN.md Phase R4: AST-A is a warm-up followed by partial fine-tuning with the B recipe. The user chose on 15 November 2026 a fresh warm-up on Protocol A rather than the B warm-up checkpoint. Nothing below differs from the B warm-up recipe. The project owner reported on 15 November 2026 that the team agreed on this recipe (status team_agreed_user_reported_2026-11-15); no individual approval record exists in the repository. The training command refuses a recipe whose status does not start with team_agreed.",
     "scope": "One seeded four-second crop per A training recording per epoch (7,550 recordings, all five components); selection-role chunks for checkpoint choice; no calibration, operating or test audio.",
     "checkpoint": "best.pt by selection recording macro F1 at 0.5, earliest epoch on ties; it is the initializer of the A fine-tune and the epoch-0 reference of the paired comparison."
   }
