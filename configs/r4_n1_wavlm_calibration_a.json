@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "task": "R4-N1-WavLM",
+  "status": "team_agreed_user_reported_2026-11-15",
+  "protocol": "A",
+  "authority": "REVISED_PLAN.md R4-N1 and docs/research_contract.md (calibration and decision policy). The project owner reported on 15 November 2026 that the team accepted this recipe: the B WavLM procedure (R3-N1) applied unchanged to Protocol A, one pre-declared procedure for all four A models. WavLM-A is calibrated by Subhan; AST-A by Usman; LR-A and BiGRU-A by Nouman. No individual approval record exists in the repository. Derived from configs/r3_n1_wavlm_calibration_b.json: the candidate set, bounds, regularisation, selection rule, acceptance rule, threshold rule, bootstrap and reliability settings are equal; only protocol-bound fields differ (inputs, roles, components, panels, outputs). No fit used the calibration or operating role before this file was frozen.",
+  "derived_from": {
+    "file": "configs/r3_n1_wavlm_calibration_b.json",
+    "equal_blocks": ["epsilon", "seed", "weighting", "candidates", "temperature", "affine", "selection_rule", "acceptance_rule", "threshold_rule", "bootstrap", "reliability", "replay_tolerance_recording_score", "transformers_pin"]
+  },
+  "model": {
+    "selected": "mean_std",
+    "epoch": 13,
+    "checkpoint_sha256": "d38dded7bb1c5b03e047ddadfe6b18c03f0e4a643df004818f2e7ff8b2a27d6e",
+    "split_sha256": "a9075367c89295a953eab1de7dc9f2380b14b3f628c2fabca42aaff94a6201a5",
+    "encoder_revision": "4c66d4806a428f2e922ccfa1a962776e232d487b",
+    "source_bundle": "bundles/r4_u1_wavlm_head_A",
+    "source_bundle_id": "bundle:r4-u1-wavlm-head-A-mean_std",
+    "source_bundle_json_sha256": "9b54197d60bb7c93bc5044bd0b7ff21c6c6a5d063e08f209eaee01c0836023db",
+    "model_version": "wavlm_head:A"
+  },
+  "inputs": {
+    "directory": "reports/r4/r4_u1_wavlm_A",
+    "selection_json_sha256": "0af09a9b80f2d1dbebc18a8b6e64e9fc9f549acfafb05533f0ef71e6d9405662",
+    "evidence_json_sha256": "6c018aa9a48d0e68914891ff98be3571b144ece9a9a9b87e4fd911cba1c5e33a",
+    "predictions_sha256": {
+      "predictions_chunks_calibration.parquet": "504410273fa030843a03e813e8785e3270d9886310314019204abb13cb986bd4",
+      "predictions_chunks_operating.parquet": "112551f8f27a6998317602e86135d54a9ae012548d995a8942c4972a5b4fb547",
+      "predictions_chunks_selection.parquet": "570c9409b56a11577f82ca4a81502255b7fa123eae48eb6df43d836c01980ba7",
+      "predictions_recordings_calibration.parquet": "3c941022c2f8eb575ac85d01f77614bc1b7d8f200bc2f90fba27c4eb3e7198d0",
+      "predictions_recordings_operating.parquet": "60129acb1d00666c34e6ab3d57f9906e790606e3196843e1fc3d2b6b65e8276b",
+      "predictions_recordings_selection.parquet": "e4273527caf58b0d57d05cabee9942d6beb681a62c789a94dc7709ab1b86827d"
+    }
+  },
+  "split": {
+    "file": "data/splits/protocol_A_v1.parquet",
+    "cohort": "data/manifests/cohort_v1.parquet"
+  },
+  "components": ["genuine", "melo", "vits", "xtts", "chatterbox"],
+  "roles": {
+    "selection": {"recordings": 2500, "speakers": 25, "chunks": 12331, "per_component": 500},
+    "calibration": {"recordings": 1200, "speakers": 12, "chunks": 5777, "per_component": 240},
+    "operating": {"recordings": 1300, "speakers": 13, "chunks": 6304, "per_component": 260}
+  },
+  "expected_raw_summary_at_0_5": {
+    "decimals": 4,
+    "calibration": {"macro_f1": 0.9961, "genuine_fpr": 0.0, "eer": 0.0021, "roc_auc": 0.9999},
+    "operating": {"macro_f1": 0.9976, "genuine_fpr": 0.0077, "eer": 0.0, "roc_auc": 1.0}
+  },
+  "expected_saturation": {
+    "selection": {"high": 88, "exactly_one": 46, "low": 1, "distinct_before": 2275, "distinct_after": 2264},
+    "calibration": {"high": 47, "exactly_one": 28, "low": 0, "distinct_before": 1117, "distinct_after": 1110},
+    "operating": {"high": 67, "exactly_one": 29, "low": 1, "distinct_before": 1190, "distinct_after": 1179}
+  },
+  "epsilon": 1e-07,
+  "seed": 42,
+  "weighting": "one row, equal weight, per recording",
+  "candidates": ["identity", "temperature", "affine"],
+  "temperature": {"bounds": [0.01, 50.0], "bound_tolerance": 1e-06},
+  "affine": {
+    "parameterisation": "a = exp(u)",
+    "u_bounds": [-4.0, 4.0],
+    "b_bounds": [-5.0, 5.0],
+    "regularisation": 0.01,
+    "start": [0.0, 0.0],
+    "optimizer": "scipy L-BFGS-B",
+    "bound_tolerance": 1e-06
+  },
+  "selection_rule": {
+    "cross_validation": "leave-one-speaker-out inside the calibration role",
+    "statistic": "mean over held-out speakers of per-speaker log loss",
+    "standard_error": "sample standard deviation (ddof 1) of the best candidate's per-speaker losses / sqrt(number of speakers)",
+    "choice": "simplest candidate (identity, temperature, affine) whose mean is at most best mean + standard error",
+    "failed_candidates": "excluded and reported; identity if every non-identity candidate fails"
+  },
+  "acceptance_rule": {
+    "applies_to": "the mapping selected by selection_rule; identity is rejected by definition",
+    "conditions": [
+      "valid fit: solver success, finite objective, parameters strictly inside their bounds (not within bound_tolerance), calibrated scores finite and in [0,1]",
+      "operating log loss of calibrated scores strictly lower than raw",
+      "operating Brier score of calibrated scores not higher than raw"
+    ],
+    "tie": "rejected",
+    "accepted": {"score_type": "calibrated_probability", "threshold_scores": "calibrated"},
+    "rejected": {"score_type": "model_score", "threshold_scores": "raw"}
+  },
+  "threshold_rule": {
+    "function": "echoproof.evaluation.threshold.select_threshold",
+    "tie_break": "contract",
+    "decision": "score >= threshold",
+    "all_negative": "explicit",
+    "plateau_report": "number of distinct score-induced partitions that reach the maximum macro F1, and the score interval they span, reported beside the threshold"
+  },
+  "bootstrap": {"resamples": 1000, "seed": 42, "alpha": 0.05, "unit": "speaker"},
+  "reliability": {"bins": 10, "definition": "equal width on [0,1], last bin closed, empty bins omitted"},
+  "panels": {
+    "per_component": ["melo", "vits", "xtts", "chatterbox"],
+    "note": "genuine against each generator; informational only. Protocol A has no unseen generator and no duration-matched subset."
+  },
+  "replay_tolerance_recording_score": 0.001,
+  "transformers_pin": "5.22.0",
+  "output_root": "runs/r4/r4_n1_wavlm",
+  "bundle_destination": "bundles/r4_n1_wavlm_head_A_calibrated",
+  "restrictions": [
+    "no model retraining",
+    "no test data (the A test partition stays sealed)",
+    "no changes to the source bundle, exports or locks",
+    "no change to any file hashed in locks/B_lock_gr3.json",
+    "operating role opened once, after the mapping is frozen",
+    "no FPR constraint, prevalence correction or abstention (needs a recorded pre-result amendment)"
+  ]
+}
