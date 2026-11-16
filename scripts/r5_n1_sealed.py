@@ -3,9 +3,8 @@
     python scripts/r5_n1_sealed.py plan                          # dry run: verifies everything, prints what would be scored, reads no test rows, writes nothing
     python scripts/r5_n1_sealed.py run --confirm-sealed-run      # the one sealed run (GPU needed for the two AST bundles)
 
-`run` writes the test-access log FIRST, then opens the test rows through `splits.load_assignments(..., sealed=True)`, scores every test recording
-with each of the eight locked bundles through the unchanged shared `predict_recording`, checks denominators, failures and finiteness, and writes
-per-bundle prediction files and an integrity report. It computes no metric (a later task; see `METRICS_HOOK`). It refuses to overwrite a run folder.
+`run` logs before opening test rows and journals every prediction. A matching interrupted run can be resumed with an explicit reason; ambiguous
+in-flight scoring is refused for review. It computes no metric (see `METRICS_HOOK`). Existing completed runs are never overwritten.
 """
 from __future__ import annotations
 
@@ -15,6 +14,7 @@ import hashlib
 import json
 import math
 import os
+import importlib.metadata
 from pathlib import Path
 import subprocess
 import sys
@@ -116,11 +116,15 @@ def build_plan(root, *, shards=DEFAULT_SHARDS, device=None, deep: bool = True, l
             dev_detail = str(exc)
         _check(checks, f"{spec.key}: device policy resolves here ({dev or 'refused'})", dev is not None, dev_detail, scope="machine")
         if load_check and ok and dev is not None:
+            loaded = None
             try:
                 loaded = R.load_verified(root, spec, record, device=dev, cuda=cuda)[0]
                 _check(checks, f"{spec.key}: loads through {spec.loader}", True, f"score_type={loaded.score_type}")
             except Exception as exc:
                 _check(checks, f"{spec.key}: loads through {spec.loader}", False, f"{type(exc).__name__}: {exc}", scope="machine")
+            finally:
+                loaded = None
+                _free(None)
         entries.append({"key": spec.key, "protocol": spec.protocol, "model": spec.model, "model_version": spec.model_version, "loader": spec.loader,
                         "bundle_path": record["bundle_path"], "bundle_id": record["bundle_id"], "bundle_json_sha256": record["bundle_json_sha256"],
                         "decision_rule": record["decision_rule"], "device": dev, "precision": spec.precision, "requires_cuda": spec.requires_cuda,
@@ -241,14 +245,42 @@ def check_integrity(expected_ids, records, *, threshold=None) -> dict:
             "passed": not any(problems.values())}
 
 
+def split_digest(protocol: str, ordered) -> str:
+    """The split row digest as the split builder computed it. The stored `family_policy` column of the real split files holds `protocol_<X>` for every row,
+    while the locked hash was taken over the per-row policy of the protocol filter (`splits.PROTOCOLS`); that policy is re-derived from (partition, role,
+    component). Rows that already carry a real policy (synthetic fixtures) are used as stored."""
+    rules = splits.PROTOCOLS[protocol]
+    out = []
+    for r in ordered:
+        policy = r.family_policy
+        if str(policy).startswith("protocol_"):
+            if policy != f"protocol_{protocol}":
+                raise SealedRunError(f"Protocol {protocol}: unexpected stored family policy {policy!r}")
+            policy = rules[(r.partition, "*" if r.partition == "validation" else None)][r.recording_id.split(":")[1]]
+        out.append([r.recording_id, r.group_id, r.partition, r.validation_role, policy])
+    return digest(out)
+
+
 # ---- the sealed run ----------------------------------------------------------------------------------------------------------------------------------
 
 class AccessLog:
     """Append-only JSON lines, flushed and fsynced per event. Created exclusively, so an existing log is never overwritten."""
 
-    def __init__(self, path):
+    def __init__(self, path, *, resume=False):
         self.path = Path(path)
-        self._f = open(self.path, "x", encoding="utf-8")
+        if resume:
+            data = self.path.read_bytes()
+            if not data or not data.endswith(b"\n"):
+                raise SealedRunError("access log is incomplete; inspect it before recovery")
+            try:
+                self.events = [json.loads(line) for line in data.splitlines()]
+            except (ValueError, UnicodeError) as exc:
+                raise SealedRunError("access log is invalid; inspect it before recovery") from exc
+            if self.events[0].get("event") != "sealed_run_start":
+                raise SealedRunError("access log has no sealed start event")
+        else:
+            self.events = []
+        self._f = open(self.path, "a" if resume else "x", encoding="utf-8")
 
     def event(self, kind, **data):
         self._f.write(json.dumps({"utc": utc_now(), "event": kind, **data}, sort_keys=True, allow_nan=False) + "\n")
@@ -271,6 +303,63 @@ def _free(loaded):
         pass
 
 
+def run_identity(root, plan):
+    """Bind a continuation to the same code, locks, inputs, models and runtime."""
+    root = Path(root)
+    audio = plan["audio"]
+    shard_root = root / audio["shard_dir"]
+    shard_hashes = {name: R.sha256_file(shard_root / name) for name in audio.get("shards_present", [])}
+    versions = {}
+    for package in ("numpy", "scipy", "librosa", "scikit-learn", "soundfile", "torch", "transformers", "pyarrow"):
+        try:
+            versions[package] = importlib.metadata.version(package)
+        except importlib.metadata.PackageNotFoundError:
+            versions[package] = None
+    lock_hashes = {p: R.sha256_file(root / path) for p, path in R.LOCKS.items() if (root / path).is_file()}
+    code = plan.get("code", {})
+    accelerator = None
+    if plan.get("cuda_available"):
+        import torch
+        accelerator = {"cuda_runtime": torch.version.cuda, "cudnn": torch.backends.cudnn.version(),
+                       "devices": [torch.cuda.get_device_name(i) for i in range(torch.cuda.device_count())]}
+    return {"entries": public(plan)["entries"], "splits": plan["splits"], "audio": audio,
+            "shard_sha256": shard_hashes, "lock_sha256": lock_hashes, "versions": versions,
+            "python": sys.version, "cuda_available": plan.get("cuda_available"),
+            "accelerator": accelerator,
+            "code": {k: code.get(k) for k in ("src_echoproof_sha256", "runner_sha256")}}
+
+
+def journal_read(path, expected):
+    """Validate an append-only, hash-chained prefix of the expected recording order."""
+    if not path.exists():
+        return []
+    data = path.read_bytes()
+    if data and not data.endswith(b"\n"):
+        raise SealedRunError(f"incomplete journal {path}; manual inspection required")
+    records, previous = [], "0" * 64
+    try:
+        for line in data.splitlines():
+            item = json.loads(line)
+            rec = item["record"]
+            calculated = hashlib.sha256(json.dumps({"previous": previous, "record": rec}, sort_keys=True, separators=(",", ":"), allow_nan=True).encode()).hexdigest()
+            if item["sha256"] != calculated or len(records) >= len(expected) or rec["recording_id"] != expected[len(records)]:
+                raise ValueError("journal hash or recording order mismatch")
+            previous = calculated
+            records.append(rec)
+    except (ValueError, KeyError, TypeError) as exc:
+        raise SealedRunError(f"invalid journal {path}; manual inspection required") from exc
+    return records
+
+
+def journal_append(handle, record, previous):
+    payload = {"previous": previous, "record": record}
+    value = hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(",", ":"), allow_nan=True).encode()).hexdigest()
+    handle.write(json.dumps({"record": record, "sha256": value}, sort_keys=True, allow_nan=True) + "\n")
+    handle.flush()
+    os.fsync(handle.fileno())
+    return value
+
+
 def _record(row, component, result):
     ok = result is not None and getattr(result, "status", None) == "success"
     return {"recording_id": row.recording_id, "group_id": row.group_id, "component": component, "label": 0 if component == "genuine" else 1,
@@ -288,13 +377,16 @@ def _write_predictions(path, records):
 
 
 def execute(root, out_dir, *, confirm: bool, plan: dict | None = None, load=None, read_audio=None, predict=None, device=None, cuda=None,
-            metrics_hook=None, progress_every: int = 500) -> dict:
+            metrics_hook=None, progress_every: int = 500, resume: bool = False, resume_reason: str | None = None,
+            recover_stale_claim: bool = False) -> dict:
     """The sealed run. Order: confirmation, run-folder check, preflight (verified plan, device policy), access log, only then the test rows."""
     root, out_dir = Path(root), Path(out_dir)
     if confirm is not True:
         raise SealedRunError("the sealed run needs the explicit --confirm-sealed-run flag; use `plan` for a dry run")
-    if out_dir.exists():
+    if out_dir.exists() and not resume:
         raise SealedRunError(f"the run folder already exists and is never overwritten: {out_dir}")
+    if resume and (not out_dir.is_dir() or not resume_reason or not resume_reason.strip()):
+        raise SealedRunError("resume requires an existing run and a recorded reason")
     plan = plan if plan is not None else build_plan(root, device=device, cuda=cuda)
     if not plan.get("verified"):
         raise SealedRunError("the plan does not verify (run `plan` and fix every FAIL line); no test row was opened")
@@ -307,18 +399,52 @@ def execute(root, out_dir, *, confirm: bool, plan: dict | None = None, load=None
         load = lambda e: R.load_verified(root, e["_spec"], e["_record"], device=e["device"], cuda=cuda)[0]
     if predict is None:
         from echoproof.inference import predict_recording as predict
-    out_dir.mkdir(parents=True, exist_ok=False)
-    log = AccessLog(out_dir / "test_access_log.jsonl")
+    identity = run_identity(root, plan)
+    if resume:
+        try:
+            saved_identity = json.loads((out_dir / "run_identity.json").read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            raise SealedRunError("missing or invalid run identity; cannot resume") from exc
+        if saved_identity != identity:
+            raise SealedRunError("run identity changed; refusing resume before test access")
+        status_file = out_dir / "integrity_report.json"
+        if status_file.exists():
+            status = json.loads(status_file.read_text(encoding="utf-8"))["status"]
+            if status != "interrupted":
+                raise SealedRunError(f"cannot resume run with status {status}; inspect and record next action")
+    else:
+        out_dir.mkdir(parents=True, exist_ok=False)
+    claim = out_dir / "active_run.claim"
+    if claim.exists() and recover_stale_claim and resume:
+        # The caller must first verify that no previous worker is active.
+        claim.unlink()
+    try:
+        claim_handle = claim.open("x", encoding="utf-8")
+    except FileExistsError as exc:
+        raise SealedRunError("active run claim exists; verify the prior worker stopped before recovering it") from exc
+    claim_handle.write(json.dumps({"pid": os.getpid(), "created_utc": utc_now()}))
+    claim_handle.close()
+    if not resume:
+        (out_dir / "run_identity.json").write_text(json.dumps(identity, indent=2, sort_keys=True), encoding="utf-8")
+    try:
+        log = AccessLog(out_dir / "test_access_log.jsonl", resume=resume)
+    except BaseException:
+        claim.unlink(missing_ok=True)
+        raise
     summary = {"schema_version": SCHEMA_VERSION, "status": "aborted", "started_utc": utc_now(), "bundles": {}, "passed": False}
     try:
-        log.event("sealed_run_start", note="written BEFORE any test row is opened", plan=public(plan), out_dir=str(out_dir), code=plan.get("code"))
+        if resume:
+            log.event("sealed_run_resume", reason=resume_reason.strip(), stale_claim_recovered=recover_stale_claim,
+                      note="continuation rereads the sealed split; no completed prediction is repeated")
+        else:
+            log.event("sealed_run_start", note="written BEFORE any test row is opened", plan=public(plan), out_dir=str(out_dir), code=plan.get("code"))
         rows_by_protocol, expected_by_protocol = {}, {}
         for protocol in sorted({e["protocol"] for e in plan["entries"]}):
             info = plan["splits"][protocol]
             log.event("opening_test_rows", protocol=protocol, split_file=info["file"], split_file_sha256=info["file_sha256"], via="splits.load_assignments(sealed=True)")
             rows = splits.load_assignments(root / info["file"], sealed=True)
             ordered = sorted(rows, key=lambda r: r.recording_id)
-            got = digest([[r.recording_id, r.group_id, r.partition, r.validation_role, r.family_policy] for r in ordered])
+            got = split_digest(protocol, ordered)
             if got != info["expected_split_hash"] or any(r.split_hash != info["expected_split_hash"] for r in rows):
                 raise SealedRunError(f"Protocol {protocol}: the split rows do not match the locked split hash")
             test = [r for r in ordered if r.partition == "test"]
@@ -330,38 +456,76 @@ def execute(root, out_dir, *, confirm: bool, plan: dict | None = None, load=None
             for r in test:
                 by_component[r.recording_id.split(":")[1]] = by_component.get(r.recording_id.split(":")[1], 0) + 1
             log.event("opened_test_rows", protocol=protocol, n_test=len(test), by_component=by_component, speakers=len({r.group_id for r in test}))
+        # Verify every saved prefix before doing any further scoring, including later bundles.
+        if resume:
+            import pyarrow.parquet as pq
+            for entry in plan["entries"]:
+                journal = out_dir / f"journal_{entry['protocol']}_{entry['model']}.jsonl"
+                saved = journal_read(journal, expected_by_protocol[entry["protocol"]])
+                saved_ids = {r["recording_id"] for r in saved}
+                pending = [event for event in log.events if event.get("event") == "recording_started"
+                           and event.get("key") == entry["key"] and event.get("recording_id") not in saved_ids]
+                if pending:
+                    raise SealedRunError(f"{entry['key']}: scoring was interrupted before its result was durably saved; inspect before any retry")
+                prediction_path = out_dir / f"predictions_{entry['protocol']}_{entry['model']}.parquet"
+                if prediction_path.exists() and pq.read_table(str(prediction_path)).to_pylist() != saved:
+                    raise SealedRunError(f"existing predictions differ from durable journal: {prediction_path.name}")
         if read_audio is None:
             read_audio = ShardAudio(root / plan["audio"]["shard_dir"])
         for e in plan["entries"]:
             test = rows_by_protocol[e["protocol"]]
+            journal = out_dir / f"journal_{e['protocol']}_{e['model']}.jsonl"
+            records = journal_read(journal, expected_by_protocol[e["protocol"]])
             log.event("bundle_start", key=e["key"], device=e["device"], n=len(test))
-            loaded = load(e)
-            records = []
-            for i, row in enumerate(test, 1):
-                component = row.recording_id.split(":")[1]
-                try:
-                    result = predict(read_audio(row.recording_id), loaded)
-                except Exception as exc:                               # nothing is dropped: an error is a failure that the integrity check counts
-                    result = None
-                    log.event("recording_error", key=e["key"], recording_id=row.recording_id, error=f"{type(exc).__name__}")
-                records.append(_record(row, component, result))
-                if progress_every and i % progress_every == 0:
-                    print(f"  {e['key']}: {i}/{len(test)}", flush=True)
-            _free(loaded)
+            loaded = None
+            try:
+                if len(records) < len(test):
+                    loaded = load(e)
+                previous = json.loads(journal.read_bytes().splitlines()[-1])["sha256"] if records else "0" * 64
+                with journal.open("a", encoding="utf-8") as output:
+                    for i, row in enumerate(test[len(records):], len(records) + 1):
+                        component = row.recording_id.split(":")[1]
+                        log.event("recording_started", key=e["key"], recording_id=row.recording_id)
+                        try:
+                            result = predict(read_audio(row.recording_id), loaded)
+                        except Exception as exc:
+                            result = None
+                            log.event("recording_error", key=e["key"], recording_id=row.recording_id, error=f"{type(exc).__name__}")
+                        record = _record(row, component, result)
+                        previous = journal_append(output, record, previous)
+                        records.append(record)
+                        if progress_every and i % progress_every == 0:
+                            print(f"  {e['key']}: {i}/{len(test)}", flush=True)
+            finally:
+                loaded = None
+                _free(None)
             report = check_integrity(expected_by_protocol[e["protocol"]], records, threshold=e["decision_rule"]["threshold"])
             name = f"predictions_{e['protocol']}_{e['model']}.parquet"
-            _write_predictions(out_dir / name, records)
+            prediction_path = out_dir / name
+            if prediction_path.exists():
+                import pyarrow.parquet as pq
+                existing = pq.read_table(str(prediction_path)).to_pylist()
+                if existing != records:
+                    raise SealedRunError(f"existing predictions differ from durable journal: {name}")
+            else:
+                temporary = prediction_path.with_suffix(".parquet.tmp")
+                _write_predictions(temporary, records)
+                os.replace(temporary, prediction_path)
             summary["bundles"][e["key"]] = {"predictions_file": name, "predictions_sha256": R.sha256_file(out_dir / name), "model_version": e["model_version"],
                                             "bundle_json_sha256": e["bundle_json_sha256"], "device": e["device"], "integrity": report}
             log.event("bundle_done", key=e["key"], passed=report["passed"], expected=report["expected"], records=report["records"])
         summary["passed"] = all(b["integrity"]["passed"] for b in summary["bundles"].values()) and len(summary["bundles"]) == len(plan["entries"])
         summary["status"] = "complete" if summary["passed"] else "integrity_failed"
         return summary
+    except KeyboardInterrupt:
+        summary["status"] = "interrupted"
+        raise
     finally:
         summary["finished_utc"] = utc_now()
         (out_dir / "integrity_report.json").write_text(json.dumps(summary, indent=1, sort_keys=True, allow_nan=False), encoding="utf-8")
         log.event("sealed_run_end", status=summary["status"], passed=summary["passed"])
         log.close()
+        claim.unlink(missing_ok=True)
         hook = metrics_hook if metrics_hook is not None else METRICS_HOOK
         if summary["passed"] and hook is not None:
             hook(out_dir, summary)       # later task: metrics, bootstrap, plots; called only after every integrity check passed
@@ -382,6 +546,9 @@ def main(argv=None) -> int:
     r = sub.add_parser("run", parents=[common], help="the sealed run")
     r.add_argument("--confirm-sealed-run", action="store_true")
     r.add_argument("--out", default=DEFAULT_OUT)
+    r.add_argument("--resume", action="store_true", help="continue an interrupted run without overwriting saved predictions")
+    r.add_argument("--resume-reason", help="required explanation recorded before a resumed test read")
+    r.add_argument("--recover-stale-claim", action="store_true", help="only after verifying the previous worker is no longer running")
     args = parser.parse_args(argv)
     root = Path(args.root)
     if args.stage == "plan":
@@ -393,7 +560,8 @@ def main(argv=None) -> int:
         return 2
     plan = build_plan(root, shards=args.shards, device=args.device)
     try:
-        summary = execute(root, root / args.out, confirm=args.confirm_sealed_run, plan=plan, device=args.device)
+        summary = execute(root, root / args.out, confirm=args.confirm_sealed_run, plan=plan, device=args.device,
+                          resume=args.resume, resume_reason=args.resume_reason, recover_stale_claim=args.recover_stale_claim)
     except SealedRunError as exc:
         print(f"REFUSED: {exc}", file=sys.stderr)
         return 2

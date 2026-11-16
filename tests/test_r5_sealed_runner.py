@@ -4,6 +4,7 @@ import math
 import sys
 import tempfile
 import unittest
+from dataclasses import replace
 from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
@@ -80,6 +81,28 @@ class Harness:
         with patch.object(splits, "load_assignments", side_effect=self.load_assignments):
             return S.execute(self.tmp, self.out, confirm=confirm, plan=plan or fake_plan(), load=lambda e: object(), read_audio=self.audio, predict=self.predict,
                              metrics_hook=hook, progress_every=0)
+
+
+class SplitDigestTests(unittest.TestCase):
+    def test_real_builder_digest_for_both_protocols_and_all_roles(self):
+        partitions = {"101": ("train", None), "102": ("validation", "selection"),
+                      "103": ("validation", "calibration"), "104": ("validation", "operating"),
+                      "105": ("test", None)}
+        stems = [f"{speaker}-1-0001" for speaker in partitions]
+        for protocol in ("A", "B"):
+            with self.subTest(protocol=protocol):
+                rows, expected = splits.build_assignments(protocol, stems, partitions)
+                ordered = sorted(rows, key=lambda row: row.recording_id)
+                self.assertEqual(S.split_digest(protocol, ordered), expected)
+                naive = digest([[r.recording_id, r.group_id, r.partition, r.validation_role, r.family_policy] for r in ordered])
+                self.assertNotEqual(naive, expected)
+                changed = list(ordered)
+                changed[0] = replace(changed[0], group_id="speaker:999")
+                self.assertNotEqual(S.split_digest(protocol, changed), expected)
+                wrong_policy = list(ordered)
+                wrong_policy[0] = replace(wrong_policy[0], family_policy="protocol_" + ("B" if protocol == "A" else "A"))
+                with self.assertRaises(S.SealedRunError):
+                    S.split_digest(protocol, wrong_policy)
 
 
 class CheckIntegrityTests(unittest.TestCase):
@@ -184,6 +207,64 @@ class RefusalTests(unittest.TestCase):
 
 
 class RunTests(unittest.TestCase):
+    def test_interrupt_resume_reuses_saved_bundle_and_records_reason(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            h = Harness(tmp=tmp, predict=MagicMock(side_effect=lambda audio, loaded: good_result(audio.decode())))
+            original = S.AccessLog.event
+
+            def interrupt_second_bundle(log, kind, **data):
+                if kind == "bundle_start" and data.get("key") == "B:LR":
+                    raise KeyboardInterrupt()
+                return original(log, kind, **data)
+
+            with patch.object(S.AccessLog, "event", interrupt_second_bundle), self.assertRaises(KeyboardInterrupt):
+                h.run()
+            self.assertEqual(h.predict.call_count, 9)
+            with patch.object(splits, "load_assignments", side_effect=h.load_assignments):
+                summary = S.execute(h.tmp, h.out, confirm=True, plan=fake_plan(), load=lambda e: object(),
+                                    read_audio=h.audio, predict=h.predict, progress_every=0, resume=True,
+                                    resume_reason="Colab connection interrupted")
+            self.assertTrue(summary["passed"])
+            self.assertEqual(h.predict.call_count, 18)
+            events = [json.loads(line) for line in (h.out / "test_access_log.jsonl").read_text().splitlines()]
+            self.assertEqual([e["reason"] for e in events if e["event"] == "sealed_run_resume"], ["Colab connection interrupted"])
+
+    def test_interrupted_inflight_recording_requires_manual_review(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            h = Harness(tmp=tmp, predict=MagicMock(side_effect=KeyboardInterrupt))
+            with self.assertRaises(KeyboardInterrupt):
+                h.run()
+            with patch.object(splits, "load_assignments", side_effect=h.load_assignments):
+                with self.assertRaisesRegex(S.SealedRunError, "interrupted before its result"):
+                    S.execute(h.tmp, h.out, confirm=True, plan=fake_plan(), load=lambda e: object(),
+                              read_audio=h.audio, predict=h.predict, progress_every=0, resume=True, resume_reason="reconnected")
+            self.assertEqual(h.predict.call_count, 1)
+
+    def test_resume_refuses_changed_plan_before_reading_rows(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            h = Harness(tmp=tmp, predict=MagicMock(side_effect=KeyboardInterrupt))
+            with self.assertRaises(KeyboardInterrupt):
+                h.run()
+            changed = fake_plan()
+            changed["entries"][0]["decision_rule"]["threshold"] = 0.7
+            with patch.object(splits, "load_assignments") as read:
+                with self.assertRaisesRegex(S.SealedRunError, "identity changed"):
+                    S.execute(h.tmp, h.out, confirm=True, plan=changed, resume=True, resume_reason="reconnected")
+                read.assert_not_called()
+
+    def test_journal_tampering_and_partial_writes_are_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "journal.jsonl"
+            with path.open("w", encoding="utf-8") as f:
+                S.journal_append(f, {"recording_id": "first", "score": 0.1}, "0" * 64)
+            self.assertEqual(len(S.journal_read(path, ["first"])), 1)
+            path.write_bytes(path.read_bytes().replace(b"0.1", b"0.2"))
+            with self.assertRaises(S.SealedRunError):
+                S.journal_read(path, ["first"])
+            path.write_bytes(b'{"incomplete":')
+            with self.assertRaises(S.SealedRunError):
+                S.journal_read(path, ["first"])
+
     def test_access_log_is_written_before_the_test_rows_are_opened(self):
         with tempfile.TemporaryDirectory() as tmp:
             h = Harness(tmp=tmp)
