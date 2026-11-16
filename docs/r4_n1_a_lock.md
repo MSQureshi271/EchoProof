@@ -2,7 +2,7 @@
 
 Code: `src/echoproof/evaluation/r4_n1_a_lock.py` (build and verify), `scripts/r4_n1/a_lock.py` (dry run by default; `--write`, `--allow-dirty`, `--verify`), `tests/test_r4_n1_a_lock.py`. Modelled on `scripts/r3_all/gr3_lock.py`; no B file is edited and `locks/B_lock_gr3.json` is not touched.
 
-**Status: implemented and dry-run on 16 November 2026; `locks/A_lock.json` is NOT written yet.** The lock is written once, from a clean working tree, after the project owner commits.
+**Status: written on 16 November 2026 (`locks/A_lock.json`, sha256 `8613ff1e22e7bfa4...`), built from a clean working tree at git head `cd99944`; committed in `70d11ac`.** `scripts/r4_n1/a_lock.py --verify locks/A_lock.json` re-checks it against the files.
 
 ## What the record binds
 
@@ -25,11 +25,15 @@ Every fact is read from the files and re-verified when the record is built and a
 | LR-A | `>= 0.591080` | identity, no | 0.8912 / 47 of 260 | 1,500 recordings, 1 explained flip, 3.9e-7 |
 | BiGRU-A | `>= 0.610877` | identity, no | 0.9741 / 19 of 260 | 1,500 recordings, 1 explained flip, 1.2e-7 |
 
-## To write the lock
+## How it was written
 
-1. Commit and push the working tree (the lock records `git_head`; a dirty tree is refused unless `--allow-dirty`, in which case the dirty entries are hashed into the record).
-2. `.venv/Scripts/python.exe scripts/r4_n1/a_lock.py` (dry run, review the summary), then `... --write`. It refuses to overwrite. Verify later with `--verify locks/A_lock.json`.
+1. The working tree was committed and merged with the teammates' push first (the lock records `git_head`; a dirty tree is refused unless `--allow-dirty`).
+2. `.venv/Scripts/python.exe scripts/r4_n1/a_lock.py` (dry run, summary reviewed), then `... --write`. It refuses to overwrite. Re-check any time with `--verify locks/A_lock.json`.
 3. Tests: `tests/test_r4_n1_a_lock.py` (7 tests; they hash the 345 MB AST model and take about a minute).
+
+## What the lock does not cover (next)
+
+It is a development lock: it does not authorise any use of the A bundles beyond the sealed evaluation (R5). How the sealed evaluation loads the eight bundles is analysed in `docs/r5_bundle_loading_options.md`; the app and fresh-install work (R4-N2, R4-N3) is planned in `docs/r4_n2_n3_plan.md`.
 
 ## Open
 
