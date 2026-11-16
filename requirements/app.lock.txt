@@ -1,0 +1,22 @@
+# EchoProof application environment (R4-N3)
+# Python: validated with 3.11.9; Colab reproduction baseline recorded 3.13.16.
+# Application, neural, pretrained and analysis extras. transformers is fixed to
+# the version used to verify the production Protocol B WavLM bundle.
+numpy==2.4.6
+pandas==2.2.3
+pyarrow==23.0.1
+scipy==1.16.3
+scikit-learn==1.6.1
+librosa==0.11.0
+soundfile==0.14.0
+PyYAML==6.0.3
+torch==2.14.1
+transformers==5.22.0
+huggingface-hub==1.33.0
+matplotlib==3.10.7
+seaborn==0.13.2
+streamlit==1.67.0
+pytest==9.0.2
+setuptools==80.10.2
+wheel==0.48.0
+pip==26.2.2

@@ -1,51 +1,63 @@
 # R4-N2 and R4-N3: plan (16 November 2026)
 
-**Status (16 November 2026 update): R4-N2 code and tests are implemented (see the decision log); the acceptance checklist `docs/r4_n2_app_acceptance.md` exists with nothing ticked; R4-N3 is not started.** The plan below is the original plan. Scope from `REVISED_PLAN.md` (R4-N2: deploy the production B bundle in the app and run the app acceptance list; R4-N3: fresh-environment install script and README tested on a clean Colab VM) and `IMPLEMENTATION_PLAN.md` section 12 (G12). Owners in the plan: Nouman / Usman (N2), Nouman / Muneeb (N3); nobody has started either.
+**Status (16 November 2026 update): R4-N2 implementation and tests are complete, but human acceptance checks and sign-off remain outstanding; `docs/r4_n2_app_acceptance.md` is still unticked. R4-N3 implementation and fresh-environment Colab verification are complete. The Colab run passed on Python 3.13.18/Linux, including production B-bundle verification, CLI prediction, and Streamlit AppTest. Evidence: `reports/r4_n3/colab_fresh_install_20261116T140532Z.json`.** Scope from `REVISED_PLAN.md` (R4-N2: deploy the production B bundle in the app and run the app acceptance list; R4-N3: fresh-environment install script and README tested on a clean Colab VM) and `IMPLEMENTATION_PLAN.md` section 12 (G12). Owners in the plan: Nouman / Usman (N2), Nouman / Muneeb (N3).
 
-## Starting point (checked)
+**## Starting point (checked — 16 November 2026)**
 
-- `app/main.py` loads `load_inference_bundle(ECHOPROOF_BUNDLE)`; **the default is still the old R2 LR path** (`runs/r2/r2_m1_20261106T140611Z/model`). The production selection in `locks/B_lock_gr3.json` is the calibrated B WavLM bundle `bundles/r3_n1_wavlm_head_B_calibrated` (`bundle:r3-n1-wavlm-head-B-calibrated`).
-- Already present: 25 MiB / 60 s limits and failure messages in `analyze`, the scope sentence `NOT_PROOF`, score-type labelling in `present()`, the mock banner, waveform and log-mel figures, chunk table, JSON download, a spinner. The inference code uses no temporary files (no `tempfile` use found).
-- Missing: a root `README.md`, any setup script, a requirements lock for the app, a bundle retrieval step, a busy state, accessibility text for the figures, an explicit uncalibrated-score warning, a retention statement, automated app tests, a CLI-versus-app parity test, an acceptance checklist.
-- Bundles are gitignored and live on Drive (WavLM bundle about 380 MB). No download location is defined.
-- `app/main.py` and `app_support.py` are hashed in the B lock; additive edits need a decision-log amendment (precedent: 14 November).
+- `app/main.py` now uses the R4-N2 locked production B-bundle loading path. The selected bundle is `bundles/r3_n1_wavlm_head_B_calibrated` (`bundle:r3-n1-wavlm-head-B-calibrated`), verified against `locks/B_lock_gr3.json`.
+- R4-N2 implementation includes the production bundle integration, score-type and scope messaging, privacy/resource handling, busy state, accessibility support, and automated app/helper tests.
+- Human acceptance remains outstanding: keyboard-only and screen-reader walkthrough, demo-laptop latency measurement, completion of `docs/r4_n2_app_acceptance.md`, and sign-off.
+- R4-N3 files are implemented: root `README.md`, `requirements/app.lock.txt`, Windows/Linux setup scripts, checksum-verified bundle retrieval, install verifier, deterministic fixture and expected prediction, reproduction test, and Colab notebook.
+- Fresh-environment Colab verification passed on Python 3.13.18/Linux. Production B-bundle verification, CLI prediction, and Streamlit AppTest passed. Evidence: `reports/r4_n3/colab_fresh_install_20261116T140532Z.json`.
+- Remaining R4-N3 decisions/checks: formally record the permanent bundle-hosting location and verify the Windows demo-laptop installation.
+- `app/main.py` and `app_support.py` are hashed in the B lock; additive edits require a decision-log amendment.
 
 ## R4-N2: app deployment and acceptance
 
-1. **Production bundle by default.** Default `ECHOPROOF_BUNDLE` to `bundles/r3_n1_wavlm_head_B_calibrated`; at start-up verify `bundle.json` against `locks/B_lock_gr3.json` and fail closed with a clear message on a mismatch or a missing bundle (distinct from invalid user audio). Show model version and score type. No mock path remains in the final demo.
-2. **Score-type warning and scope.** Show an explicit warning when the score type is not `calibrated_probability`; show a scope and retention statement before upload (English; genuine versus text-to-speech; audio is processed in memory and not kept; a hosted deployment would send audio to a server); keep the "not proof" wording. Disclose the locked policy's known cost (the B WavLM threshold flags 49 of 260 genuine operating recordings).
-3. **Privacy and resources.** Confirm no temporary files are written on success, error or timeout (test with decoders for WAV, FLAC, OGG and MP3, including the MP3 path); no caching of user audio across sessions (`cache_resource` only for the bundle; the per-session result is cleared when another file is chosen or on reset); no logging of audio or filenames.
-4. **Busy state.** One active inference per worker; a second request shows a busy and retry message; the Analyze button is disabled while running.
-5. **Accessibility.** Descriptive labels, text alternatives for the waveform and log-mel figures, outcome shown as text and not by colour alone, keyboard-only walkthrough of upload, analyze, error and download.
-6. **Parity.** The same fixture bytes through the library `analyze`, `echoproof predict` and the app code path give identical score, type, threshold and decision; any divergence is a release blocker (`REVISED_PLAN.md` risk list).
-7. **Automated tests.** Streamlit's `AppTest` for: start-up verification, upload then analyze, each failure message, busy state, result clearing; plus unit tests for the new `app_support` helpers. Keep the existing `tests/test_r1_n2_inference.py` green.
-8. **Acceptance checklist.** `docs/r4_n2_app_acceptance.md`: one row per G12 item and per section 12 flow step, each with evidence (test name or measured value) and a person who ticked it. Measured latency: reuse the B lock's local figures and re-measure on the demo laptop (Subhan's HP, CPU).
-9. **Recording.** Decision-log entry listing the additive edits to `app/main.py` and `app_support.py`; no change to `inference.py`, `cli.py` or any bundle.
+**Implementation status: complete. Human acceptance: pending.**
 
-Needs a human: the keyboard and screen-reader walkthrough, the demo-laptop latency run, and sign-off.
+1. **Production bundle by default — implemented.** The app uses the locked production B WavLM bundle at `bundles/r3_n1_wavlm_head_B_calibrated` (`bundle:r3-n1-wavlm-head-B-calibrated`). Bundle verification uses `locks/B_lock_gr3.json`; missing or invalid bundles fail closed. The old R2 LR default is no longer the production app path.
+2. **Score-type warning and scope — implemented.** The app identifies the score type, warns when it is not `calibrated_probability`, and presents the scope, retention and "not proof" information. The known operating cost remains: the B WavLM threshold flags 49 of 260 genuine operating recordings.
+3. **Privacy and resources — implementation present.** The app processes uploaded audio in memory and does not intentionally persist user audio or filenames. The required human acceptance checks across WAV, FLAC, OGG and MP3, including error and timeout paths, must still be recorded.
+4. **Busy state — implemented.** The app provides a busy state and disables the Analyze action while inference is running.
+5. **Accessibility — implementation present.** Descriptive labels, text alternatives and text-based outcomes are implemented. The keyboard-only and screen-reader walkthrough remains a human acceptance task.
+6. **Parity — automated verification implemented.** The R4-N3 verification successfully exercised the CLI and Streamlit AppTest against the production B bundle and deterministic fixture. The recorded fixture score was `0.9997738974292909`, with score type `calibrated_probability`, threshold `0.4040371283027592`, and assessment `synthetic`.
+7. **Automated tests — implemented.** Streamlit AppTest and helper tests are present. The fresh-environment Colab verification passed, including the Streamlit AppTest.
+8. **Acceptance checklist — pending human completion.** Complete `docs/r4_n2_app_acceptance.md` with evidence and the person responsible for each check. Record the keyboard-only and screen-reader walkthrough, privacy/resource checks, and measured latency on the demo laptop (Subhan's HP, CPU).
+9. **Decision-log recording — verify and close.** Ensure the decision log records the additive changes to `app/main.py` and `app_support.py`, consistent with the B-lock requirements.
+
+**Remaining R4-N2 work:** human accessibility walkthrough, privacy/resource acceptance evidence, demo-laptop latency measurement, completed acceptance checklist, and sign-off. Do not mark R4-N2 accepted until these are recorded.
 
 ## R4-N3: fresh install and README
 
-1. **Pinned environment.** `requirements/app.lock.txt` from the working environment (extras `app`, `neural`, `pretrained`, `analysis`; transformers pinned to 5.22.0 as the bundles were verified with it), with Python version noted. Reuse the P1-13 `locks/colab-baseline-*` export for the Colab case.
-2. **Setup script.** `scripts/setup_env.ps1` (Windows, the demo laptop) and `scripts/setup_env.sh` (Linux and Colab): create a virtual environment, install the lock, install the package editable with no dependencies, check imports and versions, print what failed.
-3. **Checksum-verified bundle retrieval.** `scripts/fetch_bundles.py --source <folder|zip> [--all]`: copies the production bundle (and optionally all eight) from a transfer location and verifies every component against `locks/B_lock_gr3.json` and `locks/A_lock.json`; refuses on any mismatch; never downloads anything unpinned (the WavLM and AST weights are inside the bundles, so no model download at run time).
-4. **Install check.** `scripts/verify_install.py`: load the production bundle, run `echoproof predict` on a small bundled fixture clip, compare with a stored expected score and decision, start the app headless with `AppTest`, exit non-zero on any failure.
-5. **README.** Root `README.md`: what the project does, scope and limitations, requirements, install (Windows and Colab), fetching bundles, running the app, CLI `predict` example, running the tests, repository map, what is locked and where the evidence is, how to cite the locks.
-6. **Clean-VM test.** `notebooks/R4_N3_Colab_Fresh_Install.ipynb`: fresh Colab runtime, clone or sync the repository, run setup, fetch, verify; output kept as evidence. Muneeb's independent reproduction (R6-REPRO) reuses it.
-7. **Decision needed:** where the bundles are hosted for retrieval (a shared Drive folder with a checksum manifest is the lowest-effort choice; a release asset or Git LFS needs an account decision).
+**Implementation status: complete. Fresh-environment Colab verification: passed.**
 
-Needs a human: the clean-VM run, the hosting decision, the demo-laptop install.
+1. **Pinned environment — implemented and verified.** `requirements/app.lock.txt` records the pinned application environment, including the Transformers version used for bundle verification. The Colab environment ran on Python 3.13.18.
+2. **Setup scripts — implemented.** `scripts/setup_env.ps1` supports Windows; `scripts/setup_env.sh` supports Linux and Colab. The Linux/Colab setup completed successfully in the isolated environment.
+3. **Checksum-verified bundle retrieval — implemented and verified.** `scripts/fetch_bundles.py` retrieves the production bundle and verifies it against the relevant lock record. The Colab verification confirmed the production B bundle.
+4. **Install check — implemented and passed.** `scripts/verify_install.py` successfully loaded the production bundle, ran the CLI fixture prediction, checked the expected result, and ran Streamlit AppTest.
+5. **README — implemented.** The root `README.md` documents the project, requirements, setup, bundle retrieval, app and CLI usage, tests, repository structure and evidence.
+6. **Clean-VM test — passed.** `notebooks/R4_N3_Colab_Fresh_Install.ipynb` completed fresh-environment verification on Colab. Evidence is stored at `reports/r4_n3/colab_fresh_install_20261116T140532Z.json`. The verified result was:
+   - Bundle: `bundles/r3_n1_wavlm_head_B_calibrated`
+   - Assessment: `synthetic`
+   - Score: `0.9997738974292909`
+   - Score type: `calibrated_probability`
+   - Streamlit AppTest: passed
+7. **Permanent bundle hosting decision — pending.** Formally record the long-term shared bundle location and retrieval arrangement. The successful Colab transfer does not, by itself, settle the permanent hosting decision.
+
+**Remaining R4-N3 work:** formally record the permanent bundle-hosting decision and verify the Windows setup on the demo laptop. The clean-VM Colab verification is complete and must not be listed as outstanding.
 
 ## Order and dependencies
 
-1. R4-N2 items 1, 2, 4, 6, 7 (code and tests, can start now), then 3 and 5, then the acceptance document.
-2. R4-N3 items 1 to 5 in parallel with the late N2 items (the install check needs the final app), then the clean-VM test.
-3. GR4 closes when: both locks exist (done), the app runs the production B bundle with the acceptance list ticked, latency is measured, and the fresh install works.
-4. R5-S1 (corruption copies, Subhan) is independent of N2 and N3 and can run in parallel; R5-N1 follows the loading decision in `docs/r5_bundle_loading_options.md`.
+1. R4-N2 implementation and automated testing are complete. Proceed with the remaining human acceptance checks, record their evidence in `docs/r4_n2_app_acceptance.md`, verify the decision-log entry, and obtain sign-off.
+2. R4-N3 implementation and Colab fresh-environment verification are complete. Record the permanent bundle-hosting decision and perform the Windows demo-laptop installation check.
+3. GR4 closes when both locks are available, the app runs the production B bundle, the R4-N2 acceptance checklist is completed and signed off, latency is measured, and the fresh-install and platform checks are satisfied.
+4. R5-S1 (corruption copies, Subhan) is independent of N2 and N3 and can run in parallel. R5-N1 follows the loading decision in `docs/r5_bundle_loading_options.md`.
 
 ## Risks
 
-- Streamlit's upload handling keeps files in memory, not on disk, but the claim is tested, not assumed.
-- WavLM on a CPU laptop: the B lock recorded warm p95 within 5 s on the named laptop; cold start is longer (disclosed in the lock).
-- The transformers pin must match on the demo laptop (5.22.0), or the loader warns.
-- Schedule: by the plan these were due D10 to D11; today is D13, so the clean-VM test and sealed run compete for the last days.
+- Streamlit upload handling is expected to keep uploaded audio in memory rather than on disk. The required acceptance checks across success, error and timeout paths must be recorded.
+- WavLM on a CPU laptop: the B lock recorded warm p95 within 5 seconds on the named laptop; cold start is longer, as disclosed in the lock. The demo-laptop measurement remains outstanding.
+- The Transformers pin must match on the demo laptop (`5.22.0`), or the loader warns.
+- Permanent bundle hosting has not yet been formally decided. The current Colab transfer arrangement should not be treated as a permanent hosting decision.
+- Schedule: the original D10–D11 targets have passed. The remaining work is human acceptance, Windows verification, hosting documentation and GR4 sign-off.
