@@ -1,0 +1,10 @@
+{
+  "status": "verified",
+  "source": "Direct CLI prediction with the locally installed pinned application dependencies, after fetch_bundles.py verified the Protocol B bundle against locks/B_lock_gr3.json.",
+  "bundle_id": "bundle:r3-n1-wavlm-head-B-calibrated",
+  "bundle_json_sha256": "491310e8e563c4cca12063ea5edb3af2a2f1f7be788aa77432eef4ac274e7f82",
+  "score": 0.9997738974292909,
+  "assessment": "synthetic",
+  "score_type": "calibrated_probability",
+  "threshold": 0.4040371283027592
+}
